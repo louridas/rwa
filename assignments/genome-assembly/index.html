@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
+    <!-- Dynamically resize logo for mobile -->
+    <style type="text/css">
+      .logo-width {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15%;
+      }
+      /* Roughly the point when website is single column */
+      @media (max-width: 850px) {
+      .logo-width {
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 5%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 5%">
+        <div class="three columns">
+          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io/rwa">
+            <center>
+              <img alt="book cover" class="logo-width"
+                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
+            </center>
+          </a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
+          <div class="row" style="padding-bottom: 5%"> </div>
+        </div>
+        <div class="nine columns">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://louridas.github.io/rwa/assignments/genome-assembly/" rel="bookmark"
+         title="Permalink to Genome Assembly">Genome Assembly</a></h2>
+ 
+  </header>
+  <div class="entry-content">
+    <p>One of the most important scientific developments of the last decades
+has been the decoding of the human genome. Thanks to the techniques
+that were developed in that effort, we can now investigate genetic
+diseases, detect mutations, study genomes of extinct species, among
+other fascinating applications.</p>
+<p>Genomes are encoded in the DNA, a large organic molecule that is
+composed of a double helix. The double helix is made up of four bases:
+cytosine (C), guanine (G), adenine (A), and thymine (T). Each part of
+the double helix is constructed from a series of bases, like
+ACCGTATAG. The other part of the double helix is constructed from
+bases that are connected with their corresponding bases on the first
+part, according to the rules A-T, C-G. So, if one part of the helix is
+ACCGTATAG, the other part will be TGGCATATC.</p>
+<p>In order to find the composition of an unknown DNA piece, we work as
+follows. We create many copies of the chain and we break them up into
+little fragments, for instance, fragments containing three bases each.
+Using specialized instruments we can identify such small fragments
+easily. In this way we end up with a set of known fragments. We are
+then left with the problem of assembling the fragments to a DNA
+sequence, whose composition we will then know.</p>
+<p>Suppose then that we have the following fragments, or <em>polymers</em> as
+they are known: GTG, TGG, ATG, GGC, GCG, CGT, GCA, TGC, CAA, AAT, ATG,
+AAT. Each one of them has length 3, but in general they can have
+length <span class="math">\(k\)</span>. To find the DNA sequence from which they were broken up,
+we create a graph. In that graph, the vertices are polymers of length
+2 (or, more generally, <span class="math">\(k - 1\)</span>) that are derived from the polymers of
+length 3 (or, <span class="math">\(k\)</span> in the general case), taking for each polymer of
+length 3 (<span class="math">\(k\)</span>) the first 2 (<span class="math">\(k - 1\)</span>) and the last 2 (<span class="math">\(k - 1\)</span>)
+polymers. So, from GTG we will get GT and TG, from TGG we will get TG
+and GG. In the graph we add one edge for every one of the initial
+polymers or length 3 (<span class="math">\(k\)</span>) that was used to derive the two vertices.
+We give the name of the polymer to that edge. So, from ATG we got
+vertices AT and TG and the edge ATG. You can see the graph that
+results from our example:</p>
+<p><center>
+<img src="https://louridas.github.io/rwa/assignments/genome-assembly/fragment_graph.png" width="400">
+</center></p>
+<p>To find the initial DNA sequence we only need to find a path in the
+graph that visits all vertices exactly once. We call a path with this
+property <a href="https://en.wikipedia.org/wiki/Eulerian_path">Eulerian path</a>
+and it exists if and only if each vertex has the same in-degree and
+out-degree and all vertices with non-zero degree belong to a single
+strongly connected component.</p>
+<p>To find the path that we want in the graph that we created, we use
+Hierholzer's algorithm:</p>
+<ul>
+<li>We pick a starting node, <span class="math">\(u\)</span>.</li>
+<li>We go from node to node until we return to <span class="math">\(u\)</span>. The path that we
+  have traced to this point does not necessarily cover all edges.</li>
+<li>As long as there exists a vertex <span class="math">\(v\)</span> that belongs to the path we
+  have traced, but is part of an edge that does not belong to that
+  path:<ul>
+<li>We start another path from <span class="math">\(v\)</span>, using edges that we have not used
+  yet, until we return to <span class="math">\(v\)</span>. Then we splice this path to the path
+  we have already traced.</li>
+</ul>
+</li>
+</ul>
+<p>If we use the algorithm in our example graph, we will find the path in
+the following figure:</p>
+<p><center>
+<img src="https://louridas.github.io/rwa/assignments/genome-assembly/fragment_graph_path.png" width="400">
+</center></p>
+<p>If we go along the path and we connect the vertices keeping their
+common base only once we get the DNA sequence ATGGCGTGCA. Note that
+the sequence is cyclical: the vertex AA occurs int he sequence if we
+connect its end with its beginning. That means that an equivalent
+sequence is GGCGTGCAAT, or any other that is a rotation of ATGGCGTGCA.
+Moreover, depending on the starting node <span class="math">\(u\)</span> and how we choose an edge
+when we have more than one outgoing vertices, we may get a different
+sequence. For example, if we start from TG we may get the sequence
+TGGCAATGCG or any other that is a rotation of TGGCAATGCG. That is OK.
+In the following figures you can see the cyclical character of the
+sequences:</p>
+<p><center>
+<img src="https://louridas.github.io/rwa/assignments/genome-assembly/dna_circular_1.png" width="300">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://louridas.github.io/rwa/assignments/genome-assembly/dna_circular_2.png" width="300">
+</center></p>
+<p>The purpose of this assignment is to create a program that assembles
+DNA from a set of fragments. For more details, see <a href='#compeau:2011' id='ref-compeau:2011-1'>[1]</a> and
+<a href='#pevzner:2001' id='ref-pevzner:2001-1'>[2]</a>.</p>
+<h3>Requirements</h3>
+<ol>
+<li>You will write a program named <code>dna_assembly.py</code> that performs DNA
+   assembly. </li>
+<li>You will not use ready-made graph libraries.</li>
+<li>Your program must be called as follows:</li>
+</ol>
+<div class="highlight"><pre><span></span>python  dna_assembly.py fragments_file
+</pre></div>
+
+
+<p>The <code>fragments_file</code> argument specifies the name of the file where the
+DNA fragments are stored (that does not mean that the name of the file is
+<code>fragments_file</code>, it is just a stand-in). The file will have the
+following format:</p>
+<div class="highlight"><pre><span></span>ATG
+GTG
+TGG
+GGC
+GCG
+CGT
+GCA
+TGC
+CAA
+AAT
+ATG
+AAT
+...
+</pre></div>
+
+
+<p>that is, it contains one polymer per line.</p>
+<h3>Output</h3>
+<p>The program's output will be the DNA sequence that it assembled.</p>
+<h3>Examples</h3>
+<p>The fragments for the example that we have been using is in the file
+<a href="https://louridas.github.io/rwa/assignments/genome-assembly/fragment_file_1.txt">fragment_file_1.txt</a>, so the output will
+be:</p>
+<div class="highlight"><pre><span></span>ATGGCGTGCA
+</pre></div>
+
+
+<p>or some other equivalent sequence, as explained above.</p>
+<p>If the user gives the file
+<a href="https://louridas.github.io/rwa/assignments/genome-assembly/fragment_file_2.txt">fragment_file_2.txt</a> the output will be:</p>
+<div class="highlight"><pre><span></span>AGTGGACCATGTATACTTCA
+</pre></div>
+
+
+<p>or some other equivalent, such as:</p>
+<div class="highlight"><pre><span></span>TGTACTTCATATGGACCAAG
+</pre></div>
+
+
+<p>If the user gives the file
+<a href="https://louridas.github.io/rwa/assignments/genome-assembly/fragment_file_3.txt">fragment_file_3.txt</a> the output will be:</p>
+<div class="highlight"><pre><span></span>ATCTCAGACTTACACCATATGG
+</pre></div>
+
+
+<p>or some other equivalent, such as:</p>
+<div class="highlight"><pre><span></span>TCTCAGACTTACACCATATGGA
+</pre></div>
+
+
+<p>If the user gives the file
+<a href="https://louridas.github.io/rwa/assignments/genome-assembly/fragment_file_4.txt">fragments_file_4.txt</a> the output will
+be:</p>
+<div class="highlight"><pre><span></span>GACTACCTGGTCTCGATCACGGA
+</pre></div>
+
+
+<p>or some other equivalent, such as:</p>
+<div class="highlight"><pre><span></span>CGGTCACTCTGGACCTACGAGAT
+</pre></div>
+
+
+<p>or:</p>
+<div class="highlight"><pre><span></span>TACTCGGACGAGATCACCTGGTC
+</pre></div>
+
+
+<p>If you want to verify the results, you can write some code that checks
+that:</p>
+<ol>
+<li>All the fragments in the input file are present in the output
+   sequence.</li>
+<li>All the fragments in the sequence are present in the input file.</li>
+</ol>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script><hr>
+<h3>Bibliography</h3>
+<div class='bibliography'><ol><li id='compeau:2011'>Phillip E&nbsp;C Compeau, Pavel&nbsp;A Pevzner, and Glenn Tesler.
+How to apply de <span class="bibtex-protected">Bruijn</span> graphs to genome assembly.
+<em>Nature Biotechnology</em>, 29(11):987–991, 11 2011.
+URL: <a href="http://dx.doi.org/10.1038/nbt.2023">http://dx.doi.org/10.1038/nbt.2023</a>. <a class="cite-backref" href="#ref-compeau:2011-1" title="Jump back to reference 1">↩</a></li><li id='pevzner:2001'>Pavel&nbsp;A. Pevzner, Haixu Tang, and Michael&nbsp;S. Waterman.
+An eulerian path approach to <span class="bibtex-protected">DNA</span> fragment assembly.
+<em>Proceedings of the National Academy of Sciences</em>, 98(17):9748–9753, 2001.
+URL: <a href="http://www.pnas.org/content/98/17/9748.abstract">http://www.pnas.org/content/98/17/9748.abstract</a>, <a href="https://arxiv.org/abs/http://www.pnas.org/content/98/17/9748.full.pdf">arXiv:http://www.pnas.org/content/98/17/9748.full.pdf</a>, <a href="https://doi.org/10.1073/pnas.171285098">doi:10.1073/pnas.171285098</a>. <a class="cite-backref" href="#ref-pevzner:2001-1" title="Jump back to reference 1">↩</a></li></ol></div>
+  </div><!-- /.entry-content -->
+</section>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 25%"> </div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-103703286-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

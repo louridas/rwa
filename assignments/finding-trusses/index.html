@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
+    <!-- Dynamically resize logo for mobile -->
+    <style type="text/css">
+      .logo-width {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15%;
+      }
+      /* Roughly the point when website is single column */
+      @media (max-width: 850px) {
+      .logo-width {
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 5%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 5%">
+        <div class="three columns">
+          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io/rwa">
+            <center>
+              <img alt="book cover" class="logo-width"
+                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
+            </center>
+          </a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
+          <div class="row" style="padding-bottom: 5%"> </div>
+        </div>
+        <div class="nine columns">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://louridas.github.io/rwa/assignments/finding-trusses/" rel="bookmark"
+         title="Permalink to Finding Trusses">Finding Trusses</a></h2>
+ 
+  </header>
+  <div class="entry-content">
+    <p>Thanks to
+<a href="https://en.wikipedia.org/wiki/Edward_Snowden">Edward Snowden</a> we
+know much more than we used to about
+the way intelligence services work. So,
+<a href="https://www.documentcloud.org/documents/2702948-Problem-Book-Redacted.html">one of the documents he leaked</a>
+concerns the research activities of
+<a href="https://en.wikipedia.org/wiki/Government_Communications_Headquarters">GCHQ (Government Communications Headquarters)</a>.
+Reading the document, we can see that they are interested in detecting
+specific structures in graphs. The nodes in these graphs are people
+and the edges are links between them. The links may be communication
+channels such as phone calls, e-mails, etc. A structure that seems of
+particular interest to GCHQ is the <em>k-truss</em>, an idea that seems to
+come from the
+<a href="https://en.wikipedia.org/wiki/National_Security_Agency">National Security Agency</a>, see
+<a href='#cohen:2008' id='ref-cohen:2008-1'>[1]</a> and <a href='#cohen:2009' id='ref-cohen:2009-1'>[2]</a>.</p>
+<p>A k-truss in a graph is a subset of the graph such that every edge in
+the subject is supported by at least <span class="math">\(k - 2\)</span> other edges that form
+triangles with that particular edge. In other words, every edge in the
+truss must be part of <span class="math">\(k - 2\)</span> triangles made up of nodes that are part
+of the truss. For example, in the following figures you can see two
+3-trusses in a graph. By definition, 3-trusses are the triangles of a
+graph.</p>
+<p><img src="https://louridas.github.io/rwa/assignments/finding-trusses/truss_3_1.png" width="300">
+<img src="https://louridas.github.io/rwa/assignments/finding-trusses/truss_3_2.png" width="300"></p>
+<p>Similarly, in the following figure you can see a 4-truss of a graph.
+4-trusses are sets of such that every edge is part of two triangles
+composed of nodes in the truss.</p>
+<p><img src="https://louridas.github.io/rwa/assignments/finding-trusses/truss_4.png" width="400"></p>
+<p>A k-truss is <em>maximal</em> when it is not a subgraph of another k-truss.
+Here we want to find the maximal k-trusses of a graph.</p>
+<h3>Maximal Truss Finding Algorithm</h3>
+<p>How do we find the maximal k-trusses of a graph? One way is with the
+following algorithm:</p>
+<div class="highlight"><pre><span></span>find_maximal_k_trusses(g, k):
+    until no change do
+        for each edge e = (a,b) in g:
+            if (size(intersection(neighbours(a), neighbours(b)) &lt; k - 2:
+                remove e from g
+    return the connected components of the remaining graph
+</pre></div>
+
+
+<p>In the above algorithm, <code>g</code> is the graph and <code>k</code> is the truss size.
+The function <code>neighbours(a)</code> gives us the neighbours of node <code>a</code>, the
+function <code>intersection(s1, s2)</code> finds the intersection of two sets
+<code>s1</code> and <code>s2</code>, and the function <code>size(s)</code> finds the size of the set
+<code>s</code>. The idea behind the algorithm is to reduce the graph so that in
+the end the connected components of the graph are maximal k-trusses.
+This algorithm is not very efficient, better ones do exist, but it
+will do for this assignment.</p>
+<h3>Requirements</h3>
+<ol>
+<li>You will write a program named <code>trusses.py</code> that finds the
+   maximal k-trusses of a graph.</li>
+<li>You will represent the graph with adjacency lists, not with an
+   adjacency matrix.</li>
+<li>You will not use ready-made graph libraries.</li>
+<li>Your program must be called as follows:</li>
+</ol>
+<div class="highlight"><pre><span></span>python trusses.py graph_file size_of_truss
+</pre></div>
+
+
+<p>The <code>graph_file</code> argument specifies the name of the file where the
+graph is stored (that does not mean that the name of the file is
+<code>graph_file</code>, it is just a stand-in). The file will have the
+following format:</p>
+<div class="highlight"><pre><span></span>0 2
+1 3 
+2 4
+...
+</pre></div>
+
+
+<p>that is, it contains lines each one of which has two numbers. If
+the two numbers are <code>x</code> and <code>y</code>, the graph will have an edge between
+the nodes <code>x</code> and <code>y</code>. The graph is undirected, so we assume that
+there always exists the reverse edge from <code>y</code> to <code>x</code>. The nodes
+will be always consecutive integers starting from 0, i.e.,
+0, 1, 2, ... You cannot assume that the file contents are ordered
+in any way.</p>
+<p>The argument <code>size_of_truss</code> is the truss dimension, i.e., the <span class="math">\(k\)</span> in
+k-truss.</p>
+<h3>Output</h3>
+<p>The program will print out the k-trusses of the graph, if they exist,
+in the form:</p>
+<div class="highlight"><pre><span></span><span class="k">[0, 1, 9]</span>
+<span class="k">[8, 10, 16]</span>
+</pre></div>
+
+
+<p>That is, each line
+will contain a truss inside square brackets, with the nodes separated by
+commas and whitespace. Every k-truss will be output only once, and
+the k-trusses will be output in order.</p>
+<h3>Examples</h3>
+<p>If the user gives:</p>
+<div class="highlight"><pre><span></span>python trusses.py graph_1.txt 3
+</pre></div>
+
+
+<p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_1.txt">graph_1.txt</a>, which actually corresponds
+to the graph of the first two figures with the 3-trusses above, the
+output will be the one we gave just above:</p>
+<div class="highlight"><pre><span></span><span class="k">[0, 1, 9]</span>
+<span class="k">[8, 10, 16]</span>
+</pre></div>
+
+
+<p>If the user gives:</p>
+<div class="highlight"><pre><span></span>python trusses.py graph_2.txt 4
+</pre></div>
+
+
+<p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_2.txt">graph_2.txt</a>, the output will be:</p>
+<div class="highlight"><pre><span></span><span class="k">[3, 8, 9, 18]</span>
+<span class="k">[7, 11, 15, 21]</span>
+</pre></div>
+
+
+<p>If the user gives:</p>
+<div class="highlight"><pre><span></span>python trusses.py graph_3.txt 5
+</pre></div>
+
+
+<p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_3.txt">graph_3.txt</a>, the output will be:</p>
+<div class="highlight"><pre><span></span>[2, 5, 8, 9, 13, 14]
+</pre></div>
+
+
+<p>If the user gives:</p>
+<div class="highlight"><pre><span></span>python trusses.py graph_4.txt 3
+</pre></div>
+
+
+<p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_4.txt">graph_4.txt</a>, the output will be:</p>
+<div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+</pre></div>
+
+
+<p>that is, all the nodes in the graph, whereas if the user gives:</p>
+<div class="highlight"><pre><span></span>python trusses.py graph_4.txt 4
+</pre></div>
+
+
+<p>with the same file, the output will be:</p>
+<div class="highlight"><pre><span></span>[0, 1, 3, 4, 5, 6, 9, 11]
+</pre></div>
+
+
+<p>which corresponds to the 4-truss figure we gave at the beginning.</p>
+<p>If you want to try a bigger example, if the user gives:</p>
+<div class="highlight"><pre><span></span>python trusses.py barabasi_albert_graph_1500.txt 4
+</pre></div>
+
+
+<p>using the file
+<a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_5.txt">graph_5.txt</a>, which contains 1500 nodes,
+the output will be:</p>
+<div class="highlight"><pre><span></span>[0, 3, 4, 5, 7, 9, 11, 15, 26]
+</pre></div>
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script><hr>
+<h3>Bibliography</h3>
+<div class='bibliography'><ol><li id='cohen:2008'>Jonathan Cohen.
+Trusses: cohesive subgraphs for social network analysis.
+Technical Report, National Security Agency, 2008.
+URL: <a href="https://www.computer.org/cms/Computer.org/dl/mags/cs/2009/04/extras/msp2009040029s1.pdf">https://www.computer.org/cms/Computer.org/dl/mags/cs/2009/04/extras/msp2009040029s1.pdf</a>. <a class="cite-backref" href="#ref-cohen:2008-1" title="Jump back to reference 1">↩</a></li><li id='cohen:2009'>Jonathan Cohen.
+Graph twiddling in a <span class="bibtex-protected">MapReduce</span> world.
+<em>Computing in Science and Engineering</em>, 11(4):29–41, July 2009.
+URL: <a href="http://dx.doi.org/10.1109/MCSE.2009.120">http://dx.doi.org/10.1109/MCSE.2009.120</a>, <a href="https://doi.org/10.1109/MCSE.2009.120">doi:10.1109/MCSE.2009.120</a>. <a class="cite-backref" href="#ref-cohen:2009-1" title="Jump back to reference 1">↩</a></li></ol></div>
+  </div><!-- /.entry-content -->
+</section>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 25%"> </div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-103703286-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
