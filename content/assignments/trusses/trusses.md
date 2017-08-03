@@ -49,7 +49,6 @@ How do we find the maximal k-trusses of a graph? One way is with the
 following algorithm:
 
 ```
-:::algol
 find_maximal_k_trusses(g, k):
     until no change do
         for each edge e = (a,b) in g:
@@ -75,8 +74,7 @@ will do for this assignment.
    adjacency matrix.
 3. You will not use ready-made graph libraries.
 4. Your program must be called as follows:
-```
-:::bash
+```bash
 python trusses.py graph_file size_of_truss
 ```
 
@@ -105,7 +103,7 @@ k-truss.
 
 The program will print out the k-trusses of the graph, if they exist,
 in the form:
-```
+```bash
 [0, 1, 9]
 [8, 10, 16]
 ```
@@ -117,13 +115,13 @@ the k-trusses will be output in order.
 ### Examples
 
 If the user gives:
-```
+```bash
 python trusses.py graph_1.txt 3
 ```
 with the file [graph_1.txt]({attach}graph_1.txt), which actually corresponds
 to the graph of the first two figures with the 3-trusses above, the
 output will be the one we gave just above:
-```
+```bash
 [0, 1, 9]
 [8, 10, 16]
 ```
@@ -133,7 +131,7 @@ If the user gives:
 python trusses.py graph_2.txt 4
 ```
 with the file [graph_2.txt]({attach}graph_2.txt), the output will be:
-```
+```bash
 [3, 8, 9, 18]
 [7, 11, 15, 21]
 ```
@@ -143,7 +141,7 @@ If the user gives:
 python trusses.py graph_3.txt 5
 ```
 with the file [graph_3.txt]({attach}graph_3.txt), the output will be:
-```
+```bash
 [2, 5, 8, 9, 13, 14]
 ```
 
@@ -152,7 +150,7 @@ If the user gives:
 python trusses.py graph_4.txt 3
 ```
 with the file [graph_4.txt]({attach}graph_4.txt), the output will be:
-```
+```bash
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 ```
 that is, all the nodes in the graph, whereas if the user gives:
@@ -160,7 +158,7 @@ that is, all the nodes in the graph, whereas if the user gives:
 python trusses.py graph_4.txt 4
 ```
 with the same file, the output will be:
-```
+```bash
 [0, 1, 3, 4, 5, 6, 9, 11]
 ```
 which corresponds to the 4-truss figure we gave at the beginning.
@@ -172,6 +170,6 @@ python trusses.py barabasi_albert_graph_1500.txt 4
 using the file
 [graph_5.txt]({attach}graph_5.txt), which contains 1500 nodes,
 the output will be:
-```
+```bash
 [0, 3, 4, 5, 7, 9, 11, 15, 26]
 ```
