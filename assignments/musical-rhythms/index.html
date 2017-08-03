@@ -73,7 +73,7 @@ zero). You also want the ones to be as evenly spread as possible among
 the zeroes. If <span class="math">\(k\)</span> divides <span class="math">\(n\)</span>, then the solution is straightforward;
 we just divide the ones among the zeros. For example, for <span class="math">\(n = 16\)</span> and
 <span class="math">\(k = 4\)</span> we get the sequence:</p>
-<div class="highlight"><pre><span></span>[1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0]
+<div class="highlight"><pre><span></span>[ 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 ]
 </pre></div>
 
 
@@ -82,7 +82,7 @@ prime, that is, when the only common divisor of <span class="math">\(n\)</span> 
 number 1.</p>
 <p>So suppose that we have <span class="math">\(n = 13\)</span> and <span class="math">\(k = 5\)</span>. As we have <span class="math">\(13 - 5 = 8\)</span>,
 we start by creating a sequence with 5 ones and 8 zeroes:</p>
-<div class="highlight"><pre><span></span>[ 1 1 1 1 1 0 0 0 0 0 0 0 0]
+<div class="highlight"><pre><span></span>[ 1 1 1 1 1 0 0 0 0 0 0 0 0 ]
 </pre></div>
 
 
@@ -166,18 +166,18 @@ integers.</p>
 (p[0], p[1] , ... , p[n−1])</code>, then if we increase <code>p[0]</code> by one and
 decrease <code>p[n-1]</code> by one, we will get a new interval vector. If this
 new interval vector can also result by rotating the first one, then we
-say that we have a <em>Euclidean string</em>. For example, <span class="math">\(E(4, 9) =
-[\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ 0\ 0\ ] = (2223)\)</span>. If we increase the first
+say that we have a <em>Euclidean string</em>. For example, <span class="math">\(E(4, 9)\)</span> is
+<span class="math">\([\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ 0\ 0\ ]\)</span> and <span class="math">\((2223)\)</span>. If we increase the first
 digit by one and we decrease the last digit by one, we get <span class="math">\((3222)\)</span>,
 which we can get by rotating the first string, so the rhythm is also a
 Euclidean string.</p>
 <p>If we take the reverse string from an interval vector, that is, if we
 read it from the end to the start, and we the reverse string is also a
 Euclidean string, then we say that we have a <em>reverse Euclidean
-string</em>. For example, <span class="math">\(E(4, 11) = [\ 1\ 0\ 0\ 1\ 0\ 0\ 1\ 0\ 0\ 1\ 0\ ]
-= (3332)\)</span>. The reverse string of the interval vector is <span class="math">\((2333)\)</span>,
-which is a Euclidean string, so <span class="math">\((3332)\)</span> is a reverse Euclidean
-string.</p>
+string</em>. For example, <span class="math">\(E(4, 11)\)</span> is
+<span class="math">\([\ 1\ 0\ 0\ 1\ 0\ 0\ 1\ 0\ 0\ 1\ 0\ ]\)</span> and <span class="math">\((3332)\)</span>. The reverse
+string of the interval vector is <span class="math">\((2333)\)</span>, which is a Euclidean
+string, so <span class="math">\((3332)\)</span> is a reverse Euclidean string.</p>
 <p>For more information on Euclidean rhythms check <a href='#toussaint:2005' id='ref-toussaint:2005-1'>[4]</a>;
 <a href="https://en.wikipedia.org/wiki/Godfried_Toussaint">Godfried Toussaint</a>
 was the one that introduced the concept and has written a whole book
