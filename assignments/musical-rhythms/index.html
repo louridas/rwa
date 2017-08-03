@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="/theme/css/normalize.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="/theme/css/skeleton.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="/theme/css/highlight.css" />    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="/theme/css/rwa.css" />
+    <!-- Dynamically resize logo for mobile -->
+    <style type="text/css">
+      .logo-width {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15%;
+      }
+      /* Roughly the point when website is single column */
+      @media (max-width: 850px) {
+      .logo-width {
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 5%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 5%">
+        <div class="three columns">
+          <h1><a href="">Real World Algorithms</a></h1>
+          <a href="">
+            <center>
+              <img alt="book cover" class="logo-width"
+                   src="/theme/images/rwa.jpg">
+            </center>
+          </a>
+          <a class="site-content u-full-width"
+             href="/pages/book-chapters.html">Chapters</a>
+          <a class="site-content u-full-width"
+             href="/pages/assignments.html">Assignments</a>
+          <a class="site-content u-full-width"
+             href="/pages/translations.html">Translations</a>
+          <a class="site-content u-full-width"
+             href="/pages/slides.html">Slides</a> 
+          <a class="site-content u-full-width"
+             href="/pages/errata.html">Errata</a>          
+          <div class="row" style="padding-bottom: 5%"> </div>
+        </div>
+        <div class="nine columns">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="/assignments/musical-rhythms/" rel="bookmark"
+         title="Permalink to Musical Rhythms">Musical Rhythms</a></h2>
+ 
+  </header>
+  <div class="entry-content">
+    <p>Consider the following problem. You want to create a binary sequence
+of <span class="math">\(n\)</span> bits, out of which <span class="math">\(k\)</span> are one (and the rest are of course
+zero). You also want the ones to be as evenly spread as possible among
+the zeroes. If <span class="math">\(k\)</span> divides <span class="math">\(n\)</span>, then the solution is straighforward;
+we just divide the ones among the zeros. For example, for <span class="math">\(n = 16\)</span> and
+<span class="math">\(k = 4\)</span> we get the sequence:</p>
+<div class="highlight"><pre><span></span>[1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0]
+</pre></div>
+
+
+<p>The problem gets more interesting when <span class="math">\(n\)</span> and <span class="math">\(k\)</span> are relatively
+prime, that is, when the only common divisor of <span class="math">\(n\)</span> and <span class="math">\(k\)</span> is the
+number 1.</p>
+<p>So suppose that we have <span class="math">\(n = 13\)</span> and <span class="math">\(k = 5\)</span>. As we have <span class="math">\(13 - 5 = 8\)</span>,
+we start by creating a sequence with 5 ones and 8 zeroes:</p>
+<div class="highlight"><pre><span></span>[ 1 1 1 1 1 0 0 0 0 0 0 0 0]
+</pre></div>
+
+
+<p>We can treat this sequence as 13 sequences of one bit each:</p>
+<div class="highlight"><pre><span></span>[ [1] [1] [1] [1] [1] [0] [0] [0] [0] [0] [0] [0] [0] ]
+</pre></div>
+
+
+<p>We distribute the zeroes so that we get five sequences of two bits
+each, and three sequences of one bit:</p>
+<div class="highlight"><pre><span></span>[ [1 0] [1 0] [1 0] [1 0] [1 0] [0] [0] [0] ]
+</pre></div>
+
+
+<p>Then we distribute the remaining zeroes in the same way, so that we
+get:</p>
+<div class="highlight"><pre><span></span>[ [1 0 0] [1 0 0] [1 0 0] [1 0] [1 0] ]
+</pre></div>
+
+
+<p>Now we distribute the <code>[1 0]</code> sequences, which leads to:</p>
+<div class="highlight"><pre><span></span>[ [1 0 0 1 0] [1 0 0 1 0] [1 0 0] ]
+</pre></div>
+
+
+<p>The process ends when the remainder (that is, the sequences with the
+smallest number of bits) is exactly one, or we do not have any more
+zeroes to distribute. Then we concatenate the result. In our example,
+we get:</p>
+<div class="highlight"><pre><span></span>[ 1 0 0 1 0 1 0 0 1 0 1 0 0 ]
+</pre></div>
+
+
+<p>We can interpret the above sequence as a rhythm, where each digit is a
+unit of time and each <code>0</code> shows a silence (or unaccented note), while
+each <code>1</code> shows an attack, or an onset of a note. Then, for different
+relatively prime <span class="math">\(n\)</span> and <span class="math">\(k\)</span> we get a wealth of rhythms that are used
+in world music. Two examples:</p>
+<ul>
+<li>The rhythm with <span class="math">\(k = 3\)</span> and <span class="math">\(n = 7\)</span>, <span class="math">\([\ 1\ 0\ 1\ 0\ 1\ 0\ 0\ ]\)</span>, is
+  the Ruchenitza (Rachenitsa, Ръченица, Rŭchenitsa, Râčenica) rhythm
+  that is used in Bulgarian folk musing and in the
+  <a href="https://en.wikipedia.org/wiki/Pink_Floyd">Pink Floyd</a> song
+  <a href="https://en.wikipedia.org/wiki/Money_(Pink_Floyd_song)">Money</a>.</li>
+<li>The rhythm with <span class="math">\(k = 5\)</span> and <span class="math">\(n = 9\)</span>,
+  <span class="math">\([\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ ]\)</span>,
+  is a popular arabic rhythm called Agsag Samai. If started on the second
+  onset, it is drum pattern used by the
+  <a href="https://en.wikipedia.org/wiki/Venda_people">Venda people</a> in South
+  Africa, as well as a Romanian folk dance. It is also the rhythm
+  pattern of the Greek Sigaktistos.
+  [ This is according to the bibliography. The author, being Greek,
+  does not know any rhythm by that name. A student, Marios Pitsalidis,
+  suggested that perhaps the correct name is Sigkathistos, Συγκαθιστός,
+  meaning "sitting together," which probably makes sense. If somebody
+  knows more, please contact the author. ] The Turkish Samai Aktsak
+  follows the same pattern as well. If started on the third onset, it
+  is the rhythmical pattern of the Turkish Nawahiid rhythm.</li>
+</ul>
+<h3>Euclidean Rhythms and Euclidean Strings</h3>
+<p>The way we outlined for constructing these rhythmical sequences for
+different <span class="math">\(k\)</span> and <span class="math">\(n\)</span> follows Euclid's algorithm for finding the
+greatest common divisor of two numbers. Indeed, if <code>euclid(n, k)</code> is a
+function implementing the algorithm, we would have <code>euclid(8,5) =
+euclid(5,3) = euclid(3,2) = euclid(2,1) = euclid(1,0) = 1</code>, which
+corresponds to the steps we made. For that reason, these rhythms are
+called
+<a href="https://en.wikipedia.org/wiki/Euclidean_rhythm">Euclidean rhythms</a>. </p>
+<p>To describe a Euclidean rhythm we use the <span class="math">\(E(k, n)\)</span> notation, where
+<span class="math">\(k\)</span> is the number of onsets and <span class="math">\(n\)</span> is the length of the rhythm, for
+example <span class="math">\(E(5, 9)\)</span>. We can also use another notation, in which we count
+the intervals until the next onset, so we have <span class="math">\(E(5, 9) = (22221)\)</span>,
+because there are two between the first and the second onset in
+<span class="math">\([\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ ]\)</span>, and so on. Another rhythm is <span class="math">\(E(5, 12)\)</span>,
+which corresponds to <span class="math">\([\ 1\ 0\ 0\ 1\ 0\ 1\ 0\ 0\ 1\ 0\ 1\ 0\ ]\)</span> and
+can also be written <span class="math">\((32322)\)</span>, as you may check. The second notation
+is called <em>adjacent-inter-onset-interval vector</em>, or <em>interval vector</em>
+for short. In essence, an interval vector is a sequence of positive
+integers.</p>
+<p>If we have a rhythm written in interval vector notation, say, <code>P =
+(p[0], p[1] , ... , p[n−1])</code>, then if we increase <code>p[0]</code> by one and
+decrease <code>p[n-1]</code> by one, we will get a new interval vector. If this
+new interval vector can also result by rotating the first one, then we
+say that we have a <em>Euclidean string</em>. For example, <span class="math">\(E(4, 9) =
+[\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ 0\ 0\ ] = (2223)\)</span>. If we increase the first
+digit by one and we decrease the last digit by one, we get <span class="math">\((3222)\)</span>,
+which we can get by rotating the first string, so the rhythm is also a
+Euclidean string.</p>
+<p>If we take the reverse string from an interval vector, that is, if we
+read it from the end to the start, and we the reverse string is also a
+Euclidean string, then we say that we have a <em>reverse Euclidean
+string</em>. For example, <span class="math">\(E(4, 11) = [\ 1\ 0\ 0\ 1\ 0\ 0\ 1\ 0\ 0\ 1\ 0\ ]
+= (3332)\)</span>. The reverse string of the interval vector is <span class="math">\((2333)\)</span>,
+which is a Euclidean string, so <span class="math">\((3332)\)</span> is a reverse Euclidean
+string.</p>
+<p>For more information on Euclidean rhythms check <a href='#toussaint:2005' id='ref-toussaint:2005-1'>[4]</a>;
+<a href="https://en.wikipedia.org/wiki/Godfried_Toussaint">Godfried Toussaint</a>
+was the one that introduced the concept and has written a whole book
+on the geometry of musical rhythm <a href='#toussaint:2013' id='ref-toussaint:2013-1'>[6]</a>. See also
+<a href='#demaine:2009' id='ref-demaine:2009-1'>[2]</a> for a well-developed overview. For more information on
+Euclidean strings, see <a href='#ellis:2003' id='ref-ellis:2003-1'>[3]</a>.</p>
+<h3>Distance between Rhythms</h3>
+<p>How different are two rhythms? If we take two rhythms are binary
+sequences, then one metric that we can use to gauge the distance
+between two strings of equal length is the number of positions in
+which the corresponding elements of the sequences are different. This
+is called
+<a href="https://en.wikipedia.org/wiki/Hamming_distance">Hamming distance</a>. If
+<code>s1</code> and <code>s2</code> are two sequences, the following function (adapted for
+Python 3 from
+the Wikipedia article), calculates the Hamming distance:</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hamming_distance</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Undefined for sequences of unequal length&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">ch1</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="n">ch2</span><span class="p">))</span> <span class="k">for</span> <span class="n">ch1</span><span class="p">,</span> <span class="n">ch2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">))</span>
+</pre></div>
+
+
+<p>For example, the rhythm <span class="math">\(E(4, 9) = [\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ 0\ 0\ ]\)</span>
+has a Hamming distance of one from the rhythm <span class="math">\(E(5, 9) =
+[\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ ]\)</span> and a Hamming distance of three from
+the rhythm <span class="math">\(E(7, 9) = [\ 1\ 0\ 1\ 1\ 1\ 0\ 1\ 1\ 1\ ]\)</span>.</p>
+<p>That said, the Hamming distance is not the best way to measure the
+similarity of rhythms. There are better metrics for that purpose
+<a href='#toussaint:2004' id='ref-toussaint:2004-1'>[5]</a> <a href='#toussaint:2013' id='ref-toussaint:2013-2'>[6]</a>, but we'll stick to the Hamming
+distance for now.</p>
+<p>In this assignment you will develop a program that handles and
+manipulates Euclidean rhythms.</p>
+<h3>Requirements</h3>
+<ol>
+<li>You will write a program called <code>musical_rhythms.py</code>, which will
+   work with Euclidean rhythms.</li>
+<li>The program will read, upon start, the dictionary of rhythms that
+   is stored in the file
+   <a href="/assignments/musical-rhythms/musical_rhythms.json">musical_rhythms.json</a>. The file
+   should be stored in the same directory as the program itself. The
+   contents of the file are in
+   <a href="http://www.json.org/">JSON (JavaScript Object Notation)</a>, so you
+   should use the
+   <a href="https://docs.python.org/3/library/json.html">Python <code>json</code> library</a>.</li>
+<li>Your program must be called as follows:</li>
+</ol>
+<div class="highlight"><pre><span></span>musical_rhythms.py [-s SLOTS] [-p PULSES] [-r RECOGNIZE] [-l LIST_RHYTHMS]
+</pre></div>
+
+
+<h3>Output</h3>
+<h4>Create a Rhythm</h4>
+<p>If the user gives the parameters <code>-s SLOTS</code> and <code>-p PULSES</code>, then
+<code>SLOTS</code> and <code>PULSES</code> will be positive integers. The program will then
+return information on the rhythm that corresponds to these parameters, where
+<code>PULSES</code> is the number of onsets and <code>SLOTS</code> is the length of the
+rhythm. To do that, the program will look up the rhythm in the rhythm
+dictionary. If it finds it there, it will display the information
+stored for that rhythm; otherwise, it will just display the rhythm. In
+the next line, if the rhythm corresponds to a Euclidean string or to a
+reverse Euclidean string, it will display an appropriate message.</p>
+<p>Examples:</p>
+<div class="highlight"><pre><span></span>python musical_rhythms.py -s 12 -p 6
+E(6,12) = [101010101010] = (222222)
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>python musical_rhythms.py -s 12 -p 7
+E(7,12) = [101101011010] = (2122122) It is a common West African bell pattern. For example, it is used in the Mpre rhythm of the Ashanti people of Ghana. Started on the seventh (last) onset, it is a Yoruba bell pattern of Nigeria, a Babenzele pattern of Central Africa, and a Mende pattern of Sierra Leone.
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>python musical_rhythms.py -s 16 -p 5
+E(5,16) = [1001001001001000] = (33334) It is the Bossa-Nova rhythm necklace of Brazil. The actual Bossa-Nova rhythm usually starts on the third onset as follows: [1001001000100100]. However, other starting places are also documented in world music practices, such as [1001001001000100].
+It is a Euclidean string.
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>python musical_rhythms.py -s 9 -p 5
+E(5,9) = [101010101] = (22221) It is a popular Arabic rhythm called Agsag-Samai. Started on the second onset, it is a drum pattern used by the Venda in South Africa, as well as a Rumanian folk-dance rhythm. It is also the rhythmic pattern of the Sigaktistos rhythm of Greece, and the Samai aktsak rhythm of Turkey. Started on the third onset, it is the rhythmic pattern of the Nawahiid rhythm of Turkey.
+It is a reverse Euclidean string.
+</pre></div>
+
+
+<p>As you can see, the first thing to appear will be rhythm in the form
+<span class="math">\(E(k, n)\)</span>; then as a binary string inside square brackets; then as
+interval vector inside parentheses; and then any description found in
+the rhythms dictionary. The final line will contain a message if it is
+a Euclidean or a reverse Euclidean string.</p>
+<h4>Rhythm Recognition</h4>
+<p>If the user gives the parameter <code>-r RECOGNIZE</code>, then <code>RECOGNIZE</code> will
+be a rhythm represented as a binary string and the progam should
+identify it, if it is a Euclidean rhythm, and print out any
+information available. If it is not a Euclidean rhythm, it should
+print an appropriate message.</p>
+<p>Examples:</p>
+<div class="highlight"><pre><span></span>python musical_rhythms.py -r 101101011010
+E(7,12) = [101101011010] = (2122122) It is a common West African bell pattern. For example, it is used in the Mpre rhythm of the Ashanti people of Ghana. Started on the seventh (last) onset, it is a Yoruba bell pattern of Nigeria, a Babenzele pattern of Central Africa, and a Mende pattern of Sierra Leone.
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>python musical_rhythms.py -r 10010010010
+E(4,11) = [10010010010] = (3332) It is the metric pattern used by Frank Zappa in his piece titled Outside Now.
+It is a reverse Euclidean string.
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>python musical_rhythms.py -r 10010010011
+Not a Euclidean rhythm.
+</pre></div>
+
+
+<h4>Show Similar Rhythms</h4>
+<p>If the user gives the parameter <code>-l LIST_RHYTHMS</code>, then <code>LIST_RHYTHMS</code>
+will be a rhythm given as a binary string and the program will display
+all rhythms of the same length, ordered in increasing Hamming distance
+and number of onsets.</p>
+<p>Examples:</p>
+<div class="highlight"><pre><span></span>python musical_rythms.py -l 101010100
+Distance = 0
+E(4,9) = [101010100] = (2223) It is the Aksak rhythm of Turkey. It is also the metric pattern used by Dave Brubeck in his piece Rondo a la Turk.
+It is a Euclidean string.
+Distance = 1
+E(5,9) = [101010101] = (22221) It is a popular Arabic rhythm called Agsag-Samai. Started on the second onset, it is a drum pattern used by the Venda in South Africa, as well as a Rumanian folk-dance rhythm. It is also the rhythmic pattern of the Sigaktistos rhythm of Greece, and the Samai aktsak rhythm of Turkey. Started on the third onset, it is the rhythmic pattern of the Nawahiid rhythm of Turkey.
+It is a reverse Euclidean string.
+Distance = 2
+E(2,9) = [100010000] = (45)
+It is a Euclidean string.
+Distance = 3
+E(1,9) = [100000000] = (9)
+Distance = 3
+E(3,9) = [100100100] = (333)
+Distance = 3
+E(7,9) = [101110111] = (2112111) It is the Bazaragana rhythmic pattern of Greece.
+It is a reverse Euclidean string.
+Distance = 4
+E(6,9) = [101101101] = (212121)
+Distance = 4
+E(8,9) = [101111111] = (21111111)
+It is a reverse Euclidean string.
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>python musical_rythms.py -l 1001001001000
+Distance = 0
+E(4,13) = [1001001001000] = (3334)
+It is a Euclidean string.
+Distance = 2
+E(2,13) = [1000001000000] = (67)
+It is a Euclidean string.
+Distance = 3
+E(1,13) = [1000000000000] = (13)
+Distance = 5
+E(3,13) = [1000100010000] = (445)
+It is a Euclidean string.
+Distance = 5
+E(5,13) = [1001010010100] = (32323) It is a rhythm from the FYROM which is also played by starting it on the fourth onset as follows: [1010010010100].
+Distance = 5
+E(9,13) = [1011011011011] = (212121211)
+It is a reverse Euclidean string.
+Distance = 6
+E(6,13) = [1010101010100] = (222223) It is the rhythm of the dance Mama Cone pita from the FYROM. Started on the third onset, it is the rhythm of the dance Postupano Oro from the FYROM, as well as the Krivo Plovdivsko Horo of Bulgaria.
+It is a Euclidean string.
+Distance = 7
+E(7,13) = [1010101010101] = (2222221)
+It is a reverse Euclidean string.
+Distance = 7
+E(11,13) = [1011111011111] = (21111211111)
+It is a reverse Euclidean string.
+Distance = 8
+E(8,13) = [1011010110101] = (21221221)
+Distance = 8
+E(10,13) = [1011101110111] = (2112112111)
+It is a reverse Euclidean string.
+Distance = 8
+E(12,13) = [1011111111111] = (211111111111)
+It is a reverse Euclidean string.
+</pre></div>
+
+
+<h3>Notes on Implementation</h3>
+<p>The rhythms can be constructed using an algorithm with repeated
+division, following the logic of Euclid's algorithm. That algorithm is
+called te Bjorklund algorithm, after the name of the researcher that
+noticed such patterns in neutron experiments in the
+<a href="https://en.wikipedia.org/wiki/Spallation_Neutron_Source">Spallation Neutron Source</a>
+<a href='#bjorklund:1999' id='ref-bjorklund:1999-1'>[1]</a>.</p>
+<p><em>Do not use the Bjorklund algorithm to solve the assignment. Develop
+ your solutions manipulating lists, as is described here.</em></p>
+<p>If you want to verify your results, you may wish to check the
+Euclidean rhythms in <a href='#toussaint:2005' id='ref-toussaint:2005-2'>[4]</a> and <a href='#demaine:2009' id='ref-demaine:2009-2'>[2]</a>.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script><hr>
+<h3>Bibliography</h3>
+<div class='bibliography'><ol><li id='bjorklund:1999'>E.&nbsp;Bjorklund.
+The theory of rep-rate pattern generation in the <span class="bibtex-protected">SNS</span> timing system.
+Technical Report SNS-NOTE-CNTRL-99, Spallation Neutron Source, 1999.
+URL: <a href="https://ics-web.sns.ornl.gov/timing/Rep-Rate%20Tech%20Note.pdf">https://ics-web.sns.ornl.gov/timing/Rep-Rate%20Tech%20Note.pdf</a>. <a class="cite-backref" href="#ref-bjorklund:1999-1" title="Jump back to reference 1">↩</a></li><li id='demaine:2009'>Erik&nbsp;D. Demaine, Francisco Gomez-Martin, Henk Meijer, David Rappaport, Perouz Taslakian, Godfried&nbsp;T. Toussaint, Terry Winograd, and David&nbsp;R. Wood.
+The distance geometry of music.
+<em>Computational Geometry: Theory and Applications</em>, 42(5):429–454, July 2009.
+URL: <a href="http://erikdemaine.org/papers/DeepRhythms_CGTA/paper.pdf">http://erikdemaine.org/papers/DeepRhythms_CGTA/paper.pdf</a>.<a class="cite-backref" href="#ref-demaine:2009-1" title="Jump back to reference 1"> <sup>1</sup> </a><a class="cite-backref" href="#ref-demaine:2009-2" title="Jump back to reference 2"><sup>2</sup> </a></li><li id='ellis:2003'>John Ellis, Frank Ruskey, Joe Sawada, and Jamie Simpson.
+Euclidean strings.
+<em>Theoretical Computer Science</em>, 301(1):321–340, 2003.
+URL: <a href="http://www.socs.uoguelph.ca/~sawada/papers/euclid.pdf">http://www.socs.uoguelph.ca/~sawada/papers/euclid.pdf</a>, <a href="https://doi.org/http://dx.doi.org/10.1016/S0304-3975(02)00589-3">doi:http://dx.doi.org/10.1016/S0304-3975(02)00589-3</a>. <a class="cite-backref" href="#ref-ellis:2003-1" title="Jump back to reference 1">↩</a></li><li id='toussaint:2005'>Godfried Toussaint.
+The <span class="bibtex-protected">Euclidean</span> algorithm generates traditional musical rhythms.
+In <em>BRIDGES: Mathematical Connections in Art, Music, and Science</em>, 47–56. July 31 to August 3 20015.
+URL: <a href="http://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf">http://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf</a>.<a class="cite-backref" href="#ref-toussaint:2005-1" title="Jump back to reference 1"> <sup>1</sup> </a><a class="cite-backref" href="#ref-toussaint:2005-2" title="Jump back to reference 2"><sup>2</sup> </a></li><li id='toussaint:2004'>Godfried Toussaint.
+The geometry of musical rhythm.
+In <em>Proceedings of the 2004 Japanese Conference on Discrete and Computational Geometry</em>, JCDCG'04, 198–212. Berlin, Heidelberg, 2005. Springer-Verlag.
+URL: <a href="http://cgm.cs.mcgill.ca/~godfried/publications/geometry-of-rhythm.pdf">http://cgm.cs.mcgill.ca/~godfried/publications/geometry-of-rhythm.pdf</a>, <a href="https://doi.org/10.1007/11589440_20">doi:10.1007/11589440_20</a>. <a class="cite-backref" href="#ref-toussaint:2004-1" title="Jump back to reference 1">↩</a></li><li id='toussaint:2013'>Godfried&nbsp;T. Toussaint.
+<em>The Geometry of Musical Rhythm: What Makes a "Good" Rhythm Good?</em>
+CRC Press, Taylor &amp; Francis Group, Boca Raton, FL, 2013.<a class="cite-backref" href="#ref-toussaint:2013-1" title="Jump back to reference 1"> <sup>1</sup> </a><a class="cite-backref" href="#ref-toussaint:2013-2" title="Jump back to reference 2"><sup>2</sup> </a></li></ol></div>
+  </div><!-- /.entry-content -->
+</section>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 25%"> </div>
+  </body>
+</html>

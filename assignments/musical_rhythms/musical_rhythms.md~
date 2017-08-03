@@ -1,0 +1,54 @@
+Title: Musical Rythms
+Category: assignments
+Author: Panos Louridas
+Date: 2 August 2017
+Template: assignment
+publications_src: content/assignments/musical_rythms/musical_rythms.md
+
+Consider the following problem. You want to create a binary sequence
+of $n$ bits, out of which $k$ are one (and the rest are of course
+zero). You also want the ones to be as evenly spread as possible among
+the zeroes. If $k$ divides $n$, then the solution is straighforward;
+we just divide the ones among the zeros. For example, for $n = 16$ and
+$k = 4$ we get the sequence:
+```
+[1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0]
+```
+
+The problem gets more interesting when $n$ and $k$ are relatively
+prime, that is, when the only common divisor of $n$ and $k$ is the
+number 1.
+
+So suppose that we have $n = 13$ and $k = 5$. As we have $13 - 5 = 8$,
+we start by creating a sequence with 5 ones and 8 zeroes:
+```
+[ 1 1 1 1 1 0 0 0 0 0 0 0 0]
+```
+We can treat this sequence as 13 sequences of one bit each:
+```
+[ [1] [1] [1] [1] [1] [0] [0] [0] [0] [0] [0] [0] [0] ]
+```
+We distribute the zeroes so that we get five sequences of two bits
+each, and three sequences of one bit:
+```
+[ [1 0] [1 0] [1 0] [1 0] [1 0] [0] [0] [0] ]
+```
+Then we distribute the remaining zeroes in the same way, so that we
+get:
+```
+[ [1 0 0] [1 0 0] [1 0 0] [1 0] [1 0] ]
+```
+Now we distribute the `[1 0]` sequences, which leads to:
+```
+[ [1 0 0 1 0] [1 0 0 1 0] [1 0 0] ]
+```
+The process ends when the remainder (that is, the sequences with the
+smallest number of bits) is exactly one, or we do not have any more
+zeroes to distribute. Then we concatenate the result. In our example,
+we get:
+```
+[ 1 0 0 1 0 1 0 0 1 0 1 0 0 ]
+```
+
+We can interpret the above sequence as a rhythm, where each `1` is the
+strong part of the beat and each `0` is the weak part. 
