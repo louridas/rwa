@@ -12,7 +12,7 @@ the zeroes. If $k$ divides $n$, then the solution is straightforward;
 we just divide the ones among the zeros. For example, for $n = 16$ and
 $k = 4$ we get the sequence:
 ```
-[1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0]
+[ 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 ]
 ```
 
 The problem gets more interesting when $n$ and $k$ are relatively
@@ -22,7 +22,7 @@ number 1.
 So suppose that we have $n = 13$ and $k = 5$. As we have $13 - 5 = 8$,
 we start by creating a sequence with 5 ones and 8 zeroes:
 ```
-[ 1 1 1 1 1 0 0 0 0 0 0 0 0]
+[ 1 1 1 1 1 0 0 0 0 0 0 0 0 ]
 ```
 We can treat this sequence as 13 sequences of one bit each:
 ```
@@ -103,8 +103,8 @@ If we have a rhythm written in interval vector notation, say, `P =
 (p[0], p[1] , ... , p[n−1])`, then if we increase `p[0]` by one and
 decrease `p[n-1]` by one, we will get a new interval vector. If this
 new interval vector can also result by rotating the first one, then we
-say that we have a *Euclidean string*. For example, $E(4, 9) =
-[\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ 0\ 0\ ] = (2223)$. If we increase the first
+say that we have a *Euclidean string*. For example, $E(4, 9)$ is
+$[\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ 0\ 0\ ]$ and $(2223)$. If we increase the first
 digit by one and we decrease the last digit by one, we get $(3222)$,
 which we can get by rotating the first string, so the rhythm is also a
 Euclidean string.
@@ -112,10 +112,10 @@ Euclidean string.
 If we take the reverse string from an interval vector, that is, if we
 read it from the end to the start, and we the reverse string is also a
 Euclidean string, then we say that we have a *reverse Euclidean
-string*. For example, $E(4, 11) = [\ 1\ 0\ 0\ 1\ 0\ 0\ 1\ 0\ 0\ 1\ 0\ ]
-= (3332)$. The reverse string of the interval vector is $(2333)$,
-which is a Euclidean string, so $(3332)$ is a reverse Euclidean
-string.
+string*. For example, $E(4, 11)$ is
+$[\ 1\ 0\ 0\ 1\ 0\ 0\ 1\ 0\ 0\ 1\ 0\ ]$ and $(3332)$. The reverse
+string of the interval vector is $(2333)$, which is a Euclidean
+string, so $(3332)$ is a reverse Euclidean string.
 
 For more information on Euclidean rhythms check [@toussaint:2005];
 [Godfried Toussaint](https://en.wikipedia.org/wiki/Godfried_Toussaint)
