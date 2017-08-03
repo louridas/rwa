@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>{% block title %}{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="{{ SITEURL }}/theme/css/normalize.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="{{ SITEURL }}/theme/css/skeleton.css" />    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="{{ SITEURL }}/theme/css/rwa.css" />
+    <!-- Dynamically resize logo for mobile -->
+    <style type="text/css">
+      .logo-width {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15%;
+      }
+      /* Roughly the point when website is single column */
+      @media (max-width: 850px) {
+      .logo-width {
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 5%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 5%">
+        <div class="three columns">
+          <h1><a href="{{ SITEURL }}">Real World Algorithms</a></h1>
+          <a href="{{ SITEURL }}">
+            <center>
+              <img alt="book cover" class="logo-width"
+                   src="{{ SITEURL }}/theme/images/rwa.jpg">
+            </center>
+          </a>
+          <a class="site-content u-full-width"
+             href="{{ SITEURL }}/pages/book-chapters.html">Chapters</a>
+          <a class="site-content u-full-width"
+             href="{{ SITEURL }}/pages/assignments.html">Assignments</a>
+          <a class="site-content u-full-width"
+             href="{{ SITEURL }}/pages/translations.html">Translations</a>
+          <a class="site-content u-full-width"
+             href="{{ SITEURL }}/pages/slides.html">Slides</a> 
+          <a class="site-content u-full-width"
+             href="{{ SITEURL }}/pages/errata.html">Errata</a>          
+          <div class="row" style="padding-bottom: 5%"> </div>
+        </div>
+        <div class="nine columns">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 25%"> </div>
+      {% include 'analytics.html' %}
+  </body>
+</html>
