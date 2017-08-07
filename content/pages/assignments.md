@@ -20,3 +20,4 @@ may be happier doing something else altogether.
 * [Finding Trusses]({filename}../assignments/trusses/trusses.md)
 * [Genome Assembly]({filename}../assignments/genome_assembly/genome_assembly.md)
 * [Musical Rhythms]({filename}../assignments/musical_rhythms/musical_rhythms.md)
+* [A Kilo of Data]({filename}../assignments/a_kilo_of_data/a_kilo_of_data.md)
