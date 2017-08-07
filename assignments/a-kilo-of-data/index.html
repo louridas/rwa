@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/highlight.css" />    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
+    <!-- Dynamically resize logo for mobile -->
+    <style type="text/css">
+      .logo-width {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15%;
+      }
+      /* Roughly the point when website is single column */
+      @media (max-width: 850px) {
+      .logo-width {
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 5%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 5%">
+        <div class="three columns">
+          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io/rwa">
+            <center>
+              <img alt="book cover" class="logo-width"
+                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
+            </center>
+          </a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
+          <div class="row" style="padding-bottom: 5%"> </div>
+        </div>
+        <div class="nine columns">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/" rel="bookmark"
+         title="Permalink to A Kilo of Data">A Kilo of Data</a></h2>
+ 
+  </header>
+  <div class="entry-content">
+    <p>The amount of data produced in the world is increasing rapidly, and so
+does the storage needed to accommodate all that data. Data centers can
+be bigger than football fields and require electrical power enough to
+power a whole city.</p>
+<p>Scientists are trying to find more and more efficient storage media;
+one approach of particular interest is to use DNA for storage. With
+the right encoding, one cubic centimeter of DNA can store <span class="math">\(10^{16}\)</span> bits
+of data, which means that we could store all the data in the world in
+a kilo of DNA.</p>
+<p>But which is the right encoding? One way to go is the following.
+Suppose we want to encode a file in DNA:</p>
+<ul>
+<li>We take the file contents and we encode them using <em>base three</em>
+  Huffman coding. In normal Huffman coding, we encode our data
+  using bits, that is, 0 and 1. In base three Huffman coding
+  we encode our data using <em>trits</em>, that is, 0, 1, and 2.</li>
+<li>Base three Huffman coding works exactly like base two Huffman
+  coding, but when we work with the priority queue, instead of
+  taking out two elements and inserting one, we take out three
+  elements and insert one.</li>
+<li>In this way we create a tree, which is triadic. Its branches
+  correspond to 0, 1, and 2, instead of only 0 and 1. The Huffman
+  coding results again from the paths from the root to the leaves of
+  the tree.</li>
+<li>We must be careful if our file does not have an odd number of
+  characters. As each time we modify the priority queue we take out
+  three items and we insert one, its size is reduced by two.
+  Therefore, if the file does not have an odd number of characters, we
+  must add a virtual character that occurs zero times.</li>
+</ul>
+<p>After encoding our file in base three Huffman code, we go on to encode
+the four DNA bases, A (adenine), C (cytocine), G (guanine), T
+(thymine). To do that, we read the encoded file trit by trit and
+produce DNA bases according to the following table:</p>
+<table>
+  <tr>
+    <th>previous base</th>
+    <th colspan="3">current trit</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td>0</td>
+    <td>1</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td>C</td>
+    <td>G</td>
+    <td>T</td>
+  </tr>
+  <tr>
+    <td>C</td>
+    <td>G</td>
+    <td>T</td>
+    <td>A</td>
+  </tr>
+  <tr>
+    <td>G</td>
+    <td>T</td>
+    <td>A</td>
+    <td>C</td>
+  </tr>
+  <tr>
+    <td>T</td>
+    <td>A</td>
+    <td>C</td>
+    <td>G</td>
+  </tr>
+</table>
+
+<p>To use this table we work as follows. If we want to encode trit 2 and
+the previous trip that we encoded in DNA was encoded using base G,
+then the 2 will be encoded with base C; and so on. For the first trit,
+for which we have no previous one, we assume that we there was a
+previous virtual trit that was encoded with base A.</p>
+<p>For example, if we want to encode a file that contains the phrase
+"hello, world" with a base three Huffman encoding, we will get the
+following tree:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/a-kilo-of-data/hello_world.png" width="700"></p>
+<p>Note that the file ends in a newline character (<code>\n</code>), which is also
+encoded. Moreover, the file has an odd number of characters, so we
+have added a virtual character, which we denote by &Oslash;. In
+practice this can be simply the empty character, <code>''</code>, which is really
+nothing&mdash;but of course it should not be the space character <code>'
+'</code>; we use the symbol &#9251; for that. The tree is essentially the
+following correspondence table:</p>
+<table>
+<thead>
+<tr>
+<th>Letter</th>
+<th>Encoding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>l</td>
+<td>1</td>
+</tr>
+<tr>
+<td>h</td>
+<td>00</td>
+</tr>
+<tr>
+<td>r</td>
+<td>01</td>
+</tr>
+<tr>
+<td>w</td>
+<td>02</td>
+</tr>
+<tr>
+<td>o</td>
+<td>21</td>
+</tr>
+<tr>
+<td>&Oslash;</td>
+<td>200</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>201</td>
+</tr>
+<tr>
+<td>&#9251;</td>
+<td>202</td>
+</tr>
+<tr>
+<td>,</td>
+<td>220</td>
+</tr>
+<tr>
+<td>d</td>
+<td>221</td>
+</tr>
+<tr>
+<td>e</td>
+<td>222</td>
+</tr>
+</tbody>
+</table>
+<p>With this encoding, the file with "hello, world" in it is
+represented as:</p>
+<div class="highlight"><pre><span></span>0022211212202020221011221201
+</pre></div>
+
+
+<p>Now, working with the table of mappings between trits and DNA bases,
+the <code>0</code> will become <code>C</code>, the second <code>0</code> will become <code>G</code>, the <code>2</code> will
+become <code>C</code>, and so on. At the end we will end up with the DNA
+sequence:</p>
+<div class="highlight"><pre><span></span>CGCATCTGATGTGTGTGCTAGATGATAG
+</pre></div>
+
+
+<p>To decode this DNA sequence, we work in exactly the opposite way. We
+take the bases one by one and we convert them to trits using the
+following table:</p>
+<table>
+  <tr>
+    <th>previous base</th>
+    <th colspan="4">current base</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td>A</td>
+    <td>C</td>
+    <td>G</td>
+    <td>T</td>
+  </tr>
+  <tr>
+    <td>A</td>
+    <td></td>
+    <td>0</td>
+    <td>1</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>C</td>
+    <td>2</td>
+    <td></td>
+    <td>0</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>G</td>
+    <td>1</td>
+    <td>2</td>
+    <td></td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>T</td>
+    <td>0</td>
+    <td>1</td>
+    <td>2</td>
+    <td></td>
+  </tr>
+</table>
+
+<p>The table is used as the one during encoding. In the beginning we
+assume that the previous base is <code>A</code>. In our example, we then take
+base <code>C</code>, which is encoded to <code>0</code>. Following that, we take base <code>G</code>;
+this time the previous page is <code>C</code>, so <code>G</code> is encoded using <code>0</code>; and
+so on.</p>
+<p>After getting the corresponding trits, we convert them to the original
+file contents using the base three Huffman code that we have
+created. That means that <code>00</code> is converted back to <code>h</code>, <code>222</code> is
+converted back to <code>e</code>, etc.</p>
+<p>The purpose of this assignment is to implement a DNA encoding and
+decoding scheme; for more details on the underlying research, see
+<a href='#extance:2016' id='ref-extance:2016-1'>[1]</a> and <a href='#goldman:2013' id='ref-goldman:2013-1'>[2]</a>.</p>
+<h3>Requirements</h3>
+<ol>
+<li>You will write a program called <code>dna_store.py</code> to implement the DNA
+   storage scheme we described.</li>
+<li>You will implement your own prioriry queue for use in the program.</li>
+<li>Your program must be called as follows:</li>
+</ol>
+<div class="highlight"><pre><span></span>python dna_store.py [-d] input output huffman
+</pre></div>
+
+
+<p>If the user does not give the parameter <code>-d</code>, the program will read
+the file given in the <code>input</code> parameter (that does not mean that the
+file is actually called <code>input</code>, that is just a stand-in), it will
+store the DNA encoding in the file given by the <code>output</code> parameter,
+and will save the Huffman code in the file given by the <code>huffman</code>
+parameter. The Huffman encoding will be stored in a
+<a href="https://en.wikipedia.org/wiki/Comma-separated_values">Comma Separated Values (CSV)</a>
+file. To work with such files you should use the
+<a href="https://docs.python.org/3/library/csv.html">Python <code>csv</code> library</a>.</p>
+<p>If the user gives the parameter <code>-d</code>, the program will read the file
+given by the <code>input</code> parameter, will decode it using the Huffman code
+given by the <code>huffman</code> parameter, and will store the decoded result to
+the file given by the <code>output</code> parameter. Remember that a file can
+only be decoded correctly with the Huffman code that was used for
+its encoding.</p>
+<h3>Examples</h3>
+<p>If the user gives:</p>
+<div class="highlight"><pre><span></span>python dna_store.py hello_world.txt hello_world_dna.txt hello_world_huffman.csv
+</pre></div>
+
+
+<p>using the file <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/hello_world.txt">hello_world.txt</a>, then the
+Huffman code will be stored in the file
+<a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/hello_world_huffman.csv">hello_world_huffman.csv</a> and the
+encoded file will be
+<a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/hello_world_dna.txt">hello_world_dna.txt</a>.</p>
+<p>If the user gives:</p>
+<div class="highlight"><pre><span></span>python dna_store.py 1984.txt 1984_dna.txt 1984_huffman.csv
+</pre></div>
+
+
+<p>with the file <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/1984.txt">1984.txt</a>, then the Huffman code
+will be stored in the file
+<a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/1984_huffman.csv">1984_huffman.csv</a> and the encoded file will
+be <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/1984_dna.txt">1984_dna.txt</a>.</p>
+<p>If the user gives:</p>
+<div class="highlight"><pre><span></span>python dna_store.py -d 1984_dna.txt 1984_decoded.txt 1984_huffman.csv
+</pre></div>
+
+
+<p>the file <code>1984_decoded.txt</code> must be exactly the same as the file
+<code>1984.txt</code>.</p>
+<h3>Notes on Implementation</h3>
+<p>Depending on how you implement the priority queue and the Huffman
+encoding, the results may differ from the ones shown above. That is fine.
+In any case, you can check that your program is correct by verifying
+that the decoding of an encoded file is the original file.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script><hr>
+<h3>Bibliography</h3>
+<div class='bibliography'><ol><li id='extance:2016'>Andy Extance.
+How <span class="bibtex-protected">DNA</span> could store all the world's data.
+<em>Nature</em>, 537(7618):22–14, August 31 2016. <a class="cite-backref" href="#ref-extance:2016-1" title="Jump back to reference 1">↩</a></li><li id='goldman:2013'>Nick Goldman, Paul Bertone, Siyuan, Chen, Christophe, Dessimoz, Emily&nbsp;M., LeProust, Botond, Sipos, and Ewan Birney.
+Towards practical, high-capacity, low-maintenance information storage in synthesized <span class="bibtex-protected">DNA</span>.
+<em>Nature</em>, 494(7435):77–80, February 3 2013. <a class="cite-backref" href="#ref-goldman:2013-1" title="Jump back to reference 1">↩</a></li></ol></div>
+  </div><!-- /.entry-content -->
+</section>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 25%"> </div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-103703286-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
