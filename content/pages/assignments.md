@@ -17,7 +17,24 @@ a problem, but this will not help you master the art. If you do want
 to master the art, you will have to sweat for it. If you do not, you
 may be happier doing something else altogether.
 
-* [Finding Trusses]({filename}../assignments/trusses/trusses.md)
-* [Genome Assembly]({filename}../assignments/genome_assembly/genome_assembly.md)
-* [Musical Rhythms]({filename}../assignments/musical_rhythms/musical_rhythms.md)
+##### Difficulty
+
+To indicate the relative difficulty of the assignments, a scale using
+chess pieces has been adopted: the difficulty ranges from the pawn
+(&#9817;) to the bishop (&#9815;), then the rook (&#9814;) and finally
+the queen (&#9813;). That does not mean that all, say, pawn
+assignments are of exactly the same difficulty; but it does mean that
+they are all qualitatively different from those of the bishop
+difficulty (and even more, from rooks and queens). As a general
+guideline, the scale should not be understood as following the
+[chess piece relative value system](https://en.wikipedia.org/wiki/Chess_piece_relative_value),
+where a bishop assignment would be *on average* three times as difficult
+as a pawn, a rook five times, and a queen nine times.
+
+* [Finding Trusses]({filename}../assignments/trusses/trusses.md) &#9817;
+* [Genome Assembly]({filename}../assignments/genome_assembly/genome_assembly.md)&#9817;
+* [Musical Rhythms]({filename}../assignments/musical_rhythms/musical_rhythms.md) &#9815;
 * [A Kilo of Data]({filename}../assignments/a_kilo_of_data/a_kilo_of_data.md)
+&#9814;
+* [Perfect Strangers]({filename}../assignments/perfect_strangers/perfect_strangers.md)
+&#9813;

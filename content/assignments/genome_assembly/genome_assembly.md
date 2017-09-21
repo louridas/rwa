@@ -107,8 +107,7 @@ python  dna_assembly.py fragments_file
 ```
 
 The `fragments_file` argument specifies the name of the file where the
-DNA fragments are stored (that does not mean that the name of the file is
-`fragments_file`, it is just a stand-in). The file will have the
+DNA fragments are stored. The file will have the
 following format:
 ```
 ATG

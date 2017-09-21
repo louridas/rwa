@@ -79,8 +79,7 @@ python trusses.py graph_file size_of_truss
 ```
 
 The `graph_file` argument specifies the name of the file where the
-graph is stored (that does not mean that the name of the file is
-`graph_file`, it is just a stand-in). The file will have the
+graph is stored. The file will have the
 following format:
 ```
 0 2
