@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/highlight.css" />    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
+    <!-- Dynamically resize logo for mobile -->
+    <style type="text/css">
+      .logo-width {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15%;
+      }
+      /* Roughly the point when website is single column */
+      @media (max-width: 850px) {
+      .logo-width {
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 5%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 5%">
+        <div class="three columns">
+          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io/rwa">
+            <center>
+              <img alt="book cover" class="logo-width"
+                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
+            </center>
+          </a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
+          <div class="row" style="padding-bottom: 5%"> </div>
+        </div>
+        <div class="nine columns">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://louridas.github.io/rwa/assignments/perfect-strangers/" rel="bookmark"
+         title="Permalink to Perfect Strangers">Perfect Strangers</a></h2>
+ 
+  </header>
+  <div class="entry-content">
+    <p>Sometimes we want to break apart a set of entities to subsets such
+that the entities in each subset have no relationship between them. If
+we use a graph to represent the entities and their relationships, the
+problem we have to solve is to find subsets of the graph so that the
+members of each subset are not neighbours with any other member of the
+same subset. This is an instance of an
+<a href="https://en.wikipedia.org/wiki/Independent_set_(graph_theory)">independent set</a>:
+a set of nodes such that no node is a neighbour of any other node in
+the set. An independent set is called a
+<a href="https://en.wikipedia.org/wiki/Maximal_independent_set">maximal independent set</a>
+when it is not a subset of any other independent set. In other words,
+there is no node outside the set that can be added to the set with the
+set remaining independent.</p>
+<p>Below you can see the two maximal independent sets of a star graph:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/perfect-strangers/star_1.png" width="300">
+<img src="https://louridas.github.io/rwa/assignments/perfect-strangers/star_2.png" width="300"></p>
+<p>Similarly, below you can see the six maximal independent sets of a
+cube graph:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/perfect-strangers/cube_1.png" width="300">
+<img src="https://louridas.github.io/rwa/assignments/perfect-strangers/cube_2.png" width="300"></p>
+<p><img src="https://louridas.github.io/rwa/assignments/perfect-strangers/cube_3.png" width="300">
+<img src="https://louridas.github.io/rwa/assignments/perfect-strangers/cube_4.png" width="300"></p>
+<p><img src="https://louridas.github.io/rwa/assignments/perfect-strangers/cube_5.png" width="300">
+<img src="https://louridas.github.io/rwa/assignments/perfect-strangers/cube_6.png" width="300"></p>
+<p>Finally, here are four maximal independent sets of the
+<a href="https://en.wikipedia.org/wiki/Petersen_graph">Petersen graph</a> (there
+are more):</p>
+<p><img src="https://louridas.github.io/rwa/assignments/perfect-strangers/petersen_1.png" width="300">
+<img src="https://louridas.github.io/rwa/assignments/perfect-strangers/petersen_2.png" width="300"></p>
+<p><img src="https://louridas.github.io/rwa/assignments/perfect-strangers/petersen_3.png" width="300">
+<img src="https://louridas.github.io/rwa/assignments/perfect-strangers/petersen_4.png" width="300"></p>
+<p>In this assignment you will implement a program that finds the maximal
+independent subsets of a graph.</p>
+<h2>Requirements</h2>
+<ol>
+<li>You will write a program called <code>mis.py</code> that finds the maximal
+   independent subsets of a graph using the algorithm of Johnson,
+   Yannakakis and Papadimitriou, described in <a href='#johnson:1988' id='ref-johnson:1988-1'>[1]</a>.</li>
+<li>You can use the <a href="https://networkx.github.io/">networkx</a> library for
+   graph input, output, manipulation, and drawing.</li>
+<li>You can use anything you want from the
+   <a href="https://docs.python.org/3/library/">Python library</a>. </li>
+<li>The program must be called as follows:</li>
+</ol>
+<div class="highlight"><pre><span></span>python mis.py [-h] [-d] [-n NAME] [-f FIGURE] input
+</pre></div>
+
+
+<p>The <code>input</code> parameter corresponds to the name of the file containing
+the graph. The file will contain the graph in
+<a href="https://networkx.github.io/documentation/stable/reference/readwrite.adjlist.html">networkx adjacency list format</a>.</p>
+<p>If the user provides the parameter <code>-d</code>, the program will display on
+screen the graph and each maximal independent subset, similarly to the
+way we have presented them here. The actual images produced need not
+be exactly the same as the one we have shown, as graph layout depends
+on many parameters.</p>
+<p>If the user provides the parameter <code>-n NAME</code> and <code>-f FIGURE</code> each
+images will be stored in a file with name <code>NAME_x.FIGURE</code>, where <code>x</code>
+is a positive number. For example, if the user enters <code>-n cube -f
+png</code>, the program will store the images in the files <code>cube_1.png</code>,
+<code>cube_2.png</code>, and so on.</p>
+<p>The parameter <code>-h</code> can be used to display a short description of the
+program and its parameters.</p>
+<p>In all cases, the program output will be the maximal independend
+subsets in lexicographic order. So, if we are dealing with the star
+graph, the output will be:</p>
+<div class="highlight"><pre><span></span><span class="o">[</span><span class="s1">&#39;0&#39;</span><span class="o">]</span>
+<span class="o">[</span><span class="s1">&#39;1&#39;</span>, <span class="s1">&#39;10&#39;</span>, <span class="s1">&#39;2&#39;</span>, <span class="s1">&#39;3&#39;</span>, <span class="s1">&#39;4&#39;</span>, <span class="s1">&#39;5&#39;</span>, <span class="s1">&#39;6&#39;</span>, <span class="s1">&#39;7&#39;</span>, <span class="s1">&#39;8&#39;</span>, <span class="s1">&#39;9&#39;</span><span class="o">]</span>
+</pre></div>
+
+
+<p>While if we are dealing with the cube graph, the output will be:</p>
+<div class="highlight"><pre><span></span><span class="o">[</span><span class="s1">&#39;(0, 0, 0)&#39;</span>, <span class="s1">&#39;(0, 1, 1)&#39;</span>, <span class="s1">&#39;(1, 0, 1)&#39;</span>, <span class="s1">&#39;(1, 1, 0)&#39;</span><span class="o">]</span>
+<span class="o">[</span><span class="s1">&#39;(0, 0, 0)&#39;</span>, <span class="s1">&#39;(1, 1, 1)&#39;</span><span class="o">]</span>
+<span class="o">[</span><span class="s1">&#39;(0, 0, 1)&#39;</span>, <span class="s1">&#39;(0, 1, 0)&#39;</span>, <span class="s1">&#39;(1, 0, 0)&#39;</span>, <span class="s1">&#39;(1, 1, 1)&#39;</span><span class="o">]</span>
+<span class="o">[</span><span class="s1">&#39;(0, 0, 1)&#39;</span>, <span class="s1">&#39;(1, 1, 0)&#39;</span><span class="o">]</span>
+<span class="o">[</span><span class="s1">&#39;(0, 1, 0)&#39;</span>, <span class="s1">&#39;(1, 0, 1)&#39;</span><span class="o">]</span>
+<span class="o">[</span><span class="s1">&#39;(0, 1, 1)&#39;</span>, <span class="s1">&#39;(1, 0, 0)&#39;</span><span class="o">]</span>
+</pre></div>
+
+
+<h2>Graph Examples</h2>
+<p>You can check your program with the following files:</p>
+<ul>
+<li><a href="https://louridas.github.io/rwa/assignments/perfect-strangers/star_graph_10.txt">Star graph with 10 nodes</a>.</li>
+<li><a href="https://louridas.github.io/rwa/assignments/perfect-strangers/cube_graph.txt">Cube graph</a>.</li>
+<li><a href="https://louridas.github.io/rwa/assignments/perfect-strangers/petersen_graph.txt">Petersen graph</a>.</li>
+<li><a href="https://louridas.github.io/rwa/assignments/perfect-strangers/barabasi_albert_graph_15.txt">Barabási-Albert graph with 15 nodes</a>.</li>
+<li><a href="https://louridas.github.io/rwa/assignments/perfect-strangers/powerlaw_cluster_graph_20.txt">Powerlaw cluster graph with 20 nodes</a>.</li>
+<li><a href="https://louridas.github.io/rwa/assignments/perfect-strangers/erdos_renyi_graph_20.txt">Erdős-Rényi graph with 20 nodes</a>.</li>
+<li><a href="https://louridas.github.io/rwa/assignments/perfect-strangers/erdos_renyi_graph_25.txt">Erdős-Rényi graph with 25 nodes</a>.</li>
+</ul><hr>
+<h3>Bibliography</h3>
+<div class='bibliography'><ol><li id='johnson:1988'>David&nbsp;S. Johnson, Mihalis Yannakakis, and Christos&nbsp;H. Papadimitriou.
+On generating all maximal independent sets.
+<em>Information Processing Letters</em>, 27(3):119–123, March 1988. <a class="cite-backref" href="#ref-johnson:1988-1" title="Jump back to reference 1">↩</a></li></ol></div>
+  </div><!-- /.entry-content -->
+</section>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 25%"> </div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-103703286-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
