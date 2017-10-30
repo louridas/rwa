@@ -178,12 +178,12 @@ string</em>. For example, <span class="math">\(E(4, 11)\)</span> is
 <span class="math">\([\ 1\ 0\ 0\ 1\ 0\ 0\ 1\ 0\ 0\ 1\ 0\ ]\)</span> and <span class="math">\((3332)\)</span>. The reverse
 string of the interval vector is <span class="math">\((2333)\)</span>, which is a Euclidean
 string, so <span class="math">\((3332)\)</span> is a reverse Euclidean string.</p>
-<p>For more information on Euclidean rhythms check <a href='#toussaint:2005' id='ref-toussaint:2005-1'>[4]</a>;
+<p>For more information on Euclidean rhythms check [@toussaint:2005];
 <a href="https://en.wikipedia.org/wiki/Godfried_Toussaint">Godfried Toussaint</a>
 was the one that introduced the concept and has written a whole book
-on the geometry of musical rhythm <a href='#toussaint:2013' id='ref-toussaint:2013-1'>[6]</a>. See also
-<a href='#demaine:2009' id='ref-demaine:2009-1'>[2]</a> for a well-developed overview. For more information on
-Euclidean strings, see <a href='#ellis:2003' id='ref-ellis:2003-1'>[3]</a>.</p>
+on the geometry of musical rhythm [@toussaint:2013]. See also
+[@demaine:2009] for a well-developed overview. For more information on
+Euclidean strings, see [@ellis:2003].</p>
 <h3>Distance between Rhythms</h3>
 <p>How different are two rhythms? If we take two rhythms are binary
 sequences, then one metric that we can use to gauge the distance
@@ -207,7 +207,7 @@ has a Hamming distance of one from the rhythm <span class="math">\(E(5, 9) =
 the rhythm <span class="math">\(E(7, 9) = [\ 1\ 0\ 1\ 1\ 1\ 0\ 1\ 1\ 1\ ]\)</span>.</p>
 <p>That said, the Hamming distance is not the best way to measure the
 similarity of rhythms. There are better metrics for that purpose
-<a href='#toussaint:2004' id='ref-toussaint:2004-1'>[5]</a> <a href='#toussaint:2013' id='ref-toussaint:2013-2'>[6]</a>, but we'll stick to the Hamming
+[@toussaint:2004] [@toussaint:2013], but we'll stick to the Hamming
 distance for now.</p>
 <p>In this assignment you will develop a program that handles and
 manipulates Euclidean rhythms.</p>
@@ -365,12 +365,12 @@ division, following the logic of Euclid's algorithm. That algorithm is
 called te Bjorklund algorithm, after the name of the researcher that
 noticed such patterns in neutron experiments in the
 <a href="https://en.wikipedia.org/wiki/Spallation_Neutron_Source">Spallation Neutron Source</a>
-<a href='#bjorklund:1999' id='ref-bjorklund:1999-1'>[1]</a>.</p>
+[@bjorklund:1999].</p>
 <p><em>Do not use the Bjorklund algorithm to solve the assignment. Develop
  your solutions manipulating lists, as is described here.</em></p>
 <p>If you want to verify your results, you may wish to check the
-Euclidean rhythms in <a href='#toussaint:2005' id='ref-toussaint:2005-2'>[4]</a> and <a href='#demaine:2009' id='ref-demaine:2009-2'>[2]</a>.</p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
+Euclidean rhythms in [@toussaint:2005] and [@demaine:2009].</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
         linebreak = "false";
@@ -382,7 +382,7 @@ Euclidean rhythms in <a href='#toussaint:2005' id='ref-toussaint:2005-2'>[4]</a>
     }
 
     var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
     mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
@@ -424,26 +424,7 @@ Euclidean rhythms in <a href='#toussaint:2005' id='ref-toussaint:2005-2'>[4]</a>
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-</script><hr>
-<h3>Bibliography</h3>
-<div class='bibliography'><ol><li id='bjorklund:1999'>E.&nbsp;Bjorklund.
-The theory of rep-rate pattern generation in the <span class="bibtex-protected">SNS</span> timing system.
-Technical Report SNS-NOTE-CNTRL-99, Spallation Neutron Source, 1999.
-URL: <a href="https://ics-web.sns.ornl.gov/timing/Rep-Rate%20Tech%20Note.pdf">https://ics-web.sns.ornl.gov/timing/Rep-Rate%20Tech%20Note.pdf</a>. <a class="cite-backref" href="#ref-bjorklund:1999-1" title="Jump back to reference 1">↩</a></li><li id='demaine:2009'>Erik&nbsp;D. Demaine, Francisco Gomez-Martin, Henk Meijer, David Rappaport, Perouz Taslakian, Godfried&nbsp;T. Toussaint, Terry Winograd, and David&nbsp;R. Wood.
-The distance geometry of music.
-<em>Computational Geometry: Theory and Applications</em>, 42(5):429–454, July 2009.
-URL: <a href="http://erikdemaine.org/papers/DeepRhythms_CGTA/paper.pdf">http://erikdemaine.org/papers/DeepRhythms_CGTA/paper.pdf</a>.<a class="cite-backref" href="#ref-demaine:2009-1" title="Jump back to reference 1"> <sup>1</sup> </a><a class="cite-backref" href="#ref-demaine:2009-2" title="Jump back to reference 2"><sup>2</sup> </a></li><li id='ellis:2003'>John Ellis, Frank Ruskey, Joe Sawada, and Jamie Simpson.
-Euclidean strings.
-<em>Theoretical Computer Science</em>, 301(1):321–340, 2003.
-URL: <a href="http://www.socs.uoguelph.ca/~sawada/papers/euclid.pdf">http://www.socs.uoguelph.ca/~sawada/papers/euclid.pdf</a>, <a href="https://doi.org/http://dx.doi.org/10.1016/S0304-3975(02)00589-3">doi:http://dx.doi.org/10.1016/S0304-3975(02)00589-3</a>. <a class="cite-backref" href="#ref-ellis:2003-1" title="Jump back to reference 1">↩</a></li><li id='toussaint:2005'>Godfried Toussaint.
-The <span class="bibtex-protected">Euclidean</span> algorithm generates traditional musical rhythms.
-In <em>BRIDGES: Mathematical Connections in Art, Music, and Science</em>, 47–56. July 31 to August 3 20015.
-URL: <a href="http://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf">http://cgm.cs.mcgill.ca/~godfried/publications/banff.pdf</a>.<a class="cite-backref" href="#ref-toussaint:2005-1" title="Jump back to reference 1"> <sup>1</sup> </a><a class="cite-backref" href="#ref-toussaint:2005-2" title="Jump back to reference 2"><sup>2</sup> </a></li><li id='toussaint:2004'>Godfried Toussaint.
-The geometry of musical rhythm.
-In <em>Proceedings of the 2004 Japanese Conference on Discrete and Computational Geometry</em>, JCDCG'04, 198–212. Berlin, Heidelberg, 2005. Springer-Verlag.
-URL: <a href="http://cgm.cs.mcgill.ca/~godfried/publications/geometry-of-rhythm.pdf">http://cgm.cs.mcgill.ca/~godfried/publications/geometry-of-rhythm.pdf</a>, <a href="https://doi.org/10.1007/11589440_20">doi:10.1007/11589440_20</a>. <a class="cite-backref" href="#ref-toussaint:2004-1" title="Jump back to reference 1">↩</a></li><li id='toussaint:2013'>Godfried&nbsp;T. Toussaint.
-<em>The Geometry of Musical Rhythm: What Makes a "Good" Rhythm Good?</em>
-CRC Press, Taylor &amp; Francis Group, Boca Raton, FL, 2013.<a class="cite-backref" href="#ref-toussaint:2013-1" title="Jump back to reference 1"> <sup>1</sup> </a><a class="cite-backref" href="#ref-toussaint:2013-2" title="Jump back to reference 2"><sup>2</sup> </a></li></ol></div>
+</script>
   </div><!-- /.entry-content -->
 </section>
         </div>
