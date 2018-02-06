@@ -20,7 +20,7 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 PLUGIN_PATHS = [ './pelican-plugins' ]
-PLUGINS = [ 'render_math', 'pelican-pcite' ]
+PLUGINS = [ 'pelican-pcite', 'render_math' ]
 
 # Blogroll
 LINKS = (('Pelican', 'http://getpelican.com/'),

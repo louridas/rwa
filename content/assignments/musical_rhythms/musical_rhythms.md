@@ -318,7 +318,7 @@ It is a reverse Euclidean string.
 
 The rhythms can be constructed using an algorithm with repeated
 division, following the logic of Euclid's algorithm. That algorithm is
-called te Bjorklund algorithm, after the name of the researcher that
+called the Bjorklund algorithm, after the name of the researcher that
 noticed such patterns in neutron experiments in the
 [Spallation Neutron Source](https://en.wikipedia.org/wiki/Spallation_Neutron_Source)
 [@bjorklund:1999].
