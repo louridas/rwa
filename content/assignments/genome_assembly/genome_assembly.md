@@ -29,19 +29,18 @@ then left with the problem of assembling the fragments to a DNA
 sequence, whose composition we will then know.
 
 Suppose then that we have the following fragments, or *polymers* as
-they are known: GTG, TGG, ATG, GGC, GCG, CGT, GCA, TGC, CAA, AAT, ATG,
-AAT. Each one of them has length 3, but in general they can have
-length $k$. To find the DNA sequence from which they were broken up,
-we create a graph. In that graph, the vertices are polymers of length
-2 (or, more generally, $k - 1$) that are derived from the polymers of
-length 3 (or, $k$ in the general case), taking for each polymer of
-length 3 ($k$) the first 2 ($k - 1$) and the last 2 ($k - 1$)
-polymers. So, from GTG we will get GT and TG, from TGG we will get TG
-and GG. In the graph we add one edge for every one of the initial
-polymers or length 3 ($k$) that was used to derive the two vertices.
-We give the name of the polymer to that edge. So, from ATG we got
-vertices AT and TG and the edge ATG. You can see the graph that
-results from our example:
+they are known: GTG, TGG, ATG, GGC, GCG, CGT, GCA, TGC, CAA, AAT. Each
+one of them has length 3, but in general they can have length $k$. To
+find the DNA sequence from which they were broken up, we create a
+graph. In that graph, the vertices are polymers of length 2 (or, more
+generally, $k - 1$) that are derived from the polymers of length 3
+(or, $k$ in the general case), taking for each polymer of length 3
+($k$) the first 2 ($k - 1$) and the last 2 ($k - 1$) polymers. So,
+from GTG we will get GT and TG, from TGG we will get TG and GG. In the
+graph we add one edge for every one of the initial polymers or length
+3 ($k$) that was used to derive the two vertices. We give the name of
+the polymer to that edge. So, from ATG we got vertices AT and TG and
+the edge ATG. You can see the graph that results from our example:
 
 <center>
 <img src="{attach}fragment_graph.png" width="400">
@@ -76,7 +75,7 @@ the following figure:
 
 If we go along the path and we connect the vertices keeping their
 common base only once we get the DNA sequence ATGGCGTGCA. Note that
-the sequence is cyclical: the vertex AA occurs int he sequence if we
+the sequence is cyclical: the vertex AA occurs in the sequence if we
 connect its end with its beginning. That means that an equivalent
 sequence is GGCGTGCAAT, or any other that is a rotation of ATGGCGTGCA.
 Moreover, depending on the starting node $u$ and how we choose an edge
@@ -93,7 +92,8 @@ sequences:
 
 The purpose of this assignment is to create a program that assembles
 DNA from a set of fragments. For more details, see [@compeau:2011] and
-[@pevzner:2001].
+[@pevzner:2001]. Hierholzer's algorithm was originally published in
+1873 [@hierholzer:1873].
 
 ### Requirements
 
