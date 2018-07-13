@@ -48,7 +48,7 @@ results from our example:
 </center>
 
 To find the initial DNA sequence we only need to find a path in the
-graph that visits all vertices exactly once. We call a path with this
+graph that visits all edges exactly once. We call a path with this
 property [Eulerian path](https://en.wikipedia.org/wiki/Eulerian_path)
 and it exists if and only if each vertex has the same in-degree and
 out-degree and all vertices with non-zero degree belong to a single
