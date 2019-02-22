@@ -4,10 +4,19 @@ def lzw_compress(input_file, output_file, nb, n):
     """ 
     Perform LZW compression.
     
-    input_file -- the name of the file to compress
-    output_file -- the name of the output file
-    nb -- the number of bits used for each encoding
-    n -- the size of the alphabet
+    Parameters
+    ----------
+    message : str
+        the message to compress
+    nb : int
+        the number of bits used for each encoding
+    n : int
+        the size of the alphabet
+        
+    Returns
+    -------
+    compressed : list
+       The encoded message
     """
 
     uncompressed_file = open(input_file)
@@ -49,15 +58,27 @@ def lzw_compress(input_file, output_file, nb, n):
     
     uncompressed_file.close()
     compressed_file.close()
-        
+
+
 def lzw_decompress(input_file, output_file, nb, n):
     """ 
     Perform LZW decompression.
     
-    compressed -- the message to decompress
-    nb -- the number of bits used for each encoding
-    n -- the size of the alphabet
+    Parameters
+    ----------
+    compressed : list
+        the message to decompress
+    nb : int
+        the number of bits used for each encoding
+    n : int
+        the size of the alphabet
+        
+    Returns
+    -------
+    result : str
+        The decompressed message
     """
+   
     max_code = 2**nb - 1 # size of the decoding table
     # Initialize the decoding table with reverse encodings 
     # for each character in the alphabet.
@@ -103,22 +124,24 @@ def lzw_decompress(input_file, output_file, nb, n):
     decompressed_file.close()
     compressed_file.close()
 
-parser = argparse.ArgumentParser(description=
-                                 "LZW compression/decompression")
+if __name__ == "__main__":
+    
+    parser = argparse.ArgumentParser(description=
+                                     "LZW compression/decompression")
 
-parser.add_argument('input_file', help='Input file')
-parser.add_argument('output_file', help='Output file')
-parser.add_argument("-d", "--decompress", help="decompress",
-                    default=False,
-                    action="store_true")
-parser.add_argument("-n", "--nb", help="number of bits of each table entry",
-                    type=int, default=16)
-parser.add_argument("-s", "--size", help="size of alphabet",
-                    type=int, default=2**8)
+    parser.add_argument('input_file', help='Input file')
+    parser.add_argument('output_file', help='Output file')
+    parser.add_argument("-d", "--decompress", help="decompress",
+                        default=False,
+                        action="store_true")
+    parser.add_argument("-n", "--nb", help="number of bits of each table entry",
+                        type=int, default=16)
+    parser.add_argument("-s", "--size", help="size of alphabet",
+                        type=int, default=2**8)
 
-args = parser.parse_args()
+    args = parser.parse_args()
 
-if (args.decompress):
-    lzw_decompress(args.input_file, args.output_file, args.nb, args.size)
-else:
-    lzw_compress(args.input_file, args.output_file, args.nb, args.size)
+    if (args.decompress):
+        lzw_decompress(args.input_file, args.output_file, args.nb, args.size)
+    else:
+        lzw_compress(args.input_file, args.output_file, args.nb, args.size)
