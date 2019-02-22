@@ -18,20 +18,20 @@ def set_root(pq, c):
     else:
         pq[0] = c
 
-def get_data(pq, c):
-    return pq[c]
+def get_data(pq, p):
+    return pq[p]
 
-def children(pq, c):
-    if 2*c + 2 < len(pq):
-        return [2*c + 1, 2*c + 2]
+def children(pq, p):
+    if 2*p + 2 < len(pq):
+        return [2*p + 1, 2*p + 2]
     else:
-        return [2*c + 1]
+        return [2*p + 1]
 
-def parent(c):
-    return (c - 1) // 2
+def parent(p):
+    return (p - 1) // 2
 
-def exchange(pq, c, p):
-    pq[c], pq[p] = pq[p], pq[c]
+def exchange(pq, p1, p2):
+    pq[p1], pq[p2] = pq[p2], pq[p1]
 
 def insert_in_pq(pq, c):
     add_last(pq, c)
@@ -44,8 +44,8 @@ def insert_in_pq(pq, c):
 def extract_last_from_pq(pq):
     return pq.pop()
 
-def has_children(pq, c):
-    return 2*c + 1 < len(pq)
+def has_children(pq, p):
+    return 2*p + 1 < len(pq)
 
 def extract_min_from_pq(pq):
     c = pq[root(pq)]
@@ -164,19 +164,20 @@ def huffman_decompress(input_file, output_file):
                     encoding = ''
             byte = compressed_file.read(1)
 
-parser = argparse.ArgumentParser(description=
-                                 'Huffman compression/decompression')
+if __name__ == "__main__":            
+    parser = argparse.ArgumentParser(description=
+                                     'Huffman compression/decompression')
 
-parser.add_argument('input_file', help='Input file')
-parser.add_argument('output_file', help='Output file')
-parser.add_argument('-d', '--decompress',
-                    action='store_true',
-                    help='Decompress',
-                    default=False)
+    parser.add_argument('input_file', help='Input file')
+    parser.add_argument('output_file', help='Output file')
+    parser.add_argument('-d', '--decompress',
+                        action='store_true',
+                        help='Decompress',
+                        default=False)
 
-args = parser.parse_args()
+    args = parser.parse_args()
 
-if args.decompress:
-    huffman_decompress(args.input_file, args.output_file)
-else:
-    huffman_compress(args.input_file, args.output_file)
+    if args.decompress:
+        huffman_decompress(args.input_file, args.output_file)
+    else:
+        huffman_compress(args.input_file, args.output_file)
