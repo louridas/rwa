@@ -13,9 +13,7 @@ def root(pq):
     return 0
 
 def set_root(pq, c):
-    if len(pq) == 0:
-        pq = [c]
-    else:
+    if len(pq) != 0:
         pq[0] = c
 
 def get_data(pq, p):
