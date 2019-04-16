@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/highlight.css" />    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
+    <!-- Dynamically resize logo for mobile -->
+    <style type="text/css">
+      .logo-width {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15%;
+      }
+      /* Roughly the point when website is single column */
+      @media (max-width: 850px) {
+      .logo-width {
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 5%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 5%">
+        <div class="three columns">
+          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io/rwa">
+            <center>
+              <img alt="book cover" class="logo-width"
+                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
+            </center>
+          </a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
+          <div class="row" style="padding-bottom: 5%"> </div>
+        </div>
+        <div class="nine columns">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://louridas.github.io/rwa/assignments/four-russians/" rel="bookmark"
+         title="Permalink to Four Russians">Four Russians</a></h2>
+ 
+  </header>
+  <div class="entry-content">
+    <p>We can carry out various calculations on matrices, like for instance
+multiplying them. Apart from traditional matrix multiplication, we can
+also define <em>boolean matrix multiplication</em> when our matrices are
+boolean, that is, when their elements are ones and zeros. To see what
+exactly boolean matrix multiplication is, let us start from plain
+matrix multiplication.</p>
+<p>If we have a matrix <span class="math">\(A\)</span> with dimensions <span class="math">\(n \times m\)</span>:</p>
+<div class="math">$$A ={\begin{pmatrix}a_{11} &amp; a_{12}&amp; \cdots &amp;a_{1m}\\
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2m} \\
+\vdots &amp;\vdots &amp; \ddots &amp;\vdots \\
+a_{n1} &amp; a_{n2}&amp; \cdots &amp;a_{nm}\\\end{pmatrix}}$$</div>
+<p>and a matrix <span class="math">\(B\)</span> with dimensions <span class="math">\(m \times p\)</span>:</p>
+<div class="math">$$B ={\begin{pmatrix}b_{11} &amp; b_{12} &amp; \cdots &amp; b_{1p}\\
+b_{21} &amp; b_{22} &amp; \cdots &amp;b_{2p}\\
+\vdots &amp;\vdots &amp; \ddots &amp;\vdots \\
+b_{m1} &amp; b_{m2} &amp; \cdots &amp;B_{mp}\\
+\end{pmatrix}}$$</div>
+<p>then their product is matrix <span class="math">\(C\)</span>, with dimensions <span class="math">\(n \times p\)</span>:</p>
+<div class="math">$$C ={\begin{pmatrix} c_{11} &amp; c_{12} &amp; \cdots &amp; c_{1p}\\
+c_{21} &amp; c_{22} &amp; \cdots &amp; c_{2p}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+c_{n1} &amp; c_{n2} &amp; \cdots &amp; c_{np}\\\end{pmatrix}}$$</div>
+<p>In this matrix, each element <span class="math">\(c_{ij}\)</span> is the result of the sum of the
+products of every element of line <span class="math">\(i\)</span> with the corresponding element
+of column <span class="math">\(j\)</span>:</p>
+<div class="math">$$c_{ij}=\sum _{k=1}^{m}a_{ik}b_{kj}$$</div>
+<p>To perform the calculations for all elements of <span class="math">\(C\)</span> we need time
+<span class="math">\(O(n^3)\)</span> if we apply the above formula.</p>
+<p>Now, if we have binary numbers, we can define boolean multiplication
+as the following operation, which is equivalent to the <a href="https://en.wikipedia.org/wiki/Logical_conjunction">logical AND
+operation</a>, also
+called conjunction, whose symbol is <span class="math">\(\wedge\)</span>:</p>
+<div class="math">$$
+\begin{align*}
+1 \wedge 1 = 1 \times 1 = 1\\
+1 \wedge 0 = 1 \times 0 = 0\\
+0 \wedge 1 = 0 \times 1 = 0\\
+0 \wedge 0 = 0 \times 0 = 0\\
+\end{align*}
+$$</div>
+<p>Along the same lines we can define boolean addition as the following
+operation, equivalent to the <a href="https://en.wikipedia.org/wiki/Logical_disjunction">logical OR
+operation</a>, also
+called disjunction, whose symbol is <span class="math">\(\vee\)</span>:</p>
+<div class="math">$$\begin{align*}
+1 \vee 1 = 1 + 1 = 1\\
+1 \vee 0 = 1 + 0 = 1\\
+0 \vee 1 = 0 + 1 = 1\\
+0 \vee 0 = 0 + 0 = 0\\
+\end{align*}$$</div>
+<p>Once we have defined boolean multiplication and boolean addition, we
+can define boolean matrix multiplication, where each element <span class="math">\(c_{ij}\)</span>
+is defined as before, but using boolean operations:</p>
+<div class="math">$$c_{ij}= \bigvee _{k=1}^{m}a_{ik} \wedge b_{kj}$$</div>
+<p>For example, if we have</p>
+<div class="math">$$A ={\begin{bmatrix} 
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\
+1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp;  1\\
+\end{bmatrix}}$$</div>
+<div class="math">$$B ={\begin{bmatrix} 
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\
+\end{bmatrix}}$$</div>
+<p>then their boolean product is the matrix:</p>
+<div class="math">$$C ={\begin{bmatrix} 
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 1\\
+\end{bmatrix}}$$</div>
+<p>To calculate the boolean product we can perform the calculations as we
+described them. We can do something different, though, which is our
+objective here. In particular, we will use the <em>four Russians
+algorithm</em><a href='#arlazarov:1970' id='ref-arlazarov:1970-1'>[2]</a>, as described in section 6.6
+of <a href='#aho:1974' id='ref-aho:1974-1'>[1]</a>. In what follows, we will assume that the two matrices
+<span class="math">\(A\)</span> and <span class="math">\(B\)</span> have dimensions <span class="math">\(n \times n\)</span>.</p>
+<p>We start by partitioning the two matrices in <span class="math">\(\lceil{n / \lg n}\rceil\)</span>
+pieces, the <span class="math">\(A\)</span> matrix column-wise and the <span class="math">\(B\)</span> matrix row-wise:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/four-russians/matrix_partition_h.png" width="300"/>
+<img src="https://louridas.github.io/rwa/assignments/four-russians/matrix_partition_v.png" width="300"/></p>
+<p>That means that each piece of <span class="math">\(A\)</span> will have dimensions <span class="math">\(n \times
+\lfloor{\lg n}\rfloor\)</span> and each piece of <span class="math">\(B\)</span> will have dimensions
+<span class="math">\(\lfloor{\lg n}\rfloor \times n\)</span>. If <span class="math">\(n\)</span> is not divided by <span class="math">\(\lg n\)</span>, we
+pad the last part of <span class="math">\(A\)</span> with zero columns and the last part of <span class="math">\(B\)</span>
+with zero rows.</p>
+<p>Now note that if we have two matrices <span class="math">\(Α\)</span> and <span class="math">\(B\)</span>, not necessarily
+boolean, with dimensions <span class="math">\(n\times n\)</span>, and we partition them as we
+described, their product <span class="math">\(AB\)</span> can be derived by taking the products of
+the parts <span class="math">\(A_i \times B_i\)</span> and sum everything together:</p>
+<div class="math">$$ A B = \sum _{i=1}^{\lceil{\lg n}\rceil}A_{i}B_{i}$$</div>
+<p>You can verify that each of <span class="math">\(A_i B_i\)</span> is a matrix with dimensions 
+<span class="math">\(n \times n\)</span>.</p>
+<p>In our example, we have:</p>
+<div class="math">$$A_1 ={\begin{bmatrix} 
+1 &amp; 1 \\
+0 &amp; 0 \\
+1 &amp; 0 \\
+1 &amp; 0 \\
+1 &amp; 0 \\
+\end{bmatrix}}$$</div>
+<p>and:</p>
+<div class="math">$$B_1 ={\begin{bmatrix} 
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{bmatrix}}$$</div>
+<p>so:</p>
+<div class="math">$$A_1 B_1 ={\begin{bmatrix} 
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\
+\end{bmatrix}}$$</div>
+<p>Continuing, we have:</p>
+<div class="math">$$A_2 ={\begin{bmatrix} 
+0 &amp; 0 \\
+1 &amp; 1 \\
+0 &amp; 1 \\
+0 &amp; 1 \\
+1 &amp; 0 \\
+\end{bmatrix}}$$</div>
+<p>and:</p>
+<div class="math">$$B_2 ={\begin{bmatrix} 
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+\end{bmatrix}}$$</div>
+<p>so:</p>
+<div class="math">$$A_2 B_2 ={\begin{bmatrix} 
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 
+\end{bmatrix}}$$</div>
+<p>Finally, we have:</p>
+<div class="math">$$A_3 ={\begin{bmatrix} 
+0 &amp; 0 \\
+1 &amp; 0 \\
+0 &amp; 0 \\
+1 &amp; 0 \\
+1 &amp; 0 \\
+\end{bmatrix}}$$</div>
+<p>and:</p>
+<div class="math">$$B_3 ={\begin{bmatrix} 
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+\end{bmatrix}}$$</div>
+<p>so:</p>
+<div class="math">$$A_3 B_3 ={\begin{bmatrix} 
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 
+\end{bmatrix}}$$</div>
+<p>If we take the boolean sum of the products, we get:</p>
+<div class="math">$$A_1 B_1 + A_2 B_2 + A_3 B_3 =
+{\begin{bmatrix} 
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\
+\end{bmatrix}}
++
+{\begin{bmatrix} 
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 
+\end{bmatrix}}
++
+{\begin{bmatrix} 
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 
+\end{bmatrix}} = 
+{\begin{bmatrix} 
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 \\
+1 &amp; 1 &amp; 0 &amp; 1 &amp; 1 
+\end{bmatrix}}$$</div>
+<p>which is the same result as the one we got before.</p>
+<p>Let us focus on how we can calculate <span class="math">\(A_i B_i\)</span>, taking as example <span class="math">\(A_2
+B_2\)</span>:</p>
+<ul>
+<li>The first row of <span class="math">\(A_2 B_2\)</span> is the result of taking none of the rows
+  of <span class="math">\(B_2\)</span>.</li>
+<li>The second row of <span class="math">\(A_2 B_2\)</span> is the result of the addition of the two
+  rows of <span class="math">\(B_2\)</span>.</li>
+<li>The third row of <span class="math">\(A_2 B_2\)</span> is the second row of <span class="math">\(B_2\)</span>.</li>
+<li>The fourth row of <span class="math">\(A_2 B_2\)</span> is the second row of <span class="math">\(B_2\)</span>.</li>
+<li>The fifth row of  <span class="math">\(A_2 B_2\)</span> is the first row of <span class="math">\(B_2\)</span>.</li>
+</ul>
+<p>Therefore, each row of <span class="math">\(A_2 B_2\)</span> is the result of taking the boolean
+sum of those rows of <span class="math">\(B_2\)</span> for which the elements of the corresponding
+row of <span class="math">\(A\)</span> is equal to one. This holds in general. Suppose that:</p>
+<div class="math">$$A_i = 
+{\begin{bmatrix}
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 1 \\
+1 &amp; 1 &amp; 1 \\
+0 &amp; 1 &amp; 1 \\
+\end{bmatrix}}
+$$</div>
+<p>and:</p>
+<div class="math">$$ B_i =
+{\begin{bmatrix}
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+\end{bmatrix}}
+$$</div>
+<p>then:</p>
+<div class="math">$$A_i B_i = 
+{\begin{bmatrix}
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1
+\end{bmatrix}}
+$$</div>
+<p>We can see that:</p>
+<ul>
+<li>The first row of <span class="math">\(A_i B_i\)</span> is equal to the second row of <span class="math">\(B_i\)</span>, as
+  indicated by the first row of <span class="math">\(A_i\)</span>.</li>
+<li>The second row of <span class="math">\(A_i B_i\)</span> is equal to zero, as indicated by the
+  second row of <span class="math">\(A_i\)</span>.</li>
+<li>The third row of <span class="math">\(A_i B_i\)</span> is equal to the boolean sum of the first
+  and the second rows of <span class="math">\(B_i\)</span>, as indicated by  the third row of
+  <span class="math">\(A_i\)</span>. </li>
+<li>And so on for the remaining lines; e.g., the seventh row of <span class="math">\(A_i B_i\)</span>
+  is equal to the boolean sum of all the rows of <span class="math">\(B_i\)</span>.</li>
+</ul>
+<p>This leads to an idea for speeding up our calculations. Since each row
+of the products <span class="math">\(A_i B_i\)</span> is the boolean sum of some rows of <span class="math">\(B_i\)</span>, we
+can pre-compute all possible boolean sums of rows of <span class="math">\(B_i\)</span> and use
+each time the sum indicated by the corresponding row of <span class="math">\(A_i\)</span>. In this
+way we arrive at the following algorithm:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/four-russians/four_russians_algorithm.png" width="600"></p>
+<p>In lines 1&ndash;3 we calculate <span class="math">\(\lfloor{\lg n}\rfloor\)</span> and we
+initialize matrix <span class="math">\(C\)</span>, which will contain the result of the
+multiplication. The function <span class="math">\(\texttt{InitΤοZero(}M\texttt{)}\)</span>
+initializes its argument to zero.</p>
+<p>In each iteration of the loop of lines 4&ndash;19 we calculate a
+product <span class="math">\(C_i = A_i B_i\)</span> and we add it in <span class="math">\(C\)</span>. Lines 5&ndash;15
+calculate all possible sums of rows of <span class="math">\(B_i\)</span> and store them in matrix
+<span class="math">\(\mathit{RS}\)</span> (rowsums), with dimensions <span class="math">\(2^m \times n\)</span>. To do that,
+we start from <span class="math">\(\mathit{RS}[0]\)</span>, which is equal to a zero vector, and
+we proceed by adding to the previous sums rows from matrix <span class="math">\(B_i\)</span>. The
+call <span class="math">\(\texttt{RowFromBottom(}B_{i}, k + 1\texttt{)}\)</span> returns the <span class="math">\(k+1\)</span>
+row counting from the end of matrix <span class="math">\(B_i\)</span>. Lines 9&ndash;15 add rows
+from <span class="math">\(B_i\)</span> to <span class="math">\(\mathit{RS}[j - 2^k]\)</span>, which is a sum that has already
+been calculated, so that we get new sums. We use a variable
+<span class="math">\(\mathit{bp}\)</span> (between powers) to know when to increase <span class="math">\(k\)</span>:
+<span class="math">\(\mathit{bp}\)</span> counts how many numbers lie between two successive
+powers of two. Once we have calculated all possible boolean row sums
+and we have stored them in the <span class="math">\(\mathit{RS}\)</span> matrix, we calculate each
+<span class="math">\(C_i = A_i B_i\)</span>, in lines 16&ndash;18. The call
+<span class="math">\(\texttt{Num(}A_{i}[j]\texttt{)}\)</span> returns the decimal number that
+corresponds to the <span class="math">\(j\)</span>th row of matrix <span class="math">\(A_i\)</span>. For example, if
+<span class="math">\(A_{i}[j] = [1, 0, 1]\)</span>, <span class="math">\(\texttt{Num(}A_{i}[j]\texttt{)}\)</span> returns 5.
+Finally, we add each <span class="math">\(C_i\)</span> to <span class="math">\(C\)</span> inline 19. </p>
+<p>Graphs give us an opportunity to see an application of boolean matrix
+multiplication. If <span class="math">\(G = (V, E)\)</span> is a directed graph, we can form the
+graph <span class="math">\(G* = (V, E*)\)</span> that has the same vertices as <span class="math">\(G\)</span> but one edge
+for any pair of nodes that are connected in <span class="math">\(G\)</span> (and not just the
+direct neighbors). The graph <span class="math">\(G*\)</span> is called the <em>transitive closure</em>
+of <span class="math">\(G\)</span>. Suppose we have the graph:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/four-russians/graph.png" width="600"/></p>
+<p>Then, the transitive closure of <span class="math">\(G\)</span> is the graph <span class="math">\(G*\)</span>:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/four-russians/graph_transitive_closure.png" width="600"/></p>
+<p>To calculate the transitive closure of a graph we can use boolean
+matrix multiplication. If <span class="math">\(A\)</span> is the adjacency matrix of graph <span class="math">\(G\)</span>,
+then <span class="math">\(A^2 = A A\)</span> is the adjacency matrix of the graph that we get from
+<span class="math">\(G\)</span> if we add to <span class="math">\(G\)</span> an edge for every pair of nodes that are
+connected with a path of length two. Similarly, <span class="math">\(A^3 = A^2 A\)</span> is the
+adjacency matrix of the graph that we get grom <span class="math">\(G\)</span> if we add to <span class="math">\(G\)</span> an
+edge for every pair of nodes that are connected with a path of length
+two or three. In general, <span class="math">\(A^n = A^{n-1} A\)</span> is the adjacency matrix of
+the graph we get if we add to <span class="math">\(G\)</span> an edge for every pair of nodes that
+are connected with a path of length 2, 3, <span class="math">\(\ldots\)</span>, <span class="math">\(n - 1\)</span>. For this
+to work, we assume that each node in <span class="math">\(G\)</span> is connected to itself, so in
+the adjancency matrix of <span class="math">\(G\)</span> we put ones down the left to right
+diagonal. More formally, we use as adjacency matrix the matrix <span class="math">\(A \vee
+\mathbf{I}\)</span>, where <span class="math">\(A\)</span> is the initial adjacency matrix and
+<span class="math">\(\mathbf{I}\)</span> is the identity matrix.</p>
+<p>In this assignment you will implement a program that finds the
+transitive closure of a graph using the four Russians algorithm.</p>
+<h2>Requirements</h2>
+<p>You will write a program called <code>four_russians.py</code>. The program will
+be called in two ways.</p>
+<p>If the program is called with:</p>
+<div class="highlight"><pre><span></span>python four_russians.py &lt;input_file_1&gt; &lt;input_file_2&gt;
+</pre></div>
+
+
+<p>where <code>&lt;input_file_1&gt;</code> and <code>&lt;input_file_2&gt;</code> are the names of two files
+containing boolean matrices, the program will output their boolean
+product. For example, if the user specifies files
+<a href="https://louridas.github.io/rwa/assignments/four-russians/array_1.txt">array_1.txt</a> and
+<a href="https://louridas.github.io/rwa/assignments/four-russians/array_2.txt">array_2.txt</a>, the program will output:</p>
+<div class="highlight"><pre><span></span>1,0,1,1,0,1,1,0,0,0,1,0,0
+1,0,1,1,1,1,1,0,1,1,1,1,0
+1,1,0,0,1,0,0,0,0,0,1,0,1
+1,0,0,1,1,0,1,1,1,1,1,1,1
+0,1,1,1,0,0,1,0,1,1,1,1,1
+1,1,1,0,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,1,1,1
+1,0,1,1,1,1,1,0,1,0,1,1,0
+1,1,1,1,0,1,1,1,1,1,1,1,1
+1,0,1,1,0,1,1,1,1,0,1,0,1
+1,1,1,1,0,0,1,0,0,0,0,0,1
+1,1,0,1,1,0,1,1,1,1,1,1,1
+1,1,1,1,0,1,0,1,1,0,0,1,1
+</pre></div>
+
+
+<p>If the program is called with:</p>
+<div class="highlight"><pre><span></span>python four_russians.py &lt;input_file&gt;
+</pre></div>
+
+
+<p>where <code>&lt;input_file&gt;</code> is the name of a file that contains a graph, the
+program will output the transitive closure of the graph. The input
+file will describe the graph by giving each edge in a line. For
+example, a file starting with:</p>
+<div class="highlight"><pre><span></span>0 1
+1 2
+2 3
+</pre></div>
+
+
+<p>specifies that node 0 is connected with node 1, node 1 is connected
+with node 2, and node 2 is connected to node 3.</p>
+<p>The transitive closure will be described in the same way, with an edge
+per line. The lines must be output in ascending order. For example, if
+the program is given as input the file
+<a href="https://louridas.github.io/rwa/assignments/four-russians/graph_1.txt">graph_1.txt</a>, which corresponds to the graph we
+used above, we'll get the following output:</p>
+<div class="highlight"><pre><span></span>0 0
+0 1
+0 2
+0 3
+0 4
+0 5
+1 1
+1 2
+1 3
+1 4
+1 5
+2 2
+2 3
+2 4
+2 5
+3 3
+3 4
+3 5
+4 4
+4 5
+5 5
+</pre></div>
+
+
+<h2>Notes</h2>
+<ul>
+<li>The algorithm was first published in Russian, as "Об экономном
+  построении транзитивного замыкания ориентированного графа", Доклады
+  Академии Наук СССР 134 (3), 1970. </li>
+<li>The algorithm took its name because it was believed that its
+  creators were Russians. However, although all of them lived in the
+  Soviet Union, it is not certain that they were Russians.</li>
+<li>The algorithm is useful because it allows us to perform the boolean
+  multiplication of two matrices in time <span class="math">\(Ο(n^3/\lg n)\)</span>. This can be
+  improved to <span class="math">\(Ο(n^2/\lg n)\)</span> if we implement it using bitwise
+  operators, better than the <span class="math">\(O(n^3)\)</span> time taken if we just follow the
+  definition of matrix multiplication.</li>
+<li>Beyond boolean multiplication, the underlying logic of the algorithm
+  can be applied to the calculation of the distance between two
+  strings, DNA sequence alignment, and cryptography. Check the
+  <a href="https://en.wikipedia.org/wiki/Method_of_Four_Russians">Wikipedia
+  article</a> for
+  more details.</li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script><hr>
+<h3>Bibliography</h3>
+<div class='bibliography'><ol><li id='aho:1974'>Alfred&nbsp;V. Aho, John&nbsp;E. Hopcroft, and Jeffrey&nbsp;D. Ullman.
+<em>The Design and Analysis of Computer Algorithms</em>.
+Addison-Wesley, Reading, MA, 1974. <a class="cite-backref" href="#ref-aho:1974-1" title="Jump back to reference 1">↩</a></li><li id='arlazarov:1970'>V.&nbsp;L. Arlazarov, Y.&nbsp;A. Dinitz, and I.&nbsp;A. Kronrod, M.&nbsp;A.&nbsp;Faradzhev.
+On economical construction of the transitive closure of an oriented graph.
+<em>Doklady Akademii Nauk SSSR</em>, 194(3):487–488, 1970. <a class="cite-backref" href="#ref-arlazarov:1970-1" title="Jump back to reference 1">↩</a></li></ol></div>
+  </div><!-- /.entry-content -->
+</section>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 25%"> </div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-103703286-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

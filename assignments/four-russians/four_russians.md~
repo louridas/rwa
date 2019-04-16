@@ -1,0 +1,447 @@
+Title: Four Russians
+Category: assignments
+Author: Panos Louridas
+Date: 16 April 2019
+Template: assignment
+publications_src: content/assignments/perfect_strangers/four_russians.bib
+
+We can carry out various calculations on matrices, like for instance
+multiplying them. Apart from traditional matrix multiplication, we can
+also define *boolean* or *binary matrix multiplication*. To see what
+exactly that is, let us start from plain matrix multiplication.
+
+If we have a matrix $A$ with dimensions $n \times m$:
+
+$$A ={\begin{pmatrix}a_{11} & a_{12}& \cdots &a_{1m}\\
+a_{21} & a_{22} & \cdots & a_{2m} \\
+\vdots &\vdots & \ddots &\vdots \\
+a_{n1} & a_{n2}& \cdots &a_{nm}\\\end{pmatrix}}$$
+
+and a matrix $B$ with dimensions $m \times p$:
+
+$$B ={\begin{pmatrix}b_{11} & b_{12} & \cdots & b_{1p}\\
+b_{21} & b_{22} & \cdots &b_{2p}\\
+\vdots &\vdots & \ddots &\vdots \\
+b_{m1} & b_{m2} & \cdots &B_{mp}\\
+\end{pmatrix}}$$
+
+then their product is matrix $C$, with dimensions $n \times p$:
+
+$$C ={\begin{pmatrix} c_{11} & c_{12} & \cdots & c_{1p}\\
+c_{21} & c_{22} & \cdots & c_{2p}\\
+\vdots & \vdots & \ddots & \vdots \\
+c_{n1} & c_{n2} & \cdots & c_{np}\\\end{pmatrix}}$$
+
+In this matrix, each element $c_{ij}$ is the result of the sum of the
+products of every element of line $i$ with the corresponding element
+of column $j$:
+
+$$c_{ij}=\sum _{k=1}^{m}a_{ik}b_{kj}$$
+
+Now, if we have binary numbers, we can define boolean multiplication
+as the following operation, which is equivalent to the logical AND
+operation ($\wedge$):
+
+$$
+\begin{align*}
+1 \wedge 1 = 1 \times 1 = 1\\
+1 \wedge 0 = 1 \times 0 = 0\\
+0 \wedge 1 = 0 \times 1 = 0\\
+0 \wedge 0 = 0 \times 0 = 0\\
+\end{align*}
+$$
+
+Along the same lines we can define boolean addition as the following
+operation, equivalent to the logical OR operation ($\vee$):
+
+$$\begin{align*}
+1 \vee 1 = 1 + 1 = 1\\
+1 \vee 0 = 1 + 0 = 1\\
+0 \vee 1 = 0 + 1 = 1\\
+0 \vee 0 = 0 + 0 = 0\\
+\end{align*}$$
+
+Once we have defined boolean multiplication and boolean addition, we
+can define boolean matrix multiplication, where each element $c_{ij}$
+is defined as before, but using boolean operations:
+
+$$c_{ij}= \bigvee _{k=1}^{m}a_{ik} \wedge b_{kj}$$
+
+For example, if we have
+
+$$A ={\begin{bmatrix} 
+1 & 1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 1 & 1 \\
+1 & 0 & 0 & 1 & 0 \\
+1 & 0 & 0 & 1 & 1 \\
+1 & 0 & 1 & 0 &  1\\
+\end{bmatrix}}$$
+
+$$B ={\begin{bmatrix} 
+0 & 1 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & 0 & 1 \\
+1 & 0 & 1 & 0 & 0 \\
+1 & 1 & 0 & 1 & 0\\
+\end{bmatrix}}$$
+
+then their boolean product is the matrix:
+
+$$C ={\begin{bmatrix} 
+0 & 1 & 0 & 0 & 1 \\
+1 & 1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 0 & 1 \\
+1 & 1 & 1 & 1 & 1 \\
+1 & 1 & 0 & 1 & 1\\
+\end{bmatrix}}$$
+
+To calculate the boolean product we can perform the calculations as we
+described them. We can do something different, though, which is our
+objective here. In particular, we will use the *four Russians
+algorithm*. In what follows, we will assume that the two matrices $A$
+and $B$ have dimensions $n \times n$.
+
+We start by partitioning the two matrices in $\lceil{\lg n}\rceil$
+pieces, the $A$ matrix column-wise and the $B$ matrix row-wise:
+
+<img src="{attach}matrix_partition_h.png" width="300"/>
+<img src="{attach}matrix_partition_v.png" width="300"/>
+
+That means that each piece of $A$ will have dimensions $n \times
+\lfloor{\lg n}\rfloor$ and each piece of $B$ will have dimensions
+$\lfloor{\lg n}\rfloor \times n$. If $n$ is not divided by $$\lg n$,
+we pad the last part of $A$ with zero columns and the last part of $B$
+with zero rows.
+
+Now note that if we have two matrices $Α$ and $B$, not necessarily
+boolean, with dimensions $n\times n$, and we partition them as we
+described, their product $AB$ can be derived by taking the products of
+the parts $A_i \times B_i$ and sum everything together:
+
+$$ A B = \sum _{i=1}^{\lceil{\lg n}\rceil}A_{i}B_{i}$$
+
+You can verify that each  of $A_i B_i$ is a matrix with dimensions $\n
+times n$.
+
+In our example, we have:
+
+$$A_1 ={\begin{bmatrix} 
+1 & 1 \\
+0 & 0 \\
+1 & 0 \\
+1 & 0 \\
+1 & 0 \\
+\end{bmatrix}}$$
+
+and:
+
+$$B_1 ={\begin{bmatrix} 
+0 & 1 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 \\
+\end{bmatrix}}$$
+
+so:
+
+$$A_1 B_1 ={\begin{bmatrix} 
+0 & 1 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 1 \\
+0 & 1 & 0 & 0 & 1 \\
+0 & 1 & 0 & 0 & 1\\
+\end{bmatrix}}$$
+
+Continuing, we have:
+
+$$A_2 ={\begin{bmatrix} 
+0 & 0 \\
+1 & 1 \\
+0 & 1 \\
+0 & 1 \\
+1 & 0 \\
+\end{bmatrix}}$$
+
+and:
+
+$$B_2 ={\begin{bmatrix} 
+1 & 1 & 0 & 0 & 1 \\
+1 & 0 & 1 & 0 & 0 \\
+\end{bmatrix}}$$
+
+so:
+
+$$A_2 B_2 ={\begin{bmatrix} 
+0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 & 0 \\
+1 & 0 & 1 & 0 & 1 \\
+1 & 1 & 0 & 0 & 1 
+\end{bmatrix}}$$
+
+Finally, we have:
+
+$$A_3 ={\begin{bmatrix} 
+0 & 0 \\
+1 & 0 \\
+0 & 0 \\
+1 & 0 \\
+1 & 0 \\
+\end{bmatrix}}$$
+
+and:
+
+$$B_3 ={\begin{bmatrix} 
+1 & 1 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+\end{bmatrix}}$$
+
+so:
+
+$$A_3 B_3 ={\begin{bmatrix} 
+0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & 1 & 0 \\
+1 & 1 & 0 & 1 & 0 
+\end{bmatrix}}$$
+
+If we take the boolean sum of the products, we get:
+
+$$A_1 B_1 + A_2 B_2 + A_3 B_3 =
+{\begin{bmatrix} 
+0 & 1 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 1 \\
+0 & 1 & 0 & 0 & 1 \\
+0 & 1 & 0 & 0 & 1\\
+\end{bmatrix}}
++
+{\begin{bmatrix} 
+0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 1 & 0 & 1 \\
+1 & 0 & 1 & 0 & 0 \\
+1 & 0 & 1 & 0 & 1 \\
+1 & 1 & 0 & 0 & 1 
+\end{bmatrix}}
++
+{\begin{bmatrix} 
+0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & 1 & 0 
+\end{bmatrix}} = 
+{\begin{bmatrix} 
+0 & 1 & 0 & 0 & 1 \\
+1 & 1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 0 & 1 \\
+1 & 1 & 1 & 1 & 1 \\
+1 & 1 & 0 & 1 & 1 
+\end{bmatrix}}$$
+
+which is the same result as the one we got before.
+
+Let us focus on how we can calculate $A_i B_i$, taking as example $A_2
+B_2$:
+
+* The first row of $A_2 B_2$ is the result of taking none of the rows
+  of $B_2$.
+  
+* The second row of $A_2 B_2$ is the result of the addition of the two
+  rows of $B_2$.
+
+* The third row of $A_2 B_2$ is the second row of $B_2$.
+
+* The fourth row of $A_2 B_2$ is the second row of $B_2$.
+
+* The fifth row of  $A_2 B_2$ is the first row of $B_2$.
+  
+Therefore, each row of $A_2 B_2$ is the result of taking the boolean
+sum of those rows of $B_2$ for which the elements of the corresponding
+row of $A$ is equal to one. This holds in general. Suppose that:
+
+$$A_i = 
+{\begin{bmatrix}
+0 & 1 & 0 \\
+0 & 0 & 0 \\
+1 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+1 & 0 & 1 \\
+1 & 1 & 1 \\
+0 & 1 & 1 \\
+\end{bmatrix}}
+$$
+
+and:
+
+$$ B_i =
+{\begin{bmatrix}
+0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 \\
+1 & 1 & 0 & 0 & 1 & 1 & 0 & 1 \\
+0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 \\
+\end{bmatrix}}
+$$
+
+then:
+
+$$A_i B_i = 
+{\begin{bmatrix}
+1 & 1 & 0 & 0 & 1 & 1 & 0 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 \\
+0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 \\
+0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 \\
+1 & 1 & 1 & 0 & 1 & 1 & 0 & 1 \\
+1 & 1 & 0 & 0 & 1 & 1 & 0 & 1
+\end{bmatrix}}
+$$
+
+You can verify that:
+
+* The first row of $A_i B_i$ is equal to the second row of $B_i$, as
+  indicated by the first row of $A_i$.
+  
+* The second row of $A_i B_i$ is equal to zero, as indicated by the
+  second row of $A_i$.
+  
+* The third row of $A_i B_i$ is equal to the boolean sum of the first
+  and the second rows of $B_i$, as indicated by  the third row of
+  $A_i$. 
+  
+* And so on for the remaining lines; e.g., the seventh row of $A_i B_i$
+  is equal to the boolean sum of all the rows of $B_i$.
+  
+This leads to an idea for speeding up our calculations. Since each row
+of the products $A_i B_i$ is the sum of some rows of $B_i$, we can
+pre-compute all possible sums of rows of $B_i$ and use each time the
+sum indicated by the corresponding row of $A_i$. In this way we arrive
+at the following algorithm:
+
+<img src="{attach}four_russians_algorithm.png" width="600">
+
+This algorithm implements boolean matrix multiplication using the
+logic we outlined. In lines 1&ndash;3 we calculate $\lfloor{\lg
+n}\rfloor$ and we initialize matrix $C$, which will contain the result
+of the multiplication. The function $\texttt{InitΤοZero(}M\texttt{)}$
+initializes its argument to zero.
+
+In each iteration of the loop of lines 4&ndash;19 we calculate a sum
+$C_i = A_i B_i$ and we store it in $C_i$. Lines 5&ndash;15 calculate
+all possible sums of rows of $B_i$ and store them in matrix
+$\mathit{RS}$ (rowsums), with dimensions $2^m \times n$. To do that,
+we start from $\mathit{RS}[0]$, which is equal to a zero vector, and
+we proceed by adding to the previous sums rows from matrix $B_i$. The
+call $\texttt{RowFromBottom(}B_{i}, k + 1\texttt{)}$ returns the $k+1$
+row counting from the end of matrix $B_i$. Lines 9&ndash;15 add to
+$\mathit{RS}[j - 2^k]$, which is a sum that has already been
+calculated, rows from $B_i$, so that we get new sums. We use variable
+$\mathit{bp}$ (between powers) to know when to increase $k$:
+$\mathit{bp}$ counts how many numbers lie between two successive
+powers of two. Note that in line 10 the sum is boolean.
+
+Once we have calculated all possible row sums and we have stored them
+in the $\mathit{RS}$ matrix, we calculate each $C_i = A_i B_i$, in
+lines 16&ndash;18. The call $\texttt{Num(}A_{i}[j]\texttt{)}$ returns
+the decimal number that corresponds to the $j$th row of matrix $A_i$.
+For example, if $A_{i}[j] = [1, 0, 1]$,
+$\texttt{Num(}A_{i}[j]\texttt{)}$ returns 5.
+
+Finally, we add each $C_i$ to $C$ inline 19. The sum is again boolean.
+
+The boolean sum is useful in graphs. If $G = (V, E)$ is a directed
+graph, we can form the graph $G* = (V, E*)$ that has the same vertices
+as $G$ but one edge for any pair of nodes that are connected in $G$
+(and not just the direct neighbors). The graph  $G*$  is called the
+*transitive closure* of $G$. Suppose we have the graph:
+
+<img src="{attach}graph.png" width="600"/>
+
+Then, the transitive closure of $G$ is the graph:
+
+<img src="{attach}graph_transitive_closure.png" width="600"/>
+
+To calculate the transitive closure of a graph we can use boolean
+multiplication. If $A$ is the adjacency matrix of graph $G$, then $A^2
+= A A$ is the adjacency matrix of the graph that we get from $G$ if we
+add to $G$ an edge for every pair of nodes that are connected with a
+path of length two. Similarly, $A^3 = A^2 A$ is the adjacency matrix
+of the  the graph that we get grom $G$ if we add to $G$ an edge for
+every pair of nodes  that are connected with a path of length two or
+three. In general, $A^n = A^{n-1} A$ is the adjacency matrix of the
+graph we get if we add to $G$ an edge for every pair of nodes that
+are connected with a path of length 2, 3, $\ldots$, $n - 1$. For this
+to work, we assume that each node in $G$ is connected to itself, so in
+the adjancency matrix of $G$ we put ones down the left to right
+diagonal. More formally, we use as adjacency matrix the matrix $A \vee
+\mathbf{I}$, where $A$ is the initial adjacency matrix and
+$\mathbf{I}$ is the unit matrix. 
+
+
+In this assignment you will implement a program that finds the maximal
+independent subsets of a graph.
+
+## Requirements
+
+1. You will write a program called `mis.py` that finds the maximal
+   independent subsets of a graph using the algorithm of Johnson,
+   Yannakakis and Papadimitriou, described in [@johnson:1988].
+2. You can use the [networkx](https://networkx.github.io/) library for
+   graph input, output, manipulation, and drawing.
+3. You can use anything you want from the
+   [Python library](https://docs.python.org/3/library/). 
+4. The program must be called as follows:
+```
+python mis.py [-h] [-d] [-n NAME] [-f FIGURE] input
+```
+
+The `input` parameter corresponds to the name of the file containing
+the graph. The file will contain the graph in
+[networkx adjacency list format](https://networkx.github.io/documentation/stable/reference/readwrite.adjlist.html).
+
+If the user provides the parameter `-d`, the program will display on
+screen the graph and each maximal independent subset, similarly to the
+way we have presented them here. The actual images produced need not
+be exactly the same as the one we have shown, as graph layout depends
+on many parameters.
+
+If the user provides the parameter `-n NAME` and `-f FIGURE` each
+images will be stored in a file with name `NAME_x.FIGURE`, where `x`
+is a positive number. For example, if the user enters `-n cube -f
+png`, the program will store the images in the files `cube_1.png`,
+`cube_2.png`, and so on.
+
+The parameter `-h` can be used to display a short description of the
+program and its parameters.
+
+In all cases, the program output will be the maximal independend
+subsets in lexicographic order. So, if we are dealing with the star
+graph, the output will be:
+
+```bash
+['0']
+['1', '10', '2', '3', '4', '5', '6', '7', '8', '9']
+```
+
+While if we are dealing with the cube graph, the output will be:
+
+```bash
+['(0, 0, 0)', '(0, 1, 1)', '(1, 0, 1)', '(1, 1, 0)']
+['(0, 0, 0)', '(1, 1, 1)']
+['(0, 0, 1)', '(0, 1, 0)', '(1, 0, 0)', '(1, 1, 1)']
+['(0, 0, 1)', '(1, 1, 0)']
+['(0, 1, 0)', '(1, 0, 1)']
+['(0, 1, 1)', '(1, 0, 0)']
+```
+
+## Graph Examples
+
+You can check your program with the following files:
+
+* [Star graph with 10 nodes]({attach}star_graph_10.txt).
+* [Cube graph]({attach}cube_graph.txt).
+* [Petersen graph]({attach}petersen_graph.txt).
+* [Barabási-Albert graph with 15 nodes]({attach}barabasi_albert_graph_15.txt).
+* [Powerlaw cluster graph with 20 nodes]({attach}powerlaw_cluster_graph_20.txt).
+* [Erdős-Rényi graph with 20 nodes]({attach}erdos_renyi_graph_20.txt).
+* [Erdős-Rényi graph with 25 nodes]({attach}erdos_renyi_graph_25.txt).
