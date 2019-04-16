@@ -3,7 +3,7 @@ Category: assignments
 Author: Panos Louridas
 Date: 2 August 2017
 Template: assignment
-publications_src: content/assignments/musical_rhythms/musical_rhythms.bib
+publications_src: content/assignments/musical-rhythms/musical_rhythms.bib
 
 Consider the following problem. You want to create a binary sequence
 of $n$ bits, out of which $k$ are one (and the rest are of course

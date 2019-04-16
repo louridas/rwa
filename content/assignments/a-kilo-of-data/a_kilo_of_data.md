@@ -3,7 +3,7 @@ Category: assignments
 Author: Panos Louridas
 Date: 7 August 2017
 Template: assignment
-publications_src: content/assignments/a_kilo_of_data/a_kilo_of_data.bib
+publications_src: content/assignments/a-kilo-of-data/a_kilo_of_data.bib
 
 The amount of data produced in the world is increasing rapidly, and so
 does the storage needed to accommodate all that data. Data centers can

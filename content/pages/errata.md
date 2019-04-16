@@ -16,5 +16,5 @@ the layout and the typography are borrowed from them. Along with this
 acknowledgment, many thanks from the author to Donald Knuth for his
 books that provided many pleasant evenings.
 
-* [Errata to the Second Printing]({filename}/pdfs/errata_2p.pdf).
-* [Errata to the First Printing]({filename}/pdfs/errata.pdf).
+* [Errata to the Second Printing]({static}/pdfs/errata_2p.pdf).
+* [Errata to the First Printing]({static}/pdfs/errata.pdf).

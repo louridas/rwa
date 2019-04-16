@@ -3,7 +3,7 @@ Category: assignments
 Author: Panos Louridas
 Date: 18 September 2017
 Template: assignment
-publications_src: content/assignments/perfect_strangers/perfect_strangers.bib
+publications_src: content/assignments/perfect-strangers/perfect_strangers.bib
 
 Sometimes we want to break apart a set of entities to subsets such
 that the entities in each subset have no relationship between them. If

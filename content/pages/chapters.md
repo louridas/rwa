@@ -28,31 +28,31 @@ and thoroughly tested open source implementations.
 
 * Chapter 1: Stock Spans
  [View](http://nbviewer.jupyter.org/urls/louridas.github.io/rwa/notebooks/chapter_01.ipynb)
- [Download]({filename}/notebooks/chapter_01.ipynb)
+ [Download]({static}/notebooks/chapter_01.ipynb)
 * Chapter 2: Exploring the Labyrinth
  [View](http://nbviewer.jupyter.org/urls/louridas.github.io/rwa/notebooks/chapter_02.ipynb)
- [Download]({filename}/notebooks/chapter_02.ipynb)
+ [Download]({static}/notebooks/chapter_02.ipynb)
 * Chapter 3: Compressing
  [View](http://nbviewer.jupyter.org/urls/louridas.github.io/rwa/notebooks/chapter_03.ipynb)
- [Download]({filename}/notebooks/chapter_03.ipynb)
+ [Download]({static}/notebooks/chapter_03.ipynb)
 * Chapter 4: Secrets
  [View](http://nbviewer.jupyter.org/urls/louridas.github.io/rwa/notebooks/chapter_04.ipynb)
- [Download]({filename}/notebooks/chapter_04.ipynb)
+ [Download]({static}/notebooks/chapter_04.ipynb)
 * Chapter 5: Split Secrets
  [View](http://nbviewer.jupyter.org/urls/louridas.github.io/rwa/notebooks/chapter_05.ipynb)
- [Download]({filename}/notebooks/chapter_05.ipynb)
+ [Download]({static}/notebooks/chapter_05.ipynb)
 * Chapter 6: Tasks in Order
  [View](http://nbviewer.jupyter.org/urls/louridas.github.io/rwa/notebooks/chapter_06.ipynb)
- [Download]({filename}/notebooks/chapter_06.ipynb)
+ [Download]({static}/notebooks/chapter_06.ipynb)
 * Chapter 7: Lines, Paragraphs, Paths
  [View](http://nbviewer.jupyter.org/urls/louridas.github.io/rwa/notebooks/chapter_07.ipynb)
- [Download]({filename}/notebooks/chapter_07.ipynb)
+ [Download]({static}/notebooks/chapter_07.ipynb)
 * Chapter 8: Routing, Arbitrage
  [View](http://nbviewer.jupyter.org/urls/louridas.github.io/rwa/notebooks/chapter_08.ipynb)
- [Download]({filename}/notebooks/chapter_08.ipynb)
+ [Download]({static}/notebooks/chapter_08.ipynb)
 * Chapter 10: Voting Strengths
  [View](http://nbviewer.jupyter.org/urls/louridas.github.io/rwa/notebooks/chapter_10.ipynb)
- [Download]({filename}/notebooks/chapter_10.ipynb)
+ [Download]({static}/notebooks/chapter_10.ipynb)
 * Chapter 11: Brute Forces, Secretaries, and Dichotomies
  [View](http://nbviewer.jupyter.org/urls/louridas.github.io/rwa/notebooks/chapter_11.ipynb)
- [Download]({filename}/notebooks/chapter_11.ipynb)
+ [Download]({static}/notebooks/chapter_11.ipynb)

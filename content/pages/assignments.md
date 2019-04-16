@@ -31,10 +31,11 @@ guideline, the scale should not be understood as following the
 where a bishop assignment would be *on average* three times as difficult
 as a pawn, a rook five times, and a queen nine times.
 
+* [Four Russians]({filename}../assignments/four-russians/four_russians.md) &#9813;
 * [Finding Trusses]({filename}../assignments/trusses/trusses.md) &#9817;
-* [Genome Assembly]({filename}../assignments/genome_assembly/genome_assembly.md)&#9817;
-* [Musical Rhythms]({filename}../assignments/musical_rhythms/musical_rhythms.md) &#9815;
-* [A Kilo of Data]({filename}../assignments/a_kilo_of_data/a_kilo_of_data.md)
+* [Genome Assembly]({filename}../assignments/genome-assembly/genome_assembly.md)&#9817;
+* [Musical Rhythms]({filename}../assignments/musical-rhythms/musical_rhythms.md) &#9815;
+* [A Kilo of Data]({filename}../assignments/a-kilo-of-data/a_kilo_of_data.md)
 &#9814;
-* [Perfect Strangers]({filename}../assignments/perfect_strangers/perfect_strangers.md)
+* [Perfect Strangers]({filename}../assignments/perfect-strangers/perfect_strangers.md)
 &#9813;

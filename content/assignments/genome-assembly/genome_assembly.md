@@ -3,7 +3,7 @@ Category: assignments
 Author: Panos Louridas
 Date: 2 August 2017
 Template: assignment
-publications_src: content/assignments/genome_assembly/genome_assembly.bib
+publications_src: content/assignments/genome-assembly/genome_assembly.bib
 
 One of the most important scientific developments of the last decades
 has been the decoding of the human genome. Thanks to the techniques
