@@ -80,7 +80,7 @@ insert tangential to $C_m$ and $C_n$ intersects a circle $C_j$ that
 comes before $C_m$ in the front, we remove from the front the circles
 from the successor of $C_j$ up to and including the predecessor of
 $C_n$ and $C_j$ becomes $C_m$, as you can see in the following
-figure---do not be surprised that the circles do not all have the same
+figure&mdash;do not be surprised that the circles do not all have the same
 radius, we would like our algorithm to work even when the circles are
 not equal.
 
@@ -184,7 +184,7 @@ inserted into the front, it is alive.
        step 2 to insert the next circle ($i \leftarrow i + 1$),
        resurrecting all the circles in the front.
 
-Steps 2--5 are repeated until we have inserted the desired number of
+Steps 2&ndash;5 are repeated until we have inserted the desired number of
 circles or we cannot add a circle because there is no circle left
 alive in the front.
 
