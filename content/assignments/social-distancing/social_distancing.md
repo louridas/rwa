@@ -56,7 +56,7 @@ add circles, we follow these steps:
 4. If $C_i$ does not intersect with any of the front's cirles, we
    insert it into our shape and we return to step 2.
 5. Otherwise, we remove from the front the problematic circles and we
-   return to step 2.
+   then return to step 2.
 
 <img src="{attach}circles_2.png" width="700">
 
@@ -67,7 +67,7 @@ between $C_2$ and $C_{10}$, we will find out that it falls on $C_3$.
 According to step 5, we remove $C_2$ from the front, so now we have
 $C_3$ followed by $C_{10}$ in the front. Returning to step 2 we find
 that $C_3$ is the front circle closest to the starting point, so we
-add circle $C{11}$.
+add circle $C_{11}$.
 
 That is not a complete algorithm, because step 5 is not clear. We have
 termed some circles "problematic", but we have not really defined
@@ -412,19 +412,20 @@ are read, at the end of `output_file`, after the produced circles.
 To visualize your results, you may use the following programs:
 
 * [`svg_draw.py`](svg_draw.py)<br/>
-  which you call with:<br/>
-  ```bash
-  python svg_draw.py input_file output_file
-  ```
-  <br/> 
-   where `input_file` is the output file of your program and
-  `output_file` will be an SVG file. You will need to install the 
-  [`svgwrite`](https://github.com/mozman/svgwrite) library.
-  * [`mpl_draw.py`](mpl_draw.py),<br/>
+    which you call with:<br/>
+    ```bash
+    python svg_draw.py input_file output_file
+    ```
+    <br/> 
+    where `input_file` is the output file of your program and
+    `output_file` will be an SVG file. You will need to install the 
+    [`svgwrite`](https://github.com/mozman/svgwrite) library.
+* [`mpl_draw.py`](mpl_draw.py)<br/>
     which you call with:<br/>
     ```bash
     python mpl_draw.py input_file output_file
-    ```<br/>
+     ```
+    <br/>
     where `input_file` is the output file of your program and
     `output_file` is a file whose type is determined by its suffix. For
     example, if you specify `myfile.png` as `output_file` you will get a
