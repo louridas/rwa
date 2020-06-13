@@ -100,13 +100,13 @@ Here we want to find the maximal k-trusses of a graph.</p>
 <h3>Maximal Truss Finding Algorithm</h3>
 <p>How do we find the maximal k-trusses of a graph? One way is with the
 following algorithm:</p>
-<div class="highlight"><pre><span></span>find_maximal_k_trusses(g, k):
+<div class="highlight"><pre><span></span><code>find_maximal_k_trusses(g, k):
     until no change do
         for each edge e = (a,b) in g:
             if (size(intersection(neighbours(a), neighbours(b)) &lt; k - 2:
                 remove e from g
     return the connected components of the remaining graph
-</pre></div>
+</code></pre></div>
 
 
 <p>In the above algorithm, <code>g</code> is the graph and <code>k</code> is the truss size.
@@ -126,18 +126,18 @@ will do for this assignment.</p>
 <li>You will not use ready-made graph libraries.</li>
 <li>Your program must be called as follows:</li>
 </ol>
-<div class="highlight"><pre><span></span>python trusses.py graph_file size_of_truss
-</pre></div>
+<div class="highlight"><pre><span></span><code>python trusses.py graph_file size_of_truss
+</code></pre></div>
 
 
 <p>The <code>graph_file</code> argument specifies the name of the file where the
 graph is stored. The file will have the
 following format:</p>
-<div class="highlight"><pre><span></span>0 2
+<div class="highlight"><pre><span></span><code>0 2
 1 3 
 2 4
 ...
-</pre></div>
+</code></pre></div>
 
 
 <p>that is, it contains lines each one of which has two numbers. If
@@ -152,9 +152,9 @@ k-truss.</p>
 <h3>Output</h3>
 <p>The program will print out the k-trusses of the graph, if they exist,
 in the form:</p>
-<div class="highlight"><pre><span></span><span class="o">[</span><span class="m">0</span>, <span class="m">1</span>, <span class="m">9</span><span class="o">]</span>
-<span class="o">[</span><span class="m">8</span>, <span class="m">10</span>, <span class="m">16</span><span class="o">]</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>[0, 1, 9]
+[8, 10, 16]
+</code></pre></div>
 
 
 <p>That is, each line
@@ -163,70 +163,70 @@ commas and whitespace. Every k-truss will be output only once, and
 the k-trusses will be output in order.</p>
 <h3>Examples</h3>
 <p>If the user gives:</p>
-<div class="highlight"><pre><span></span>python trusses.py graph_1.txt <span class="m">3</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>python trusses.py graph_1.txt <span class="m">3</span>
+</code></pre></div>
 
 
 <p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_1.txt">graph_1.txt</a>, which actually corresponds
 to the graph of the first two figures with the 3-trusses above, the
 output will be the one we gave just above:</p>
-<div class="highlight"><pre><span></span><span class="o">[</span><span class="m">0</span>, <span class="m">1</span>, <span class="m">9</span><span class="o">]</span>
-<span class="o">[</span><span class="m">8</span>, <span class="m">10</span>, <span class="m">16</span><span class="o">]</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>[0, 1, 9]
+[8, 10, 16]
+</code></pre></div>
 
 
 <p>If the user gives:</p>
-<div class="highlight"><pre><span></span>python trusses.py graph_2.txt 4
-</pre></div>
+<div class="highlight"><pre><span></span><code>python trusses.py graph_2.txt <span class="m">4</span>
+</code></pre></div>
 
 
 <p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_2.txt">graph_2.txt</a>, the output will be:</p>
-<div class="highlight"><pre><span></span><span class="o">[</span><span class="m">3</span>, <span class="m">8</span>, <span class="m">9</span>, <span class="m">18</span><span class="o">]</span>
-<span class="o">[</span><span class="m">7</span>, <span class="m">11</span>, <span class="m">15</span>, <span class="m">21</span><span class="o">]</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>[3, 8, 9, 18]
+[7, 11, 15, 21]
+</code></pre></div>
 
 
 <p>If the user gives:</p>
-<div class="highlight"><pre><span></span>python trusses.py graph_3.txt 5
-</pre></div>
+<div class="highlight"><pre><span></span><code>python trusses.py graph_3.txt <span class="m">5</span>
+</code></pre></div>
 
 
 <p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_3.txt">graph_3.txt</a>, the output will be:</p>
-<div class="highlight"><pre><span></span><span class="o">[</span><span class="m">2</span>, <span class="m">5</span>, <span class="m">8</span>, <span class="m">9</span>, <span class="m">13</span>, <span class="m">14</span><span class="o">]</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>[2, 5, 8, 9, 13, 14]
+</code></pre></div>
 
 
 <p>If the user gives:</p>
-<div class="highlight"><pre><span></span>python trusses.py graph_4.txt 3
-</pre></div>
+<div class="highlight"><pre><span></span><code>python trusses.py graph_4.txt <span class="m">3</span>
+</code></pre></div>
 
 
 <p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_4.txt">graph_4.txt</a>, the output will be:</p>
-<div class="highlight"><pre><span></span><span class="o">[</span><span class="m">0</span>, <span class="m">1</span>, <span class="m">2</span>, <span class="m">3</span>, <span class="m">4</span>, <span class="m">5</span>, <span class="m">6</span>, <span class="m">7</span>, <span class="m">8</span>, <span class="m">9</span>, <span class="m">10</span>, <span class="m">11</span>, <span class="m">12</span>, <span class="m">13</span>, <span class="m">14</span><span class="o">]</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+</code></pre></div>
 
 
 <p>that is, all the nodes in the graph, whereas if the user gives:</p>
-<div class="highlight"><pre><span></span>python trusses.py graph_4.txt 4
-</pre></div>
+<div class="highlight"><pre><span></span><code>python trusses.py graph_4.txt <span class="m">4</span>
+</code></pre></div>
 
 
 <p>with the same file, the output will be:</p>
-<div class="highlight"><pre><span></span><span class="o">[</span><span class="m">0</span>, <span class="m">1</span>, <span class="m">3</span>, <span class="m">4</span>, <span class="m">5</span>, <span class="m">6</span>, <span class="m">9</span>, <span class="m">11</span><span class="o">]</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>[0, 1, 3, 4, 5, 6, 9, 11]
+</code></pre></div>
 
 
 <p>which corresponds to the 4-truss figure we gave at the beginning.</p>
 <p>If you want to try a bigger example, if the user gives:</p>
-<div class="highlight"><pre><span></span>python trusses.py barabasi_albert_graph_1500.txt 4
-</pre></div>
+<div class="highlight"><pre><span></span><code>python trusses.py barabasi_albert_graph_1500.txt <span class="m">4</span>
+</code></pre></div>
 
 
 <p>using the file
 <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_5.txt">graph_5.txt</a>, which contains 1500 nodes,
 the output will be:</p>
-<div class="highlight"><pre><span></span><span class="o">[</span><span class="m">0</span>, <span class="m">3</span>, <span class="m">4</span>, <span class="m">5</span>, <span class="m">7</span>, <span class="m">9</span>, <span class="m">11</span>, <span class="m">15</span>, <span class="m">26</span><span class="o">]</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>[0, 3, 4, 5, 7, 9, 11, 15, 26]
+</code></pre></div>
 
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {

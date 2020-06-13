@@ -210,16 +210,16 @@ following correspondence table:</p>
 </table>
 <p>With this encoding, the file with "hello, world" in it is
 represented as:</p>
-<div class="highlight"><pre><span></span>0022211212202020221011221201
-</pre></div>
+<div class="highlight"><pre><span></span><code>0022211212202020221011221201
+</code></pre></div>
 
 
 <p>Now, working with the table of mappings between trits and DNA bases,
 the <code>0</code> will become <code>C</code>, the second <code>0</code> will become <code>G</code>, the <code>2</code> will
 become <code>C</code>, and so on. At the end we will end up with the DNA
 sequence:</p>
-<div class="highlight"><pre><span></span>CGCATCTGATGTGTGTGCTAGATGATAG
-</pre></div>
+<div class="highlight"><pre><span></span><code>CGCATCTGATGTGTGTGCTAGATGATAG
+</code></pre></div>
 
 
 <p>To decode this DNA sequence, we work in exactly the opposite way. We
@@ -286,8 +286,8 @@ decoding scheme; for more details on the underlying research, see
 <li>You will implement your own prioriry queue for use in the program.</li>
 <li>Your program must be called as follows:</li>
 </ol>
-<div class="highlight"><pre><span></span>python dna_store.py [-d] input output huffman
-</pre></div>
+<div class="highlight"><pre><span></span><code>python dna_store.py <span class="o">[</span>-d<span class="o">]</span> input output huffman
+</code></pre></div>
 
 
 <p>If the user does not give the parameter <code>-d</code>, the program will read
@@ -307,8 +307,8 @@ only be decoded correctly with the Huffman code that was used for
 its encoding.</p>
 <h3>Examples</h3>
 <p>If the user gives:</p>
-<div class="highlight"><pre><span></span>python dna_store.py hello_world.txt hello_world_dna.txt hello_world_huffman.csv
-</pre></div>
+<div class="highlight"><pre><span></span><code>python dna_store.py hello_world.txt hello_world_dna.txt hello_world_huffman.csv
+</code></pre></div>
 
 
 <p>using the file <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/hello_world.txt">hello_world.txt</a>, then the
@@ -317,8 +317,8 @@ Huffman code will be stored in the file
 encoded file will be
 <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/hello_world_dna.txt">hello_world_dna.txt</a>.</p>
 <p>If the user gives:</p>
-<div class="highlight"><pre><span></span>python dna_store.py 1984.txt 1984_dna.txt 1984_huffman.csv
-</pre></div>
+<div class="highlight"><pre><span></span><code>python dna_store.py <span class="m">1984</span>.txt 1984_dna.txt 1984_huffman.csv
+</code></pre></div>
 
 
 <p>with the file <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/1984.txt">1984.txt</a>, then the Huffman code
@@ -326,8 +326,8 @@ will be stored in the file
 <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/1984_huffman.csv">1984_huffman.csv</a> and the encoded file will
 be <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/1984_dna.txt">1984_dna.txt</a>.</p>
 <p>If the user gives:</p>
-<div class="highlight"><pre><span></span>python dna_store.py -d 1984_dna.txt 1984_decoded.txt 1984_huffman.csv
-</pre></div>
+<div class="highlight"><pre><span></span><code>python dna_store.py -d 1984_dna.txt 1984_decoded.txt 1984_huffman.csv
+</code></pre></div>
 
 
 <p>the file <code>1984_decoded.txt</code> must be exactly the same as the file

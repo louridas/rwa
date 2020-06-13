@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/highlight.css" />    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
+    <!-- Dynamically resize logo for mobile -->
+    <style type="text/css">
+      .logo-width {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15%;
+      }
+      /* Roughly the point when website is single column */
+      @media (max-width: 850px) {
+      .logo-width {
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 5%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 5%">
+        <div class="three columns">
+          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io/rwa">
+            <center>
+              <img alt="book cover" class="logo-width"
+                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
+            </center>
+          </a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
+          <div class="row" style="padding-bottom: 5%"> </div>
+        </div>
+        <div class="nine columns">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://louridas.github.io/rwa/assignments/social-distancing/" rel="bookmark"
+         title="Permalink to Social Distancing">Social Distancing</a></h2>
+ 
+  </header>
+  <div class="entry-content">
+    <p>In the covid-19 era, <em>social distancing</em> has emerged as an important
+factor in the fight against the disease. We change
+our habits and the way we interact with others, so that we minimize
+the chances that the virus can be transmitted.</p>
+<p>Social distancing includes rules about how close we can be to one
+another. When we are brought together, we must maintain a certain
+distance between ourselves. </p>
+<p>Then a problem emerges: if we have a given space, how many people can
+fit into the space, while respecting social distancing rules? And
+where should they be placed?</p>
+<p>We can represent each person as a circle whose radius is equal to the
+minimum distance we must maintain. Then the problem becomes inserting
+the circles with the diven radius inside a shape that describes the
+space we want to fill.</p>
+<p>To find where the circles should be placed, we can work as follows:</p>
+<ol>
+<li>We put a circle at the point where we want to start the placement
+   process.</li>
+<li>We put a circle tangent to the first one, noting that each circle
+   follows the other.</li>
+<li>We interpolate a circle tangent to the last circle and the first
+   circle we inserted.</li>
+</ol>
+<p>This is how the process will evolve for the first seven circles:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_1.png" width="700"></p>
+<p>We can observe that the centers of the circles form a closed polygon.
+If we want to continue the process, we must remove from the polygon
+vertex <span class="math">\(C_1\)</span> and connect directly vertices <span class="math">\(C_2\)</span> and <span class="math">\(C_7\)</span>. Then we
+can interpolate a circle tangent to <span class="math">\(C_2\)</span> and <span class="math">\(C_7\)</span>, as in the first
+panel of the previous figure.</p>
+<p>This suggests an idea. Let us call the circles on the perimeter of the
+shape, next to whom we can attach tangential circles, the <em>front</em>. To
+add circles, we follow these steps: </p>
+<ol>
+<li>We add the first two circles (these two form a trivial front).</li>
+<li>We find the circle in the front that is closest to our starting
+   point. Suppose that this circle <span class="math">\(C_m\)</span>. If there are more than one
+   circles with the same distance, we pick the one that was inserted
+   earliest.</li>
+<li>We try to interpolate a circle between <span class="math">\(C_m\)</span> and its successor in
+   the front, <span class="math">\(C_n\)</span>. Let us call this circle <span class="math">\(C_i\)</span>.</li>
+<li>If <span class="math">\(C_i\)</span> does not intersect with any of the front's cirles, we
+   insert it into our shape and we return to step 2.</li>
+<li>Otherwise, we remove from the front the problematic circles and we
+   return to step 2.</li>
+</ol>
+<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_2.png" width="700"></p>
+<p>If we continue in this way we can insert circles <span class="math">\(C_9\)</span> and <span class="math">\(C_{10}\)</span>
+without a problem. Then, the circle closest to our starting point is
+<span class="math">\(C_2\)</span>, whose successor is <span class="math">\(C_{10}\)</span>. If we try to interpolate a circle
+between <span class="math">\(C_2\)</span> and <span class="math">\(C_{10}\)</span>, we will find out that it falls on <span class="math">\(C_3\)</span>.
+According to step 5, we remove <span class="math">\(C_2\)</span> from the front, so now we have
+<span class="math">\(C_3\)</span> followed by <span class="math">\(C_{10}\)</span> in the front. Returning to step 2 we find
+that <span class="math">\(C_3\)</span> is the front circle closest to the starting point, so we
+add circle <span class="math">\(C{11}\)</span>.</p>
+<p>That is not a complete algorithm, because step 5 is not clear. We have
+termed some circles "problematic", but we have not really defined
+which they are that they should be removed from the front.</p>
+<p>If we return to our example, we saw that, as the circle we try to
+insert between <span class="math">\(C_2\)</span> and <span class="math">\(C_{10}\)</span> intersects <span class="math">\(C_3\)</span>, we removed <span class="math">\(C_2\)</span>
+from the front. In general, if the circle <span class="math">\(C_i\)</span> that we are trying to
+insert tangential to <span class="math">\(C_m\)</span> and <span class="math">\(C_n\)</span> intersects a circle <span class="math">\(C_j\)</span> that
+comes before <span class="math">\(C_m\)</span> in the front, we remove from the front the circles
+from the successor of <span class="math">\(C_j\)</span> up to and including the predecessor of
+<span class="math">\(C_n\)</span> and <span class="math">\(C_j\)</span> becomes <span class="math">\(C_m\)</span>, as you can see in the following
+figure---do not be surprised that the circles do not all have the same
+radius, we would like our algorithm to work even when the circles are
+not equal.</p>
+<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_intersection_1.png" width="700"></p>
+<p>If the circles are not equal, there is another possibility, that of
+<span class="math">\(C_i\)</span> intersecting a circle <span class="math">\(C_j\)</span> that comes after <span class="math">\(C_n\)</span> in the front.
+Then we remove from the from the circles from the successor of <span class="math">\(C_m\)</span>
+up to and including the predecessor of <span class="math">\(C_j\)</span> and <span class="math">\(C_j\)</span> becomes the new
+<span class="math">\(C_n\)</span>, as shown in the following figure.</p>
+<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_intersection_2.png" width="700"></p>
+<p>Of course, as the centers of the circles that constitute the front are
+connected in a closed polygon, a circle that follows another circle
+also precedes it, if we continue going round. Moreover, the circle we
+are trying to insert can intersect with two circles in the front; see
+the next figure. Again, do not be surprised at the strange shape of
+the front, we will see that the solution we will find will work even
+in such cases, which can arise when the front grows while it fills a
+bounded shape.</p>
+<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_loop.png" width="400"></p>
+<p>To detect the offending circle <span class="math">\(C_j\)</span> in all situations, we start from
+<span class="math">\(C_n\)</span> and we proceed in the front till we meet <span class="math">\(C_m\)</span>. We take not of
+the first circle that is intersected by <span class="math">\(C_i\)</span>, <span class="math">\(C_j\)</span>, and the last,
+<span class="math">\(C_{j}'\)</span>; if <span class="math">\(C_i\)</span> intersects only one circle, then <span class="math">\(C_j = C_{j}'\)</span>. We
+count how many circles are between <span class="math">\(C_n\)</span> and <span class="math">\(C_j\)</span>, say <span class="math">\(b_{nj}\)</span>, and
+how many there are between <span class="math">\(C_m\)</span> and <span class="math">\(C_{j}'\)</span>, say <span class="math">\(b_{mj'}\)</span>. If
+<span class="math">\(b_{mj'} &lt; b_{nj}\)</span>, then we take as <span class="math">\(C_j\)</span> the circle <span class="math">\(C_{j'}\)</span> that
+comes before <span class="math">\(C_m\)</span>. Otherwise, we take the circle <span class="math">\(C_j\)</span> that comes
+after <span class="math">\(C_n\)</span>.</p>
+<p>If for every circle in the front we keep not only its successor but
+also its predecessor, then we can find <span class="math">\(C_j\)</span> in another way. We start
+from <span class="math">\(C_n\)</span> and we walk one circle at a time towards <span class="math">\(C_n\)</span>. At the same
+time, we start from <span class="math">\(C_n\)</span> and we walk towards <span class="math">\(C_m\)</span>. That means that
+we go one step in each direction of the front. If we find an
+intersecting circle in either direction, or if we go beyond the middle
+of the front, we stop. If we stopped because we found an intersecting
+circle, we check whether we found it going from <span class="math">\(C_m\)</span> to <span class="math">\(C_n\)</span> or
+going from <span class="math">\(C_n\)</span> to <span class="math">\(C_m\)</span>.</p>
+<p>Our algorithm then evolves to this:</p>
+<ol>
+<li>We add the first two circles (these two form a trivial front).</li>
+<li>We find the circle in the front that is closest to our starting
+   point. Suppose that this circle <span class="math">\(C_m\)</span>. If there are more than one
+   circles with the same distance, we pick the one that was inserted
+   earliest.</li>
+<li>We try to interpolate a circle between <span class="math">\(C_m\)</span> and its successor in
+   the front, <span class="math">\(C_n\)</span>. Let us call this circle <span class="math">\(C_i\)</span>.</li>
+<li>If <span class="math">\(C_i\)</span> does not intersect with any of the front's cirles, we
+   insert it into our shape and we return to step 2.</li>
+<li>Otherwise:<ul>
+<li>If <span class="math">\(C_i\)</span> intersects a circle <span class="math">\(C_j\)</span> that precedes <span class="math">\(C_m\)</span>, we take
+ out from the front the circles from the successor of <span class="math">\(C_j\)</span> up to
+  and including the predecessor of <span class="math">\(C_j\)</span>, we let <span class="math">\(C_m\)</span> be <span class="math">\(C_j\)</span>, and
+  we return to step 3.</li>
+<li>If <span class="math">\(C_i\)</span> intersects a circle <span class="math">\(C_j\)</span> that follows <span class="math">\(C_n\)</span>, we take out
+  from the front the circles from the successor of <span class="math">\(C_m\)</span> up to and
+  including <span class="math">\(C_j\)</span>, we let <span class="math">\(C_n\)</span> be <span class="math">\(C_j\)</span>, and we return to step 3.</li>
+</ul>
+</li>
+</ol>
+<p>Our algorithm now works and will fill out the plane, beginning from
+the starting point. But it does not detect where it should stop
+because it has reached the boundary of the space we want to fill. To
+achieve that, we have to evolve yet a bit more our algorithm. We will
+now make a distinction between those circles of the front to which we
+can attach a tangent circle without breaching the boundaries that we
+been set. We will call these circles <em>alive</em>. When a circle is
+inserted into the front, it is alive.</p>
+<ol>
+<li>We add the first two circles (these two form a trivial front).</li>
+<li>We want to insert the <span class="math">\(i\)</span>th circle. We find the circle in the front
+   that is closest to our starting point. Suppose that this circle
+   <span class="math">\(C_m\)</span>. If there are more than one circles with the same distance,
+   we pick the one that was inserted earliest.</li>
+<li>We try to interpolate a circle between <span class="math">\(C_m\)</span> and its successor in
+   the front, <span class="math">\(C_n\)</span>. Let us call this circle <span class="math">\(C_i\)</span>.</li>
+<li>If <span class="math">\(C_i\)</span> intersects a circle of the front:<ul>
+<li>If <span class="math">\(C_i\)</span> intersects a circle <span class="math">\(C_j\)</span> that precedes <span class="math">\(C_m\)</span>, we take
+  out from the front and kill the circles from the successor of
+  <span class="math">\(C_j\)</span> up to and including the predecessor of <span class="math">\(C_j\)</span>, we let <span class="math">\(C_m\)</span>
+  be <span class="math">\(C_j\)</span>, and we return to step 3.</li>
+<li>If <span class="math">\(C_i\)</span> intersects a circle <span class="math">\(C_j\)</span> that follows <span class="math">\(C_n\)</span>, we take out
+  from the front and kill the circles from the successor of <span class="math">\(C_m\)</span> up
+  to and including <span class="math">\(C_j\)</span>, we let <span class="math">\(C_n\)</span> be <span class="math">\(C_j\)</span>, and we return to
+  step 3.</li>
+</ul>
+</li>
+<li>At this point we have found a circle <span class="math">\(C_i\)</span> that does not intersect
+   any circle in the front. We then check whether it breaches the
+   boundaries of our shape.<ul>
+<li>If it does, then circle <span class="math">\(C_m\)</span> that we picked in step 2 cannot be
+   used to add a circle tangent to it inside the boundaries of our
+   shape, so we must go back and try to find a different <span class="math">\(C_m\)</span>. We
+   put back in the front any circles that we removed in step 4. We
+   resurrect any circles that we may have killed in step 4, apart
+   from those that we have found in step 2 while trying to find the
+   <span class="math">\(i\)</span>th circle. We kill <span class="math">\(C_m\)</span> and we return to step 2.</li>
+<li>If it does not, we insert <span class="math">\(C_i\)</span> in the front and we return to
+   step 2 to insert the next circle (<span class="math">\(i \leftarrow i + 1\)</span>),
+   resurrecting all the circles in the front.</li>
+</ul>
+</li>
+</ol>
+<p>Steps 2--5 are repeated until we have inserted the desired number of
+circles or we cannot add a circle because there is no circle left
+alive in the front.</p>
+<p>Let's delve a bit deeper in what is going on with circles that are
+alive, dead, and resurrected. When we try to add a circle <span class="math">\(C_i\)</span> with a
+given radius, we find the circle in the front, <span class="math">\(C_m\)</span>, that is closest
+to our starting point. The tangent circle that we try to add can
+intersect with the front, so we then need to adjust the front. The
+circles we remove from the front are no longer alive. After doing
+that, however, we may discover that our efforts have been in vain,
+because the tangent circle hits the boundaries of our shape. Then we
+should not have picked that <span class="math">\(C_m\)</span> in the first place and we should not
+have adjusted the front. Circle <span class="math">\(C_m\)</span> must remain dead, as well as any
+previous <span class="math">\(C_m\)</span> circles that we may have tried in our effort to insert
+<span class="math">\(C_i\)</span> in the shape; all other circles that we killed by adjusting the
+front must be resurrected. When finally we do manage to insert <span class="math">\(C_i\)</span>
+somewhere, we will continue to add circle <span class="math">\(C_{i+1}\)</span>; when we begin
+our effort to insert a new circle, we must start fresh, by having all
+the circles in the front alive.</p>
+<p>As for the resurrection itself, in reality this is but an
+implementation of an undo functionality. When we undo our actions, we
+reverse them from the most recent to the previous ones, going
+backwards in time; that is, we use a Last In First Out (LIFO) logic.</p>
+<h3>Roundings</h3>
+<p>Let's take three circles with radii equal to <span class="math">\(1\)</span>, as in the following
+figure. <span class="math">\(C_1\)</span> is centered at <span class="math">\((0, 0)\)</span>, <span class="math">\(C_2\)</span> at <span class="math">\((2, 0)\)</span>, and <span class="math">\(C_3\)</span> at
+<span class="math">\((1, \sqrt{3})\)</span>; <span class="math">\(C_3\)</span> is tangent to <span class="math">\(C_1\)</span> and <span class="math">\(C_2\)</span> and the
+coordinates of its center can be found using the Pythagorean theorem.
+What is the distance between the centers of <span class="math">\(C_1\)</span> and <span class="math">\(C_2\)</span> and
+between <span class="math">\(C_1\)</span> and <span class="math">\(C_3\)</span>? Both distances are equal to <span class="math">\(2\)</span>, as all the
+radii are equal. </p>
+<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/three_circles.png" width="300"></p>
+<p>Suppose now that from the coordinates of <span class="math">\(C_1\)</span> and <span class="math">\(C_3\)</span> we want to
+calculate anew the distance <span class="math">\(C_1 C_3\)</span>. Using the Pythagorean theorem
+again, this distance will be equal to <span class="math">\(\sqrt{(\sqrt{3})^2 +
+1^2}\)</span>. If, however, we carry out the calculation in our computer, we
+will find that the result is <span class="math">\(1{,}999\ldots &lt; 2\)</span>.</p>
+<p>This happens because real (floating point) numbers are stored in a
+computer with a specific precision; therefore, irrational numbers are
+not stored exactly and calculations involving irrational numbers will
+produce different results than what we would expect from theory. In
+this assignment, you should use roundings in order to be able to
+follow your results:</p>
+<ul>
+<li>Round the distance from the center of a circle to the starting
+  point.</li>
+<li>Once we calculate the coordinates of the center of a new circle,
+  round the coordinates.</li>
+<li>When you check whether two circles intersect, you must check whether
+  the distance of their centres is greater than the sum of their
+  radii. Round that distance before making the comparison.</li>
+<li>Round the distance of a circle from a line segment.</li>
+</ul>
+<p>Round the numbers to two decimal places. If we do that, our program
+would find that in the previous figure, the distance <span class="math">\(C_1 C_3\)</span> is less
+than the distance <span class="math">\(C_1 C_2\)</span>, but at least we should not be surprised. </p>
+<h3>Finding the Circle Closest to the Starting Point</h3>
+<p>If <span class="math">\((x, y)\)</span> are the coordinates of the starting point, then to find
+the circle in the front that is closest to the starting point, we need
+to find the distances of the centers of the front's circles to the
+starting point. For every circle in the front with center at <span class="math">\((m_x,
+m_y)\)</span>, the distance is:</p>
+<div class="math">$$ d = \sqrt{(m_x - x)^2 + (m_y - y)^2} $$</div>
+<p>If <span class="math">\((x, y) = (0, 0)\)</span>, then we have:</p>
+<div class="math">$$ d = \sqrt{m_{x}^2 + m_{y}^2} $$</div>
+<p>For simplicity we will be using <span class="math">\((0, 0)\)</span> as our starting point.</p>
+<h3>Finding a Circle Tangent to Two Other Circles</h3>
+<p>If we have two circles <span class="math">\(C_m\)</span> and <span class="math">\(C_n\)</span> and we want to find a third
+circle <span class="math">\(C_k\)</span>, wih radius <span class="math">\(r\)</span>, tangent to these two, as in the
+following figure, we work as follows:</p>
+<ul>
+<li>We calculate the horizontal distance <span class="math">\(d_x\)</span> and the vertical distance
+  <span class="math">\(d_y\)</span> of the two circles <span class="math">\(C_m\)</span> and <span class="math">\(C_n\)</span>. If <span class="math">\((m_x, m_y)\)</span> is the
+  center of <span class="math">\(C_m\)</span> and <span class="math">\((n_x, n_y)\)</span> is the center of <span class="math">\(C_n\)</span>, we have:
+  <div class="math">$$d_x = n_x - m_x$$</div>
+<div class="math">$$d_y = n_y - m_y $$</div>
+</li>
+<li>We calculate the distance between the centers of <span class="math">\(C_m\)</span> and <span class="math">\(C_n\)</span>;<br>
+<div class="math">$$ d = \sqrt{d{_x}^2+ d{_y}^2}$$</div>
+</li>
+<li>If <span class="math">\(r_m\)</span> is the radius of <span class="math">\(C_m\)</span> and <span class="math">\(r_n\)</span> is the radius of <span class="math">\(C_n\)</span>, we
+  calculate:
+  <div class="math">$$r_1 = r_m + r $$</div>
+<div class="math">$$r_2 = r_n + r $$</div>
+</li>
+<li>We calculate:
+  <div class="math">$$\lambda = \frac{r{_1}^2 - r{_2}^2 + d^2}{2 d^2}$$</div>
+<div class="math">$$\varepsilon = \sqrt{\frac{r{_1}^2}{d^2} - \lambda^2}$$</div>
+</li>
+<li>The center <span class="math">\((k_x, k_y)\)</span> of circle <span class="math">\(C_k\)</span> is:
+   <div class="math">$$k_x = m_x + \lambda d_x \mp \varepsilon d_y $$</div>
+<div class="math">$$k_y = m_u + \lambda d_y \pm \varepsilon d_x $$</div>
+</li>
+<li>We observe that we have two centers. We will use the first of them
+  (that is, <span class="math">\(- \varepsilon d_y\)</span> for <span class="math">\(k_x\)</span> and <span class="math">\(+ \varepsilon d_x\)</span>
+  for <span class="math">\(k_y\)</span>). Then the circles will be added to our shape
+  counter-clockwise, as in our examples.</li>
+</ul>
+<p>If we had a ruler and a compass, it would be easy to find the tangent
+circles with a simple geometrical construction. Below you can see that
+it suffices to find the intersection points <span class="math">\(C_m\)</span> and <span class="math">\(C_n\)</span> with radii
+<span class="math">\(r_m + r\)</span> and <span class="math">\(r_n + r\)</span> respectively. The mathematical formulas above
+are derived using vector analysis.</p>
+<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_tangent.png" width="400"></p>
+<h3>Distance of Circle from Line Segment</h3>
+<p>To find the distance of a circle from a line segment that lies between
+two points <span class="math">\(u\)</span> and <span class="math">\(v\)</span>, we must first find the distance of the center
+of the circle from the segment. If the circle's center has
+coordinates, <span class="math">\((c_x, c_y)\)</span>, we go like this:</p>
+<ul>
+<li>We calculate the square of the distance between the two points:
+  <div class="math">$$ l_2 = (u_x - v_x)^2 + (u_y - v_y)^2$$</div>
+</li>
+<li>If this distance is equal to zero, then the two endpoints of the
+  segment coincide, therefore the distance from the center of the
+  circle is simply:
+  <div class="math">$$d = \sqrt{(u_x - c_x)^2 + (u_y - c_y)^2}$$</div>
+</li>
+<li>Otherwise, we calculate:
+  <div class="math">$$ t = \frac{(c_x - u_x) (v_x - u_x) + (c_y - u_y) (v_y - u_y)}{l_2}$$</div>
+</li>
+<li>We make sure that <span class="math">\(t\)</span> is between <span class="math">\(0\)</span> and <span class="math">\(1\)</span>:
+  <div class="math">$$t = \max(0, \min(1, t))$$</div>
+</li>
+<li>We find the projection <span class="math">\(p\)</span> of the center of the circle on the line
+  segment:
+  <div class="math">$$ p_x = u_x + t (v_x - u_x) $$</div>
+<div class="math">$$ p_y = u_y + t (v_y - u_y) $$</div>
+</li>
+<li>The distance of the center from the segment is:
+  <div class="math">$$d = \sqrt{(p_x - c_x)^2 + (p_y - c_y)^2}$$</div>
+</li>
+</ul>
+<p>The above hold beause if we have two points <span class="math">\(u\)</span> and <span class="math">\(v\)</span>, the straight
+line passing through these two points is given by the parametric
+equations:</p>
+<div class="math">$$ x = u_x + t(v_x - u_x) $$</div>
+<div class="math">$$ y = u_y + t(v_y - u_y) $$</div>
+<p>The projection of a point <span class="math">\(p\)</span> on the line uses the initial value of
+<span class="math">\(t\)</span>. However, the projection may lie beyond the limits of the line
+segment, as you can see in the following figure. The projection of the
+centre of left circle falls to the left of the segment, so we take the
+distance of the centre from <span class="math">\(u\)</span> by using <span class="math">\(t = 0\)</span>. The projection of
+the centre of the middle circle falls inside the segment so no
+adjustment of <span class="math">\(t\)</span> is needed. In way symmetric to the left circle, the
+projection of the center of the right circle lies to the right of the
+segment, so we take the distance of the centre from <span class="math">\(v\)</span> by using <span class="math">\(t =
+1\)</span>. Then, we calculate the distance of the centre of the circle
+from the projection.</p>
+<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/distance_circle_segment.png" width="700"></p>
+<p>Having found the distance of the circle's center from the line
+segment, to find the distance of the circle from the segment we
+subtract the circle's radius. Or, to find whether the circle
+intersects the segment, we compare the distance from the centre with
+the radius.</p>
+<h3>Requirements</h3>
+<p>You will write a program called <code>social-distancing.py</code>. You may use
+the standard Python libraries <code>math</code>, <code>random</code>, <code>argparse</code>, and <code>sys</code>,
+but not any others. Your program will be called as follows:</p>
+<div class="highlight"><pre><span></span><code>python social_distancing.py <span class="o">[</span>-items ITEMS<span class="o">]</span> 
+                            <span class="o">[</span>-r RADIUS<span class="o">]</span>
+                            <span class="o">[</span>--min_radius MIN_RADIUS<span class="o">]</span>
+                            <span class="o">[</span>--max_radius MAX_RADIUS<span class="o">]</span> 
+                            <span class="o">[</span>-b BOUNDARY_FILE<span class="o">]</span> 
+                            <span class="o">[</span>-s SEED<span class="o">]</span>
+                            output_file
+</code></pre></div>
+
+
+<p>The meaning of the program arguments is as follows:</p>
+<ul>
+<li><code>-i ITEMS</code>, <code>--items ITEMS</code>: the number of items (circles) that we
+  want to insert. If given, the program will try (but may not be able
+  to) insert that many circles.</li>
+<li><code>-r RADIUS</code>, <code>--radius RADIUS</code>: the circles radii. If given, all
+  circles will have the same radius.</li>
+<li><code>--min_radius MIN_RADIUS</code>: the minimum radius. If given, circles
+  will have random radii not smaller than <code>MIN_RADIUS</code>. 
+  This argument must be used with <code>--max_radius</code>.</li>
+<li><code>--max_radius MAX_RADIUS:</code>: the maximum radius. If given, circles
+  will have random sizes no bigger than <code>MAX_RADIUS</code>. This argument
+  must be used with <code>--min_radius</code>.</li>
+<li><code>-b BOUNDARY_FILE</code>, <code>--boundary_file BOUNDARY_FILE</code>: the boundaries
+  of the shape we want to fill. If given, the program will try to
+  place the circles inside the given shape.</li>
+<li><code>-s SEED</code>, <code>--seed SEED</code>: if given the seed for the pseudo-random
+  genereation; you should use <code>random.seed(SEED)</code> at the beginning of
+  your program.</li>
+<li><code>output_file</code>: the file where the results of the program will be
+  stored; this is a mandatory argument.</li>
+</ul>
+<p>When the program finishes, it will print on its output an integer
+number, the number of circles it managed to insert. The circles
+themselves will be saved in <code>output_file</code>, one in each line, in the
+following format:</p>
+<div class="highlight"><pre><span></span><code>x y r
+</code></pre></div>
+
+
+<p>That is, each line contains three real numbers, the <span class="math">\(x\)</span> coordinate of
+the circle's center, the <span class="math">\(y\)</span> coordinate of the circle's center and its
+radius <span class="math">\(r\)</span>. The numbers must be given with two decimal places.</p>
+<p>If boundaries are given through <code>-b BOUNDARY_FILE</code>, the value of
+<code>BOUNDARY_FILE</code> will be the name of a file that specifies the borders.
+The file will contain lines of the form:</p>
+<div class="highlight"><pre><span></span><code>x1 y1 x2 y2
+</code></pre></div>
+
+
+<p>That is, each line will contain two coordinate pairs defining a line
+segment. Your program will then include these lines, in the order they
+are read, at the end of <code>output_file</code>, after the produced circles.</p>
+<p>To visualize your results, you may use the following programs:</p>
+<ul>
+<li><a href="svg_draw.py"><code>svg_draw.py</code></a><br/>
+  which you call with:<br/>
+  <code>bash
+  python svg_draw.py input_file output_file</code>
+  <br/> 
+   where <code>input_file</code> is the output file of your program and
+  <code>output_file</code> will be an SVG file. You will need to install the 
+  <a href="https://github.com/mozman/svgwrite"><code>svgwrite</code></a> library.</li>
+<li><a href="mpl_draw.py"><code>mpl_draw.py</code></a>,<br/>
+    which you call with:<br/>
+    <code>bash
+    python mpl_draw.py input_file output_file</code><br/>
+    where <code>input_file</code> is the output file of your program and
+    <code>output_file</code> is a file whose type is determined by its suffix. For
+    example, if you specify <code>myfile.png</code> as <code>output_file</code> you will get a
+    PNG image; if you specify <code>myfile.png</code> you will get a PNG image; if
+    you specify <code>myfile.svg</code> you will get an SVG image; if you specify
+    <code>myfile.pdf</code> you will get a PDF image, and so on. You will need to
+    install the <a href="https://matplotlib.org/"><code>matplotlib</code></a> library.</li>
+</ul>
+<h3>Examples</h3>
+<p><em>Example 1</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python social_distancing.py -i <span class="m">11</span> -r <span class="m">10</span> circles_equal_11.txt
+</code></pre></div>
+
+
+<p>then the program will print <code>11</code> and it will store its results in file 
+<a href="circles_equal_11.txt"><code>circles_equal_11.txt</code></a>.
+This file corresponds to the second figure we have seen.</p>
+<p><em>Example 2</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python social_distancing.py -i <span class="m">1000</span> -r <span class="m">10</span> circles_equal_1000.txt
+</code></pre></div>
+
+
+<p>then the program will print <code>1000</code> and will store its results in file 
+<a href="circles_equal_1000.txt"><code>circles_equal_1000.txt</code></a>. You can see the
+circles in the figure below, along with the front; the last circle is
+painted orange (on the right, a bit below the middle).</p>
+<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_equal_1000.png" width="700"></p>
+<p><em>Example 3</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python social_distancing.py -i <span class="m">200</span> -r <span class="m">10</span> -b rectangle.txt <span class="se">\</span>
+  circles_rectangle_equal.txt
+</code></pre></div>
+
+
+<p>then the program will use <a href="rectangle.txt"><code>rectangle.txt</code></a> to define
+the boundaries, it will print <code>159</code> and it will store its results in
+<a href="circles_rectangle_equal.txt"><code>circles_rectangle_equal.txt</code></a>. You can
+see the circles below.</p>
+<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_rectangle_equal.png" width="400"></p>
+<p><em>Example 4</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python social_distancing.py -i <span class="m">1000</span> --seed <span class="m">13</span> <span class="se">\</span>
+  --min_radius <span class="m">5</span> --max_radius <span class="m">10</span> circles_random_1000.txt
+</code></pre></div>
+
+
+<p>then the program will print <code>1000</code> and it will store its results in 
+<a href="circles_random_1000.txt"><code>circles_random_1000.txt</code></a>. You can see the
+corresponding image below.</p>
+<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_random_1000.png" width="700"></p>
+<p><em>Example 5</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python social_distancing.py --seed <span class="m">42</span> <span class="se">\</span>
+  --min_radius <span class="m">5</span> --max_radius <span class="m">10</span> -b square_holes.txt <span class="se">\</span>
+  square_holes_random.txt
+</code></pre></div>
+
+
+<p>Then the program will use 
+<a href="square_holes.txt"><code>square_holes.txt</code></a> to define the boundaries, it
+will print <code>584</code> and it will store its results in 
+<a href="square_holes_random.txt"><code>square_holes_random.txt</code></a>. This file
+corresponds to the following figure.</p>
+<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/square_holes_random.png" width="500"></p>
+<h3>Notes</h3>
+<ul>
+<li>The proof for the formulas for finding tangent circles is in 1.12.2
+  and 3.12.2 of <a href='#vince:2005' id='ref-vince:2005-1'>[1]</a>. The proof for finding the distance of a
+  point from a line segment comes from 1.11.12 και 3.11.10 of the same
+  book and <a href="https://stackoverflow.com/a/1501725">https://stackoverflow.com/a/1501725</a>.</li>
+<li>The algorithm described in the assignment for filling the plane
+  without boundaries was published in <a href='#wang:2006' id='ref-wang:2006-1'>[2]</a>.</li>
+<li>The problem is a special case of <em>circle packing</em>, which has
+  attracted the attention of mathematicians for centuries. You can
+  find some details at the <a href="https://en.wikipedia.org/wiki/Circle_packing">Wikipedia
+  article</a>.</li>
+<li>The modified algorithm for filling the circles in a defined shape is
+  not designed to be optimal; however, it differs from simple circle
+  packing because it is an <em>online algorithm</em>. It tries to pack as
+  many circles as possible in a given space, while having to place
+  each circle as it comes, and without having the opportunity to move
+  a set circle to another place. That means that it solves social
+  distancing when we have to place people as they come, people may
+  have different space requirements around them, and we cannot move
+  people once we have put them in their position.</li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script><hr>
+<h3>Bibliography</h3>
+<div class='bibliography'><ol><li id='vince:2005'>John Vince.
+<em>Geometry for Computer Graphics: Formulae, Examples &amp; Proofs</em>.
+Springer, 2005. <a class="cite-backref" href="#ref-vince:2005-1" title="Jump back to reference 1">↩</a></li><li id='wang:2006'>Weixin Wang, Hui Wang, Guozhong Dai, and Hongan Wang.
+Visualization of large hierarchical data by circle packing.
+In <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</em>, CHI ’06, 517–&ndash;520. New York, NY, USA, 2006. Association for Computing Machinery.
+URL: <a href="https://doi.org/10.1145/1124772.1124851">https://doi.org/10.1145/1124772.1124851</a>, <a href="https://doi.org/10.1145/1124772.1124851">doi:10.1145/1124772.1124851</a>. <a class="cite-backref" href="#ref-wang:2006-1" title="Jump back to reference 1">↩</a></li></ol></div>
+  </div><!-- /.entry-content -->
+</section>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 25%"> </div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-103703286-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

@@ -73,8 +73,8 @@ zero). You also want the ones to be as evenly spread as possible among
 the zeroes. If <span class="math">\(k\)</span> divides <span class="math">\(n\)</span>, then the solution is straightforward;
 we just divide the ones among the zeros. For example, for <span class="math">\(n = 16\)</span> and
 <span class="math">\(k = 4\)</span> we get the sequence:</p>
-<div class="highlight"><pre><span></span>[ 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 ]
-</pre></div>
+<div class="highlight"><pre><span></span><code>[ 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 ]
+</code></pre></div>
 
 
 <p>The problem gets more interesting when <span class="math">\(n\)</span> and <span class="math">\(k\)</span> are relatively
@@ -82,38 +82,38 @@ prime, that is, when the only common divisor of <span class="math">\(n\)</span> 
 number 1.</p>
 <p>So suppose that we have <span class="math">\(n = 13\)</span> and <span class="math">\(k = 5\)</span>. As we have <span class="math">\(13 - 5 = 8\)</span>,
 we start by creating a sequence with 5 ones and 8 zeroes:</p>
-<div class="highlight"><pre><span></span>[ 1 1 1 1 1 0 0 0 0 0 0 0 0 ]
-</pre></div>
+<div class="highlight"><pre><span></span><code>[ 1 1 1 1 1 0 0 0 0 0 0 0 0 ]
+</code></pre></div>
 
 
 <p>We can treat this sequence as 13 sequences of one bit each:</p>
-<div class="highlight"><pre><span></span>[ [1] [1] [1] [1] [1] [0] [0] [0] [0] [0] [0] [0] [0] ]
-</pre></div>
+<div class="highlight"><pre><span></span><code>[ [1] [1] [1] [1] [1] [0] [0] [0] [0] [0] [0] [0] [0] ]
+</code></pre></div>
 
 
 <p>We distribute the zeroes so that we get five sequences of two bits
 each, and three sequences of one bit:</p>
-<div class="highlight"><pre><span></span>[ [1 0] [1 0] [1 0] [1 0] [1 0] [0] [0] [0] ]
-</pre></div>
+<div class="highlight"><pre><span></span><code>[ [1 0] [1 0] [1 0] [1 0] [1 0] [0] [0] [0] ]
+</code></pre></div>
 
 
 <p>Then we distribute the remaining zeroes in the same way, so that we
 get:</p>
-<div class="highlight"><pre><span></span>[ [1 0 0] [1 0 0] [1 0 0] [1 0] [1 0] ]
-</pre></div>
+<div class="highlight"><pre><span></span><code>[ [1 0 0] [1 0 0] [1 0 0] [1 0] [1 0] ]
+</code></pre></div>
 
 
 <p>Now we distribute the <code>[1 0]</code> sequences, which leads to:</p>
-<div class="highlight"><pre><span></span>[ [1 0 0 1 0] [1 0 0 1 0] [1 0 0] ]
-</pre></div>
+<div class="highlight"><pre><span></span><code>[ [1 0 0 1 0] [1 0 0 1 0] [1 0 0] ]
+</code></pre></div>
 
 
 <p>The process ends when the remainder (that is, the sequences with the
 smallest number of bits) is exactly one, or we do not have any more
 zeroes to distribute. Then we concatenate the result. In our example,
 we get:</p>
-<div class="highlight"><pre><span></span>[ 1 0 0 1 0 1 0 0 1 0 1 0 0 ]
-</pre></div>
+<div class="highlight"><pre><span></span><code>[ 1 0 0 1 0 1 0 0 1 0 1 0 0 ]
+</code></pre></div>
 
 
 <p>We can interpret the above sequence as a rhythm, where each digit is a
@@ -194,11 +194,11 @@ is called
 <code>s1</code> and <code>s2</code> are two sequences, the following function (adapted for
 Python 3 from
 the Wikipedia article), calculates the Hamming distance:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hamming_distance</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">hamming_distance</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Undefined for sequences of unequal length&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">ch1</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="n">ch2</span><span class="p">))</span> <span class="k">for</span> <span class="n">ch1</span><span class="p">,</span> <span class="n">ch2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">))</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>For example, the rhythm <span class="math">\(E(4, 9) = [\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ 0\ 0\ ]\)</span>
@@ -225,8 +225,8 @@ manipulates Euclidean rhythms.</p>
    <a href="https://docs.python.org/3/library/json.html">Python <code>json</code> library</a>.</li>
 <li>Your program must be called as follows:</li>
 </ol>
-<div class="highlight"><pre><span></span>musical_rhythms.py [-s SLOTS] [-p PULSES] [-r RECOGNIZE] [-l LIST_RHYTHMS]
-</pre></div>
+<div class="highlight"><pre><span></span><code>python musical_rhythms.py <span class="o">[</span>-s SLOTS<span class="o">]</span> <span class="o">[</span>-p PULSES<span class="o">]</span> <span class="o">[</span>-r RECOGNIZE<span class="o">]</span> <span class="o">[</span>-l LIST_RHYTHMS<span class="o">]</span>
+</code></pre></div>
 
 
 <h3>Output</h3>
@@ -241,26 +241,26 @@ stored for that rhythm; otherwise, it will just display the rhythm. In
 the next line, if the rhythm corresponds to a Euclidean string or to a
 reverse Euclidean string, it will display an appropriate message.</p>
 <p>Examples:</p>
-<div class="highlight"><pre><span></span>python musical_rhythms.py -s 12 -p 6
-E(6,12) = [101010101010] = (222222)
-</pre></div>
+<div class="highlight"><pre><span></span><code>python musical_rhythms.py -s <span class="m">12</span> -p <span class="m">6</span>
+E<span class="o">(</span><span class="m">6</span>,12<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101010101010</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">222222</span><span class="o">)</span>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>python musical_rhythms.py -s 12 -p 7
-E(7,12) = [101101011010] = (2122122) It is a common West African bell pattern. For example, it is used in the Mpre rhythm of the Ashanti people of Ghana. Started on the seventh (last) onset, it is a Yoruba bell pattern of Nigeria, a Babenzele pattern of Central Africa, and a Mende pattern of Sierra Leone.
-</pre></div>
+<div class="highlight"><pre><span></span><code>python musical_rhythms.py -s <span class="m">12</span> -p <span class="m">7</span>
+E<span class="o">(</span><span class="m">7</span>,12<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101101011010</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">2122122</span><span class="o">)</span> It is a common West African bell pattern. For example, it is used in the Mpre rhythm of the Ashanti people of Ghana. Started on the seventh <span class="o">(</span>last<span class="o">)</span> onset, it is a Yoruba bell pattern of Nigeria, a Babenzele pattern of Central Africa, and a Mende pattern of Sierra Leone.
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>python musical_rhythms.py -s 16 -p 5
-E(5,16) = [1001001001001000] = (33334) It is the Bossa-Nova rhythm necklace of Brazil. The actual Bossa-Nova rhythm usually starts on the third onset as follows: [1001001000100100]. However, other starting places are also documented in world music practices, such as [1001001001000100].
+<div class="highlight"><pre><span></span><code>python musical_rhythms.py -s <span class="m">16</span> -p <span class="m">5</span>
+E<span class="o">(</span><span class="m">5</span>,16<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1001001001001000</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">33334</span><span class="o">)</span> It is the Bossa-Nova rhythm necklace of Brazil. The actual Bossa-Nova rhythm usually starts on the third onset as follows: <span class="o">[</span><span class="m">1001001000100100</span><span class="o">]</span>. However, other starting places are also documented in world music practices, such as <span class="o">[</span><span class="m">1001001001000100</span><span class="o">]</span>.
 It is a Euclidean string.
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>python musical_rhythms.py -s 9 -p 5
-E(5,9) = [101010101] = (22221) It is a popular Arabic rhythm called Agsag-Samai. Started on the second onset, it is a drum pattern used by the Venda in South Africa, as well as a Rumanian folk-dance rhythm. It is also the rhythmic pattern of the Sigaktistos rhythm of Greece, and the Samai aktsak rhythm of Turkey. Started on the third onset, it is the rhythmic pattern of the Nawahiid rhythm of Turkey.
+<div class="highlight"><pre><span></span><code>python musical_rhythms.py -s <span class="m">9</span> -p <span class="m">5</span>
+E<span class="o">(</span><span class="m">5</span>,9<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101010101</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">22221</span><span class="o">)</span> It is a popular Arabic rhythm called Agsag-Samai. Started on the second onset, it is a drum pattern used by the Venda in South Africa, as well as a Rumanian folk-dance rhythm. It is also the rhythmic pattern of the Sigaktistos rhythm of Greece, and the Samai aktsak rhythm of Turkey. Started on the third onset, it is the rhythmic pattern of the Nawahiid rhythm of Turkey.
 It is a reverse Euclidean string.
-</pre></div>
+</code></pre></div>
 
 
 <p>As you can see, the first thing to appear will be rhythm in the form
@@ -275,20 +275,20 @@ identify it, if it is a Euclidean rhythm, and print out any
 information available. If it is not a Euclidean rhythm, it should
 print an appropriate message.</p>
 <p>Examples:</p>
-<div class="highlight"><pre><span></span>python musical_rhythms.py -r 101101011010
-E(7,12) = [101101011010] = (2122122) It is a common West African bell pattern. For example, it is used in the Mpre rhythm of the Ashanti people of Ghana. Started on the seventh (last) onset, it is a Yoruba bell pattern of Nigeria, a Babenzele pattern of Central Africa, and a Mende pattern of Sierra Leone.
-</pre></div>
+<div class="highlight"><pre><span></span><code>python musical_rhythms.py -r <span class="m">101101011010</span>
+E<span class="o">(</span><span class="m">7</span>,12<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101101011010</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">2122122</span><span class="o">)</span> It is a common West African bell pattern. For example, it is used in the Mpre rhythm of the Ashanti people of Ghana. Started on the seventh <span class="o">(</span>last<span class="o">)</span> onset, it is a Yoruba bell pattern of Nigeria, a Babenzele pattern of Central Africa, and a Mende pattern of Sierra Leone.
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>python musical_rhythms.py -r 10010010010
-E(4,11) = [10010010010] = (3332) It is the metric pattern used by Frank Zappa in his piece titled Outside Now.
+<div class="highlight"><pre><span></span><code>python musical_rhythms.py -r <span class="m">10010010010</span>
+E<span class="o">(</span><span class="m">4</span>,11<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">10010010010</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">3332</span><span class="o">)</span> It is the metric pattern used by Frank Zappa in his piece titled Outside Now.
 It is a reverse Euclidean string.
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>python musical_rhythms.py -r 10010010011
+<div class="highlight"><pre><span></span><code>python musical_rhythms.py -r <span class="m">10010010011</span>
 Not a Euclidean rhythm.
-</pre></div>
+</code></pre></div>
 
 
 <h4>Show Similar Rhythms</h4>
@@ -297,66 +297,66 @@ will be a rhythm given as a binary string and the program will display
 all rhythms of the same length, ordered in increasing Hamming distance
 and number of onsets.</p>
 <p>Examples:</p>
-<div class="highlight"><pre><span></span>python musical_rythms.py -l 101010100
-Distance = 0
-E(4,9) = [101010100] = (2223) It is the Aksak rhythm of Turkey. It is also the metric pattern used by Dave Brubeck in his piece Rondo a la Turk.
+<div class="highlight"><pre><span></span><code>python musical_rythms.py -l <span class="m">101010100</span>
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">0</span>
+E<span class="o">(</span><span class="m">4</span>,9<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101010100</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">2223</span><span class="o">)</span> It is the Aksak rhythm of Turkey. It is also the metric pattern used by Dave Brubeck in his piece Rondo a la Turk.
 It is a Euclidean string.
-Distance = 1
-E(5,9) = [101010101] = (22221) It is a popular Arabic rhythm called Agsag-Samai. Started on the second onset, it is a drum pattern used by the Venda in South Africa, as well as a Rumanian folk-dance rhythm. It is also the rhythmic pattern of the Sigaktistos rhythm of Greece, and the Samai aktsak rhythm of Turkey. Started on the third onset, it is the rhythmic pattern of the Nawahiid rhythm of Turkey.
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">1</span>
+E<span class="o">(</span><span class="m">5</span>,9<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101010101</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">22221</span><span class="o">)</span> It is a popular Arabic rhythm called Agsag-Samai. Started on the second onset, it is a drum pattern used by the Venda in South Africa, as well as a Rumanian folk-dance rhythm. It is also the rhythmic pattern of the Sigaktistos rhythm of Greece, and the Samai aktsak rhythm of Turkey. Started on the third onset, it is the rhythmic pattern of the Nawahiid rhythm of Turkey.
 It is a reverse Euclidean string.
-Distance = 2
-E(2,9) = [100010000] = (45)
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">2</span>
+E<span class="o">(</span><span class="m">2</span>,9<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">100010000</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">45</span><span class="o">)</span>
 It is a Euclidean string.
-Distance = 3
-E(1,9) = [100000000] = (9)
-Distance = 3
-E(3,9) = [100100100] = (333)
-Distance = 3
-E(7,9) = [101110111] = (2112111) It is the Bazaragana rhythmic pattern of Greece.
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">3</span>
+E<span class="o">(</span><span class="m">1</span>,9<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">100000000</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">9</span><span class="o">)</span>
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">3</span>
+E<span class="o">(</span><span class="m">3</span>,9<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">100100100</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">333</span><span class="o">)</span>
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">3</span>
+E<span class="o">(</span><span class="m">7</span>,9<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101110111</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">2112111</span><span class="o">)</span> It is the Bazaragana rhythmic pattern of Greece.
 It is a reverse Euclidean string.
-Distance = 4
-E(6,9) = [101101101] = (212121)
-Distance = 4
-E(8,9) = [101111111] = (21111111)
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">4</span>
+E<span class="o">(</span><span class="m">6</span>,9<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101101101</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">212121</span><span class="o">)</span>
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">4</span>
+E<span class="o">(</span><span class="m">8</span>,9<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101111111</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">21111111</span><span class="o">)</span>
 It is a reverse Euclidean string.
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>python musical_rythms.py -l 1001001001000
-Distance = 0
-E(4,13) = [1001001001000] = (3334)
+<div class="highlight"><pre><span></span><code>python musical_rythms.py -l <span class="m">1001001001000</span>
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">0</span>
+E<span class="o">(</span><span class="m">4</span>,13<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1001001001000</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">3334</span><span class="o">)</span>
 It is a Euclidean string.
-Distance = 2
-E(2,13) = [1000001000000] = (67)
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">2</span>
+E<span class="o">(</span><span class="m">2</span>,13<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1000001000000</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">67</span><span class="o">)</span>
 It is a Euclidean string.
-Distance = 3
-E(1,13) = [1000000000000] = (13)
-Distance = 5
-E(3,13) = [1000100010000] = (445)
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">3</span>
+E<span class="o">(</span><span class="m">1</span>,13<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1000000000000</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">13</span><span class="o">)</span>
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">5</span>
+E<span class="o">(</span><span class="m">3</span>,13<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1000100010000</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">445</span><span class="o">)</span>
 It is a Euclidean string.
-Distance = 5
-E(5,13) = [1001010010100] = (32323) It is a rhythm from the FYROM which is also played by starting it on the fourth onset as follows: [1010010010100].
-Distance = 5
-E(9,13) = [1011011011011] = (212121211)
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">5</span>
+E<span class="o">(</span><span class="m">5</span>,13<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1001010010100</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">32323</span><span class="o">)</span> It is a rhythm from the FYROM which is also played by starting it on the fourth onset as follows: <span class="o">[</span><span class="m">1010010010100</span><span class="o">]</span>.
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">5</span>
+E<span class="o">(</span><span class="m">9</span>,13<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1011011011011</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">212121211</span><span class="o">)</span>
 It is a reverse Euclidean string.
-Distance = 6
-E(6,13) = [1010101010100] = (222223) It is the rhythm of the dance Mama Cone pita from the FYROM. Started on the third onset, it is the rhythm of the dance Postupano Oro from the FYROM, as well as the Krivo Plovdivsko Horo of Bulgaria.
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">6</span>
+E<span class="o">(</span><span class="m">6</span>,13<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1010101010100</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">222223</span><span class="o">)</span> It is the rhythm of the dance Mama Cone pita from the FYROM. Started on the third onset, it is the rhythm of the dance Postupano Oro from the FYROM, as well as the Krivo Plovdivsko Horo of Bulgaria.
 It is a Euclidean string.
-Distance = 7
-E(7,13) = [1010101010101] = (2222221)
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">7</span>
+E<span class="o">(</span><span class="m">7</span>,13<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1010101010101</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">2222221</span><span class="o">)</span>
 It is a reverse Euclidean string.
-Distance = 7
-E(11,13) = [1011111011111] = (21111211111)
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">7</span>
+E<span class="o">(</span><span class="m">11</span>,13<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1011111011111</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">21111211111</span><span class="o">)</span>
 It is a reverse Euclidean string.
-Distance = 8
-E(8,13) = [1011010110101] = (21221221)
-Distance = 8
-E(10,13) = [1011101110111] = (2112112111)
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">8</span>
+E<span class="o">(</span><span class="m">8</span>,13<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1011010110101</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">21221221</span><span class="o">)</span>
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">8</span>
+E<span class="o">(</span><span class="m">10</span>,13<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1011101110111</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">2112112111</span><span class="o">)</span>
 It is a reverse Euclidean string.
-Distance = 8
-E(12,13) = [1011111111111] = (211111111111)
+<span class="nv">Distance</span> <span class="o">=</span> <span class="m">8</span>
+E<span class="o">(</span><span class="m">12</span>,13<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1011111111111</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">211111111111</span><span class="o">)</span>
 It is a reverse Euclidean string.
-</pre></div>
+</code></pre></div>
 
 
 <h3>Notes on Implementation</h3>

@@ -155,14 +155,14 @@ DNA from a set of fragments. For more details, see <a href='#compeau:2011' id='r
 <li>You will not use ready-made graph libraries.</li>
 <li>Your program must be called as follows:</li>
 </ol>
-<div class="highlight"><pre><span></span>python  dna_assembly.py fragments_file
-</pre></div>
+<div class="highlight"><pre><span></span><code>python  dna_assembly.py fragments_file
+</code></pre></div>
 
 
 <p>The <code>fragments_file</code> argument specifies the name of the file where the
 DNA fragments are stored. The file will have the
 following format:</p>
-<div class="highlight"><pre><span></span>ATG
+<div class="highlight"><pre><span></span><code>ATG
 GTG
 TGG
 GGC
@@ -175,7 +175,7 @@ AAT
 ATG
 AAT
 ...
-</pre></div>
+</code></pre></div>
 
 
 <p>that is, it contains one polymer per line.</p>
@@ -185,48 +185,48 @@ AAT
 <p>The fragments for the example that we have been using is in the file
 <a href="https://louridas.github.io/rwa/assignments/genome-assembly/fragment_file_1.txt">fragment_file_1.txt</a>, so the output will
 be:</p>
-<div class="highlight"><pre><span></span>ATGGCGTGCA
-</pre></div>
+<div class="highlight"><pre><span></span><code>ATGGCGTGCA
+</code></pre></div>
 
 
 <p>or some other equivalent sequence, as explained above.</p>
 <p>If the user gives the file
 <a href="https://louridas.github.io/rwa/assignments/genome-assembly/fragment_file_2.txt">fragment_file_2.txt</a> the output will be:</p>
-<div class="highlight"><pre><span></span>AGTGGACCATGTATACTTCA
-</pre></div>
+<div class="highlight"><pre><span></span><code>AGTGGACCATGTATACTTCA
+</code></pre></div>
 
 
 <p>or some other equivalent, such as:</p>
-<div class="highlight"><pre><span></span>TGTACTTCATATGGACCAAG
-</pre></div>
+<div class="highlight"><pre><span></span><code>TGTACTTCATATGGACCAAG
+</code></pre></div>
 
 
 <p>If the user gives the file
 <a href="https://louridas.github.io/rwa/assignments/genome-assembly/fragment_file_3.txt">fragment_file_3.txt</a> the output will be:</p>
-<div class="highlight"><pre><span></span>ATCTCAGACTTACACCATATGG
-</pre></div>
+<div class="highlight"><pre><span></span><code>ATCTCAGACTTACACCATATGG
+</code></pre></div>
 
 
 <p>or some other equivalent, such as:</p>
-<div class="highlight"><pre><span></span>TCTCAGACTTACACCATATGGA
-</pre></div>
+<div class="highlight"><pre><span></span><code>TCTCAGACTTACACCATATGGA
+</code></pre></div>
 
 
 <p>If the user gives the file
 <a href="https://louridas.github.io/rwa/assignments/genome-assembly/fragment_file_4.txt">fragments_file_4.txt</a> the output will
 be:</p>
-<div class="highlight"><pre><span></span>GACTACCTGGTCTCGATCACGGA
-</pre></div>
+<div class="highlight"><pre><span></span><code>GACTACCTGGTCTCGATCACGGA
+</code></pre></div>
 
 
 <p>or some other equivalent, such as:</p>
-<div class="highlight"><pre><span></span>CGGTCACTCTGGACCTACGAGAT
-</pre></div>
+<div class="highlight"><pre><span></span><code>CGGTCACTCTGGACCTACGAGAT
+</code></pre></div>
 
 
 <p>or:</p>
-<div class="highlight"><pre><span></span>TACTCGGACGAGATCACCTGGTC
-</pre></div>
+<div class="highlight"><pre><span></span><code>TACTCGGACGAGATCACCTGGTC
+</code></pre></div>
 
 
 <p>If you want to verify the results, you can write some code that checks
