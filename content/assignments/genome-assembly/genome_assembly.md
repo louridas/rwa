@@ -101,15 +101,14 @@ DNA from a set of fragments. For more details, see [@compeau:2011] and
    assembly. 
 2. You will not use ready-made graph libraries.
 3. Your program must be called as follows:
-```
-:::bash
+```bash
 python  dna_assembly.py fragments_file
 ```
 
 The `fragments_file` argument specifies the name of the file where the
 DNA fragments are stored. The file will have the
 following format:
-```
+```text
 ATG
 GTG
 TGG
@@ -135,43 +134,43 @@ The program's output will be the DNA sequence that it assembled.
 The fragments for the example that we have been using is in the file
 [fragment_file_1.txt]({attach}fragment_file_1.txt), so the output will
 be:
-```
+```text
 ATGGCGTGCA
 ```
 or some other equivalent sequence, as explained above.
 
 If the user gives the file
 [fragment_file_2.txt]({attach}fragment_file_2.txt) the output will be:
-```
+```text
 AGTGGACCATGTATACTTCA
 ```
 or some other equivalent, such as:
-```
+```text
 TGTACTTCATATGGACCAAG
 ```
 
 If the user gives the file
 [fragment_file_3.txt]({attach}fragment_file_3.txt) the output will be:
-```
+```text
 ATCTCAGACTTACACCATATGG
 ```
 or some other equivalent, such as:
-```
+```text
 TCTCAGACTTACACCATATGGA
 ```
 
 If the user gives the file
 [fragments_file_4.txt]({attach}fragment_file_4.txt) the output will
 be:
-```
+```text
 GACTACCTGGTCTCGATCACGGA
 ```
 or some other equivalent, such as:
-```
+```text
 CGGTCACTCTGGACCTACGAGAT
 ```
 or:
-```
+```text
 TACTCGGACGAGATCACCTGGTC
 ```
 

@@ -386,7 +386,9 @@ be called in two ways.
 
 If the program is called with:
 
-    python four_russians.py <input_file_1> <input_file_2>
+```bash
+python four_russians.py <input_file_1> <input_file_2>
+```
 
 where `<input_file_1>` and `<input_file_2>` are the names of two files
 containing boolean matrices, the program will output their boolean
@@ -394,32 +396,38 @@ product. For example, if the user specifies files
 [array_1.txt]({attach}array_1.txt) and
 [array_2.txt]({attach}array_2.txt), the program will output:
   
-    1,0,1,1,0,1,1,0,0,0,1,0,0
-    1,0,1,1,1,1,1,0,1,1,1,1,0
-    1,1,0,0,1,0,0,0,0,0,1,0,1
-    1,0,0,1,1,0,1,1,1,1,1,1,1
-    0,1,1,1,0,0,1,0,1,1,1,1,1
-    1,1,1,0,1,1,1,1,1,1,1,1,1
-    1,1,1,1,1,1,1,1,1,0,1,1,1
-    1,0,1,1,1,1,1,0,1,0,1,1,0
-    1,1,1,1,0,1,1,1,1,1,1,1,1
-    1,0,1,1,0,1,1,1,1,0,1,0,1
-    1,1,1,1,0,0,1,0,0,0,0,0,1
-    1,1,0,1,1,0,1,1,1,1,1,1,1
-    1,1,1,1,0,1,0,1,1,0,0,1,1
-        
+```text
+1,0,1,1,0,1,1,0,0,0,1,0,0
+1,0,1,1,1,1,1,0,1,1,1,1,0
+1,1,0,0,1,0,0,0,0,0,1,0,1
+1,0,0,1,1,0,1,1,1,1,1,1,1
+0,1,1,1,0,0,1,0,1,1,1,1,1
+1,1,1,0,1,1,1,1,1,1,1,1,1
+1,1,1,1,1,1,1,1,1,0,1,1,1
+1,0,1,1,1,1,1,0,1,0,1,1,0
+1,1,1,1,0,1,1,1,1,1,1,1,1
+1,0,1,1,0,1,1,1,1,0,1,0,1
+1,1,1,1,0,0,1,0,0,0,0,0,1
+1,1,0,1,1,0,1,1,1,1,1,1,1
+1,1,1,1,0,1,0,1,1,0,0,1,1
+```
+
 If the program is called with:
 
-    python four_russians.py <input_file>
+```bash
+python four_russians.py <input_file>
+```
 
 where `<input_file>` is the name of a file that contains a graph, the
 program will output the transitive closure of the graph. The input
 file will describe the graph by giving each edge in a line. For
 example, a file starting with:
 
-    0 1
-    1 2
-    2 3
+```text
+0 1
+1 2
+2 3
+```
 
 specifies that node 0 is connected with node 1, node 1 is connected
 with node 2, and node 2 is connected to node 3.
@@ -430,27 +438,29 @@ the program is given as input the file
 [graph_1.txt]({attach}graph_1.txt), which corresponds to the graph we
 used above, we'll get the following output:
 
-    0 0
-    0 1
-    0 2
-    0 3
-    0 4
-    0 5
-    1 1
-    1 2
-    1 3
-    1 4
-    1 5
-    2 2
-    2 3
-    2 4
-    2 5
-    3 3
-    3 4
-    3 5
-    4 4
-    4 5
-    5 5
+```text
+0 0
+0 1
+0 2
+0 3
+0 4
+0 5
+1 1
+1 2
+1 3
+1 4
+1 5
+2 2
+2 3
+2 4
+2 5
+3 3
+3 4
+3 5
+4 4
+4 5
+5 5
+```
 
 ## Notes
 

@@ -59,7 +59,7 @@ independent subsets of a graph.
 3. You can use anything you want from the
    [Python library](https://docs.python.org/3/library/). 
 4. The program must be called as follows:
-```
+```bash
 python mis.py [-h] [-d] [-n NAME] [-f FIGURE] input
 ```
 
@@ -86,14 +86,14 @@ In all cases, the program output will be the maximal independend
 subsets in lexicographic order. So, if we are dealing with the star
 graph, the output will be:
 
-```bash
+```text
 ['0']
 ['1', '10', '2', '3', '4', '5', '6', '7', '8', '9']
 ```
 
 While if we are dealing with the cube graph, the output will be:
 
-```bash
+```text
 ['(0, 0, 0)', '(0, 1, 1)', '(1, 0, 1)', '(1, 1, 0)']
 ['(0, 0, 0)', '(1, 1, 1)']
 ['(0, 0, 1)', '(0, 1, 0)', '(1, 0, 0)', '(1, 1, 1)']

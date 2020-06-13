@@ -115,7 +115,7 @@ following correspondence table:
 
 With this encoding, the file with "hello, world" in it is
 represented as:
-```
+```text
 0022211212202020221011221201
 ```
 
@@ -123,7 +123,7 @@ Now, working with the table of mappings between trits and DNA bases,
 the `0` will become `C`, the second `0` will become `G`, the `2` will
 become `C`, and so on. At the end we will end up with the DNA
 sequence:
-```
+```text
 CGCATCTGATGTGTGTGCTAGATGATAG
 ```
 
@@ -194,7 +194,7 @@ decoding scheme; for more details on the underlying research, see
    storage scheme we described.
 2. You will implement your own prioriry queue for use in the program.
 3. Your program must be called as follows:
-```
+```bash
 python dna_store.py [-d] input output huffman
 ```
 
@@ -218,7 +218,7 @@ its encoding.
 ### Examples
 
 If the user gives:
-```
+```bash
 python dna_store.py hello_world.txt hello_world_dna.txt hello_world_huffman.csv
 ```
 using the file [hello_world.txt]({attach}hello_world.txt), then the
@@ -228,7 +228,7 @@ encoded file will be
 [hello_world_dna.txt]({attach}hello_world_dna.txt).
 
 If the user gives:
-```
+```bash
 python dna_store.py 1984.txt 1984_dna.txt 1984_huffman.csv
 ```
 with the file [1984.txt]({attach}1984.txt), then the Huffman code
@@ -237,7 +237,7 @@ will be stored in the file
 be [1984_dna.txt]({attach}1984_dna.txt).
 
 If the user gives:
-```
+```bash
 python dna_store.py -d 1984_dna.txt 1984_decoded.txt 1984_huffman.csv
 ```
 the file `1984_decoded.txt` must be exactly the same as the file

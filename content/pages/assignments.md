@@ -31,6 +31,7 @@ guideline, the scale should not be understood as following the
 where a bishop assignment would be *on average* three times as difficult
 as a pawn, a rook five times, and a queen nine times.
 
+* [Social Distancing]({filename}../assignments/social-distancing/social_distancing.md) &#9813;
 * [Four Russians]({filename}../assignments/four-russians/four_russians.md) &#9813;
 * [Finding Trusses]({filename}../assignments/trusses/trusses.md) &#9817;
 * [Genome Assembly]({filename}../assignments/genome-assembly/genome_assembly.md)&#9817;

@@ -11,7 +11,7 @@ zero). You also want the ones to be as evenly spread as possible among
 the zeroes. If $k$ divides $n$, then the solution is straightforward;
 we just divide the ones among the zeros. For example, for $n = 16$ and
 $k = 4$ we get the sequence:
-```
+```text
 [ 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 ]
 ```
 
@@ -21,32 +21,32 @@ number 1.
 
 So suppose that we have $n = 13$ and $k = 5$. As we have $13 - 5 = 8$,
 we start by creating a sequence with 5 ones and 8 zeroes:
-```
+```text
 [ 1 1 1 1 1 0 0 0 0 0 0 0 0 ]
 ```
 We can treat this sequence as 13 sequences of one bit each:
-```
+```text
 [ [1] [1] [1] [1] [1] [0] [0] [0] [0] [0] [0] [0] [0] ]
 ```
 We distribute the zeroes so that we get five sequences of two bits
 each, and three sequences of one bit:
-```
+```text
 [ [1 0] [1 0] [1 0] [1 0] [1 0] [0] [0] [0] ]
 ```
 Then we distribute the remaining zeroes in the same way, so that we
 get:
-```
+```text
 [ [1 0 0] [1 0 0] [1 0 0] [1 0] [1 0] ]
 ```
 Now we distribute the `[1 0]` sequences, which leads to:
-```
+```text
 [ [1 0 0 1 0] [1 0 0 1 0] [1 0 0] ]
 ```
 The process ends when the remainder (that is, the sequences with the
 smallest number of bits) is exactly one, or we do not have any more
 zeroes to distribute. Then we concatenate the result. In our example,
 we get:
-```
+```text
 [ 1 0 0 1 0 1 0 0 1 0 1 0 0 ]
 ```
 
@@ -169,8 +169,8 @@ manipulates Euclidean rhythms.
    should use the
    [Python `json` library](https://docs.python.org/3/library/json.html).
 3. Your program must be called as follows:
-```
-musical_rhythms.py [-s SLOTS] [-p PULSES] [-r RECOGNIZE] [-l LIST_RHYTHMS]
+```bash
+python musical_rhythms.py [-s SLOTS] [-p PULSES] [-r RECOGNIZE] [-l LIST_RHYTHMS]
 ```
 
 ### Output
@@ -189,23 +189,23 @@ reverse Euclidean string, it will display an appropriate message.
 
 Examples:
 
-```
+```bash
 python musical_rhythms.py -s 12 -p 6
 E(6,12) = [101010101010] = (222222)
 ```
 
-```
+```bash
 python musical_rhythms.py -s 12 -p 7
 E(7,12) = [101101011010] = (2122122) It is a common West African bell pattern. For example, it is used in the Mpre rhythm of the Ashanti people of Ghana. Started on the seventh (last) onset, it is a Yoruba bell pattern of Nigeria, a Babenzele pattern of Central Africa, and a Mende pattern of Sierra Leone.
 ```
 
-```
+```bash
 python musical_rhythms.py -s 16 -p 5
 E(5,16) = [1001001001001000] = (33334) It is the Bossa-Nova rhythm necklace of Brazil. The actual Bossa-Nova rhythm usually starts on the third onset as follows: [1001001000100100]. However, other starting places are also documented in world music practices, such as [1001001001000100].
 It is a Euclidean string.
 ```
 
-```
+```bash
 python musical_rhythms.py -s 9 -p 5
 E(5,9) = [101010101] = (22221) It is a popular Arabic rhythm called Agsag-Samai. Started on the second onset, it is a drum pattern used by the Venda in South Africa, as well as a Rumanian folk-dance rhythm. It is also the rhythmic pattern of the Sigaktistos rhythm of Greece, and the Samai aktsak rhythm of Turkey. Started on the third onset, it is the rhythmic pattern of the Nawahiid rhythm of Turkey.
 It is a reverse Euclidean string.
@@ -227,18 +227,18 @@ print an appropriate message.
 
 Examples:
 
-```
+```bash
 python musical_rhythms.py -r 101101011010
 E(7,12) = [101101011010] = (2122122) It is a common West African bell pattern. For example, it is used in the Mpre rhythm of the Ashanti people of Ghana. Started on the seventh (last) onset, it is a Yoruba bell pattern of Nigeria, a Babenzele pattern of Central Africa, and a Mende pattern of Sierra Leone.
 ```
 
-```
+```bash
 python musical_rhythms.py -r 10010010010
 E(4,11) = [10010010010] = (3332) It is the metric pattern used by Frank Zappa in his piece titled Outside Now.
 It is a reverse Euclidean string.
 ```
 
-```
+```bash
 python musical_rhythms.py -r 10010010011
 Not a Euclidean rhythm.
 ```
@@ -252,7 +252,7 @@ and number of onsets.
 
 Examples:
 
-```
+```bash
 python musical_rythms.py -l 101010100
 Distance = 0
 E(4,9) = [101010100] = (2223) It is the Aksak rhythm of Turkey. It is also the metric pattern used by Dave Brubeck in his piece Rondo a la Turk.
@@ -277,7 +277,7 @@ E(8,9) = [101111111] = (21111111)
 It is a reverse Euclidean string.
 ```
 
-```
+```bash
 python musical_rythms.py -l 1001001001000
 Distance = 0
 E(4,13) = [1001001001000] = (3334)
