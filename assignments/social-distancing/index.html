@@ -111,7 +111,7 @@ add circles, we follow these steps: </p>
 <li>If <span class="math">\(C_i\)</span> does not intersect with any of the front's cirles, we
    insert it into our shape and we return to step 2.</li>
 <li>Otherwise, we remove from the front the problematic circles and we
-   return to step 2.</li>
+   then return to step 2.</li>
 </ol>
 <p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_2.png" width="700"></p>
 <p>If we continue in this way we can insert circles <span class="math">\(C_9\)</span> and <span class="math">\(C_{10}\)</span>
@@ -121,7 +121,7 @@ between <span class="math">\(C_2\)</span> and <span class="math">\(C_{10}\)</spa
 According to step 5, we remove <span class="math">\(C_2\)</span> from the front, so now we have
 <span class="math">\(C_3\)</span> followed by <span class="math">\(C_{10}\)</span> in the front. Returning to step 2 we find
 that <span class="math">\(C_3\)</span> is the front circle closest to the starting point, so we
-add circle <span class="math">\(C{11}\)</span>.</p>
+add circle <span class="math">\(C_{11}\)</span>.</p>
 <p>That is not a complete algorithm, because step 5 is not clear. We have
 termed some circles "problematic", but we have not really defined
 which they are that they should be removed from the front.</p>
@@ -449,17 +449,18 @@ are read, at the end of <code>output_file</code>, after the produced circles.</p
 <p>To visualize your results, you may use the following programs:</p>
 <ul>
 <li><a href="svg_draw.py"><code>svg_draw.py</code></a><br/>
-  which you call with:<br/>
-  <code>bash
-  python svg_draw.py input_file output_file</code>
-  <br/> 
-   where <code>input_file</code> is the output file of your program and
-  <code>output_file</code> will be an SVG file. You will need to install the 
-  <a href="https://github.com/mozman/svgwrite"><code>svgwrite</code></a> library.</li>
-<li><a href="mpl_draw.py"><code>mpl_draw.py</code></a>,<br/>
     which you call with:<br/>
     <code>bash
-    python mpl_draw.py input_file output_file</code><br/>
+    python svg_draw.py input_file output_file</code>
+    <br/> 
+    where <code>input_file</code> is the output file of your program and
+    <code>output_file</code> will be an SVG file. You will need to install the 
+    <a href="https://github.com/mozman/svgwrite"><code>svgwrite</code></a> library.</li>
+<li><a href="mpl_draw.py"><code>mpl_draw.py</code></a><br/>
+    which you call with:<br/>
+    <code>bash
+    python mpl_draw.py input_file output_file</code>
+    <br/>
     where <code>input_file</code> is the output file of your program and
     <code>output_file</code> is a file whose type is determined by its suffix. For
     example, if you specify <code>myfile.png</code> as <code>output_file</code> you will get a

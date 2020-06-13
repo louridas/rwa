@@ -90,3 +90,19 @@ h1 > a:hover, h2.entry-title > a:hover {
 .math {
   font-size: 100%;
 }
+
+ul {
+  list-style: outside circle none;
+  margin-left: 0;
+  padding-left: 1em;
+}
+
+ol {
+  list-style: outside decimal none;
+  margin-left: 0;
+  padding-left: 1em;
+}
+
+li {
+  padding-left: 0.5em;
+}    
