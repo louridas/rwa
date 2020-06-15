@@ -124,7 +124,7 @@ circle at a time towards $C_n$. That means that we go one step in each
 direction of the front. If we find an intersecting circle in either
 direction, or if we go beyond the middle of the front, we stop. If we
 stopped because we found an intersecting circle, we check whether we
-found it going from $C_n$ to $C_m$ or going from $C_m$ to $C_m$.
+found it going along the successor or the predecessor circles.
 
 Our algorithm then evolves to this:
 
