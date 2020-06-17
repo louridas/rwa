@@ -26,12 +26,15 @@ the queen (&#9813;). That does not mean that all, say, pawn
 assignments are of exactly the same difficulty; but it does mean that
 they are all qualitatively different from those of the bishop
 difficulty (and even more, from rooks and queens). As a general
-guideline, the scale should not be understood as following the
-[chess piece relative value system](https://en.wikipedia.org/wiki/Chess_piece_relative_value),
-where a bishop assignment would be *on average* three times as difficult
-as a pawn, a rook five times, and a queen nine times.
+guideline, the scale should not be understood as following the [chess
+piece relative value
+system](https://en.wikipedia.org/wiki/Chess_piece_relative_value),
+where a bishop assignment would be *on average* three times as
+difficult as a pawn, a rook five times, and a queen nine times.
 
-* [Social Distancing]({filename}../assignments/social-distancing/social_distancing.md) &#9813;
+* [Social Distancing]({filename}../assignments/social-distancing/social_distancing.md)
+  &#9813;
+* [Network Destruction]({filename}../assignments/network-destruction/network_destruction.md) &#9815;
 * [Four Russians]({filename}../assignments/four-russians/four_russians.md) &#9813;
 * [Finding Trusses]({filename}../assignments/trusses/trusses.md) &#9817;
 * [Genome Assembly]({filename}../assignments/genome-assembly/genome_assembly.md)&#9817;
