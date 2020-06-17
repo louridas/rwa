@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/highlight.css" />    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
+    <!-- Dynamically resize logo for mobile -->
+    <style type="text/css">
+      .logo-width {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15%;
+      }
+      /* Roughly the point when website is single column */
+      @media (max-width: 850px) {
+      .logo-width {
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 5%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 5%">
+        <div class="three columns">
+          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io/rwa">
+            <center>
+              <img alt="book cover" class="logo-width"
+                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
+            </center>
+          </a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
+          <div class="row" style="padding-bottom: 5%"> </div>
+        </div>
+        <div class="nine columns">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://louridas.github.io/rwa/assignments/network-destruction/" rel="bookmark"
+         title="Permalink to Network Destruction">Network Destruction</a></h2>
+ 
+  </header>
+  <div class="entry-content">
+    <p>While we use algorithms to solve problems with computers, these
+problems are not limited to computer science. Moreover, often the same
+algorithm may find applications in very different areas. For example,
+graphs are used to represent networks, but there is no a-priori
+limitation on what kind of networks these may be. We can use graphs
+for computer networks, road networks, electricity distribution
+networks, or social networks.</p>
+<p>Zeroing in on social networks, we can use them to study the spread of
+a disease, as disease can spread through our contacts. We can also use
+them to investigate how to halt the spread of a disease. If we have a
+network, a graph, in which we have humans connected to other humans to
+whom they may spread the disease, we can fight a pandemic if we detect
+those persons that we should vaccinate or isolate to minimize contagion.</p>
+<p>Note that when are talking about "spread", "pandemic", or "contagion",
+we are not necessarily referring to a biological disease. We may, for
+instance, be interested in stopping the transmission of fake news
+through a social network, or arrest the spread of a computer virus,
+through a computer network.</p>
+<p>To inoculate a network is to detect those nodes, or graph vertices,
+that exert the maximum influence on the whole network. One possible
+way to do that is as follows:</p>
+<ol>
+<li>
+<p>We find the vertex with the greatest number of links; that is, the
+   vertex with the highest <em>degree</em>. If there are more than one
+   vertices with the same, maximum number of links, we may break the
+   tie using any rule we want; if vertices are numbered arithmetically,
+   we may pick the smallest numbered vertex.</p>
+</li>
+<li>
+<p>We vaccinate, or isolate, that vertex. In reality, we take it out
+   of the graph, as this will ensure that nothing will be spread
+   through that node any more.</p>
+</li>
+<li>
+<p>We go back to step 1.</p>
+</li>
+</ol>
+<p>We repeat steps 1&ndash;3 for as many nodes as we want.</p>
+<p>In the following figures you can see the process of removing four
+nodes, selecting each time the node with the highest degree. The nodes
+that we remove are painted white, while we use different colors or the
+<em>connected components</em> of the graph.</p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/network_destruction_degree_0.png" width="400"></p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/network_destruction_degree_1.png" width="400"></p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/network_destruction_degree_2.png" width="400"></p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/network_destruction_degree_3.png" width="400"></p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/network_destruction_degree_4.png" width="400"></p>
+<p>We can observe that after removing four nodes the biggest connected
+component consists of 17 nodes, which means that if one becomes sick,
+the disease will spread to another 16 nodes.</p>
+<p>In many networks a different way of going about the problem is more
+efficient. Instead of taking as the node with the greatest influence
+the one that has the largest degree, we define the <em>collective
+influence</em> of a node as follows:</p>
+<div class="math">$$ \mathrm{CI}(i, r) = (k_i -1) \sum_{j \in \vartheta\mathrm{Ball}(i,
+r)} (k_j - 1) $$</div>
+<p>In this definition:</p>
+<ul>
+<li>
+<p><span class="math">\(i\)</span> is the node whose collective influence we are calculating and
+  <span class="math">\(k_i\)</span> is the degree of node <span class="math">\(i\)</span>.</p>
+</li>
+<li>
+<p><span class="math">\(\mathrm{Ball}(i, r)\)</span> is the set of nodes whose shortest path from
+  node <span class="math">\(i\)</span> does not exceed <span class="math">\(r\)</span>. If you could draw a circle with radius
+  <span class="math">\(r\)</span> links around node <span class="math">\(i\)</span>, nodes <span class="math">\(j\)</span> are the nodes that would fall
+  inside the circle. If you would prefer to talk in three dimensions,
+  they would be the nodes that fall inside the sphere centered at node
+  <span class="math">\(i\)</span> and having radius <span class="math">\(r\)</span>.</p>
+</li>
+<li>
+<p><span class="math">\(\vartheta\mathrm{Ball}(i, r)\)</span> is the set of nodes whose shortest
+  path from node <span class="math">\(i\)</span> is exactly <span class="math">\(r\)</span>. If you could draw a circle with
+  radius <span class="math">\(r\)</span> links around node <span class="math">\(i\)</span>, nodes <span class="math">\(j\)</span> are the nodes that fall
+  on the perimeter of the circle. If you would prefer to talk in three
+  dimensions, they would be the nodes that fall on the surface of the
+  sphere centered at node <span class="math">\(i\)</span> and having radius <span class="math">\(r\)</span>.</p>
+</li>
+</ul>
+<p>Following the above, to calculate the collective influence of a node
+<span class="math">\(i\)</span>, we find the nodes whose shortest path from <span class="math">\(i\)</span> is equal to <span class="math">\(r\)</span>
+and we take the sum of the links of each one of them, <span class="math">\(k_j\)</span> for node
+<span class="math">\(j\)</span>, minus one. Finally, we multiply the sum with the number of links
+of <span class="math">\(i\)</span>, <span class="math">\(k_i\)</span>, minus one.</p>
+<p>Using the collective influence, we can now dismantle a network like
+this:</p>
+<ol>
+<li>
+<p>We calculate the collective influence of every node.</p>
+</li>
+<li>
+<p>We select the node with the biggest collective influence. If there
+   are more than one node with the same collective influence we may
+   break the tie using any rule we want; if nodes are numbered
+   arithmetically, we may pick the smallest numbered vertex.</p>
+</li>
+<li>
+<p>We remove that node.</p>
+</li>
+<li>
+<p>We update the collective influence of the nodes that are affected
+   by the removal of the node in step 3. These are the nodes inside
+   <span class="math">\(\mathrm{Ball}(i, r+1)\)</span>, that is, the nodes that lie inside a
+   circle (or a sphere) of radius <span class="math">\(r+i\)</span> links away from node <span class="math">\(i\)</span>,
+   where <span class="math">\(i\)</span> is the node that we removed in step 3.</p>
+</li>
+<li>
+<p>We return to step 2.</p>
+</li>
+</ol>
+<p>We repeat steps 2&ndash;5 for as many nodes as we want.</p>
+<p>To implement this algorithm we need a way to calculate 
+<span class="math">\(\vartheta\mathrm{Ball}(i, r)\)</span> and <span class="math">\(\mathrm{Ball}(i, r+1)\)</span>.
+In order to detect the nodes that lie inside a given distance from
+another note, it suffices to use a variant of breadth-first search
+(BFS), where, as we move further away from our starting node, we keep
+count of the links we travel along.</p>
+<p>In the following images you can see how we can protect a network
+against contagion by taking out four nodes with the largest, at each
+point, collective influence, using <span class="math">\(r = 2\)</span>. Again, we use white to
+paint the removed nodes, and other colors for the connected
+components.</p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/network_destruction_degree_0.png" width="400"></p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/network_destruction_ci_1.png" width="400"></p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/network_destruction_ci_2.png" width="400"></p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/network_destruction_ci_3.png" width="400"></p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/network_destruction_ci_4.png" width="400"></p>
+<p>We can observe that after removing just three nodes, the biggest
+connected component has only nine nodes. So, with these three nodes we
+managed to dismantle the network more than with the four nodes using
+the previous method, that of selecting nodes based on their degree. In
+the process, node 10 is removed first, as it has the greatest
+collective influence, equal to 63. Verify this calculation to make
+sure that you have understood the definition of collective influence.</p>
+<p>Your objective in this assignment is to write a Python program that
+will read a file describing a graph and then will select the nodes to
+remove using both of the above ways.</p>
+<h3>Requirements</h3>
+<p>You will write a program called <code>network-destruction.py</code>. You may use
+the standard Python libraries <code>argparse</code> and <code>sys</code>, but not any
+others. Your program will be called as follows:</p>
+<div class="highlight"><pre><span></span><code>python network_destruction.py <span class="o">[</span>-d<span class="o">]</span> <span class="o">[</span>-r RADIUS<span class="o">]</span> num_nodes input_file
+</code></pre></div>
+
+
+<p>The meaning of the program arguments is:</p>
+<ul>
+<li>
+<p><code>-d</code>: optional argument; if given,the program will use the degree of
+  each node and not its collective influence. That is, it will operate
+  as in the first example we saw. Otherwise, it will operate using the
+  collective influence, as in the second example.</p>
+</li>
+<li>
+<p><code>-r RADIUS</code>: optional argument; the program will use the
+  value <code>RADIUS</code> for <span class="math">\(r\)</span>, or will default to <span class="math">\(r = 2\)</span> otherwise.</p>
+</li>
+<li>
+<p><code>num_nodes</code>: the number of nodes to remove; mandatory argument.</p>
+</li>
+<li>
+<p><code>input_file</code>: the name of the file describing the graph.</p>
+</li>
+</ul>
+<p>The file indicated by <code>input_file</code> will have the format:</p>
+<div class="highlight"><pre><span></span><code>1 2
+1 3
+2 4
+...
+</code></pre></div>
+
+
+<p>that is, it will consist of lines, each one containing two numbers. If
+the two numbers are <code>x</code> and <code>y</code>, the graph will have a link between
+<code>x</code> and <code>y</code>. The graph is undirected, so we can take it as granted
+that it will also have the opposite link, from <code>y</code> to <code>x</code>. The nodes
+will always be numbers, starting from <span class="math">\(1\)</span> and increasing by one: <span class="math">\(1\)</span>, <span class="math">\(2\)</span>,
+<span class="math">\(\ldots\)</span>.</p>
+<p>The program will about a sequence of lines; each line will contain the
+node that is removed and its metric. </p>
+<h3>Examples</h3>
+<p><em>Example 1</em></p>
+<p>If we use the example file
+<a href="destruction_example_1.txt">destruction_example_1.txt</a>:</p>
+<div class="highlight"><pre><span></span><code>python network_destruction.py -r <span class="m">2</span> <span class="m">4</span> destruction_example_1.txt
+</code></pre></div>
+
+
+<p>we will get:</p>
+<div class="highlight"><pre><span></span><code>10 63
+16 51
+20 30
+6 9
+</code></pre></div>
+
+
+<p>That is, we will first take out node 10 with collective influece 63,
+then node 16 with collective influence 51, and so on.</p>
+<p>If we use the example file
+<a href="destruction_example_1.txt">destruction_example_1.txt</a> as: </p>
+<div class="highlight"><pre><span></span><code>python network_destruction.py -d <span class="m">4</span> destruction_example_1.txt
+</code></pre></div>
+
+
+<p>we will get:</p>
+<div class="highlight"><pre><span></span><code>25 6
+5 5
+12 5
+6 4
+</code></pre></div>
+
+
+<p>This time we first take out node 25 with degree 6, then node 5 with
+degree 5, and so on.</p>
+<p><em>Example 2</em></p>
+<p>If we use the example file
+<a href="destruction_example_2.txt">destruction_example_2.txt</a> with:</p>
+<div class="highlight"><pre><span></span><code>python network_destruction.py -d 6 destruction_example_2.txt
+</code></pre></div>
+
+
+<p>we will get:</p>
+<div class="highlight"><pre><span></span><code>7 5
+12 5
+26 5
+31 5
+36 5
+42 5
+</code></pre></div>
+
+
+<p>If we give:</p>
+<div class="highlight"><pre><span></span><code>python network_destruction.py -r <span class="m">2</span> <span class="m">6</span> destruction_example_2.txt
+</code></pre></div>
+
+
+<p>we will get:</p>
+<div class="highlight"><pre><span></span><code>66 148
+12 72
+77 64
+26 60
+47 48
+37 45
+</code></pre></div>
+
+
+<p>The initial graph is:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/destruction_example_2_before.png" width="500"></p>
+<p>The final graph is:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/destruction_example_2_after.png" width="500"></p>
+<p><em>Example 3</em></p>
+<p>If we use the example file
+<a href="destruction_example_3.txt">destruction_example_3.txt</a> with:</p>
+<div class="highlight"><pre><span></span><code>python network_destruction.py -c <span class="m">10</span> destruction_example_3.txt
+</code></pre></div>
+
+
+<p>we will get:</p>
+<div class="highlight"><pre><span></span><code>114 7
+105 6
+112 6
+125 6
+6 4
+23 4
+34 4
+65 4
+107 4
+124 4
+</code></pre></div>
+
+
+<p>If we give:</p>
+<div class="highlight"><pre><span></span><code>python network_destruction.py -r <span class="m">3</span> <span class="m">10</span> destruction_example_3.txt
+</code></pre></div>
+
+
+<p>we will get:</p>
+<div class="highlight"><pre><span></span><code>114 270
+105 125
+112 75
+118 39
+125 25
+11 24
+65 21
+138 21
+36 15
+37 8
+</code></pre></div>
+
+
+<p>The initial graph is:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/destruction_example_3_before.png" width="500"></p>
+<p>The final graph is:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/network-destruction/destruction_example_3_after.png" width="500"></p>
+<h3>Optionally</h3>
+<p>To get a better understanding of how the algorithm works, a good idea
+is to add another switch to the program, <code>-t</code> (for trace), which will
+display the connected components after each node removal.</p>
+<p>Having done that, you can visualize the evolution by adding
+functionality to produce a series of images like the ones you have
+seen here. To create them you can use
+<a href="https://www.graphviz.org/">graphviz</a> through its <a href="https://graphviz.readthedocs.io/en/stable/">Python
+interface</a>.</p>
+<h3>Notes</h3>
+<p>For an overview of network destruction using collective influence, see
+<a href='#kovacs:2015' id='ref-kovacs:2015-1'>[1]</a>. The algorithm was presented in <a href='#morone:2015' id='ref-morone:2015-1'>[2]</a>. For
+details on its implementation, see <a href='#morone:2016' id='ref-morone:2016-1'>[3]</a>.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script><hr>
+<h3>Bibliography</h3>
+<div class='bibliography'><ol><li id='kovacs:2015'>Istv<span class="bibtex-protected">á</span>n&nbsp;A. Kov<span class="bibtex-protected">á</span>cs and Albert-L<span class="bibtex-protected">á</span>szl<span class="bibtex-protected">ó</span> Barab<span class="bibtex-protected">á</span>si.
+Destruction perfected.
+<em>Nature</em>, 524(7563):38–39, 2015.
+<a href="https://doi.org/10.1038/524038a">doi:10.1038/524038a</a>. <a class="cite-backref" href="#ref-kovacs:2015-1" title="Jump back to reference 1">↩</a></li><li id='morone:2015'>Flaviano Morone and Hern<span class="bibtex-protected">á</span>n&nbsp;A. Makse.
+Destruction perfected.
+<em>Nature</em>, 524(7563):65–68, 2015.
+<a href="https://doi.org/10.1038/nature14604">doi:10.1038/nature14604</a>. <a class="cite-backref" href="#ref-morone:2015-1" title="Jump back to reference 1">↩</a></li><li id='morone:2016'>Flaviano Morone, Byungjoon Min, Lin Bo, Romain Mari, and Hern<span class="bibtex-protected">á</span>n&nbsp;A. Makse.
+Collective influence algorithm to find influencers via optimal percolation in massively large social media.
+<em>Scientific Reports</em>, 2016.
+<a href="https://doi.org/10.1038/srep30062">doi:10.1038/srep30062</a>. <a class="cite-backref" href="#ref-morone:2016-1" title="Jump back to reference 1">↩</a></li></ol></div>
+  </div><!-- /.entry-content -->
+</section>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 25%"> </div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-103703286-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

@@ -83,13 +83,19 @@ circles with the given radius inside a shape that describes the space
 we want to fill.</p>
 <p>To find where the circles should be placed, we can work as follows:</p>
 <ol>
-<li>We put a circle at the point where we want to start the placement
-   process.</li>
-<li>We put a circle tangent to the first one, noting that each circle
-   follows the other.</li>
-<li>We interpolate a circle tangent to the last circle and the first
+<li>
+<p>We put a circle at the point where we want to start the placement
+   process.</p>
+</li>
+<li>
+<p>We put a circle tangent to the first one, noting that each circle
+   follows the other.</p>
+</li>
+<li>
+<p>We interpolate a circle tangent to the last circle and the first
    circle we inserted, noting that it comes between them. We repeat
-   this step to add more circles.</li>
+   this step to add more circles.</p>
+</li>
 </ol>
 <p>This is how the process will evolve for the first seven circles:</p>
 <p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_1.png" width="700"></p>
@@ -102,17 +108,27 @@ panel of the next figure.</p>
 to whom we can attach tangential circles, the <em>front</em>. To add circles,
 we follow these steps: </p>
 <ol>
-<li>We add the first two circles (these two form a trivial front).</li>
-<li>We find the circle in the front that is closest to our starting
+<li>
+<p>We add the first two circles (these two form a trivial front).</p>
+</li>
+<li>
+<p>We find the circle in the front that is closest to our starting
    point. Suppose that this circle <span class="math">\(C_m\)</span>. If there are more than one
    circles with the same distance, we pick the one that was inserted
-   earliest.</li>
-<li>We try to interpolate a circle between <span class="math">\(C_m\)</span> and its successor in
-   the front, <span class="math">\(C_n\)</span>. Let us call this circle <span class="math">\(C_i\)</span>.</li>
-<li>If <span class="math">\(C_i\)</span> does not intersect with any of the front's cirles, we
-   insert it into our shape and we return to step 2.</li>
-<li>Otherwise, we remove from the front the problematic circles and we
-   then return to step 2.</li>
+   earliest.</p>
+</li>
+<li>
+<p>We try to interpolate a circle between <span class="math">\(C_m\)</span> and its successor in
+   the front, <span class="math">\(C_n\)</span>. Let us call this circle <span class="math">\(C_i\)</span>.</p>
+</li>
+<li>
+<p>If <span class="math">\(C_i\)</span> does not intersect with any of the front's cirles, we
+   insert it into our shape and we return to step 2.</p>
+</li>
+<li>
+<p>Otherwise, we remove from the front the problematic circles and we
+   then return to step 2.</p>
+</li>
 </ol>
 <p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_2.png" width="700"></p>
 <p>If we continue in this way we can insert circles <span class="math">\(C_9\)</span> and <span class="math">\(C_{10}\)</span>
@@ -172,24 +188,38 @@ stopped because we found an intersecting circle, we check whether we
 found it going along the successor or the predecessor circles.</p>
 <p>Our algorithm then evolves to this:</p>
 <ol>
-<li>We add the first two circles (these two form a trivial front).</li>
-<li>We find the circle in the front that is closest to our starting
+<li>
+<p>We add the first two circles (these two form a trivial front).</p>
+</li>
+<li>
+<p>We find the circle in the front that is closest to our starting
    point. Suppose that this circle <span class="math">\(C_m\)</span>. If there are more than one
    circles with the same distance, we pick the one that was inserted
-   earliest.</li>
-<li>We try to interpolate a circle between <span class="math">\(C_m\)</span> and its successor in
-   the front, <span class="math">\(C_n\)</span>. Let us call this circle <span class="math">\(C_i\)</span>.</li>
-<li>If <span class="math">\(C_i\)</span> does not intersect with any of the front's cirles, we
-   insert it into our shape and we return to step 2.</li>
-<li>Otherwise:<ul>
-<li>If <span class="math">\(C_i\)</span> intersects a circle <span class="math">\(C_j\)</span> that precedes <span class="math">\(C_m\)</span>, we take
+   earliest.</p>
+</li>
+<li>
+<p>We try to interpolate a circle between <span class="math">\(C_m\)</span> and its successor in
+   the front, <span class="math">\(C_n\)</span>. Let us call this circle <span class="math">\(C_i\)</span>.</p>
+</li>
+<li>
+<p>If <span class="math">\(C_i\)</span> does not intersect with any of the front's cirles, we
+   insert it into our shape and we return to step 2.</p>
+</li>
+<li>
+<p>Otherwise:</p>
+<ul>
+<li>
+<p>If <span class="math">\(C_i\)</span> intersects a circle <span class="math">\(C_j\)</span> that precedes <span class="math">\(C_m\)</span>, we take
   out from the front the circles from the successor of <span class="math">\(C_j\)</span> up to
   and including <span class="math">\(C_m\)</span>, we let <span class="math">\(C_j\)</span> be the new <span class="math">\(C_m\)</span>, and we
-  return to step 3.</li>
-<li>If <span class="math">\(C_i\)</span> intersects a circle <span class="math">\(C_j\)</span> that follows <span class="math">\(C_n\)</span>, we take
+  return to step 3.</p>
+</li>
+<li>
+<p>If <span class="math">\(C_i\)</span> intersects a circle <span class="math">\(C_j\)</span> that follows <span class="math">\(C_n\)</span>, we take
   out from the front the circles from <span class="math">\(C_n\)</span> up to and including
   the predecessor of <span class="math">\(C_j\)</span>, we let <span class="math">\(C_j\)</span> be the new <span class="math">\(C_n\)</span>, and we
-  return to step 3.</li>
+  return to step 3.</p>
+</li>
 </ul>
 </li>
 </ol>
@@ -202,38 +232,56 @@ a tangent circle without breaching the boundaries that have been set.
 We will call these circles <em>alive</em>. When a circle is inserted into the
 front, it is alive. The algorithm then will further evolve to this:</p>
 <ol>
-<li>We add the first two circles (these two form a trivial front).</li>
-<li>We want to insert the <span class="math">\(i\)</span>th circle. We find the circle in the front
+<li>
+<p>We add the first two circles (these two form a trivial front).</p>
+</li>
+<li>
+<p>We want to insert the <span class="math">\(i\)</span>th circle. We find the circle in the front
    that is closest to our starting point. Suppose that this circle
    <span class="math">\(C_m\)</span>. If there are more than one circles with the same distance,
-   we pick the one that was inserted earliest.</li>
-<li>We try to interpolate a circle between <span class="math">\(C_m\)</span> and its successor in
-   the front, <span class="math">\(C_n\)</span>. Let us call this circle <span class="math">\(C_i\)</span>.</li>
-<li>If <span class="math">\(C_i\)</span> intersects a circle of the front:<ul>
-<li>If <span class="math">\(C_i\)</span> intersects a circle <span class="math">\(C_j\)</span> that precedes <span class="math">\(C_m\)</span>, we take
+   we pick the one that was inserted earliest.</p>
+</li>
+<li>
+<p>We try to interpolate a circle between <span class="math">\(C_m\)</span> and its successor in
+   the front, <span class="math">\(C_n\)</span>. Let us call this circle <span class="math">\(C_i\)</span>.</p>
+</li>
+<li>
+<p>If <span class="math">\(C_i\)</span> intersects a circle of the front:</p>
+<ul>
+<li>
+<p>If <span class="math">\(C_i\)</span> intersects a circle <span class="math">\(C_j\)</span> that precedes <span class="math">\(C_m\)</span>, we take
   out from the front and kill the circles from the successor of
   <span class="math">\(C_j\)</span> up to and including <span class="math">\(C_m\)</span>, we let <span class="math">\(C_j\)</span> be the new <span class="math">\(C_m\)</span>,
-  and we return to step 3.</li>
-<li>If <span class="math">\(C_i\)</span> intersects a circle <span class="math">\(C_j\)</span> that follows <span class="math">\(C_n\)</span>, we take
+  and we return to step 3.</p>
+</li>
+<li>
+<p>If <span class="math">\(C_i\)</span> intersects a circle <span class="math">\(C_j\)</span> that follows <span class="math">\(C_n\)</span>, we take
   out from the front and kill the circles from <span class="math">\(C_n\)</span> up to and
   including the predecessor of <span class="math">\(C_j\)</span>, we let <span class="math">\(C_j\)</span> be the new
-  <span class="math">\(C_n\)</span>, and we return to step 3.</li>
+  <span class="math">\(C_n\)</span>, and we return to step 3.</p>
+</li>
 </ul>
 </li>
-<li>At this point we have found a circle <span class="math">\(C_i\)</span> that does not intersect
+<li>
+<p>At this point we have found a circle <span class="math">\(C_i\)</span> that does not intersect
    any circle in the front. We then check whether it breaches the
-   boundaries of our shape.<ul>
-<li>If it does, then the circle <span class="math">\(C_m\)</span> that we picked in step 2
-   cannot be used to add a circle tangent to it inside the
-   boundaries of our shape, so we must go back and try to find a
-   different <span class="math">\(C_m\)</span>. We put back in the front any circles that we
-   removed in step 4. We resurrect any circles that we may have
-   killed in step 4, apart from those that we have found in step 2
-   while trying to find the <span class="math">\(i\)</span>th circle. We kill <span class="math">\(C_m\)</span> and we
-   return to step 2.</li>
-<li>If it does not, we insert <span class="math">\(C_i\)</span> in the front and we return to
+   boundaries of our shape.</p>
+<ul>
+<li>
+<p>If it does, then the circle <span class="math">\(C_m\)</span> that we picked in step 2
+  cannot be used to add a circle tangent to it inside the
+  boundaries of our shape, so we must go back and try to find a
+  different <span class="math">\(C_m\)</span>. We put back in the front any circles that we
+  removed in step 4. We resurrect any circles that we may have
+  killed in step 4, apart from those that we have found in step 2
+  while trying to find the <span class="math">\(i\)</span>th circle. We kill <span class="math">\(C_m\)</span> and we
+  return to step 2.</p>
+</li>
+<li>
+<p>If it does not, we insert <span class="math">\(C_i\)</span> in the front and we return to
    step 2 to insert the next circle (<span class="math">\(i \leftarrow i + 1\)</span>),
-   resurrecting all the circles in the front.</li>
+   resurrecting all the circles in the front.</p>
+</li>
 </ul>
 </li>
 </ol>
@@ -280,14 +328,22 @@ not stored exactly and calculations involving irrational numbers will
 produce different results than what we would expect from theory. In
 this assignment, you should use roundings to avoid surprises:</p>
 <ul>
-<li>Round the distance from the center of a circle to the starting
-  point.</li>
-<li>Once we calculate the coordinates of the center of a new circle,
-  round the coordinates.</li>
-<li>When you check whether two circles intersect, you must check whether
+<li>
+<p>Round the distance from the center of a circle to the starting
+  point.</p>
+</li>
+<li>
+<p>Once we calculate the coordinates of the center of a new circle,
+  round the coordinates.</p>
+</li>
+<li>
+<p>When you check whether two circles intersect, you must check whether
   the distance of their centres is greater than the sum of their
-  radii. Round that distance before making the comparison.</li>
-<li>Round the distance of a circle from a line segment.</li>
+  radii. Round that distance before making the comparison.</p>
+</li>
+<li>
+<p>Round the distance of a circle from a line segment.</p>
+</li>
 </ul>
 <p>Round the numbers to two decimal places. If you do that, your program
 would find that in the previous figure, the distance <span class="math">\(C_1 C_3\)</span> is
@@ -311,32 +367,44 @@ circle <span class="math">\(C_k\)</span>, wih radius <span class="math">\(r\)</s
 following figure, we work as follows:</p>
 <p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_tangent.png" width="400"></p>
 <ul>
-<li>We calculate the horizontal distance <span class="math">\(d_x\)</span> and the vertical distance
+<li>
+<p>We calculate the horizontal distance <span class="math">\(d_x\)</span> and the vertical distance
   <span class="math">\(d_y\)</span> of the two circles <span class="math">\(C_m\)</span> and <span class="math">\(C_n\)</span>. If <span class="math">\((m_x, m_y)\)</span> is the
   center of <span class="math">\(C_m\)</span> and <span class="math">\((n_x, n_y)\)</span> is the center of <span class="math">\(C_n\)</span>, we have:
   <div class="math">$$d_x = n_x - m_x$$</div>
 <div class="math">$$d_y = n_y - m_y $$</div>
+</p>
 </li>
-<li>We calculate the distance between the centers of <span class="math">\(C_m\)</span> and <span class="math">\(C_n\)</span>;<br>
-<div class="math">$$ d = \sqrt{d{_x}^2+ d{_y}^2}$$</div>
+<li>
+<p>We calculate the distance between the centers of <span class="math">\(C_m\)</span> and <span class="math">\(C_n\)</span>;
+  <div class="math">$$ d = \sqrt{d{_x}^2+ d{_y}^2}$$</div>
+</p>
 </li>
-<li>If <span class="math">\(r_m\)</span> is the radius of <span class="math">\(C_m\)</span> and <span class="math">\(r_n\)</span> is the radius of <span class="math">\(C_n\)</span>, we
+<li>
+<p>If <span class="math">\(r_m\)</span> is the radius of <span class="math">\(C_m\)</span> and <span class="math">\(r_n\)</span> is the radius of <span class="math">\(C_n\)</span>, we
   calculate:
   <div class="math">$$r_1 = r_m + r $$</div>
 <div class="math">$$r_2 = r_n + r $$</div>
+</p>
 </li>
-<li>We find:
+<li>
+<p>We find:
   <div class="math">$$\lambda = \frac{r{_1}^2 - r{_2}^2 + d^2}{2 d^2}$$</div>
 <div class="math">$$\varepsilon = \sqrt{\frac{r{_1}^2}{d^2} - \lambda^2}$$</div>
+</p>
 </li>
-<li>The center <span class="math">\((k_x, k_y)\)</span> of circle <span class="math">\(C_k\)</span> is:
+<li>
+<p>The center <span class="math">\((k_x, k_y)\)</span> of circle <span class="math">\(C_k\)</span> is:
    <div class="math">$$k_x = m_x + \lambda d_x \mp \varepsilon d_y $$</div>
 <div class="math">$$k_y = m_u + \lambda d_y \pm \varepsilon d_x $$</div>
+</p>
 </li>
-<li>We observe that we have two centers. We will use the first of them
+<li>
+<p>We observe that we have two centers. We will use the first of them
   (that is, <span class="math">\(- \varepsilon d_y\)</span> for <span class="math">\(k_x\)</span> and <span class="math">\(+ \varepsilon d_x\)</span>
   for <span class="math">\(k_y\)</span>). Then the circles will be added to our shape
-  counter-clockwise, as in our examples.</li>
+  counter-clockwise, as in our examples.</p>
+</li>
 </ul>
 <p>If we had a ruler and a compass, it would be easy to find the tangent
 circles with a simple geometrical construction. In the figure you can
@@ -349,27 +417,39 @@ two points <span class="math">\(u\)</span> and <span class="math">\(v\)</span>, 
 of the circle from the segment. If the circle's center has
 coordinates, <span class="math">\((c_x, c_y)\)</span>, we go like this:</p>
 <ul>
-<li>We calculate the square of the distance between the two points:
+<li>
+<p>We calculate the square of the distance between the two points:
   <div class="math">$$ l_2 = (u_x - v_x)^2 + (u_y - v_y)^2$$</div>
+</p>
 </li>
-<li>If this distance is equal to zero, then the two endpoints of the
+<li>
+<p>If this distance is equal to zero, then the two endpoints of the
   segment coincide, therefore the distance from the center of the
   circle is simply:
   <div class="math">$$d = \sqrt{(u_x - c_x)^2 + (u_y - c_y)^2}$$</div>
+</p>
 </li>
-<li>Otherwise, we calculate:
+<li>
+<p>Otherwise, we calculate:
   <div class="math">$$ t = \frac{(c_x - u_x) (v_x - u_x) + (c_y - u_y) (v_y - u_y)}{l_2}$$</div>
+</p>
 </li>
-<li>We make sure that <span class="math">\(t\)</span> is between <span class="math">\(0\)</span> and <span class="math">\(1\)</span>:
+<li>
+<p>We make sure that <span class="math">\(t\)</span> is between <span class="math">\(0\)</span> and <span class="math">\(1\)</span>:
   <div class="math">$$t = \max(0, \min(1, t))$$</div>
+</p>
 </li>
-<li>We find the projection <span class="math">\(p\)</span> of the center of the circle on the line
+<li>
+<p>We find the projection <span class="math">\(p\)</span> of the center of the circle on the line
   segment:
   <div class="math">$$ p_x = u_x + t (v_x - u_x) $$</div>
 <div class="math">$$ p_y = u_y + t (v_y - u_y) $$</div>
+</p>
 </li>
-<li>The distance of the center from the segment is:
+<li>
+<p>The distance of the center from the segment is:
   <div class="math">$$d = \sqrt{(p_x - c_x)^2 + (p_y - c_y)^2}$$</div>
+</p>
 </li>
 </ul>
 <p>The above hold beause if we have two points <span class="math">\(u\)</span> and <span class="math">\(v\)</span>, the straight
@@ -408,27 +488,41 @@ but not any others. Your program will be called as follows:</p>
 </code></pre></div>
 
 
-<p>The meaning of the program arguments is as follows:</p>
+<p>The meaning of the program arguments is:</p>
 <ul>
-<li><code>-i ITEMS</code>, <code>--items ITEMS</code>: the number of items (circles) that we
+<li>
+<p><code>-i ITEMS</code>, <code>--items ITEMS</code>: the number of items (circles) that we
   want to insert. If given, the program will try (but may not be able
-  to) insert that many circles.</li>
-<li><code>-r RADIUS</code>, <code>--radius RADIUS</code>: the circles radii. If given, all
-  circles will have the same radius.</li>
-<li><code>--min_radius MIN_RADIUS</code>: the minimum radius. If given, circles
+  to) insert that many circles.</p>
+</li>
+<li>
+<p><code>-r RADIUS</code>, <code>--radius RADIUS</code>: the circles radii. If given, all
+  circles will have the same radius.</p>
+</li>
+<li>
+<p><code>--min_radius MIN_RADIUS</code>: the minimum radius. If given, circles
   will have random radii not smaller than <code>MIN_RADIUS</code>. 
-  This argument must be used with <code>--max_radius</code>.</li>
-<li><code>--max_radius MAX_RADIUS:</code>: the maximum radius. If given, circles
+  This argument must be used with <code>--max_radius</code>.</p>
+</li>
+<li>
+<p><code>--max_radius MAX_RADIUS:</code>: the maximum radius. If given, circles
   will have random sizes no bigger than <code>MAX_RADIUS</code>. This argument
-  must be used with <code>--min_radius</code>.</li>
-<li><code>-b BOUNDARY_FILE</code>, <code>--boundary_file BOUNDARY_FILE</code>: the boundaries
+  must be used with <code>--min_radius</code>.</p>
+</li>
+<li>
+<p><code>-b BOUNDARY_FILE</code>, <code>--boundary_file BOUNDARY_FILE</code>: the boundaries
   of the shape we want to fill. If given, the program will try to
-  place the circles inside the given shape.</li>
-<li><code>-s SEED</code>, <code>--seed SEED</code>: if given the seed for the pseudo-random
+  place the circles inside the given shape.</p>
+</li>
+<li>
+<p><code>-s SEED</code>, <code>--seed SEED</code>: if given the seed for the pseudo-random
   genereation; you should use <code>random.seed(SEED)</code> at the beginning of
-  your program.</li>
-<li><code>output_file</code>: the file where the results of the program will be
-  stored; this is a mandatory argument.</li>
+  your program.</p>
+</li>
+<li>
+<p><code>output_file</code>: the file where the results of the program will be
+  stored; this is a mandatory argument.</p>
+</li>
 </ul>
 <p>When the program finishes, it will print on its output an integer
 number, the number of circles it managed to insert. The circles
@@ -453,15 +547,18 @@ segment. Your program will then include these lines, in the order they
 are read, at the end of <code>output_file</code>, after the produced circles.</p>
 <p>To visualize your results, you may use the following programs:</p>
 <ul>
-<li><a href="svg_draw.py"><code>svg_draw.py</code></a><br/>
+<li>
+<p><a href="svg_draw.py"><code>svg_draw.py</code></a><br/>
     which you call with:<br/>
     <code>bash
     python svg_draw.py input_file output_file</code>
     <br/> 
     where <code>input_file</code> is the output file of your program and
     <code>output_file</code> will be an SVG file. You will need to install the 
-    <a href="https://github.com/mozman/svgwrite"><code>svgwrite</code></a> library.</li>
-<li><a href="mpl_draw.py"><code>mpl_draw.py</code></a><br/>
+    <a href="https://github.com/mozman/svgwrite"><code>svgwrite</code></a> library.</p>
+</li>
+<li>
+<p><a href="mpl_draw.py"><code>mpl_draw.py</code></a><br/>
     which you call with:<br/>
     <code>bash
     python mpl_draw.py input_file output_file</code>
@@ -472,7 +569,8 @@ are read, at the end of <code>output_file</code>, after the produced circles.</p
     get a PNG image; if you specify <code>myfile.svg</code> you will get an SVG
     image; if you specify <code>myfile.pdf</code> you will get a PDF image, and
     so on. You will need to install the
-    <a href="https://matplotlib.org/"><code>matplotlib</code></a> library.</li>
+    <a href="https://matplotlib.org/"><code>matplotlib</code></a> library.</p>
+</li>
 </ul>
 <h3>Examples</h3>
 <p><em>Example 1</em></p>

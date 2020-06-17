@@ -1,0 +1,401 @@
+Title: Network Destruction
+Category: assignments
+Author: Panos Louridas
+Date: 16 June 2018
+Template: assignment
+publications_src: content/assignments/network-destruction/network_destruction.bib
+
+While we use algorithms to solve problems with computers, these
+problems are not limited to computer science. Moreover, often the same
+algorithm may find applications in very different areas. For example,
+graphs are used to represent networks, but there is no a-priori
+limitation on what kind of networks these may be. We can use graphs
+for computer networks, road networks, electricity distribution
+networks, or social networks.
+
+Zeroing in on social networks, we can use them to study the spread of
+a disease, as disease can spread through our contacts. We can also use
+them to investigate how to halt the spread of a disease. If we have a
+network, a graph, in which we have humans connected to other humans to
+whom they may spread the disease, we can fight a pandemic if we detect
+those persons that we should vaccinate or isolate to minimize contagion.
+
+Note that when are talking about "spread", "pandemic", or "contagion",
+we are not necessarily referring to a biological disease. We may, for
+instance, be interested in stopping the transmission of fake news
+through a social network, or arrest the spread of a computer virus,
+through a computer network.
+
+To inoculate a network is to detect those nodes that exert the maximum
+influence on the whole network. One possible way to do that is as
+follows:
+
+1. We find the vertex with the greatest number of links; that is, the
+   vertex with the highest *degree*. If there are more than one
+   vertices with the same, maximum number of links, we may break the
+   tie using any rule we want; if vertices are numbered arithmetically,
+   we may pick the smallest numbered vertex.
+
+2. We vaccinate, or isolate, that vertex. In reality, we take it out
+   of the graph, as this will ensure that nothing will be spread
+   through that node any more.
+
+3. We go back to step 1.
+
+We repeat steps 1&ndash;3 for as many nodes as we want.
+
+In the following figures you can see the process of removing four
+nodes, selecting each time the node with the highest degree. The nodes
+that we remove are painted white, while we use different colors or the
+*connected components* of the graph.
+
+<img src="{attach}network_destruction_degree_0.png" width="300">
+
+<img src="{attach}network_destruction_degree_1.png" width="300">
+
+<img src="{attach}network_destruction_degree_2.png" width="300">
+
+<img src="{attach}network_destruction_degree_3.png" width="300">
+
+<img src="{attach}network_destruction_degree_4.png" width="300">
+
+We can observe that after removing four nodes the biggest connected
+component consists of 17 nodes, which means that if one becomes sick,
+the disease will spread to another 16 nodes.
+
+In many networks a different way of going about the problem is more
+efficient. Instead of taking as the node with the greatest influence
+the one that has the largest degree, we define the *collective
+influence* of a node as follows:
+
+$$ \mathrm{CI}(i, r)  = (k_i -1) \sum_{j \in \vartheta\mathrm{Ball}(i, r)} (k_j - 1) $$
+
+In this definition:
+
+* $i$ is the node whose collective influence we are calculating and
+  $k_i$ is the degree of node $i$.
+
+* $\mathrm{Ball}(i, r)$ is the set of nodes whose shortest path from
+  node $i$ does not exceed $r$. If you could draw a circle with radius
+  $r$ links around node $i$, nodes $j$ are the nodes that would fall
+  inside the circle. If you would prefer to talk in three dimensions,
+  they would be the nodes that fall inside the sphere centered at node
+  $i$ and having radius $r$.
+
+* $\vartheta\mathrm{Ball}(i, r)$ is the set of nodes whose shortest
+  path from node $i$ is exactly $r$. If you could draw a circle with
+  radius $r$ links around node $i4, nodes $j$ are the nodes that fall
+  on the perimeter of the circle. If you would prefer to talk in three
+  dimensions, they would be the nodes that fall on the surface of the
+  sphere centered at node $i$ and having radius $r$.
+
+Following the above, to calculate the collective influence of a node
+$i$, we find the nodes whose shortest path from $i$ is equal to $r$
+and we take the sum of the links of each one of them, $k_j$ for node
+$j$, minus one. Finally, we multiply the sum with the number of links
+of $i$, $k_i$, minus one.
+
+Using the collective influence, we can now dismantle a network like
+this:
+
+1. We calculate the collective influence of every node.
+
+2. We select the node with the biggest collective influence. If there
+   are more than one node with the same collective influence we may
+   break the tie using any rule we want; if nodes are numbered
+   arithmetically, we may pick the smallest numbered vertex.
+
+3. We remove that node.
+
+4. We update the collective influence of the nodes that are affected
+   by the removal of the node in step 3. These are the nodes inside
+   $\mathrm{Ball}(i, r+1)$, that is, the nodes that lie inside a
+   circle (or a sphere) of radius $r+i$ links away from node $i$,
+   where $i$ is the node that we removed in step 3.
+
+5. We return to step 2.
+
+We repeat steps 2&ndash;5 for as many nodes as we want.
+
+
+
+Για να υλοποιήσουμε τον αλγόριθμο πρέπει να έχουμε έναν τρόπο να
+υπολογίζουμε το $\vartheta\mathrm{Ball}(i, r)$ και το
+$\mathrm{Ball}(i, r+1)$. Για να εντοπίσουμε τους κόμβους που
+βρίσκονται μέχρι μια συγκεκριμένη απόσταση από έναν κόμβο, αρκεί μια
+παραλλαγή της κατά πλάτος αναζήτησης (breadth-first search, BFS),
+όπου, καθώς απομακρυνόμαστε από τον κόμβο εκκίνησης μετράμε την
+απόσταση από αυτόν.
+
+Στις παρακάτω εικόνες μπορείτε να δείτε πώς προστατεύουμε ένα δίκτυο
+αφαιρώντας τους τέσσερεις κόμβους με τη μεγαλύτερη κάθε φορά συνολική
+επιρροή, έχοντας $r = 2$. Και πάλι, με λευκό χρωματίζονται οι κόμβοι
+που αφαιρούνται διαδοχικά, με άλλα χρώματα οι συνεκτικές συνιστώσες. 
+
+
+![Αρχικό Δίκτυο](network_destruction_degree_0.pdf){ width=50% }
+
+![Αφαίρεση 1ου κόμβου](network_destruction_ci_1.pdf){ width=50% }
+
+![Αφαίρεση 2ου κόμβου](network_destruction_ci_2.pdf){ width=50% }
+
+![Αφαίρεση 3ου κόμβου](network_destruction_ci_3.pdf){ width=50% }
+
+![Αφαίρεση 4ου κόμβου](network_destruction_ci_4.pdf){ width=50% }
+
+Τώρα βλέπουμε ότι μετά από την αφαίρεση ήδη τριών κόμβων, η μεγαλύτερη
+συνεκτική συνιστώσα του δικτύου περιέχει εννέα μόνο κόμβους. Άρα ήδη
+με τρεις κόμβους έχουμε επιτύχει καλύτερη καταστροφή από ό,τι με
+τέσσερεις κόμβους με την προηγούμενη μέθοδο. Ο κόμβος 10 αφαιρείται
+πρώτος καθώς έχει τη μεγαλύτερη επιρροή, ίση με 63. Επιβεβαιώστε τον
+υπολογισμό αυτό ώστε να καταλάβετε τον ορισμό της συνολικής επιρροής.
+
+Σκοπός της εργασίας είναι η κατασκευή ενός προγράμματος σε γλώσσα
+Python 3 το οποίο θα μπορεί να διαβάζει ένα αρχείο που περιγράφει ένα
+γράφο και να επιλέγει τους κόμβους που θα αφαιρέσει με τους δύο αυτούς
+τρόπους.
+
+## Απαιτήσεις Προγράμματος
+
+Κάθε φοιτητής θα εργαστεί σε αποθετήριο στο GitHub. Για να αξιολογηθεί μια εργασία θα πρέπει να πληροί τις παρακάτω προϋποθέσεις:
+
+* Για την υποβολή της εργασίας θα χρησιμοποιηθεί το ιδιωτικό αποθετήριο του φοιτητή που δημιουργήθηκε για τις ανάγκες του μαθήματος και του έχει αποδωθεί. Το αποθετήριο αυτό έχει όνομα του τύπου `username-algo-assignments`, όπου `username` είναι το όνομα του φοιτητή στο GitHub. Για παράδειγμα, το σχετικό αποθετήριο του διδάσκοντα θα ονομαζόταν `louridas-algo-assignments` και θα ήταν προσβάσιμο στο https://github.com/dmst-algorithms-course/louridas-algo-assignments. *Τυχόν άλλα αποθετήρια απλώς θα αγνοηθούν*.
+
+* Μέσα στο αποθετήριο αυτό θα πρέπει να δημιουργηθεί ένας κατάλογος
+  `assignment-2020-2`.
+
+* Μέσα στον παραπάνω κατάλογο το πρόγραμμα θα πρέπει να αποθηκευτεί με
+  το όνομα `network_destruction.py`.
+
+* Για την υλοποίηση του γράφου θα πρέπει να χρησιμοποιήσετε λίστες
+  γειτνίασης (adjacency lists) και όχι πίνακα γειτνίασης (adjacency
+  matrix).
+
+* Δεν επιτρέπεται η χρήση έτοιμων βιβλιοθηκών γράφων ή τυχόν έτοιμων
+  υλοποιήσεων των αλγορίθμων, ή τμημάτων αυτών, εκτός αν αναφέρεται
+  ρητά ότι επιτρέπεται.
+
+* Επιτρέπεται η χρήση δομών δεδομένων της Python όπως στοίβες, λεξικά,
+  σύνολα, κ.λπ.
+
+* Επιτρέπεται η χρήση της βιβλιοθήκης `argparse` ή της βιβλιοθήκης
+  `sys` (συγκεκριμένα, της λίστας `sys.argv`) προκειμένου να διαβάσει
+  το πρόγραμμα τις παραμέτρους εισόδου.
+
+* Το πρόγραμμα θα πρέπει να είναι γραμμένο σε Python 3.
+
+### Kλήση Προγράμματος
+
+Το πρόγραμμα θα μπορεί να καλείται ως εξής:
+
+```bash
+python network_destruction.py [-c] [-r RADIUS] num_nodes input_file
+```
+
+Aναλόγως του λειτουργικού συστήματος του  υπολογιστή σας μπορεί να πρέπει να δώσετε `python3` ή κάτι άλλο αντί για `python`.
+
+Οι αγκύλες δεν αποτελούν μέρος των πραγμάτων που δίνει ο χρήστης,
+απλώς χρησιμεύουν για να μας υπενθυμίζουν στην περιγραφή του
+προγράμματος ότι η συγκεκριμένη παράμετρος είναι προαιρετική. Έτσι
+έχουμε:
+
+  * Αν δίνεται η παράμετρος `-c`, το πρόγραμμα θα χρησιμοποιεί τον
+    αριθμό συνδέσμων κάθε κόμβου και όχι τη συνολική επιρροή. Δηλαδή,
+    θα λειτουργεί όπως το πρώτο παράδειγμα που δώσαμε. Διαφορετικά, το
+    πρόγραμμα θα χρησιμοποιεί τη συνολική επιρροή, δηλαδή θα
+    λειτουργεί όπως το δεύτερο παράδειγμα.
+  * Αν δίνεται η παράμετρος `-r RADIUS` το πρόγραμμα θα χρησιμοποιεί
+    την τιμή `RADIUS` για το $r$.
+  * Η παράμετρος `num_nodes` αντιστοιχεί στον αριθμό των κόμβων που
+    θέλουμε να αφαιρέσουμε.
+  * Η παράμετρος `input_file` είναι το όνομα του αρχείου που
+    περιγράφει τον γράφο.
+
+Το αρχείο `input_file` θα είναι της μορφής:
+
+```
+1 2
+1 3
+2 4
+...
+```
+δηλαδή αποτελείται από γραμμές που η κάθε μία περιέχει δύο αριθμούς.
+Αν οι δύο αριθμοί είναι οι `x` και `y`, ο γράφος θα έχει ένα σύνδεσμο
+μεταξύ των κόμβων `x` και `y`. Ο γράφος δεν θα είναι κατευθυνόμενος,
+άρα θα θεωρούμε πάντα ότι θα υπάρχει και ο αντίστροφος σύνδεσμος από
+το `y` στο `x`. Οι κόμβοι θα είναι πάντα αριθμοί και θα είναι 1, 2,
+... 
+
+Η έξοδος του προγράμματος θα εμφανίζει σε μία σειρά γραμμών τον κάθε
+κόμβο που αφαιρεί και τη μετρική του. *Προσοχή:* αν η έξοδος δεν είναι
+ακριβώς σύμφωνη με την περιγραφή της, η εργασία *δεν θα μπορεί να
+αξιολογηθεί*.
+
+
+### Παραδείγματα Εκτέλεσης
+
+_Παράδειγμα 1_
+
+Αν χρησιμοποιήσουμε το αρχείο υπόδειγμα
+[destruction_example_1.txt](https://github.com/dmst-algorithms-course/assignment-2020-2/raw/master/destruction_example_1.txt) ως εξής:
+
+```bash
+python network_destruction.py -r 2 4 destruction_example_1.txt
+```
+
+θα πάρουμε ακριβώς:
+
+```
+10 63
+16 51
+20 30
+6 9
+```
+
+Δηλαδή πρώτα αφαιρέσαμε τον κόμβο 10 με συνολική επιρροή 63, στη
+συνέχεια τον κόμβο 16 με συνολική επιρροή 51, κ.λπ. 
+
+Αν χρησιμοποιήσουμε το αρχείο υπόδειγμα
+[destruction_example_1.txt](destruction_example_1.txt) ως εξής: 
+
+```bash
+python network_destruction.py -c 4 destruction_example_1.txt
+```
+
+θα πάρουμε ακριβώς:
+
+```
+25 6
+5 5
+12 5
+6 4
+```
+
+Τώρα πρώτα αφαιρέσαμε τον κόμβο 25 με βαθμό 6, στη συνέχεια τον κόμβο
+5 που έχει βαθμό 5, κ.ο.κ.
+
+_Παράδειγμα 2_
+
+Αν χρησιμοποιήσουμε το αρχείο υπόδειγμα
+[destruction_example_2.txt](https://github.com/dmst-algorithms-course/assignment-2020-2/raw/master/destruction_example_2.txt) ως εξής:
+
+```
+python network_destruction.py -c 6 destruction_example_2.txt
+```
+
+θα πάρουμε ακριβώς:
+
+```
+7 5
+12 5
+26 5
+31 5
+36 5
+42 5
+```
+
+Αν δώσουμε:
+
+```bash
+python network_destruction.py -r 2 6 destruction_example_2.txt
+```
+
+θα πάρουμε ακριβώς (βλ.\ στην επόμενη σελίδα):
+
+```
+66 148
+12 72
+77 64
+26 60
+47 48
+37 45
+```
+
+![Δεύτερο Παράδειγμα, Αρχική Κατάσταση](destruction_example_2_before.pdf){ width=50% }
+
+![Δεύτερο Παράδειγμα, Τελική Κατάσταση](destruction_example_2_after.pdf){ width=50% }
+
+\pagebreak
+
+_Παράδειγμα 3_
+
+Αν χρησιμοποιήσουμε το αρχείο υπόδειγμα
+[destruction_example_3.txt](https://github.com/dmst-algorithms-course/assignment-2020-2/raw/master/destruction_example_3.txt) ως εξής:
+
+```
+python network_destruction.py -c 10 destruction_example_3.txt
+```
+
+θα πάρουμε ακριβώς:
+
+```
+114 7
+105 6
+112 6
+125 6
+6 4
+23 4
+34 4
+65 4
+107 4
+124 4
+```
+
+Αν δώσουμε:
+
+```bash
+python network_destruction.py -r 3 10 destruction_example_3.txt
+```
+
+θα πάρουμε ακριβώς (βλ. στην επόμενη σελίδα):
+
+```
+114 270
+105 125
+112 75
+118 39
+125 25
+11 24
+65 21
+138 21
+36 15
+37 8
+```
+
+![Τρίτο Παράδειγμα, Αρχική Κατάσταση](destruction_example_3_before.pdf){ width=50% }
+
+![Τρίτο Παράδειγμα, Τελική Κατάσταση](destruction_example_3_after.pdf){ width=50% }
+
+
+### Προαιρετικά
+
+Για να καταλάβουμε πώς λειτουργεί ο αλγόριθμος, μια καλή ιδέα είναι να
+προσθέσετε μία ακόμα παράμετρο στο πρόγραμμα, παράδειγμα `-t` (trace),
+με την οποία μετά από κάθε αφαίρεση κόμβου θα μας εμφανίζει τις 
+συνεκτικές συνιστώσες του γράφου.
+
+Από εκεί και μετά, αν υπάρχει αυτή η λειτουργικότητα, είναι δυνατή και
+η οπτικοποίηση της εξέλιξης, προσθέτοντας στο πρόγραμμα τη δυνατότητα
+να δημιουργεί μια σειρά εικόνων όπως αυτές που βλέπετε στην παρούσα
+εκφώνηση. Για τη δημιουργία τους χρησιμοποιήθηκε η βιβλιοθήκη
+[graphviz](https://www.graphviz.org/) μέσω της [διεπαφής της με
+Python](https://graphviz.readthedocs.io/en/stable/).
+
+
+
+Καλή Επιτυχία.
+
+## Για Περισσότερες Πληροφορίες
+
+* István A. Kovács and Albert-László Barabási, Destruction perfected,
+  Nature 524, 38–39 (06 August 2015). doi:10.1038/524038a
+
+* Flaviano Morone and Hernán A. Makse, Influence maximization in
+  complex networks through optimal percolation, Nature 524, 65–68 (06
+  August 2015). doi:10.1038/nature14604
+
+* Flaviano Morone, Byungjoon Min, Lin Bo, Romain Mari & Hernán A.
+  Makse, Collective Influence Algorithm to find influencers via
+  optimal percolation in massively large social media, Scientific
+  Reports, 6:30062 (26 July 2016). doi:10.1038/srep30062
+
