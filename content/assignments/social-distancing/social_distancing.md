@@ -27,8 +27,10 @@ To find where the circles should be placed, we can work as follows:
 
 1. We put a circle at the point where we want to start the placement
    process.
+   
 2. We put a circle tangent to the first one, noting that each circle
    follows the other.
+   
 3. We interpolate a circle tangent to the last circle and the first
    circle we inserted, noting that it comes between them. We repeat
    this step to add more circles.
@@ -48,14 +50,18 @@ to whom we can attach tangential circles, the *front*. To add circles,
 we follow these steps: 
 
 1. We add the first two circles (these two form a trivial front).
+
 2. We find the circle in the front that is closest to our starting
    point. Suppose that this circle $C_m$. If there are more than one
    circles with the same distance, we pick the one that was inserted
    earliest.
+   
 3. We try to interpolate a circle between $C_m$ and its successor in
    the front, $C_n$. Let us call this circle $C_i$.
+   
 4. If $C_i$ does not intersect with any of the front's cirles, we
    insert it into our shape and we return to step 2.
+   
 5. Otherwise, we remove from the front the problematic circles and we
    then return to step 2.
 
@@ -129,19 +135,25 @@ found it going along the successor or the predecessor circles.
 Our algorithm then evolves to this:
 
 1. We add the first two circles (these two form a trivial front).
+   
 2. We find the circle in the front that is closest to our starting
    point. Suppose that this circle $C_m$. If there are more than one
    circles with the same distance, we pick the one that was inserted
    earliest.
+   
 3. We try to interpolate a circle between $C_m$ and its successor in
    the front, $C_n$. Let us call this circle $C_i$.
+   
 4. If $C_i$ does not intersect with any of the front's cirles, we
    insert it into our shape and we return to step 2.
+   
 5. Otherwise:
+    
     * If $C_i$ intersects a circle $C_j$ that precedes $C_m$, we take
       out from the front the circles from the successor of $C_j$ up to
       and including $C_m$, we let $C_j$ be the new $C_m$, and we
       return to step 3.
+      
     * If $C_i$ intersects a circle $C_j$ that follows $C_n$, we take
       out from the front the circles from $C_n$ up to and including
       the predecessor of $C_j$, we let $C_j$ be the new $C_n$, and we
@@ -157,32 +169,40 @@ We will call these circles *alive*. When a circle is inserted into the
 front, it is alive. The algorithm then will further evolve to this:
 
 1. We add the first two circles (these two form a trivial front).
+
 2. We want to insert the $i$th circle. We find the circle in the front
    that is closest to our starting point. Suppose that this circle
    $C_m$. If there are more than one circles with the same distance,
    we pick the one that was inserted earliest.
+   
 3. We try to interpolate a circle between $C_m$ and its successor in
    the front, $C_n$. Let us call this circle $C_i$.
+   
 4. If $C_i$ intersects a circle of the front:
+    
     * If $C_i$ intersects a circle $C_j$ that precedes $C_m$, we take
       out from the front and kill the circles from the successor of
       $C_j$ up to and including $C_m$, we let $C_j$ be the new $C_m$,
       and we return to step 3.
+      
     * If $C_i$ intersects a circle $C_j$ that follows $C_n$, we take
       out from the front and kill the circles from $C_n$ up to and
       including the predecessor of $C_j$, we let $C_j$ be the new
       $C_n$, and we return to step 3.
+      
 5. At this point we have found a circle $C_i$ that does not intersect
    any circle in the front. We then check whether it breaches the
    boundaries of our shape.
-     * If it does, then the circle $C_m$ that we picked in step 2
-       cannot be used to add a circle tangent to it inside the
-       boundaries of our shape, so we must go back and try to find a
-       different $C_m$. We put back in the front any circles that we
-       removed in step 4. We resurrect any circles that we may have
-       killed in step 4, apart from those that we have found in step 2
-       while trying to find the $i$th circle. We kill $C_m$ and we
-       return to step 2.
+    
+    * If it does, then the circle $C_m$ that we picked in step 2
+      cannot be used to add a circle tangent to it inside the
+      boundaries of our shape, so we must go back and try to find a
+      different $C_m$. We put back in the front any circles that we
+      removed in step 4. We resurrect any circles that we may have
+      killed in step 4, apart from those that we have found in step 2
+      while trying to find the $i$th circle. We kill $C_m$ and we
+      return to step 2.
+      
      * If it does not, we insert $C_i$ in the front and we return to
        step 2 to insert the next circle ($i \leftarrow i + 1$),
        resurrecting all the circles in the front.
@@ -239,11 +259,14 @@ this assignment, you should use roundings to avoid surprises:
 
 * Round the distance from the center of a circle to the starting
   point.
+  
 * Once we calculate the coordinates of the center of a new circle,
   round the coordinates.
+  
 * When you check whether two circles intersect, you must check whether
   the distance of their centres is greater than the sum of their
   radii. Round that distance before making the comparison.
+  
 * Round the distance of a circle from a line segment.
 
 Round the numbers to two decimal places. If you do that, your program
@@ -283,18 +306,23 @@ following figure, we work as follows:
   center of $C_m$ and $(n_x, n_y)$ is the center of $C_n$, we have:
   $$d_x = n_x - m_x$$ 
   $$d_y = n_y - m_y $$
-* We calculate the distance between the centers of $C_m$ and $C_n$;  
+  
+* We calculate the distance between the centers of $C_m$ and $C_n$;
   $$ d = \sqrt{d{_x}^2+ d{_y}^2}$$
+  
 * If $r_m$ is the radius of $C_m$ and $r_n$ is the radius of $C_n$, we
   calculate:
   $$r_1 = r_m + r $$
   $$r_2 = r_n + r $$
+  
 * We find:
   $$\lambda = \frac{r{_1}^2 - r{_2}^2 + d^2}{2 d^2}$$
   $$\varepsilon = \sqrt{\frac{r{_1}^2}{d^2} - \lambda^2}$$
+  
 * The center $(k_x, k_y)$ of circle $C_k$ is:
    $$k_x = m_x + \lambda d_x \mp \varepsilon d_y $$
    $$k_y = m_u + \lambda d_y \pm \varepsilon d_x $$
+   
 * We observe that we have two centers. We will use the first of them
   (that is, $- \varepsilon d_y$ for $k_x$ and $+ \varepsilon d_x$
   for $k_y$). Then the circles will be added to our shape
@@ -315,18 +343,23 @@ coordinates, $(c_x, c_y)$, we go like this:
 
 * We calculate the square of the distance between the two points:
   $$ l_2 = (u_x - v_x)^2 + (u_y - v_y)^2$$
+  
 * If this distance is equal to zero, then the two endpoints of the
   segment coincide, therefore the distance from the center of the
   circle is simply:
   $$d = \sqrt{(u_x - c_x)^2 + (u_y - c_y)^2}$$
+  
 * Otherwise, we calculate:
   $$ t = \frac{(c_x - u_x) (v_x - u_x) + (c_y - u_y) (v_y - u_y)}{l_2}$$
+  
 * We make sure that $t$ is between $0$ and $1$:
   $$t = \max(0, \min(1, t))$$
+  
 * We find the projection $p$ of the center of the circle on the line
   segment:
   $$ p_x = u_x + t (v_x - u_x) $$
   $$ p_y = u_y + t (v_y - u_y) $$
+  
 * The distance of the center from the segment is:
   $$d = \sqrt{(p_x - c_x)^2 + (p_y - c_y)^2}$$
 
@@ -372,25 +405,31 @@ python social_distancing.py [-items ITEMS]
                             output_file
 ```
 
-The meaning of the program arguments is as follows:
+The meaning of the program arguments is:
 
 * `-i ITEMS`, `--items ITEMS`: the number of items (circles) that we
   want to insert. If given, the program will try (but may not be able
   to) insert that many circles.
+  
 * `-r RADIUS`, `--radius RADIUS`: the circles radii. If given, all
   circles will have the same radius.
+  
 * `--min_radius MIN_RADIUS`: the minimum radius. If given, circles
   will have random radii not smaller than `MIN_RADIUS`. 
   This argument must be used with `--max_radius`.
+  
 * `--max_radius MAX_RADIUS:`: the maximum radius. If given, circles
   will have random sizes no bigger than `MAX_RADIUS`. This argument
   must be used with `--min_radius`.
+  
 * `-b BOUNDARY_FILE`, `--boundary_file BOUNDARY_FILE`: the boundaries
   of the shape we want to fill. If given, the program will try to
   place the circles inside the given shape.
+  
 * `-s SEED`, `--seed SEED`: if given the seed for the pseudo-random
   genereation; you should use `random.seed(SEED)` at the beginning of
   your program.
+  
 * `output_file`: the file where the results of the program will be
   stored; this is a mandatory argument.
 
@@ -426,6 +465,7 @@ To visualize your results, you may use the following programs:
     where `input_file` is the output file of your program and
     `output_file` will be an SVG file. You will need to install the 
     [`svgwrite`](https://github.com/mozman/svgwrite) library.
+    
 * [`mpl_draw.py`](mpl_draw.py)<br/>
     which you call with:<br/>
     ```bash
