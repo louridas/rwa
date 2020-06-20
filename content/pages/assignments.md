@@ -33,7 +33,7 @@ where a bishop assignment would be *on average* three times as
 difficult as a pawn, a rook five times, and a queen nine times.
 
 * [Social Distancing]({filename}../assignments/social-distancing/social_distancing.md)
-  &#9813;
+  &#9814;
 * [Network
   Destruction]({filename}../assignments/network-destruction/network_destruction.md)
   &#9815;
