@@ -34,7 +34,10 @@ difficult as a pawn, a rook five times, and a queen nine times.
 
 * [Social Distancing]({filename}../assignments/social-distancing/social_distancing.md)
   &#9813;
-* [Network Destruction]({filename}../assignments/network-destruction/network_destruction.md) &#9815;
+* [Network
+  Destruction]({filename}../assignments/network-destruction/network_destruction.md)
+  &#9815;
+* [Polyominoes]({filename}../assignments/polyominoes/polyominoes.md) &#9817;
 * [Four Russians]({filename}../assignments/four-russians/four_russians.md) &#9813;
 * [Finding Trusses]({filename}../assignments/trusses/trusses.md) &#9817;
 * [Genome Assembly]({filename}../assignments/genome-assembly/genome_assembly.md)&#9817;

@@ -20,11 +20,12 @@ network, a graph, in which we have humans connected to other humans to
 whom they may spread the disease, we can fight a pandemic if we detect
 those persons that we should vaccinate or isolate to minimize contagion.
 
-Note that when are talking about "spread", "pandemic", or "contagion",
-we are not necessarily referring to a biological disease. We may, for
-instance, be interested in stopping the transmission of fake news
-through a social network, or arrest the spread of a computer virus,
-through a computer network.
+Note that when are talking about &ldquo;spread&rdquo;,
+&ldquo;pandemic&rdquo;, or &ldquo;contagion&rdquo;, we are not
+necessarily referring to a biological disease. We may, for instance,
+be interested in stopping the transmission of fake news through a
+social network, or arrest the spread of a computer virus, through a
+computer network.
 
 To inoculate a network is to detect those nodes, or graph vertices,
 that exert the maximum influence on the whole network. One possible
