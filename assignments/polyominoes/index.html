@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/highlight.css" />    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
+    <!-- Dynamically resize logo for mobile -->
+    <style type="text/css">
+      .logo-width {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15%;
+      }
+      /* Roughly the point when website is single column */
+      @media (max-width: 850px) {
+      .logo-width {
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 5%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 5%">
+        <div class="three columns">
+          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io/rwa">
+            <center>
+              <img alt="book cover" class="logo-width"
+                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
+            </center>
+          </a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
+          <div class="row" style="padding-bottom: 5%"> </div>
+        </div>
+        <div class="nine columns">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://louridas.github.io/rwa/assignments/polyominoes/" rel="bookmark"
+         title="Permalink to Polyominoes">Polyominoes</a></h2>
+ 
+  </header>
+  <div class="entry-content">
+    <p>In <a href="https://en.wikipedia.org/wiki/Arthur_C._Clarke">Arthur C.
+Clarke</a>'s book
+<a href="https://en.wikipedia.org/wiki/Imperial_Earth">Imperial Earth</a>, the
+main character has to solve two problems with
+<a href="https://en.wikipedia.org/wiki/Pentomino">pentominoes</a>. A pentomino is
+a polygon that is made up from five equal square tiles placed such
+that every two tiles share one side. There are 12 different
+pentominoes if we do not take into account rotations and reflections:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/polyominoes/pentominoes_fixed.png" width="600"/></p>
+<p>The two problems in the book were:</p>
+<ol>
+<li>
+<p>Can we fill a rectangle with dimensions <span class="math">\(6\times 10\)</span> using these 12
+   pentominoes? It turns out that the answer is yes, and there are
+   2339 different solutions. Here is one of them:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/polyominoes/pentominoes_6_10.png" width="300"/></p>
+</li>
+<li>
+<p>Can we fill a rectangle with dimensions <span class="math">\(3\times 20\)</span> using these 12
+  pentominoes? Again, it turns out that the answer is yes, but there
+  are only two solutions. Here is one of them:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/polyominoes/pentominoes_3_20.png" width="600"/></p>
+</li>
+</ol>
+<p>As you can see, the pentominoes in these rectangles can be rotated or
+reflected, horizontally or vertically. But if we do such
+transformations, how many different shapes can we produce?</p>
+<p>If we allow a pentomino to be transformed, then we no longer have only
+12 possible shapes. For example, take the pentomino:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/polyominoes/pentomino_f.png" width="100"/></p>
+<p>If we rotate it or reflect it, we can get the following eight shapes:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/polyominoes/pentominoes_f_free.png" width="600"/></p>
+<p>In total, there are 63 different pentominoes if we allow rotations and
+reflections. When rotations and reflections are not allowed, we call
+the set of pentominoes we have <em>free</em>; these are the 12 pentominoes we
+saw at the beginning. Otherwise, if rotations and reflections are
+allowed, we have 63 <em>fixed</em> pentominoes.</p>
+<p>We can now generalize and work with a different number of tiles
+instead of five. A
+<a href="https://en.wikipedia.org/wiki/Polyomino">polyomino</a> is a geometrical
+shape consisting of a number of square tiles, with each two of them
+sharing a side. As in pentominoes, polyominoes can be fixed or free.
+We are interested in finding a way to count the number of fixed
+polyominos, for every possible number of tiles <span class="math">\(n\)</span>.</p>
+<p>To find that count, we can work as follows. We will take pentominoes
+as our example. We create a square lattice, on which we will place the
+pentominoes. All pentominoes will be placed so that they cover tile
+<span class="math">\((0, 0)\)</span>. Given that, the pentominoes may extend to the grayed tiles
+of the following shape:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/polyominoes/lattice_pentominoes.png" width="450"/></p>
+<p>The bold line indicates the tiles whose coordinates are:</p>
+<div class="math">$$ \{\, (x, y)\ |\ (y &gt;0)\ \mathrm{or}\ (y = 0)\ \mathrm{and}\ x \ge 0 \,\} $$</div>
+<p>Then, to find the different pentominoes, we take five tiles such that
+every two of them share an edge and one of them covers <span class="math">\((0, 0)\)</span>.</p>
+<p>Now, let's define a graph where each node is one of the grayed tiles
+and its neighbors are the adjacent squared tiles:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/polyominoes/graph_pentominoes.png" width="550"/></p>
+<p>Then, the pentominoes are the connected subgraphs of the graph that
+contain five nodes.</p>
+<p>It follows that to find how many pentominoes there are, we have to
+find the number of connected subgraphs having five nodes. In general,
+if we have polyominoes of size <span class="math">\(n\)</span>, the logic remains the same. We
+construct the corresponding graph and we count the number of connected
+subgraphs with <span class="math">\(n\)</span> nodes. To find these subgraphs, we can use the
+following algorithm:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/polyominoes/count_fixed_polyominoes_algorithm_nc.png" width="600"/></p>
+<p>The algorithm is recursive. It takes as arguments the graph that we
+have constructed (<span class="math">\(G\)</span>), a set of tiles that we need to try
+(<span class="math">\(\mathit{untried}\)</span>), the size of the polyomino (<span class="math">\(n\)</span>) and the current
+polyomino under construction (<span class="math">\(p\)</span>). We call the algorithm passing as
+<span class="math">\(\mathit{untried}\)</span> the set <span class="math">\(\{(0, 0)\}\)</span> and as the current polyomino
+<span class="math">\(p\)</span> an empty list.</p>
+<p>When we start, we initialize the counter representing the number of
+polyominoes to zero (line 1). The algorithm executes as long as the
+set <span class="math">\(\mathit{untried}\)</span> is not empty. We take out one element from the
+set, that is, a node that we call <span class="math">\(u\)</span> (line 3), and we add it to the
+current polyomino (line 5). If the current polyomino has size equal to
+<span class="math">\(n\)</span>, we increase the counter by one (lines 5&ndash;6). Otherwise, 
+in lines 8&ndash;13 we find the neighbors of <span class="math">\(u\)</span> for which the
+following hold:</p>
+<ol>
+<li>
+<p>The do not belong to set <span class="math">\(\mathit{untried}\)</span>.</p>
+</li>
+<li>
+<p>They do not belong in the current polyomino under construction.</p>
+</li>
+<li>
+<p>They are not neighbors of the other nodes, apart from <span class="math">\(u\)</span>, that
+   belong to <span class="math">\(p\)</span>: by <span class="math">\(p \setminus u\)</span> we done the nodes of <span class="math">\(p\)</span> apart
+   from <span class="math">\(u\)</span>. At this point you may wonder: &ldquo;Well,
+   <span class="math">\(\mathit{untried}\)</span> does contain the neighbors of the polyomino
+   under construction, right? Why do we need this check since we
+   already check that <span class="math">\(v \notin \mathit{untried}\)</span>?&rdquo;. The answer
+   is no, it does not necessarily contain all the neighbors of the
+   polyomino under construction, because each time we go through line
+   3 we remove an element from <span class="math">\(\mathit{untried}\)</span>, so a neighbor may
+   be one of the removed elements.</p>
+</li>
+</ol>
+<p>When we find these neighbors we create a new set of tiles that we must
+try (line 12) and we call the graph recursively (line 13). When the
+recursive call returns, we add to the counter the value returned from
+the call. Before the next iteration of the loop of lines 2&ndash;14,
+we remove node <span class="math">\(u\)</span> from <span class="math">\(p\)</span>.</p>
+<h3>Requirements</h3>
+<p>You will write a program called <code>count_fixed_polyominoes.py</code>. Your
+program will be called as follows:</p>
+<div class="highlight"><pre><span></span><code>python count_fixed_polyominoes.py <span class="o">[</span>-p<span class="o">]</span> n 
+</code></pre></div>
+
+
+<p>The program will construct and count all fixed polyominoes of size <code>n</code>
+and print out their number. If the user passes <code>-p</code>, the program will
+also output the graph that is constructed. In your program:</p>
+<ul>
+<li>
+<p>You should represent the graph using adjacency lists, not the
+  adjacency matrix.</p>
+</li>
+<li>
+<p>If <code>-p</code> is given, the nodes in the adjacency lists will have to be
+  printed out in counter-clockwize order; see the examples below. </p>
+</li>
+<li>
+<p>You can use the <code>pprint</code> library for printing the graph and the
+  <code>argparse</code> or <code>sys</code> library for handling the program arguments.</p>
+</li>
+</ul>
+<h3>Examples</h3>
+<p><em>Example 1</em></p>
+<p>If the program is called with:</p>
+<div class="highlight"><pre><span></span><code>python count_fixed_polyominoes.py -p <span class="m">3</span>
+</code></pre></div>
+
+
+<p>the program will output:</p>
+<div class="highlight"><pre><span></span><code>{(-1, 1): [(0, 1)],
+ (0, 0): [(1, 0), (0, 1)],
+ (0, 1): [(1, 1), (0, 2), (-1, 1), (0, 0)],
+ (0, 2): [(0, 1)],
+ (1, 0): [(2, 0), (1, 1), (0, 0)],
+ (1, 1): [(0, 1), (1, 0)],
+ (2, 0): [(1, 0)]}
+6
+</code></pre></div>
+
+
+<p><em>Example 2</em></p>
+<p>If the program is called with:</p>
+<div class="highlight"><pre><span></span><code>python count_fixed_polyominoes.py -p <span class="m">4</span>
+</code></pre></div>
+
+
+<p>the output will be:</p>
+<div class="highlight"><pre><span></span><code>{(-2, 1): [(-1, 1)],
+ (-1, 1): [(0, 1), (-1, 2), (-2, 1)],
+ (-1, 2): [(0, 2), (-1, 1)],
+ (0, 0): [(1, 0), (0, 1)],
+ (0, 1): [(1, 1), (0, 2), (-1, 1), (0, 0)],
+ (0, 2): [(1, 2), (0, 3), (-1, 2), (0, 1)],
+ (0, 3): [(0, 2)],
+ (1, 0): [(2, 0), (1, 1), (0, 0)],
+ (1, 1): [(2, 1), (1, 2), (0, 1), (1, 0)],
+ (1, 2): [(0, 2), (1, 1)],
+ (2, 0): [(3, 0), (2, 1), (1, 0)],
+ (2, 1): [(1, 1), (2, 0)],
+ (3, 0): [(2, 0)]}
+19
+</code></pre></div>
+
+
+<p><em>Example 3</em></p>
+<p>If the program is called with:</p>
+<div class="highlight"><pre><span></span><code>python count_fixed_polyominoes.py -p <span class="m">5</span>
+</code></pre></div>
+
+
+<p>the output will be:</p>
+<div class="highlight"><pre><span></span><code>{(-3, 1): [(-2, 1)],
+ (-2, 1): [(-1, 1), (-2, 2), (-3, 1)],
+ (-2, 2): [(-1, 2), (-2, 1)],
+ (-1, 1): [(0, 1), (-1, 2), (-2, 1)],
+ (-1, 2): [(0, 2), (-1, 3), (-2, 2), (-1, 1)],
+ (-1, 3): [(0, 3), (-1, 2)],
+ (0, 0): [(1, 0), (0, 1)],
+ (0, 1): [(1, 1), (0, 2), (-1, 1), (0, 0)],
+ (0, 2): [(1, 2), (0, 3), (-1, 2), (0, 1)],
+ (0, 3): [(1, 3), (0, 4), (-1, 3), (0, 2)],
+ (0, 4): [(0, 3)],
+ (1, 0): [(2, 0), (1, 1), (0, 0)],
+ (1, 1): [(2, 1), (1, 2), (0, 1), (1, 0)],
+ (1, 2): [(2, 2), (1, 3), (0, 2), (1, 1)],
+ (1, 3): [(0, 3), (1, 2)],
+ (2, 0): [(3, 0), (2, 1), (1, 0)],
+ (2, 1): [(3, 1), (2, 2), (1, 1), (2, 0)],
+ (2, 2): [(1, 2), (2, 1)],
+ (3, 0): [(4, 0), (3, 1), (2, 0)],
+ (3, 1): [(2, 1), (3, 0)],
+ (4, 0): [(3, 0)]}
+63
+</code></pre></div>
+
+
+<p><em>Example 4</em></p>
+<p>If the program is called with:</p>
+<div class="highlight"><pre><span></span><code>python count_fixed_polyominoes.py <span class="m">10</span>
+</code></pre></div>
+
+
+<p>the output will be:</p>
+<div class="highlight"><pre><span></span><code>36446
+</code></pre></div>
+
+
+<p><em>Example 5</em></p>
+<p>If the program is called with:</p>
+<div class="highlight"><pre><span></span><code>python count_fixed_polyominoes.py <span class="m">15</span>
+</code></pre></div>
+
+
+<p>the output will be:</p>
+<div class="highlight"><pre><span></span><code>27394666
+</code></pre></div>
+
+
+<p><em>Other Examples</em></p>
+<p>For polyominoes of sizes up to and including 15, their number is as in
+the following table:</p>
+<table>
+<thead>
+<tr>
+<th>Polyomino Size</th>
+<th>Number of Fixed Polyominoes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>6</td>
+</tr>
+<tr>
+<td>4</td>
+<td>19</td>
+</tr>
+<tr>
+<td>5</td>
+<td>63</td>
+</tr>
+<tr>
+<td>6</td>
+<td>216</td>
+</tr>
+<tr>
+<td>7</td>
+<td>760</td>
+</tr>
+<tr>
+<td>8</td>
+<td>2725</td>
+</tr>
+<tr>
+<td>9</td>
+<td>9910</td>
+</tr>
+<tr>
+<td>10</td>
+<td>36446</td>
+</tr>
+<tr>
+<td>11</td>
+<td>135268</td>
+</tr>
+<tr>
+<td>12</td>
+<td>505861</td>
+</tr>
+<tr>
+<td>13</td>
+<td>1903890</td>
+</tr>
+<tr>
+<td>14</td>
+<td>7204874</td>
+</tr>
+<tr>
+<td>15</td>
+<td>27394666</td>
+</tr>
+</tbody>
+</table>
+<h3>Notes</h3>
+<ul>
+<li>
+<p>Arthuc C. Clarke learned about polyominoes from director <a href="https://en.wikipedia.org/wiki/Stanley_Kubrick">Stanley
+  Kubrick</a> during the
+  shooting of <a href="https://en.wikipedia.org/wiki/2001:_A_Space_Odyssey_(film)">2001: A Space
+  Odyssey</a>;
+  he then wove them into his book <a href='#clarke:1975' id='ref-clarke:1975-1'>[2]</a>.</p>
+</li>
+<li>
+<p>The algorithm that you have to implement in this assignment was
+  invented by D. Hugh Redelmeier <a href='#redelmeier:1981' id='ref-redelmeier:1981-1'>[7]</a>.</p>
+</li>
+<li>
+<p>The Redelmeier algorithm is not fast, as it has exponential
+  complexity. The fast algorithm we know, although it still has
+  exponential complexity, was invented by Iwan Jensen <a href='#jensen:2001' id='ref-jensen:2001-1'>[6]</a></p>
+</li>
+<li>
+<p>We can frame the problem in three or more dimensions; for details,
+  see <a href='#aleksandrowicz:2006' id='ref-aleksandrowicz:2006-1'>[1]</a>.</p>
+</li>
+<li>
+<p>The term &ldquo;polyomino&rdquo; was introduced by Solomon W.
+  Golomb in 1954. For more details, see his book <a href='#golomb:1994' id='ref-golomb:1994-1'>[5]</a>.</p>
+</li>
+<li>
+<p>Polyominoes were introduced to the wider public by Martin Gardner in
+  1957 and 1960 in his Scientific American column 
+  <a href='#gardner:1957' id='ref-gardner:1957-1'>[3]</a><a href='#gardner:1960' id='ref-gardner:1960-1'>[4]</a>.</p>
+</li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script><hr>
+<h3>Bibliography</h3>
+<div class='bibliography'><ol><li id='aleksandrowicz:2006'>Gadi Aleksandrowicz and Gill Barequet.
+Counting $d$-dimensional polycubes and nonrectangular planar polyominoes.
+In <em>Proceedings of the 12th Annual International Conference on Computing and Combinatorics</em>, COCOON '06, 418–427. Berlin, Heidelberg, 2006. Springer-Verlag.
+URL: <a href="https://doi.org/10.1007/11809678_44">https://doi.org/10.1007/11809678_44</a>, <a href="https://doi.org/10.1007/11809678_44">doi:10.1007/11809678_44</a>. <a class="cite-backref" href="#ref-aleksandrowicz:2006-1" title="Jump back to reference 1">↩</a></li><li id='clarke:1975'>Arthur&nbsp;C. Clarke.
+<em>Imperial Earth</em>.
+Gollancz, London, UK, 1965. <a class="cite-backref" href="#ref-clarke:1975-1" title="Jump back to reference 1">↩</a></li><li id='gardner:1957'>Martin Gardner.
+More about complex dominoes.
+<em>Scientific American</em>, 197(6):126–140, 1957. <a class="cite-backref" href="#ref-gardner:1957-1" title="Jump back to reference 1">↩</a></li><li id='gardner:1960'>Martin Gardner.
+More about the shapes that can be made with complex dominoes.
+<em>Scientific American</em>, 203(5):186–201, 1960.
+<a href="https://doi.org/10.1038/scientificamerican1160-186">doi:10.1038/scientificamerican1160-186</a>. <a class="cite-backref" href="#ref-gardner:1960-1" title="Jump back to reference 1">↩</a></li><li id='golomb:1994'>Solomon&nbsp;W. Golomb.
+<em>Polyominoes</em>.
+Princeton University Press, Princeton, NJ, 2nd edition, 1994. <a class="cite-backref" href="#ref-golomb:1994-1" title="Jump back to reference 1">↩</a></li><li id='jensen:2001'>Iwan Jensen.
+Enumerations of lattice animals and trees.
+<em>Journal of Statistical Physics</em>, 102(3/4):865–881, 2001.
+<a href="https://doi.org/10.1023/A:1004855020556">doi:10.1023/A:1004855020556</a>. <a class="cite-backref" href="#ref-jensen:2001-1" title="Jump back to reference 1">↩</a></li><li id='redelmeier:1981'>D.&nbsp;Hugh Redelmeier.
+Counting polyominoes: yet another attack.
+<em>Discrete Mathematics</em>, 36(2):191–203, 1981. <a class="cite-backref" href="#ref-redelmeier:1981-1" title="Jump back to reference 1">↩</a></li></ol></div>
+  </div><!-- /.entry-content -->
+</section>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 25%"> </div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-103703286-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

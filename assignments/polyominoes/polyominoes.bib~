@@ -1,0 +1,24 @@
+@Book{clarke:1975,
+  author = 	 {Clarke, Arthur C.},
+  title = 	 {Imperial Earth},
+  publisher = 	 {Gollancz},
+  year = 	 1965,
+  address = 	 {London, UK}}
+
+@Book{
+  author = {Clarke, Arthur C.},
+  OPTkey = 	 {},
+  OPTvolume = 	 {},
+  OPTnumber = 	 {},
+  OPTseries = 	 {},
+  OPTaddress = 	 {},
+  OPTedition = 	 {},
+  OPTmonth = 	 {},
+  OPTnote = 	 {},
+  OPTannote = 	 {},
+  title = 	 {Imperial Earth},
+  publisher = 	 {Gollancz},
+  year = 	 1965,
+  address = 	 {London, UK}}
+
+
