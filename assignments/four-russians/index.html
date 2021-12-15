@@ -205,7 +205,7 @@ the parts <span class="math">\(A_i \times B_i\)</span> and sum everything togeth
 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
-1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 
 \end{bmatrix}}$$</div>
 <p>Finally, we have:</p>
@@ -243,7 +243,7 @@ the parts <span class="math">\(A_i \times B_i\)</span> and sum everything togeth
 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
-1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
 1 &amp; 1 &amp; 0 &amp; 0 &amp; 1 
 \end{bmatrix}}
 +
@@ -383,7 +383,6 @@ be called in two ways.</p>
 <div class="highlight"><pre><span></span><code>python four_russians.py &lt;input_file_1&gt; &lt;input_file_2&gt;
 </code></pre></div>
 
-
 <p>where <code>&lt;input_file_1&gt;</code> and <code>&lt;input_file_2&gt;</code> are the names of two files
 containing boolean matrices, the program will output their boolean
 product. For example, if the user specifies files
@@ -404,11 +403,9 @@ product. For example, if the user specifies files
 1,1,1,1,0,1,0,1,1,0,0,1,1
 </code></pre></div>
 
-
 <p>If the program is called with:</p>
 <div class="highlight"><pre><span></span><code>python four_russians.py &lt;input_file&gt;
 </code></pre></div>
-
 
 <p>where <code>&lt;input_file&gt;</code> is the name of a file that contains a graph, the
 program will output the transitive closure of the graph. The input
@@ -418,7 +415,6 @@ example, a file starting with:</p>
 1 2
 2 3
 </code></pre></div>
-
 
 <p>specifies that node 0 is connected with node 1, node 1 is connected
 with node 2, and node 2 is connected to node 3.</p>
@@ -449,7 +445,6 @@ used above, we'll get the following output:</p>
 4 5
 5 5
 </code></pre></div>
-
 
 <h2>Notes</h2>
 <ul>

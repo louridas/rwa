@@ -213,7 +213,6 @@ others. Your program will be called as follows:</p>
 <div class="highlight"><pre><span></span><code>python network_destruction.py <span class="o">[</span>-d<span class="o">]</span> <span class="o">[</span>-r RADIUS<span class="o">]</span> num_nodes input_file
 </code></pre></div>
 
-
 <p>The meaning of the program arguments is:</p>
 <ul>
 <li>
@@ -240,7 +239,6 @@ others. Your program will be called as follows:</p>
 ...
 </code></pre></div>
 
-
 <p>that is, it will consist of lines, each one containing two numbers. If
 the two numbers are <code>x</code> and <code>y</code>, the graph will have a link between
 <code>x</code> and <code>y</code>. The graph is undirected, so we can take it as granted
@@ -256,14 +254,12 @@ node that is removed and its metric. </p>
 <div class="highlight"><pre><span></span><code>python network_destruction.py -r <span class="m">2</span> <span class="m">4</span> destruction_example_1.txt
 </code></pre></div>
 
-
 <p>we will get:</p>
 <div class="highlight"><pre><span></span><code>10 63
 16 51
 20 30
 6 9
 </code></pre></div>
-
 
 <p>That is, we will first take out node 10 with collective influece 63,
 then node 16 with collective influence 51, and so on.</p>
@@ -272,14 +268,12 @@ then node 16 with collective influence 51, and so on.</p>
 <div class="highlight"><pre><span></span><code>python network_destruction.py -d <span class="m">4</span> destruction_example_1.txt
 </code></pre></div>
 
-
 <p>we will get:</p>
 <div class="highlight"><pre><span></span><code>25 6
 5 5
 12 5
 6 4
 </code></pre></div>
-
 
 <p>This time we first take out node 25 with degree 6, then node 5 with
 degree 5, and so on.</p>
@@ -288,7 +282,6 @@ degree 5, and so on.</p>
 <a href="destruction_example_2.txt">destruction_example_2.txt</a> with:</p>
 <div class="highlight"><pre><span></span><code>python network_destruction.py -d 6 destruction_example_2.txt
 </code></pre></div>
-
 
 <p>we will get:</p>
 <div class="highlight"><pre><span></span><code>7 5
@@ -299,11 +292,9 @@ degree 5, and so on.</p>
 42 5
 </code></pre></div>
 
-
 <p>If we give:</p>
 <div class="highlight"><pre><span></span><code>python network_destruction.py -r <span class="m">2</span> <span class="m">6</span> destruction_example_2.txt
 </code></pre></div>
-
 
 <p>we will get:</p>
 <div class="highlight"><pre><span></span><code>66 148
@@ -314,7 +305,6 @@ degree 5, and so on.</p>
 37 45
 </code></pre></div>
 
-
 <p>The initial graph is:</p>
 <p><img src="https://louridas.github.io/rwa/assignments/network-destruction/destruction_example_2_before.png" width="500"></p>
 <p>The final graph is:</p>
@@ -324,7 +314,6 @@ degree 5, and so on.</p>
 <a href="destruction_example_3.txt">destruction_example_3.txt</a> with:</p>
 <div class="highlight"><pre><span></span><code>python network_destruction.py -c <span class="m">10</span> destruction_example_3.txt
 </code></pre></div>
-
 
 <p>we will get:</p>
 <div class="highlight"><pre><span></span><code>114 7
@@ -339,11 +328,9 @@ degree 5, and so on.</p>
 124 4
 </code></pre></div>
 
-
 <p>If we give:</p>
 <div class="highlight"><pre><span></span><code>python network_destruction.py -r <span class="m">3</span> <span class="m">10</span> destruction_example_3.txt
 </code></pre></div>
-
 
 <p>we will get:</p>
 <div class="highlight"><pre><span></span><code>114 270
@@ -357,7 +344,6 @@ degree 5, and so on.</p>
 36 15
 37 8
 </code></pre></div>
-
 
 <p>The initial graph is:</p>
 <p><img src="https://louridas.github.io/rwa/assignments/network-destruction/destruction_example_3_before.png" width="500"></p>

@@ -76,7 +76,6 @@ we just divide the ones among the zeros. For example, for <span class="math">\(n
 <div class="highlight"><pre><span></span><code>[ 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 ]
 </code></pre></div>
 
-
 <p>The problem gets more interesting when <span class="math">\(n\)</span> and <span class="math">\(k\)</span> are relatively
 prime, that is, when the only common divisor of <span class="math">\(n\)</span> and <span class="math">\(k\)</span> is the
 number 1.</p>
@@ -85,28 +84,23 @@ we start by creating a sequence with 5 ones and 8 zeroes:</p>
 <div class="highlight"><pre><span></span><code>[ 1 1 1 1 1 0 0 0 0 0 0 0 0 ]
 </code></pre></div>
 
-
 <p>We can treat this sequence as 13 sequences of one bit each:</p>
 <div class="highlight"><pre><span></span><code>[ [1] [1] [1] [1] [1] [0] [0] [0] [0] [0] [0] [0] [0] ]
 </code></pre></div>
-
 
 <p>We distribute the zeroes so that we get five sequences of two bits
 each, and three sequences of one bit:</p>
 <div class="highlight"><pre><span></span><code>[ [1 0] [1 0] [1 0] [1 0] [1 0] [0] [0] [0] ]
 </code></pre></div>
 
-
 <p>Then we distribute the remaining zeroes in the same way, so that we
 get:</p>
 <div class="highlight"><pre><span></span><code>[ [1 0 0] [1 0 0] [1 0 0] [1 0] [1 0] ]
 </code></pre></div>
 
-
 <p>Now we distribute the <code>[1 0]</code> sequences, which leads to:</p>
 <div class="highlight"><pre><span></span><code>[ [1 0 0 1 0] [1 0 0 1 0] [1 0 0] ]
 </code></pre></div>
-
 
 <p>The process ends when the remainder (that is, the sequences with the
 smallest number of bits) is exactly one, or we do not have any more
@@ -114,7 +108,6 @@ zeroes to distribute. Then we concatenate the result. In our example,
 we get:</p>
 <div class="highlight"><pre><span></span><code>[ 1 0 0 1 0 1 0 0 1 0 1 0 0 ]
 </code></pre></div>
-
 
 <p>We can interpret the above sequence as a rhythm, where each digit is a
 unit of time and each <code>0</code> shows a silence (or unaccented note), while
@@ -200,7 +193,6 @@ the Wikipedia article), calculates the Hamming distance:</p>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">bool</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">ch1</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="n">ch2</span><span class="p">))</span> <span class="k">for</span> <span class="n">ch1</span><span class="p">,</span> <span class="n">ch2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">))</span>
 </code></pre></div>
 
-
 <p>For example, the rhythm <span class="math">\(E(4, 9) = [\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ 0\ 0\ ]\)</span>
 has a Hamming distance of one from the rhythm <span class="math">\(E(5, 9) =
 [\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ 0\ 1\ ]\)</span> and a Hamming distance of three from
@@ -228,7 +220,6 @@ manipulates Euclidean rhythms.</p>
 <div class="highlight"><pre><span></span><code>python musical_rhythms.py <span class="o">[</span>-s SLOTS<span class="o">]</span> <span class="o">[</span>-p PULSES<span class="o">]</span> <span class="o">[</span>-r RECOGNIZE<span class="o">]</span> <span class="o">[</span>-l LIST_RHYTHMS<span class="o">]</span>
 </code></pre></div>
 
-
 <h3>Output</h3>
 <h4>Create a Rhythm</h4>
 <p>If the user gives the parameters <code>-s SLOTS</code> and <code>-p PULSES</code>, then
@@ -245,23 +236,19 @@ reverse Euclidean string, it will display an appropriate message.</p>
 E<span class="o">(</span><span class="m">6</span>,12<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101010101010</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">222222</span><span class="o">)</span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code>python musical_rhythms.py -s <span class="m">12</span> -p <span class="m">7</span>
 E<span class="o">(</span><span class="m">7</span>,12<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101101011010</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">2122122</span><span class="o">)</span> It is a common West African bell pattern. For example, it is used in the Mpre rhythm of the Ashanti people of Ghana. Started on the seventh <span class="o">(</span>last<span class="o">)</span> onset, it is a Yoruba bell pattern of Nigeria, a Babenzele pattern of Central Africa, and a Mende pattern of Sierra Leone.
 </code></pre></div>
-
 
 <div class="highlight"><pre><span></span><code>python musical_rhythms.py -s <span class="m">16</span> -p <span class="m">5</span>
 E<span class="o">(</span><span class="m">5</span>,16<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1001001001001000</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">33334</span><span class="o">)</span> It is the Bossa-Nova rhythm necklace of Brazil. The actual Bossa-Nova rhythm usually starts on the third onset as follows: <span class="o">[</span><span class="m">1001001000100100</span><span class="o">]</span>. However, other starting places are also documented in world music practices, such as <span class="o">[</span><span class="m">1001001001000100</span><span class="o">]</span>.
 It is a Euclidean string.
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code>python musical_rhythms.py -s <span class="m">9</span> -p <span class="m">5</span>
 E<span class="o">(</span><span class="m">5</span>,9<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101010101</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">22221</span><span class="o">)</span> It is a popular Arabic rhythm called Agsag-Samai. Started on the second onset, it is a drum pattern used by the Venda in South Africa, as well as a Rumanian folk-dance rhythm. It is also the rhythmic pattern of the Sigaktistos rhythm of Greece, and the Samai aktsak rhythm of Turkey. Started on the third onset, it is the rhythmic pattern of the Nawahiid rhythm of Turkey.
 It is a reverse Euclidean string.
 </code></pre></div>
-
 
 <p>As you can see, the first thing to appear will be rhythm in the form
 <span class="math">\(E(k, n)\)</span>; then as a binary string inside square brackets; then as
@@ -279,17 +266,14 @@ print an appropriate message.</p>
 E<span class="o">(</span><span class="m">7</span>,12<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101101011010</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">2122122</span><span class="o">)</span> It is a common West African bell pattern. For example, it is used in the Mpre rhythm of the Ashanti people of Ghana. Started on the seventh <span class="o">(</span>last<span class="o">)</span> onset, it is a Yoruba bell pattern of Nigeria, a Babenzele pattern of Central Africa, and a Mende pattern of Sierra Leone.
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code>python musical_rhythms.py -r <span class="m">10010010010</span>
 E<span class="o">(</span><span class="m">4</span>,11<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">10010010010</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">3332</span><span class="o">)</span> It is the metric pattern used by Frank Zappa in his piece titled Outside Now.
 It is a reverse Euclidean string.
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code>python musical_rhythms.py -r <span class="m">10010010011</span>
 Not a Euclidean rhythm.
 </code></pre></div>
-
 
 <h4>Show Similar Rhythms</h4>
 <p>If the user gives the parameter <code>-l LIST_RHYTHMS</code>, then <code>LIST_RHYTHMS</code>
@@ -320,7 +304,6 @@ E<span class="o">(</span><span class="m">6</span>,9<span class="o">)</span> <spa
 E<span class="o">(</span><span class="m">8</span>,9<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">101111111</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">21111111</span><span class="o">)</span>
 It is a reverse Euclidean string.
 </code></pre></div>
-
 
 <div class="highlight"><pre><span></span><code>python musical_rythms.py -l <span class="m">1001001001000</span>
 <span class="nv">Distance</span> <span class="o">=</span> <span class="m">0</span>
@@ -357,7 +340,6 @@ It is a reverse Euclidean string.
 E<span class="o">(</span><span class="m">12</span>,13<span class="o">)</span> <span class="o">=</span> <span class="o">[</span><span class="m">1011111111111</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="m">211111111111</span><span class="o">)</span>
 It is a reverse Euclidean string.
 </code></pre></div>
-
 
 <h3>Notes on Implementation</h3>
 <p>The rhythms can be constructed using an algorithm with repeated

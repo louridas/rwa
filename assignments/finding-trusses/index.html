@@ -108,7 +108,6 @@ following algorithm:</p>
     return the connected components of the remaining graph
 </code></pre></div>
 
-
 <p>In the above algorithm, <code>g</code> is the graph and <code>k</code> is the truss size.
 The function <code>neighbours(a)</code> gives us the neighbours of node <code>a</code>, the
 function <code>intersection(s1, s2)</code> finds the intersection of two sets
@@ -129,7 +128,6 @@ will do for this assignment.</p>
 <div class="highlight"><pre><span></span><code>python trusses.py graph_file size_of_truss
 </code></pre></div>
 
-
 <p>The <code>graph_file</code> argument specifies the name of the file where the
 graph is stored. The file will have the
 following format:</p>
@@ -138,7 +136,6 @@ following format:</p>
 2 4
 ...
 </code></pre></div>
-
 
 <p>that is, it contains lines each one of which has two numbers. If
 the two numbers are <code>x</code> and <code>y</code>, the graph will have an edge between
@@ -156,7 +153,6 @@ in the form:</p>
 [8, 10, 16]
 </code></pre></div>
 
-
 <p>That is, each line
 will contain a truss inside square brackets, with the nodes separated by
 commas and whitespace. Every k-truss will be output only once, and
@@ -166,7 +162,6 @@ the k-trusses will be output in order.</p>
 <div class="highlight"><pre><span></span><code>python trusses.py graph_1.txt <span class="m">3</span>
 </code></pre></div>
 
-
 <p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_1.txt">graph_1.txt</a>, which actually corresponds
 to the graph of the first two figures with the 3-trusses above, the
 output will be the one we gave just above:</p>
@@ -174,60 +169,49 @@ output will be the one we gave just above:</p>
 [8, 10, 16]
 </code></pre></div>
 
-
 <p>If the user gives:</p>
 <div class="highlight"><pre><span></span><code>python trusses.py graph_2.txt <span class="m">4</span>
 </code></pre></div>
-
 
 <p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_2.txt">graph_2.txt</a>, the output will be:</p>
 <div class="highlight"><pre><span></span><code>[3, 8, 9, 18]
 [7, 11, 15, 21]
 </code></pre></div>
 
-
 <p>If the user gives:</p>
 <div class="highlight"><pre><span></span><code>python trusses.py graph_3.txt <span class="m">5</span>
 </code></pre></div>
-
 
 <p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_3.txt">graph_3.txt</a>, the output will be:</p>
 <div class="highlight"><pre><span></span><code>[2, 5, 8, 9, 13, 14]
 </code></pre></div>
 
-
 <p>If the user gives:</p>
 <div class="highlight"><pre><span></span><code>python trusses.py graph_4.txt <span class="m">3</span>
 </code></pre></div>
-
 
 <p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_4.txt">graph_4.txt</a>, the output will be:</p>
 <div class="highlight"><pre><span></span><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 </code></pre></div>
 
-
 <p>that is, all the nodes in the graph, whereas if the user gives:</p>
 <div class="highlight"><pre><span></span><code>python trusses.py graph_4.txt <span class="m">4</span>
 </code></pre></div>
 
-
 <p>with the same file, the output will be:</p>
 <div class="highlight"><pre><span></span><code>[0, 1, 3, 4, 5, 6, 9, 11]
 </code></pre></div>
-
 
 <p>which corresponds to the 4-truss figure we gave at the beginning.</p>
 <p>If you want to try a bigger example, if the user gives:</p>
 <div class="highlight"><pre><span></span><code>python trusses.py barabasi_albert_graph_1500.txt <span class="m">4</span>
 </code></pre></div>
 
-
 <p>using the file
 <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_5.txt">graph_5.txt</a>, which contains 1500 nodes,
 the output will be:</p>
 <div class="highlight"><pre><span></span><code>[0, 3, 4, 5, 7, 9, 11, 15, 26]
 </code></pre></div>
-
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
     var align = "center",

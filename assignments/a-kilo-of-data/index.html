@@ -213,14 +213,12 @@ represented as:</p>
 <div class="highlight"><pre><span></span><code>0022211212202020221011221201
 </code></pre></div>
 
-
 <p>Now, working with the table of mappings between trits and DNA bases,
 the <code>0</code> will become <code>C</code>, the second <code>0</code> will become <code>G</code>, the <code>2</code> will
 become <code>C</code>, and so on. At the end we will end up with the DNA
 sequence:</p>
 <div class="highlight"><pre><span></span><code>CGCATCTGATGTGTGTGCTAGATGATAG
 </code></pre></div>
-
 
 <p>To decode this DNA sequence, we work in exactly the opposite way. We
 take the bases one by one and we convert them to trits using the
@@ -289,7 +287,6 @@ decoding scheme; for more details on the underlying research, see
 <div class="highlight"><pre><span></span><code>python dna_store.py <span class="o">[</span>-d<span class="o">]</span> input output huffman
 </code></pre></div>
 
-
 <p>If the user does not give the parameter <code>-d</code>, the program will read
 the file given in the <code>input</code> parameter (that does not mean that the
 file is actually called <code>input</code>, that is just a stand-in), it will
@@ -310,7 +307,6 @@ its encoding.</p>
 <div class="highlight"><pre><span></span><code>python dna_store.py hello_world.txt hello_world_dna.txt hello_world_huffman.csv
 </code></pre></div>
 
-
 <p>using the file <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/hello_world.txt">hello_world.txt</a>, then the
 Huffman code will be stored in the file
 <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/hello_world_huffman.csv">hello_world_huffman.csv</a> and the
@@ -320,7 +316,6 @@ encoded file will be
 <div class="highlight"><pre><span></span><code>python dna_store.py <span class="m">1984</span>.txt 1984_dna.txt 1984_huffman.csv
 </code></pre></div>
 
-
 <p>with the file <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/1984.txt">1984.txt</a>, then the Huffman code
 will be stored in the file
 <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/1984_huffman.csv">1984_huffman.csv</a> and the encoded file will
@@ -328,7 +323,6 @@ be <a href="https://louridas.github.io/rwa/assignments/a-kilo-of-data/1984_dna.t
 <p>If the user gives:</p>
 <div class="highlight"><pre><span></span><code>python dna_store.py -d 1984_dna.txt 1984_decoded.txt 1984_huffman.csv
 </code></pre></div>
-
 
 <p>the file <code>1984_decoded.txt</code> must be exactly the same as the file
 <code>1984.txt</code>.</p>
