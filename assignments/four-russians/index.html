@@ -163,7 +163,7 @@ with zero rows.</p>
 boolean, with dimensions <span class="math">\(n\times n\)</span>, and we partition them as we
 described, their product <span class="math">\(AB\)</span> can be derived by taking the products of
 the parts <span class="math">\(A_i \times B_i\)</span> and sum everything together:</p>
-<div class="math">$$ A B = \sum _{i=1}^{\lceil{\lg n}\rceil}A_{i}B_{i}$$</div>
+<div class="math">$$ A B = \sum _{i=1}^{\lceil{n / \lg n}\rceil}A_{i}B_{i}$$</div>
 <p>You can verify that each of <span class="math">\(A_i B_i\)</span> is a matrix with dimensions 
 <span class="math">\(n \times n\)</span>.</p>
 <p>In our example, we have:</p>
