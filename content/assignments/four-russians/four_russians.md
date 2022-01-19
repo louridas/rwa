@@ -127,7 +127,7 @@ boolean, with dimensions $n\times n$, and we partition them as we
 described, their product $AB$ can be derived by taking the products of
 the parts $A_i \times B_i$ and sum everything together:
 
-$$ A B = \sum _{i=1}^{\lceil{\lg n}\rceil}A_{i}B_{i}$$
+$$ A B = \sum _{i=1}^{\lceil{n / \lg n}\rceil}A_{i}B_{i}$$
 
 You can verify that each of $A_i B_i$ is a matrix with dimensions 
 $n \times n$.
