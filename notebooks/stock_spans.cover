@@ -1,51 +1,50 @@
     1: import time
        
-    1: def simple_stock_span(quotes):
+    1: def simple_stock_span(quotes: list[float]) -> list[int]:
     1:     spans = []
-37225:     for i in range(len(quotes)):
-37224:         k = 1
-37224:         span_end = False
-38611221:         while i - k >= 0 and not span_end:
-38573997:             if quotes[i - k] <= quotes[i]:
-38538302:                 k += 1
+37474:     for i in range(len(quotes)):
+37473:         k = 1
+37473:         span_end = False
+39881068:         while i - k >= 0 and not span_end:
+39843595:             if quotes[i - k] <= quotes[i]:
+39807685:                 k += 1
                    else:
-35695:                 span_end = True
-37224:         spans.append(k)
+35910:                 span_end = True
+37473:         spans.append(k)
     1:     return spans
        
-    1: def stack_stock_span(quotes):
+    1: def stack_stock_span(quotes: list[float]) -> list[int]:
     1:     spans = [1]
     1:     s = []
     1:     s.append(0)
-37224:     for i in range(1, len(quotes)):
-74446:         while len(s) != 0 and quotes[s[-1]] <= quotes[i]:
-37223:             s.pop()
-37223:         if len(s) == 0:
- 1528:             spans.append(i+1)
+37473:     for i in range(1, len(quotes)):
+74926:         while len(s) != 0 and quotes[s[-1]] <= quotes[i]:
+37454:             s.pop()
+37472:         if len(s) == 0:
+ 1562:             spans.append(i+1)
                else:
-35695:             spans.append(i - s[-1])
-37223:         s.append(i)
+35910:             spans.append(i - s[-1])
+37472:         s.append(i)
     1:     return spans
-           
        
-    1: def read_quotes(filename):
+    1: def read_quotes(filename: str) -> tuple[list[str], list[float]]:
     1:     dates = []
     1:     quotes = []
     1:     with open(filename) as quotes_file:
-37234:         for line in quotes_file:
-37233:             if line.startswith('#'):
+37483:         for line in quotes_file:
+37482:             if line.startswith('#'):
     9:                 continue
-37224:             parts = line.split(',')
-37224:             if len(parts) != 2:
+37473:             parts = line.split(',')
+37473:             if len(parts) != 2:
                        continue
-37224:             month, day, year = parts[0].split('/')
-37224:             date = '/'.join((year, month, day))
-37224:             dates.append(date)
-37224:             quotes.append(float(parts[-1]))
+37473:             month, day, year = parts[0].split('/')
+37473:             date = '/'.join((year, month, day))
+37473:             dates.append(date)
+37473:             quotes.append(float(parts[-1]))
     1:     return dates, quotes
        
-    1: _, quotes = read_quotes("djia.csv") # we use _ for a variable that we
-                                           # don't care to use
+    1: _, quotes = read_quotes("djia.csv")  # we use _ for a variable that we
+       # don't care to use
        
        
     1: spans_simple = simple_stock_span(quotes)
