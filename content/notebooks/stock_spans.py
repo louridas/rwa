@@ -1,6 +1,6 @@
 import time
 
-def simple_stock_span(quotes):
+def simple_stock_span(quotes: list[float]) -> list[int]:
     spans = []
     for i in range(len(quotes)):
         k = 1
@@ -13,7 +13,7 @@ def simple_stock_span(quotes):
         spans.append(k)
     return spans
 
-def stack_stock_span(quotes):
+def stack_stock_span(quotes: list[float]) -> list[int]:
     spans = [1]
     s = []
     s.append(0)
@@ -26,9 +26,8 @@ def stack_stock_span(quotes):
             spans.append(i - s[-1])
         s.append(i)
     return spans
-    
 
-def read_quotes(filename):
+def read_quotes(filename: str) -> tuple[list[str], list[float]]:
     dates = []
     quotes = []
     with open(filename) as quotes_file:
@@ -44,8 +43,8 @@ def read_quotes(filename):
             quotes.append(float(parts[-1]))
     return dates, quotes
 
-_, quotes = read_quotes("djia.csv") # we use _ for a variable that we
-                                    # don't care to use
+_, quotes = read_quotes("djia.csv")  # we use _ for a variable that we
+# don't care to use
 
 
 spans_simple = simple_stock_span(quotes)
