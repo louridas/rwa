@@ -295,7 +295,7 @@ Our crosswords may be a bit unconventional, if we allow each entry
 position to intersect with *two* others, so instead of squares we will
 have hexagons, as in the following:
 
-<img src="{attach}hex.png" width="300">
+<img src="{attach}hex.png" width="200">
 
 In this crossword we do not have only across and down entries, we have
 a dimension $x$, whose values are the numbers whose modulo with 3 is
