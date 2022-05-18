@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/highlight.css" />    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
+    <!-- Dynamically resize logo for mobile -->
+    <style type="text/css">
+      .logo-width {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15%;
+      }
+      /* Roughly the point when website is single column */
+      @media (max-width: 850px) {
+      .logo-width {
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 5%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 5%">
+        <div class="three columns">
+          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io/rwa">
+            <center>
+              <img alt="book cover" class="logo-width"
+                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
+            </center>
+          </a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
+          <div class="row" style="padding-bottom: 5%"> </div>
+        </div>
+        <div class="nine columns">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://louridas.github.io/rwa/assignments/regular-crosswords/" rel="bookmark"
+         title="Permalink to Regular Crosswords">Regular Crosswords</a></h2>
+ 
+  </header>
+  <div class="entry-content">
+    <p><img src="https://louridas.github.io/rwa/assignments/regular-crosswords/alex_bellos.png" width="700"></p>
+<table>
+<tr>
+    <td>L(OL)+</td>
+    <td>(HO)+</td>
+    <td>K(EK)*E</td>
+    <td>(HAR)+)+</td>
+</tr>
+<tr>
+    <td>H(EH)+</td>
+    <td>ROT?FL</td>
+    <td>TE(HE+)+</td>
+    <td>LAW*L</td>
+</tr>
+<tr>
+    <td>MWA(HA)+</td>
+    <td>HE(HE)+</td>
+    <td>LO+L</td>
+    <td>HAHA*</td>
+</tr>
+<tr>
+    <td>(AH)+A+</td>
+    <td>HA+</td>
+    <td>(JA)+</td>
+    <td>LULZ</td>
+</tr>
+</table>
+
+<p>In this assignment you will write a program to solve crosswords, like
+the crossword above, created by Alex Bellos <a href='#bellos:2020' id='ref-bellos:2020-1'>[1]</a>. But the
+crossword entries, given in the table, look strange. Indeed, our
+crosswords will be different from traditional crosswords in the entry
+definitions: they will be given with <em>regular expressions</em>, or
+<em>regexes</em>.</p>
+<h2>Regular Expressions</h2>
+<p>Regular expressions are sequences of characters that describe strings.
+We use regular expressions when we want to describe a string following
+a pattern, instead of a particular string.</p>
+<p>For example, if somebody asks you to locate a certain phone number in
+a file, you will try to match the given phone number with the contents
+of the file. But what if somebody asks to to find all phone numbers in
+a file? Similarly, if somebody asks you to find a particular e-mail
+address inside a file, you can simply search for it in the file. But
+what if you need to find all e-mail addresses that are present in the
+file? Or, you may want to find a word, taking into account different
+variants of it (or mispellings); say you want to find "neighbor" and
+"neighbour". </p>
+<p>With regular expressions we use characters taken from the alphabet
+and some other, special characters, in order to describe the strings
+that we looking for. So:</p>
+<ul>
+<li>
+<p>The special character <code>*</code> means that the preceding item may appear
+  zero or more times. The regular expression <code>ca*t</code> describes the
+  strings <code>ct</code>, <code>cat</code>, <code>caat</code>, etc.</p>
+</li>
+<li>
+<p>The special character <code>+</code> means that the preceding item may appear
+  one or more times. The regular expression <code>ca+t</code> describes the
+  strings <code>cat</code>, <code>caat</code>, <code>caaat</code>, etc.</p>
+</li>
+<li>
+<p>The special character <code>?</code> means that the preceding item may appear
+  zero or one time. The regular expression <code>ca?t</code> describes the
+  strings <code>ct</code> and <code>cat</code>.</p>
+</li>
+</ul>
+<p>An item can be a single character, as in our examples, or a group of
+characters enclosed in brackets. The regular expression <code>(ba)+boom</code>
+describes the strings <code>baboom</code>, <code>bababoom</code>, <code>babababoom</code>, etc.</p>
+<p>Knowing regular expressions, you can solve the crossword at the
+beginning of this assignment, expanding the regular expressions given
+under the crossword as needed to cover all squares.</p>
+<h2>Solution Method</h2>
+<p>To solve the crossword, we must use an algorithm that tries all
+possible regular expressions until all squares are filled. We cannot
+do that in random, as it is infeasible to try all possible strings
+that are produced by the regular expressions given. We must adopt a
+somewhat more systematic approach, like the one below.</p>
+<ol>
+  <li>While there are still entries that have not been filled:</li>
+  <ol start="2">
+    <li>Pick an entry that has not been filled.</li>
+    <li>Find the regular expressions that can fill the squares of the
+        selected entry.</li>
+    <li>For each one of these candidate regular expressions, fill the
+        squares of the selected entry and continue recursively from
+        step 1.
+    </li>
+  </ol>
+</ol>
+
+<h2>Requirements</h2>
+<p>You will write a program called <code>re_crossword.py</code>. You may use the
+libraries <a href="https://docs.python.org/3/library/string.html"><code>string</code></a>,
+<a href="https://docs.python.org/3/library/re.html"><code>re</code></a>,
+<a href="https://github.com/google/sre_yield"><code>sre_yield</code></a>,
+<a href="https://docs.python.org/3/library/csv.html"><code>csv</code></a>,
+<a href="https://docs.python.org/3/library/argparse.html"><code>argparse</code></a> or
+<a href="https://docs.python.org/3/library/sys.html"><code>sys</code></a> (in particular,
+the list <code>sys.argv</code>) to handle program arguments.</p>
+<p>To solve the crossword you must start with the regular expressions
+that you can use to generate the strings that will fill the entries.
+To generate the strings you will use the <code>sre_yield</code> library. This
+library provides the function  <code>sre_yield.AllStrings(pattern)</code> that
+generates all the strings that correspond to the regular expression 
+<code>pattern</code>. </p>
+<p>Your program will be called as follows:</p>
+<div class="highlight"><pre><span></span><code>python re_crossword.py crossword_file regular_expressions_file
+</code></pre></div>
+
+<p>The meaning of the program arguments is:</p>
+<ul>
+<li>
+<p><code>crossword_file</code>: the file that contains the crossword description. </p>
+</li>
+<li>
+<p><code>regular_expressions_file</code>: the file that contains the regular
+  expressions that you will use on the crossword. </p>
+</li>
+</ul>
+<p>The format of <code>crossword_file</code> will be CSV (Comma Separated Values).
+Each line will contain the following fields, which will be separated
+by commas:</p>
+<ol>
+<li>
+<p>Crossword entry.</p>
+</li>
+<li>
+<p>String representing the entry concents. Every unknown character is
+   represented with a period (<code>.</code>). </p>
+</li>
+<li>
+<p>One or more number pairs. The first number in a pair corresponds to
+   the entry intersecting the current entry. The second number in each
+   pair corresponds to the position of the intersecting character in
+   the intersecting entry. </p>
+</li>
+</ol>
+<p>For example, the first line of <a href="https://louridas.github.io/rwa/assignments/regular-crosswords/laughs.csv"><code>laughs.csv</code></a>
+describes entry 0 of the crossword:</p>
+<div class="highlight"><pre><span></span><code>0,......,15,0
+</code></pre></div>
+
+<p>The entry has six unknown characters (<code>......</code>) and intersects entry 15
+at position 0.</p>
+<p>The last but one line of the same file describes entry 13 of the
+crossword:</p>
+<div class="highlight"><pre><span></span><code>13,........,4,4,10,3
+</code></pre></div>
+
+<p>The entry has eight unknown characters (<code>........</code>) and intersects
+entry 4 at position 4 and entry 10 at position 3.</p>
+<p>The entries will be numbered sequentially. Horizontal entries will be
+even-numbered and vertical entries will be odd-numbered, as you can
+see in the crossword at the start. If a square is the initial
+character of two entries, in the displayed crossword the square will
+be labelled with both of them, as happens with the square labelled
+2/1.</p>
+<p>The program output will be a sequence of lines of the form:</p>
+<div class="highlight"><pre><span></span><code>X regex word
+</code></pre></div>
+
+<p>where <code>Χ</code> is the number of the entry, <code>regex</code> is the regular
+expression that fits, and <code>word</code> is the result of expanding the
+regular expression so that the entry is filled. The output lines will
+be sorted in ascending order by the entry number.</p>
+<h3>Implementation Notes</h3>
+<ul>
+<li>
+<p>In step 2 of the algorithm that you will develop you must choose an
+  entry that has not been filled yet. Choosing the right entry can
+  have a very large impact on the number of steps that will be carried
+  out and the overall speed of your program. A sensible strategy is to
+  choose the entry with the greatest ratio of known letters over the
+  entry lenght.</p>
+</li>
+<li>
+<p>The function <code>sre_yield.AllStrings(pattern)</code> can, depending on the
+  regular expression, return a very large number of strings. To keep
+  this number in check we can use the parameter <code>max_count</code>. For the
+  purposes of this assignment, <code>max_count=5</code>, that is,
+  <code>sre_yield.AllStrings(pattern, max_count=5)</code>, should be enough.</p>
+</li>
+<li>
+<p>If the regular expression contains the special character <code>.</code>, then
+  the <code>sre_yield.AllStrings(pattern)</code> functions will try all possible
+  characters at that position. In our crosswords, however, we will
+  only use upper case latin characters. To avoid trying characters
+  that will never occur in the crossword, you should use the parameter
+  <code>charset</code>, giving <code>charset=string.ascii_uppercase</code>. Together with
+  the previous point, the call should be
+  <code>sre_yield.AllStrings(pattern, max_count=5,
+  charset=string.ascii_uppercase)</code>.</p>
+</li>
+<li>
+<p>The <code>sre_yield.AllStrings(pattern)</code> function may return the same
+  string more than once, so you must ensure that you use each string
+  once only.</p>
+</li>
+</ul>
+<h3>Examples</h3>
+<p><em>Example 1</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python re_crossword.py laughs.csv laughs.txt
+</code></pre></div>
+
+<p>then the program will read the file
+<a href="https://louridas.github.io/rwa/assignments/regular-crosswords/laughs.csv"><code>laughs.csv</code></a>,
+which describes the crossword at the start of this assignment, and the
+file
+<a href="https://louridas.github.io/rwa/assignments/regular-crosswords/laughs.txt"><code>laughs.txt</code></a>,
+which describes the regular expressions. It will display the following
+results:</p>
+<div class="highlight"><pre><span></span><code>0 HAHA* HAHAAA
+1 HE(HE)+ HEHEHE
+2 (HO)+ HOHO
+3 HA+ HAA
+4 TE(HE+)+ TEHEHEHE
+5 LO+L LOOL
+6 L(OL)+ LOLOLOL
+7 LULZ LULZ
+8 K(EK)*E KEKE
+9 ROT?FL ROTFL
+10 MWA(HA)+ MWAHA
+11 LAW*L LAWL
+12 H(EH)+ HEH
+13 (HAR+)+ HARRHARR
+14 (JA)+ JAJAJAJAJA
+15 (AH)+A+ AHAHA
+</code></pre></div>
+
+<p><em>Example 2</em></p>
+<p><img src="https://louridas.github.io/rwa/assignments/regular-crosswords/films.png" width="700"></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python re_crossword.py films.csv films.txt
+</code></pre></div>
+
+<p>then the program will read the file 
+<a href="https://louridas.github.io/rwa/assignments/regular-crosswords/films.csv"><code>films.csv</code></a>, 
+which describes the crossword, and the file
+<a href="https://louridas.github.io/rwa/assignments/regular-crosswords/films.txt"><code>films.txt</code></a>,
+which describes the regular expressions, and will show the following output:</p>
+<div class="highlight"><pre><span></span><code>0 (M?ON)+CLE MONONCLE
+1 SIDEWAYS SIDEWAYS
+2 (((OU)|(GE))T)+ GETOUT
+3 MO+D([FL]O[RV])+E MOODFORLOVE
+4 (MAD?)+X MADMAX
+5 ([BM]A[NT])+ BATMAN
+6 S([TW]AR)+S STARWARS
+7 SH(IN)+G SHINING
+8 ([BL](AN?D))+S BADLANDS
+9 S((EN)|(EV))+ SEVEN
+10 S((EN)|(EV))+THSEAL SEVENTHSEAL
+11 CA((S|BL|NC)A)+ CASABLANCA
+12 ([CG]A[LR]I)+ CALIGARI
+13 ([KB](ILL))+ KILLBILL
+14 (SHA[WN])+K SHAWSHANK
+15 (K[IO]NG)+ KINGKONG
+16 (S?TOR?Y)+ TOYSTORY
+</code></pre></div>
+
+<p><em>Example 3</em></p>
+<p>Our crosswords may be a bit unconventional, if we allow each entry
+position to intersect with <em>two</em> others, so instead of squares we will
+have hexagons, as in the following:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/regular-crosswords/hex.png" width="700"></p>
+<p>In this crossword we do not have only across and down entries, we have
+a dimension <span class="math">\(x\)</span>, whose values are the numbers whose modulo with 3 is
+0, a dimension <span class="math">\(y\)</span>, whose values are the numbers whose modulo with 3
+is 1, and a dimension <span class="math">\(z\)</span>, whose modulo with 3 is 2. If that seems
+strange to you, note that this is the same rule we used previously,
+where the entries were numbered modulo 2.</p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python re_crossword.py hex.csv hex.txt
+</code></pre></div>
+
+<p>then the program will read the crossword description file 
+<a href="https://louridas.github.io/rwa/assignments/regular-crosswords/hex.csv"><code>hex.csv</code></a>
+and the regular expressions file
+<a href="https://louridas.github.io/rwa/assignments/regular-crosswords/hex.txt"><code>hex.txt</code></a>
+and should produce the following output:</p>
+<div class="highlight"><pre><span></span><code>0 HE|HA|OH HE
+1 NP|HX|SP HX
+2 FN|EG|GN EG
+3 .?[SAX][GAS].? XAG
+4 .?[FAT][HOT].? EAO
+5 .?[AND][NOT].? HAN
+6 NO|ON|AT ON
+7 XO|GN|PO GN
+8 RO|GN|XO XO
+</code></pre></div>
+
+<h2>Notes</h2>
+<p>It is possible that more than one solution exists for a given
+crossword; if your program produces a different answer than the ones
+above but still fills all the entries, it is of course correct. </p>
+<p>Regular expressions were introduced in the 1950s by the American
+mathematician Stephen Cole Kleene <a href='#kleene:1951' id='ref-kleene:1951-1'>[3]</a>. Their widespread
+adoption in Computer Science began in 1968 when they were used for
+searching in a text editor <a href='#thompson:1968' id='ref-thompson:1968-1'>[4]</a> and lexical analysis in a
+compiler <a href='#johnson:1968' id='ref-johnson:1968-1'>[2]</a>. Regular expressions then became part of many
+tools available in the Unix operating system.</p>
+<p>Regexes are a staple of data processing; there is plenty of material
+available online to learn how to use them and the <a href="https://en.wikipedia.org/wiki/Regular_expression">Wikipedia Regular
+expression article</a>
+is a good place to start. It is extremely unlikely that you will not
+benefit from getting acquainted with them, even if you only have to
+process data sporadically.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script><hr>
+<h3>Bibliography</h3>
+<div class='bibliography'><ol><li id='bellos:2020'>Alex Bellos.
+<em>The Language Lover's PuzzleBook: Lexical Perplexities and Cracking Conundrums from Across the Globe</em>.
+Guardian Faber Publishing, 2020. <a class="cite-backref" href="#ref-bellos:2020-1" title="Jump back to reference 1">↩</a></li><li id='johnson:1968'>Walter&nbsp;L. Johnson, James&nbsp;H. Porter, Stephanie&nbsp;I. Ackley, and Douglas&nbsp;T. Ross.
+Automatic generation of efficient lexical processors using finite state techniques.
+<em>Communications of the ACM</em>, 11(12):805–813, December 1968.
+URL: <a href="https://doi.org/10.1145/364175.364185">https://doi.org/10.1145/364175.364185</a>, <a href="https://doi.org/10.1145/364175.364185">doi:10.1145/364175.364185</a>. <a class="cite-backref" href="#ref-johnson:1968-1" title="Jump back to reference 1">↩</a></li><li id='kleene:1951'>S.&nbsp;C. Kleene.
+Representation of events in nerve nets and finite automata.
+U.S. Air Force Project RAND Research Memorandum RM-704, The RAND Corporation, Santa Monica, CA, 1951. <a class="cite-backref" href="#ref-kleene:1951-1" title="Jump back to reference 1">↩</a></li><li id='thompson:1968'>Ken Thompson.
+Programming techniques: regular expression search algorithm.
+<em>Communications of the ACM</em>, 11(6):419–422, June 1968.
+URL: <a href="https://doi.org/10.1145/363347.363387">https://doi.org/10.1145/363347.363387</a>, <a href="https://doi.org/10.1145/363347.363387">doi:10.1145/363347.363387</a>. <a class="cite-backref" href="#ref-thompson:1968-1" title="Jump back to reference 1">↩</a></li></ol></div>
+  </div><!-- /.entry-content -->
+</section>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 25%"> </div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-103703286-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
