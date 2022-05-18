@@ -5,7 +5,7 @@ Date: 18 May 2022
 Template: assignment
 publications_src: content/assignments/regular-crosswords/regular_crosswords.bib
 
-<img src="{attach}alex_bellos.png" width="700">
+<img src="{attach}alex_bellos.png" width="600">
 
 <table>
 <tr>
@@ -255,7 +255,7 @@ results:
 
 _Example 2_
 
-<img src="{attach}films.png" width="700">
+<img src="{attach}films.png" width="600">
 
 If you invoke the program with:
 
@@ -295,7 +295,7 @@ Our crosswords may be a bit unconventional, if we allow each entry
 position to intersect with *two* others, so instead of squares we will
 have hexagons, as in the following:
 
-<img src="{attach}hex.png" width="700">
+<img src="{attach}hex.png" width="300">
 
 In this crossword we do not have only across and down entries, we have
 a dimension $x$, whose values are the numbers whose modulo with 3 is
