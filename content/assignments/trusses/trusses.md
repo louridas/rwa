@@ -24,7 +24,7 @@ come from the
 
 
 A k-truss in a graph is a subset of the graph such that every edge in
-the subject is supported by at least $k - 2$ other edges that form
+the subset is supported by at least $k - 2$ other edges that form
 triangles with that particular edge. In other words, every edge in the
 truss must be part of $k - 2$ triangles made up of nodes that are part
 of the truss. For example, in the following figures you can see two
