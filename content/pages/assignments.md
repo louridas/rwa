@@ -32,8 +32,10 @@ system](https://en.wikipedia.org/wiki/Chess_piece_relative_value),
 where a bishop assignment would be *on average* three times as
 difficult as a pawn, a rook five times, and a queen nine times.
 
-* [Regular Crosswords]({filename}../assignments/regular-crosswords/regular_crosswords.md)
+* [Covering Points]({filename}../assignments/covering-points/covering_points.md)
   &#9815;
+* [Regular Crosswords]({filename}../assignments/regular-crosswords/regular_crosswords.md)
+  &#9817;
 * [Social Distancing]({filename}../assignments/social-distancing/social_distancing.md)
   &#9814;
 * [Network
