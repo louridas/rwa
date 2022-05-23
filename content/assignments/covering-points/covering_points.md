@@ -229,7 +229,7 @@ python points_cover.py -f -g example_1.txt
 ```
 
 then the program will read the file 
-[`example_2.txt`](https://louridas.github.io/rwa/assignments/covering-points/example_2.txt)
+[`example_1.txt`](https://louridas.github.io/rwa/assignments/covering-points/example_1.txt)
 and will display the following results:
 
 ```text
