@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/highlight.css" />    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
+    <!-- Dynamically resize logo for mobile -->
+    <style type="text/css">
+      .logo-width {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15%;
+      }
+      /* Roughly the point when website is single column */
+      @media (max-width: 850px) {
+      .logo-width {
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 5%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 5%">
+        <div class="three columns">
+          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io/rwa">
+            <center>
+              <img alt="book cover" class="logo-width"
+                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
+            </center>
+          </a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
+          <div class="row" style="padding-bottom: 5%"> </div>
+        </div>
+        <div class="nine columns">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://louridas.github.io/rwa/assignments/covering-points/" rel="bookmark"
+         title="Permalink to Covering Points">Covering Points</a></h2>
+ 
+  </header>
+  <div class="entry-content">
+    <p>Imagine that you have a set of points on a plane and you want to cover
+them with a set of straight lines. Can you find the mininum number of
+straight lines passing through the points so that you cover all of
+them?</p>
+<p>This is the so-called <em>hitting objects</em>, or <em>point cover</em>, or <em>line
+cover</em>, or <em>point line cover</em> problem. The first name comes from the
+analogy of a set of objects that we want to hit with the minimum
+number of shots. Of course, the problem is more general than just an
+application of ballistics or optimizing a bombing campaign. You may
+need to find the minimum number of straight segments that lie on a
+number of facilities on the plain, such as irrigation channels
+connecting reservoirs. Be it as it may, this assignment is titled
+"Covering Points", instead of "Hitting Objects", to defuse any
+trigger-happy connotation.</p>
+<p>For example, see the following figure, which shows 18 points. </p>
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_1.png" width="700"/></p>
+<p>We can cover these points using five lines, like this:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_2.png" width="700"/></p>
+<p>Alternatively, if we have the additional requirement that the lines
+should be horizontal or vertical, then the optimum solution uses six
+lines:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_3.png" width="700"/></p>
+<p>The question is, how do we go about finding these solutions?</p>
+<h2>Solution Method</h2>
+<p>Selecting the minimum number of lines passing through a set of points
+is a geometric version of the more general <em>set covering problem</em>.
+This is defined as follows: If we have a set of elements, which we
+call <em>universe</em>, <span class="math">\(U = \{1, 2, \ldots n\}\)</span>, and a set <span class="math">\(S\)</span> of <span class="math">\(m\)</span> sets
+whose union equals the universe, find the smallest subset of <span class="math">\(S\)</span> whose
+union equals the universe. The set covering problem is equivalent to
+the points covering problem if we take <span class="math">\(U\)</span> to be the set of points
+that we want to cover and <span class="math">\(S\)</span> the set of lines passing through the
+points (each line defined by the points it goes through).</p>
+<p>For example, let's have as universe <span class="math">\(U = \{1, 2, 3, 4, 5\}\)</span> and the
+set of sets <span class="math">\(S = \{\{1\}, \{1, 2\}, \{1, 2, 3\}, \{2, 4\}, \{3, 4\},
+\{4, 5\}\}\)</span>. We can see that the union of all members of <span class="math">\(S\)</span> gives us
+<span class="math">\(U\)</span>, but we can also cover <span class="math">\(U\)</span> using the <span class="math">\(\{\{1, 2, 3\}, \{4, 5\}\}\)</span>
+subset of <span class="math">\(S\)</span>.</p>
+<p>Unfortunately, the set covering problem cannot be solved in polynomial
+time. Indeed, take this approach:</p>
+<ul>
+<li>For every possible subset of <span class="math">\(S\)</span>:<ul>
+<li>Check if it covers <span class="math">\(U\)</span>.</li>
+<li>If yes, and it is smaller than the best candidate solution that we
+  have found so far, note it as the best candidate solution.</li>
+</ul>
+</li>
+</ul>
+<p>When these steps finish, the final candidate solution will also be the
+best. The problem lies in the phrase "for every possible subset of
+<span class="math">\(S\)</span>". If a set contains <span class="math">\(m\)</span> elements, the number of possible subsets
+is <span class="math">\(2^m\)</span>; therefore, unless <span class="math">\(m\)</span> is small, there is no way we can find
+the solution in a reasonable amount of time. </p>
+<p>Of course, if you think about it, you do not need to check every
+possible subset of <span class="math">\(S\)</span>. As we want the minimum number of elements, or
+to be more specific, lines, we can improve our approach:</p>
+<ul>
+<li>
+<p>Enumerate the subsets of <span class="math">\(S\)</span> in increasing size (number of lines):</p>
+</li>
+<li>
+<p>Check if the current subset covers <span class="math">\(U\)</span>.</p>
+</li>
+<li>
+<p>If yes, that is the solution we are looking for and we can stop.</p>
+</li>
+</ul>
+<p>This will give us the best solution. If we go on without stopping, we
+may find another solution with the same number of lines, which won't
+improve on what we have already found, or with a larger number of
+lines, which we don't want.</p>
+<p>The problem remains that even this improved approach will not
+necessarily run in a reasonable amount of time. The points that we
+want to cover may be placed in way that only pairs of them are
+colinear. Then, if we have <span class="math">\(n\)</span> points, we need <span class="math">\(n/2\)</span> lines to cover
+them, but we don't know that beforehand. We will start checking with
+the smallest number of lines and then go on increasing the number of
+lines until we get to the required <span class="math">\(n/2\)</span> lines:</p>
+<ul>
+<li>
+<p>Subsets with zero lines (the empty subset).</p>
+</li>
+<li>
+<p>Subsets containing only one line (these will cover only two points
+  each).</p>
+</li>
+<li>
+<p>Subsets containing two lines (these will cover only four points
+  each).</p>
+</li>
+<li>
+<p>And so and so forth, until we arrive at a subset containing <span class="math">\(n/2\)</span>
+  lines. </p>
+</li>
+</ul>
+<p>So, in the end, we will still need to check an exponential number of
+subsets, of the order of <span class="math">\(2^{n/2}\)</span>. Now, you may observe that we don't
+need to check subsets with zero lines or one line, but that is just a
+drop in the ocean of possible solutions that we have to check. If you
+want to see an example of points that are only pairwise colinear,
+check the <a href="https://en.wikipedia.org/wiki/No-three-in-line_problem">No-three-in-line problem</a>.</p>
+<p>Alternatively, we can use a different approach, which will complete
+fast, but it is not guaranteed to come up with the best solution:</p>
+<ul>
+<li>
+<p>Start with a new, empty solution.</p>
+</li>
+<li>
+<p>While not all elements of <span class="math">\(U\)</span> have been covered:</p>
+<ul>
+<li>Find the member of <span class="math">\(S\)</span> that covers the greatest number of
+  uncovered elements and add them to the solution.</li>
+</ul>
+</li>
+</ul>
+<p>This approach is a <em>greedy algorithm</em>, because at each step in the
+iteration it proceeds by opting for the maximum immediate payoff (the
+maximum number of elements that can be covered at that point). But
+this does not ensure that at the end we will have the best solution
+overall. As we know, delayed gratification has something going for it,
+and a greedy algorithm may have to pay a price in the long run. If we
+return to the example with the points and the lines that run
+horizontally or vertically, a greedy algorithm could finish with the
+following solution, instead of the best one:</p>
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_4.png" width="700"/></p>
+<p>How can this happen? The greedy algorithm may select the vertical line
+that cuts the horizontal axis at 11, then the vertical line that cuts
+the horizontal axis at 10, and so on, adding vertical lines to the
+solution until it reaches 7 on the horizontal axis. Then it will have
+to cover the remaining points with abscissae 1 to 6 by adding
+horizontal lines to the solution.</p>
+<h2>Requirements</h2>
+<p>You will write a program called <code>points_cover.py</code>. You may use the
+following libraries:
+<a href="https://docs.python.org/3/library/itertools.html"><code>itertools</code></a>,
+<a href="https://docs.python.org/3/library/argparse.html"><code>argparse</code></a> or
+<a href="https://docs.python.org/3/library/sys.html"><code>sys</code></a> (in particular,
+the list <code>sys.argv</code>) to handle program arguments.</p>
+<p>Your program will be called as follows:</p>
+<div class="highlight"><pre><span></span><code>python points_cover.py <span class="o">[</span>-f<span class="o">]</span> <span class="o">[</span>-g<span class="o">]</span> points_file
+</code></pre></div>
+
+<p>The meaning of the program arguments is:</p>
+<ul>
+<li>
+<p>The argument<code>-f</code> (full exploration), if given, instructs the program
+  to find the best solution, examining as many subsets as needed. If
+  the problem is small, that is, there are few lines, the program
+  should finish relatively fast. If the problem is not small then the
+  program may take, literally, ages to finish, but that is not your
+  problem. If the argument <code>-f</code> is not given, the program will execute
+  the greedy algorithm.</p>
+</li>
+<li>
+<p>The argument <code>-g</code> (grid), if given, instructs the program to find
+  only lines that are horizontal or vertical. If it is not given, the
+  program may use any lines that pass through the points.</p>
+</li>
+<li>
+<p>The argument <code>points_file</code> is the name of the file that contains the
+  points we want to cover. The file consists of lines of the form:<br/>
+   <code>text
+    x y</code>
+    <br/>
+  where <code>x</code> is the <span class="math">\(x\)</span>-axis coordinate and <code>y</code> is the <span class="math">\(y\)</span>-axis
+  coordinate of each point.</p>
+</li>
+</ul>
+<p>If we specify <code>-g</code> and it is not possible to cover all points with
+lines passing through at least two of them, you may use horizontal
+lines that pass through the points that are not colinear with another
+point in the horizontal or vertical direction. So, if there is a point
+<span class="math">\((x, y)\)</span> and there is no point <span class="math">\((x', y)\)</span> or <span class="math">\((x, y')\)</span>, you can use the
+line passing through <span class="math">\(((x, y), (x + 1, y))\)</span>.</p>
+<p>The lines that will make up your solutions must appear in descending
+order based on the number of points they cover. In other words, lines
+covering more points will precede lines covering fewer points. For
+each line, the point it covers will appear in ascending order, based
+on their coordinates. Lines covering the same number of points will
+appear in ascending order, depending on the coordinates of their
+points.</p>
+<p>Depending on your implementation, you may need to sort the input
+points you read from <code>points_file</code>.</p>
+<h3>Examples</h3>
+<p><em>Example 1</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python points_cover.py example_1.txt
+</code></pre></div>
+
+<p>then the program will read the file 
+<a href="https://louridas.github.io/rwa/assignments/covering-points/example_1.txt"><code>example_1.txt</code></a>
+and will display the following results:</p>
+<div class="highlight"><pre><span></span><code>(1, 1) (2, 2) (3, 3) (4, 4) (5, 5) (6, 6)
+(7, 1) (8, 3) (9, 5)
+(7, 2) (8, 4) (9, 6)
+(10, 1) (10, 2) (10, 3)
+(11, 4) (11, 5) (11, 6)
+</code></pre></div>
+
+<p>This is the first solution we saw for covering the 18 points given in
+the beginning of this assignment.</p>
+<p><em>Example 2</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python points_cover.py -f -g example_1.txt
+</code></pre></div>
+
+<p>then the program will read the file 
+<a href="https://louridas.github.io/rwa/assignments/covering-points/example_2.txt"><code>example_2.txt</code></a>
+and will display the following results:</p>
+<div class="highlight"><pre><span></span><code>(1, 1) (7, 1) (10, 1)
+(2, 2) (7, 2) (10, 2)
+(3, 3) (8, 3) (10, 3)
+(4, 4) (8, 4) (11, 4)
+(5, 5) (9, 5) (11, 5)
+(6, 6) (9, 6) (11, 6)
+</code></pre></div>
+
+<p>This is the second solution we saw for covering the 18 points given in
+the beginning of this assignment.</p>
+<p><em>Example 3</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python points_cover.py -g example_2.txt
+</code></pre></div>
+
+<p>then the program will read the file 
+<a href="https://louridas.github.io/rwa/assignments/covering-points/example_2.txt"><code>example_2.txt</code></a>
+and will display the following results:</p>
+<div class="highlight"><pre><span></span><code>(10, 1) (10, 2) (10, 3)
+(11, 4) (11, 5) (11, 6)
+(12, 7) (12, 8) (12, 9)
+(1, 1) (10, 1)
+(2, 2) (10, 2)
+(3, 3) (10, 3)
+(4, 4) (11, 4)
+(5, 5) (11, 5)
+(6, 6) (11, 6)
+(7, 7) (12, 7)
+(8, 8) (12, 8)
+(9, 9) (12, 9)
+</code></pre></div>
+
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_5.png" width="700"/></p>
+<p><em>Example 4</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python points_cover.py -f -g example_2.txt
+</code></pre></div>
+
+<p>then the program will read the file 
+<a href="https://louridas.github.io/rwa/assignments/covering-points/example_2.txt"><code>example_2.txt</code></a>
+and will display the following results:</p>
+<div class="highlight"><pre><span></span><code>(1, 1) (10, 1)
+(2, 2) (10, 2)
+(3, 3) (10, 3)
+(4, 4) (11, 4)
+(5, 5) (11, 5)
+(6, 6) (11, 6)
+(7, 7) (12, 7)
+(8, 8) (12, 8)
+(9, 9) (12, 9)
+</code></pre></div>
+
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_6.png" width="700"/></p>
+<p><em>Example 5</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python points_cover.py -g example_3.txt
+</code></pre></div>
+
+<p>then the program will read the file
+<a href="https://louridas.github.io/rwa/assignments/covering-points/example_3.txt"><code>example_3.txt</code></a>
+and will display the following results:</p>
+<div class="highlight"><pre><span></span><code>(10, 1) (10, 2) (10, 3)
+(11, 4) (11, 5) (11, 6)
+(1, 1) (10, 1)
+(2, 2) (10, 2)
+(3, 3) (10, 3)
+(4, 4) (11, 4)
+(5, 5) (11, 5)
+(6, 6) (11, 6)
+(7, 7) (8, 7)
+(8, 8) (9, 8)
+(9, 9) (10, 9)
+</code></pre></div>
+
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_7.png" width="700"/></p>
+<p><em>Example 6</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python points_cover.py -f -g example_3.txt
+</code></pre></div>
+
+<p>then the program will read the file
+<a href="https://louridas.github.io/rwa/assignments/covering-points/example_3.txt"><code>example_3.txt</code></a>
+and will display the following results:</p>
+<div class="highlight"><pre><span></span><code>(1, 1) (10, 1)
+(2, 2) (10, 2)
+(3, 3) (10, 3)
+(4, 4) (11, 4)
+(5, 5) (11, 5)
+(6, 6) (11, 6)
+(7, 7) (8, 7)
+(8, 8) (9, 8)
+(9, 9) (10, 9)
+</code></pre></div>
+
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_8.png" width="700"/></p>
+<h2>Notes</h2>
+<p>For the formulation of the problem as one of locating linear
+facilities on the plane see <a href='#megiddo:1981' id='ref-megiddo:1981-1'>[4]</a>; for its hitting objects
+incarnation, see <a href='#hassin:1991' id='ref-hassin:1991-1'>[1]</a>. A more generic treatment is to view
+it as covering things with things <a href='#langerman:2005' id='ref-langerman:2005-1'>[3]</a>. To be precise,
+according to <a href='#megiddo:1981' id='ref-megiddo:1981-2'>[4]</a> the point covering problem is the one we
+treated here; the line covering problem consists of starting with a
+set of straight lines and finind a minimum set of points such as each
+line contains at least one of them. The two problems are closely
+related and line covering can be reduced, i.e., recast, as point
+covering. For some more recent results, see <a href='#kratsch:2016' id='ref-kratsch:2016-1'>[2]</a>.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script><hr>
+<h3>Bibliography</h3>
+<div class='bibliography'><ol><li id='hassin:1991'>Refael Hassin and Nimrod Megiddo.
+Approximation algorithms for hitting objects with straight lines.
+<em>Discrete Applied Mathematics</em>, 30(1):29–42, January 1991.
+URL: <a href="https://doi.org/10.1016/0166-218X(91)90011-K">https://doi.org/10.1016/0166-218X(91)90011-K</a>, <a href="https://doi.org/10.1016/0166-218X(91)90011-K">doi:10.1016/0166-218X(91)90011-K</a>. <a class="cite-backref" href="#ref-hassin:1991-1" title="Jump back to reference 1">↩</a></li><li id='kratsch:2016'>Stefan Kratsch, Geevarghese Philip, and Saurabh Ray.
+Point line cover: the easy kernel is essentially tight.
+<em>ACM Transactions on Algorithms</em>, April 2016.
+URL: <a href="https://doi.org/10.1145/2832912">https://doi.org/10.1145/2832912</a>, <a href="https://doi.org/10.1145/2832912">doi:10.1145/2832912</a>. <a class="cite-backref" href="#ref-kratsch:2016-1" title="Jump back to reference 1">↩</a></li><li id='langerman:2005'>Stefan Langerman and Pat Morin.
+Covering things with things.
+<em>Discrete Computational Geometry</em>, 33(4):717–729, April 2005. <a class="cite-backref" href="#ref-langerman:2005-1" title="Jump back to reference 1">↩</a></li><li id='megiddo:1981'>Nimrod Megiddo and Arie Tamir.
+On the complexity of locating linear facilities in the plane.
+<em>Operations Research Letters</em>, 194–197 1981.<a class="cite-backref" href="#ref-megiddo:1981-1" title="Jump back to reference 1"> <sup>1</sup> </a><a class="cite-backref" href="#ref-megiddo:1981-2" title="Jump back to reference 2"><sup>2</sup> </a></li></ol></div>
+  </div><!-- /.entry-content -->
+</section>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 25%"> </div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-103703286-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
