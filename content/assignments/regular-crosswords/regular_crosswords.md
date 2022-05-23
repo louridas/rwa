@@ -5,7 +5,7 @@ Date: 18 May 2022
 Template: assignment
 publications_src: content/assignments/regular-crosswords/regular_crosswords.bib
 
-<img src="{attach}alex_bellos.png" width="600">
+<img src="{attach}alex_bellos.png" width="600"/>
 
 <table>
 <tr>
@@ -106,7 +106,7 @@ somewhat more systematic approach, like the one below.
 ## Requirements
 
 You will write a program called `re_crossword.py`. You may use the
-libraries [`string`](https://docs.python.org/3/library/string.html),
+libraries: [`string`](https://docs.python.org/3/library/string.html),
 [`re`](https://docs.python.org/3/library/re.html),
 [`sre_yield`](https://github.com/google/sre_yield),
 [`csv`](https://docs.python.org/3/library/csv.html),
@@ -255,7 +255,7 @@ results:
 
 _Example 2_
 
-<img src="{attach}films.png" width="600">
+<img src="{attach}films.png" width="600"/>
 
 If you invoke the program with:
 
@@ -295,7 +295,7 @@ Our crosswords may be a bit unconventional, if we allow each entry
 position to intersect with *two* others, so instead of squares we will
 have hexagons, as in the following:
 
-<img src="{attach}hex.png" width="200">
+<img src="{attach}hex.png" width="200"/>
 
 In this crossword we do not have only across and down entries, we have
 a dimension $x$, whose values are the numbers whose modulo with 3 is
