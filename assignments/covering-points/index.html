@@ -6,18 +6,18 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/theme/css/normalize.css" />
+          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/theme/css/skeleton.css" />
+          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/theme/css/highlight.css" />    
+          href="https://louridas.github.io/rwa/theme/css/highlight.css" />    
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
           rel="stylesheet">
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/theme/css/rwa.css" />
+          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
     <!-- Dynamically resize logo for mobile -->
     <style type="text/css">
       .logo-width {
@@ -39,30 +39,30 @@
     <div class="container">
       <div class="row" style="margin-top: 5%">
         <div class="three columns">
-          <h1><a href="https://louridas.github.io">Real World Algorithms</a></h1>
-          <a href="https://louridas.github.io">
+          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io/rwa">
             <center>
               <img alt="book cover" class="logo-width"
-                   src="https://louridas.github.io/theme/images/rwa.jpg">
+                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
             </center>
           </a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/pages/book-chapters.html">Chapters</a>
+             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/pages/assignments.html">Assignments</a>
+             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/pages/translations.html">Translations</a>
+             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/pages/slides.html">Slides</a> 
+             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/pages/errata.html">Errata</a>          
+             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
           <div class="row" style="padding-bottom: 5%"> </div>
         </div>
         <div class="nine columns">
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="https://louridas.github.io/assignments/covering-points/" rel="bookmark"
+      <a href="https://louridas.github.io/rwa/assignments/covering-points/" rel="bookmark"
          title="Permalink to Covering Points">Covering Points</a></h2>
  
   </header>
@@ -82,13 +82,13 @@ connecting reservoirs. Be it as it may, this assignment is titled
 "Covering Points", instead of "Hitting Objects", to defuse any
 trigger-happy connotation.</p>
 <p>For example, see the following figure, which shows 18 points. </p>
-<p><img src="https://louridas.github.io/assignments/covering-points/hitting_objects_1.png" width="700"/></p>
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_1.png" width="700"/></p>
 <p>We can cover these points using five lines, like this:</p>
-<p><img src="https://louridas.github.io/assignments/covering-points/hitting_objects_2.png" width="700"/></p>
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_2.png" width="700"/></p>
 <p>Alternatively, if we have the additional requirement that the lines
 should be horizontal or vertical, then the optimum solution uses six
 lines:</p>
-<p><img src="https://louridas.github.io/assignments/covering-points/hitting_objects_3.png" width="700"/></p>
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_3.png" width="700"/></p>
 <p>The question is, how do we go about finding these solutions?</p>
 <h2>Solution Method</h2>
 <p>Selecting the minimum number of lines passing through a set of points
@@ -191,7 +191,7 @@ and a greedy algorithm may have to pay a price in the long run. If we
 return to the example with the points and the lines that run
 horizontally or vertically, a greedy algorithm could finish with the
 following solution, instead of the best one:</p>
-<p><img src="https://louridas.github.io/assignments/covering-points/hitting_objects_4.png" width="700"/></p>
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_4.png" width="700"/></p>
 <p>How can this happen? The greedy algorithm may select the vertical line
 that cuts the horizontal axis at 11, then the vertical line that cuts
 the horizontal axis at 10, and so on, adding vertical lines to the
@@ -308,7 +308,7 @@ and will display the following results:</p>
 (9, 9) (12, 9)
 </code></pre></div>
 
-<p><img src="https://louridas.github.io/assignments/covering-points/hitting_objects_5.png" width="700"/></p>
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_5.png" width="700"/></p>
 <p><em>Example 4</em></p>
 <p>If you invoke the program with:</p>
 <div class="highlight"><pre><span></span><code>python points_cover.py -f -g example_2.txt
@@ -328,7 +328,7 @@ and will display the following results:</p>
 (9, 9) (12, 9)
 </code></pre></div>
 
-<p><img src="https://louridas.github.io/assignments/covering-points/hitting_objects_6.png" width="700"/></p>
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_6.png" width="700"/></p>
 <p><em>Example 5</em></p>
 <p>If you invoke the program with:</p>
 <div class="highlight"><pre><span></span><code>python points_cover.py -g example_3.txt
@@ -350,7 +350,7 @@ and will display the following results:</p>
 (9, 9) (10, 9)
 </code></pre></div>
 
-<p><img src="https://louridas.github.io/assignments/covering-points/hitting_objects_7.png" width="700"/></p>
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_7.png" width="700"/></p>
 <p><em>Example 6</em></p>
 <p>If you invoke the program with:</p>
 <div class="highlight"><pre><span></span><code>python points_cover.py -f -g example_3.txt
@@ -370,7 +370,7 @@ and will display the following results:</p>
 (9, 9) (10, 9)
 </code></pre></div>
 
-<p><img src="https://louridas.github.io/assignments/covering-points/hitting_objects_8.png" width="700"/></p>
+<p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_8.png" width="700"/></p>
 <h2>Notes</h2>
 <p>For the formulation of the problem as one of locating linear
 facilities on the plane see <a href='#megiddo:1981' id='ref-megiddo:1981-1'>[4]</a>; for its hitting objects
