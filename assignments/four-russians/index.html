@@ -6,18 +6,18 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
+          href="https://louridas.github.io/theme/css/normalize.css" />
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />
+          href="https://louridas.github.io/theme/css/skeleton.css" />
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/rwa/theme/css/highlight.css" />    
+          href="https://louridas.github.io/theme/css/highlight.css" />    
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
           rel="stylesheet">
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
+          href="https://louridas.github.io/theme/css/rwa.css" />
     <!-- Dynamically resize logo for mobile -->
     <style type="text/css">
       .logo-width {
@@ -39,30 +39,30 @@
     <div class="container">
       <div class="row" style="margin-top: 5%">
         <div class="three columns">
-          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
-          <a href="https://louridas.github.io/rwa">
+          <h1><a href="https://louridas.github.io">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io">
             <center>
               <img alt="book cover" class="logo-width"
-                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
+                   src="https://louridas.github.io/theme/images/rwa.jpg">
             </center>
           </a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
+             href="https://louridas.github.io/pages/book-chapters.html">Chapters</a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
+             href="https://louridas.github.io/pages/assignments.html">Assignments</a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
+             href="https://louridas.github.io/pages/translations.html">Translations</a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
+             href="https://louridas.github.io/pages/slides.html">Slides</a> 
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
+             href="https://louridas.github.io/pages/errata.html">Errata</a>          
           <div class="row" style="padding-bottom: 5%"> </div>
         </div>
         <div class="nine columns">
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="https://louridas.github.io/rwa/assignments/four-russians/" rel="bookmark"
+      <a href="https://louridas.github.io/assignments/four-russians/" rel="bookmark"
          title="Permalink to Four Russians">Four Russians</a></h2>
  
   </header>
@@ -152,8 +152,8 @@ of <a href='#aho:1974' id='ref-aho:1974-1'>[1]</a>. In what follows, we will ass
 <span class="math">\(A\)</span> and <span class="math">\(B\)</span> have dimensions <span class="math">\(n \times n\)</span>.</p>
 <p>We start by partitioning the two matrices in <span class="math">\(\lceil{n / \lg n}\rceil\)</span>
 pieces, the <span class="math">\(A\)</span> matrix column-wise and the <span class="math">\(B\)</span> matrix row-wise:</p>
-<p><img src="https://louridas.github.io/rwa/assignments/four-russians/matrix_partition_h.png" width="300"/>
-<img src="https://louridas.github.io/rwa/assignments/four-russians/matrix_partition_v.png" width="300"/></p>
+<p><img src="https://louridas.github.io/assignments/four-russians/matrix_partition_h.png" width="300"/>
+<img src="https://louridas.github.io/assignments/four-russians/matrix_partition_v.png" width="300"/></p>
 <p>That means that each piece of <span class="math">\(A\)</span> will have dimensions <span class="math">\(n \times
 \lfloor{\lg n}\rfloor\)</span> and each piece of <span class="math">\(B\)</span> will have dimensions
 <span class="math">\(\lfloor{\lg n}\rfloor \times n\)</span>. If <span class="math">\(n\)</span> is not divided by <span class="math">\(\lg n\)</span>, we
@@ -326,7 +326,7 @@ of the products <span class="math">\(A_i B_i\)</span> is the boolean sum of some
 can pre-compute all possible boolean sums of rows of <span class="math">\(B_i\)</span> and use
 each time the sum indicated by the corresponding row of <span class="math">\(A_i\)</span>. In this
 way we arrive at the following algorithm:</p>
-<p><img src="https://louridas.github.io/rwa/assignments/four-russians/four_russians_algorithm.png" width="600"></p>
+<p><img src="https://louridas.github.io/assignments/four-russians/four_russians_algorithm.png" width="600"></p>
 <p>In lines 1&ndash;3 we calculate <span class="math">\(\lfloor{\lg n}\rfloor\)</span> and we
 initialize matrix <span class="math">\(C\)</span>, which will contain the result of the
 multiplication. The function <span class="math">\(\texttt{InitΤοZero(}M\texttt{)}\)</span>
@@ -356,9 +356,9 @@ graph <span class="math">\(G* = (V, E*)\)</span> that has the same vertices as <
 for any pair of nodes that are connected in <span class="math">\(G\)</span> (and not just the
 direct neighbors). The graph <span class="math">\(G*\)</span> is called the <em>transitive closure</em>
 of <span class="math">\(G\)</span>. Suppose we have the graph:</p>
-<p><img src="https://louridas.github.io/rwa/assignments/four-russians/graph.png" width="600"/></p>
+<p><img src="https://louridas.github.io/assignments/four-russians/graph.png" width="600"/></p>
 <p>Then, the transitive closure of <span class="math">\(G\)</span> is the graph <span class="math">\(G*\)</span>:</p>
-<p><img src="https://louridas.github.io/rwa/assignments/four-russians/graph_transitive_closure.png" width="600"/></p>
+<p><img src="https://louridas.github.io/assignments/four-russians/graph_transitive_closure.png" width="600"/></p>
 <p>To calculate the transitive closure of a graph we can use boolean
 matrix multiplication. If <span class="math">\(A\)</span> is the adjacency matrix of graph <span class="math">\(G\)</span>,
 then <span class="math">\(A^2 = A A\)</span> is the adjacency matrix of the graph that we get from
@@ -386,8 +386,8 @@ be called in two ways.</p>
 <p>where <code>&lt;input_file_1&gt;</code> and <code>&lt;input_file_2&gt;</code> are the names of two files
 containing boolean matrices, the program will output their boolean
 product. For example, if the user specifies files
-<a href="https://louridas.github.io/rwa/assignments/four-russians/array_1.txt">array_1.txt</a> and
-<a href="https://louridas.github.io/rwa/assignments/four-russians/array_2.txt">array_2.txt</a>, the program will output:</p>
+<a href="https://louridas.github.io/assignments/four-russians/array_1.txt">array_1.txt</a> and
+<a href="https://louridas.github.io/assignments/four-russians/array_2.txt">array_2.txt</a>, the program will output:</p>
 <div class="highlight"><pre><span></span><code>1,0,1,1,0,1,1,0,0,0,1,0,0
 1,0,1,1,1,1,1,0,1,1,1,1,0
 1,1,0,0,1,0,0,0,0,0,1,0,1
@@ -421,7 +421,7 @@ with node 2, and node 2 is connected to node 3.</p>
 <p>The transitive closure will be described in the same way, with an edge
 per line. The lines must be output in ascending order. For example, if
 the program is given as input the file
-<a href="https://louridas.github.io/rwa/assignments/four-russians/graph_1.txt">graph_1.txt</a>, which corresponds to the graph we
+<a href="https://louridas.github.io/assignments/four-russians/graph_1.txt">graph_1.txt</a>, which corresponds to the graph we
 used above, we'll get the following output:</p>
 <div class="highlight"><pre><span></span><code>0 0
 0 1

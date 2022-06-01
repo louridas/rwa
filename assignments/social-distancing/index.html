@@ -6,18 +6,18 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
+          href="https://louridas.github.io/theme/css/normalize.css" />
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />
+          href="https://louridas.github.io/theme/css/skeleton.css" />
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/rwa/theme/css/highlight.css" />    
+          href="https://louridas.github.io/theme/css/highlight.css" />    
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
           rel="stylesheet">
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
+          href="https://louridas.github.io/theme/css/rwa.css" />
     <!-- Dynamically resize logo for mobile -->
     <style type="text/css">
       .logo-width {
@@ -39,30 +39,30 @@
     <div class="container">
       <div class="row" style="margin-top: 5%">
         <div class="three columns">
-          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
-          <a href="https://louridas.github.io/rwa">
+          <h1><a href="https://louridas.github.io">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io">
             <center>
               <img alt="book cover" class="logo-width"
-                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
+                   src="https://louridas.github.io/theme/images/rwa.jpg">
             </center>
           </a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
+             href="https://louridas.github.io/pages/book-chapters.html">Chapters</a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
+             href="https://louridas.github.io/pages/assignments.html">Assignments</a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
+             href="https://louridas.github.io/pages/translations.html">Translations</a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
+             href="https://louridas.github.io/pages/slides.html">Slides</a> 
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
+             href="https://louridas.github.io/pages/errata.html">Errata</a>          
           <div class="row" style="padding-bottom: 5%"> </div>
         </div>
         <div class="nine columns">
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="https://louridas.github.io/rwa/assignments/social-distancing/" rel="bookmark"
+      <a href="https://louridas.github.io/assignments/social-distancing/" rel="bookmark"
          title="Permalink to Social Distancing">Social Distancing</a></h2>
  
   </header>
@@ -98,7 +98,7 @@ we want to fill.</p>
 </li>
 </ol>
 <p>This is how the process will evolve for the first seven circles:</p>
-<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_1.png" width="700"></p>
+<p><img src="https://louridas.github.io/assignments/social-distancing/circles_1.png" width="700"></p>
 <p>We can observe that the centers of the circles form a closed polygon.
 If we want to continue the process, we must remove from the polygon
 vertex <span class="math">\(C_1\)</span> and connect directly vertices <span class="math">\(C_2\)</span> and <span class="math">\(C_7\)</span>. Then we
@@ -130,7 +130,7 @@ we follow these steps: </p>
    then return to step 2.</p>
 </li>
 </ol>
-<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_2.png" width="700"></p>
+<p><img src="https://louridas.github.io/assignments/social-distancing/circles_2.png" width="700"></p>
 <p>If we continue in this way we can insert circles <span class="math">\(C_9\)</span> and <span class="math">\(C_{10}\)</span>
 without a problem. Then, the circle in the front that was inserter
 earliest and is closest to our starting point is <span class="math">\(C_2\)</span>, whose
@@ -152,13 +152,13 @@ from the successor of <span class="math">\(C_j\)</span> up to and including <spa
 becomes the new <span class="math">\(C_m\)</span>, as you can see in the following figure&mdash;do
 not be surprised that the circles do not all have the same radius, we
 would like our algorithm to work even when the circles are not equal.</p>
-<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_intersection_1.png" width="700"></p>
+<p><img src="https://louridas.github.io/assignments/social-distancing/circles_intersection_1.png" width="700"></p>
 <p>If the circles are not equal, there is another possibility, that of
 <span class="math">\(C_i\)</span> intersecting a circle <span class="math">\(C_j\)</span> that comes after <span class="math">\(C_n\)</span> in the front.
 Then we remove from the front the circles from <span class="math">\(C_n\)</span> up to and
 including the predecessor of <span class="math">\(C_j\)</span> and <span class="math">\(C_j\)</span> becomes the new <span class="math">\(C_n\)</span>, as
 shown in the following figure.</p>
-<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_intersection_2.png" width="700"></p>
+<p><img src="https://louridas.github.io/assignments/social-distancing/circles_intersection_2.png" width="700"></p>
 <p>Of course, as the centers of the circles that constitute the front are
 connected in a closed polygon, a circle that follows another circle
 also precedes it, if we continue going round. Moreover, the circle we
@@ -167,7 +167,7 @@ the next figure. Again, do not be surprised at the strange shape of
 the front, we will see that the solution we will find will work even
 in such cases, which can arise when the front grows while it fills a
 bounded shape.</p>
-<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_loop.png" width="400"></p>
+<p><img src="https://louridas.github.io/assignments/social-distancing/circles_loop.png" width="400"></p>
 <p>To detect the offending circle <span class="math">\(C_j\)</span> in all situations, we start from
 <span class="math">\(C_n\)</span> and we proceed in the front till we meet <span class="math">\(C_m\)</span>. We take note of
 the first circle that is intersected by <span class="math">\(C_i\)</span>, <span class="math">\(C_j\)</span>, and the last,
@@ -316,7 +316,7 @@ coordinates of its center can be found using the Pythagorean theorem.
 What is the distance between the centers of <span class="math">\(C_1\)</span> and <span class="math">\(C_2\)</span> and
 between <span class="math">\(C_1\)</span> and <span class="math">\(C_3\)</span>? Both distances are equal to <span class="math">\(2\)</span>, as all the
 radii are equal. </p>
-<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/three_circles.png" width="300"></p>
+<p><img src="https://louridas.github.io/assignments/social-distancing/three_circles.png" width="300"></p>
 <p>Suppose now that from the coordinates of <span class="math">\(C_1\)</span> and <span class="math">\(C_3\)</span> we want to
 calculate anew the distance <span class="math">\(C_1 C_3\)</span>. Using the Pythagorean theorem
 again, this distance will be equal to <span class="math">\(\sqrt{(\sqrt{3})^2 + 1^2} = 2\)</span>.
@@ -365,7 +365,7 @@ m_y)\)</span>, the distance is:</p>
 <p>If we have two circles <span class="math">\(C_m\)</span> and <span class="math">\(C_n\)</span> and we want to find a third
 circle <span class="math">\(C_k\)</span>, wih radius <span class="math">\(r\)</span>, tangent to these two, as in the
 following figure, we work as follows:</p>
-<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_tangent.png" width="400"></p>
+<p><img src="https://louridas.github.io/assignments/social-distancing/circles_tangent.png" width="400"></p>
 <ul>
 <li>
 <p>We calculate the horizontal distance <span class="math">\(d_x\)</span> and the vertical distance
@@ -468,7 +468,7 @@ projection of the center of the right circle lies to the right of the
 segment, so we take the distance of the centre from <span class="math">\(v\)</span> by using <span class="math">\(t =
 1\)</span>. Then, we calculate the distance of the centre of the circle
 from the projection.</p>
-<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/distance_circle_segment.png" width="700"></p>
+<p><img src="https://louridas.github.io/assignments/social-distancing/distance_circle_segment.png" width="700"></p>
 <p>Having found the distance of the circle's center from the line
 segment, to find the distance of the circle from the segment we
 subtract the circle's radius. Or, to find whether the circle
@@ -587,7 +587,7 @@ This file corresponds to the second figure we have seen above.</p>
 <a href="circles_equal_1000.txt"><code>circles_equal_1000.txt</code></a>. You can see the
 circles in the figure below, along with the front; the last circle is
 painted orange (on the right, a bit below the middle).</p>
-<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_equal_1000.png" width="700"></p>
+<p><img src="https://louridas.github.io/assignments/social-distancing/circles_equal_1000.png" width="700"></p>
 <p><em>Example 3</em></p>
 <p>If you invoke the program with:</p>
 <div class="highlight"><pre><span></span><code>python social_distancing.py -i <span class="m">200</span> -r <span class="m">10</span> -b rectangle.txt <span class="se">\</span>
@@ -598,7 +598,7 @@ painted orange (on the right, a bit below the middle).</p>
 the boundaries, it will print <code>159</code> and it will store its results in
 <a href="circles_rectangle_equal.txt"><code>circles_rectangle_equal.txt</code></a>. You can
 see the circles below.</p>
-<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_rectangle_equal.png" width="400"></p>
+<p><img src="https://louridas.github.io/assignments/social-distancing/circles_rectangle_equal.png" width="400"></p>
 <p><em>Example 4</em></p>
 <p>If you invoke the program with:</p>
 <div class="highlight"><pre><span></span><code>python social_distancing.py -i <span class="m">1000</span> --seed <span class="m">13</span> <span class="se">\</span>
@@ -608,7 +608,7 @@ see the circles below.</p>
 <p>then the program will print <code>1000</code> and it will store its results in 
 <a href="circles_random_1000.txt"><code>circles_random_1000.txt</code></a>. You can see the
 corresponding image below.</p>
-<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/circles_random_1000.png" width="700"></p>
+<p><img src="https://louridas.github.io/assignments/social-distancing/circles_random_1000.png" width="700"></p>
 <p><em>Example 5</em></p>
 <p>If you invoke the program with:</p>
 <div class="highlight"><pre><span></span><code>python social_distancing.py --seed <span class="m">42</span> <span class="se">\</span>
@@ -621,7 +621,7 @@ corresponding image below.</p>
 will print <code>584</code> and it will store its results in 
 <a href="square_holes_random.txt"><code>square_holes_random.txt</code></a>. This file
 corresponds to the following figure.</p>
-<p><img src="https://louridas.github.io/rwa/assignments/social-distancing/square_holes_random.png" width="700"></p>
+<p><img src="https://louridas.github.io/assignments/social-distancing/square_holes_random.png" width="700"></p>
 <h3>Notes</h3>
 <ul>
 <li>The proof for the formulas for finding tangent circles is in 1.12.2

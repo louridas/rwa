@@ -6,18 +6,18 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/rwa/theme/css/normalize.css" />
+          href="https://louridas.github.io/theme/css/normalize.css" />
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/rwa/theme/css/skeleton.css" />
+          href="https://louridas.github.io/theme/css/skeleton.css" />
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/rwa/theme/css/highlight.css" />    
+          href="https://louridas.github.io/theme/css/highlight.css" />    
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
           rel="stylesheet">
     <link rel="stylesheet"
           type="text/css"
-          href="https://louridas.github.io/rwa/theme/css/rwa.css" />
+          href="https://louridas.github.io/theme/css/rwa.css" />
     <!-- Dynamically resize logo for mobile -->
     <style type="text/css">
       .logo-width {
@@ -39,30 +39,30 @@
     <div class="container">
       <div class="row" style="margin-top: 5%">
         <div class="three columns">
-          <h1><a href="https://louridas.github.io/rwa">Real World Algorithms</a></h1>
-          <a href="https://louridas.github.io/rwa">
+          <h1><a href="https://louridas.github.io">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io">
             <center>
               <img alt="book cover" class="logo-width"
-                   src="https://louridas.github.io/rwa/theme/images/rwa.jpg">
+                   src="https://louridas.github.io/theme/images/rwa.jpg">
             </center>
           </a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/book-chapters.html">Chapters</a>
+             href="https://louridas.github.io/pages/book-chapters.html">Chapters</a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/assignments.html">Assignments</a>
+             href="https://louridas.github.io/pages/assignments.html">Assignments</a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/translations.html">Translations</a>
+             href="https://louridas.github.io/pages/translations.html">Translations</a>
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/slides.html">Slides</a> 
+             href="https://louridas.github.io/pages/slides.html">Slides</a> 
           <a class="site-content u-full-width"
-             href="https://louridas.github.io/rwa/pages/errata.html">Errata</a>          
+             href="https://louridas.github.io/pages/errata.html">Errata</a>          
           <div class="row" style="padding-bottom: 5%"> </div>
         </div>
         <div class="nine columns">
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="https://louridas.github.io/rwa/assignments/finding-trusses/" rel="bookmark"
+      <a href="https://louridas.github.io/assignments/finding-trusses/" rel="bookmark"
          title="Permalink to Finding Trusses">Finding Trusses</a></h2>
  
   </header>
@@ -89,12 +89,12 @@ truss must be part of <span class="math">\(k - 2\)</span> triangles made up of n
 of the truss. For example, in the following figures you can see two
 3-trusses in a graph. By definition, 3-trusses are the triangles of a
 graph.</p>
-<p><img src="https://louridas.github.io/rwa/assignments/finding-trusses/truss_3_1.png" width="300">
-<img src="https://louridas.github.io/rwa/assignments/finding-trusses/truss_3_2.png" width="300"></p>
+<p><img src="https://louridas.github.io/assignments/finding-trusses/truss_3_1.png" width="300">
+<img src="https://louridas.github.io/assignments/finding-trusses/truss_3_2.png" width="300"></p>
 <p>Similarly, in the following figure you can see a 4-truss of a graph.
 4-trusses are sets of such that every edge is part of two triangles
 composed of nodes in the truss.</p>
-<p><img src="https://louridas.github.io/rwa/assignments/finding-trusses/truss_4.png" width="400"></p>
+<p><img src="https://louridas.github.io/assignments/finding-trusses/truss_4.png" width="400"></p>
 <p>A k-truss is <em>maximal</em> when it is not a subgraph of another k-truss.
 Here we want to find the maximal k-trusses of a graph.</p>
 <h3>Maximal Truss Finding Algorithm</h3>
@@ -162,7 +162,7 @@ the k-trusses will be output in order.</p>
 <div class="highlight"><pre><span></span><code>python trusses.py graph_1.txt <span class="m">3</span>
 </code></pre></div>
 
-<p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_1.txt">graph_1.txt</a>, which actually corresponds
+<p>with the file <a href="https://louridas.github.io/assignments/finding-trusses/graph_1.txt">graph_1.txt</a>, which actually corresponds
 to the graph of the first two figures with the 3-trusses above, the
 output will be the one we gave just above:</p>
 <div class="highlight"><pre><span></span><code>[0, 1, 9]
@@ -173,7 +173,7 @@ output will be the one we gave just above:</p>
 <div class="highlight"><pre><span></span><code>python trusses.py graph_2.txt <span class="m">4</span>
 </code></pre></div>
 
-<p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_2.txt">graph_2.txt</a>, the output will be:</p>
+<p>with the file <a href="https://louridas.github.io/assignments/finding-trusses/graph_2.txt">graph_2.txt</a>, the output will be:</p>
 <div class="highlight"><pre><span></span><code>[3, 8, 9, 18]
 [7, 11, 15, 21]
 </code></pre></div>
@@ -182,7 +182,7 @@ output will be the one we gave just above:</p>
 <div class="highlight"><pre><span></span><code>python trusses.py graph_3.txt <span class="m">5</span>
 </code></pre></div>
 
-<p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_3.txt">graph_3.txt</a>, the output will be:</p>
+<p>with the file <a href="https://louridas.github.io/assignments/finding-trusses/graph_3.txt">graph_3.txt</a>, the output will be:</p>
 <div class="highlight"><pre><span></span><code>[2, 5, 8, 9, 13, 14]
 </code></pre></div>
 
@@ -190,7 +190,7 @@ output will be the one we gave just above:</p>
 <div class="highlight"><pre><span></span><code>python trusses.py graph_4.txt <span class="m">3</span>
 </code></pre></div>
 
-<p>with the file <a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_4.txt">graph_4.txt</a>, the output will be:</p>
+<p>with the file <a href="https://louridas.github.io/assignments/finding-trusses/graph_4.txt">graph_4.txt</a>, the output will be:</p>
 <div class="highlight"><pre><span></span><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 </code></pre></div>
 
@@ -208,7 +208,7 @@ output will be the one we gave just above:</p>
 </code></pre></div>
 
 <p>using the file
-<a href="https://louridas.github.io/rwa/assignments/finding-trusses/graph_5.txt">graph_5.txt</a>, which contains 1500 nodes,
+<a href="https://louridas.github.io/assignments/finding-trusses/graph_5.txt">graph_5.txt</a>, which contains 1500 nodes,
 the output will be:</p>
 <div class="highlight"><pre><span></span><code>[0, 3, 4, 5, 7, 9, 11, 15, 26]
 </code></pre></div>

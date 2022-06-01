@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/theme/css/normalize.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/theme/css/skeleton.css" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/theme/css/highlight.css" />    
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700"
+          rel="stylesheet">
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://louridas.github.io/theme/css/rwa.css" />
+    <!-- Dynamically resize logo for mobile -->
+    <style type="text/css">
+      .logo-width {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 15%;
+      }
+      /* Roughly the point when website is single column */
+      @media (max-width: 850px) {
+      .logo-width {
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 5%;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 5%">
+        <div class="three columns">
+          <h1><a href="https://louridas.github.io">Real World Algorithms</a></h1>
+          <a href="https://louridas.github.io">
+            <center>
+              <img alt="book cover" class="logo-width"
+                   src="https://louridas.github.io/theme/images/rwa.jpg">
+            </center>
+          </a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/pages/book-chapters.html">Chapters</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/pages/assignments.html">Assignments</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/pages/translations.html">Translations</a>
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/pages/slides.html">Slides</a> 
+          <a class="site-content u-full-width"
+             href="https://louridas.github.io/pages/errata.html">Errata</a>          
+          <div class="row" style="padding-bottom: 5%"> </div>
+        </div>
+        <div class="nine columns">
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://louridas.github.io/assignments/samuel-beckett-and-gray-codes/" rel="bookmark"
+         title="Permalink to Samuel Beckett and Gray Codes">Samuel Beckett and Gray Codes</a></h2>
+ 
+  </header>
+  <div class="entry-content">
+    <p>The best known work of the Irish writer Samuel Beckett (1906&ndash;1989,
+Nobel prize in Literature 1969) is the play "Waiting for Godot".
+Beckett, who lived in Paris for the largest part of his life, wrote it
+first in French in 1952 (En attendant Godot) and then in English
+in 1954. In the play, the two main characters, Vladimir and Estragon,
+are, per the title, waiting for Godot. We don't know why. While
+waiting they talk and meet with others. The play ends but Godot has
+not come. They will continue to wait for him.</p>
+<p>In this assignment we will deal with another one, lesser known play by
+Beckett, written for the television. In this play, called "Quad",
+there are four characters. Beckett wanted them to appear on stage with
+a specific way. Only one character may enter or exit at a certain
+point and the character who exits must be the one that has been on
+stage the longest. Moreover, Beckett wanted all possible combinations
+of the four characters to appear in the play exactly once.</p>
+<p>He was not able to find a way to do that. Indeed, it is impossible to
+achieve such a sequence of entrances and exits for four characters
+without repeating some of the combinations.</p>
+<p>Let us now return to Computer Science. The <a href="https://en.wikipedia.org/wiki/Gray_code">Gray
+code</a> with <span class="math">\(n\)</span> bits is a
+cyclical ordering of the binary numbers with <span class="math">\(n\)</span> bits so that two
+successive values differ by one bit. For instance, the Gray code for
+<span class="math">\(n = 4\)</span> is:</p>
+<p>0000, 0001, 0011, 0010, 0110, 0111, 0101, 0100, 1100, 1101, 1111,
+1110, 1010, 1011, 1001, 1000.</p>
+<p>Note that each number differs both from the previous one and the
+following one by a single bit. Also, this holds for the first and last
+items in the sequence if we take the first item to follow the last
+item, so that the code is cyclical.</p>
+<p>It is easy to construct such a code with <span class="math">\(n\)</span> bits, working
+recursively. If by <span class="math">\(\Gamma_n\)</span> we denote the Gray code with <span class="math">\(n\)</span> bits
+and <span class="math">\(\Gamma_0\)</span> is the empty string, then to construct the Gray code
+with <span class="math">\(n+1\)</span> bits we only need to take the Gray code with <span class="math">\(n\)</span> bits,
+prefix each string with <span class="math">\(0\)</span>, reverse it, and then prefix each string
+of the reversed sequence with <span class="math">\(1\)</span>. Indeed:</p>
+<div class="math">$$\Gamma_1 = 0, 1$$</div>
+<p>We just prefixed the empty string with <span class="math">\(0\)</span> and <span class="math">\(1\)</span>. Then:</p>
+<div class="math">$$\Gamma_2 = 00, 01, 11, 10$$</div>
+<p>We prefixed each string of <span class="math">\(0, 1\)</span> with <span class="math">\(0\)</span> and then we prefixed each
+string of the sequence <span class="math">\(1, 0\)</span> with <span class="math">\(1\)</span>.</p>
+<p>Similarly:</p>
+<div class="math">$$\Gamma_3 = 000, 001, 011, 010, 110, 111, 101, 100$$</div>
+<p>We prefixed each string of <span class="math">\(00, 01, 11, 10\)</span> with <span class="math">\(0\)</span> and each string
+<span class="math">\(10, 11, 01, 00\)</span> with <span class="math">\(1\)</span>.</p>
+<p>From the way it is built, this code is called, if we want to be more
+precise, Reflected Binary Code (RBC), or Reflected Binary (RB). </p>
+<p>But note that we can have a code that meets the requirement of
+changing a single bit each time without building it in this way. For
+instance, in the <em>balanced Gray code</em>, we want to have the same number
+of changes for each bit. Here is a balanced Gray code of four bits:</p>
+<div class="math">$$
+\begin{matrix}
+0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; \boxed{1} &amp; 1 &amp; \boxed{0}\\ 
+0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; \boxed{1}
+&amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp;
+\boxed{1} &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0\\
+\boxed{0} &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp;
+\boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1
+\end{matrix}
+$$</div>
+<p>Each item of the code corresponds to a column. You can verify that in
+each row we have four bits changing in total.</p>
+<p>By adopting other requirements we can create different Gray codes. We
+can also drop the requirement for the code to be cyclical. If it is
+not, we say that the code is a path, but not a cycle.</p>
+<p>If we adopt the requirement that want the bit that changes to zero to
+be the bit that has remained for longer with value one, then the
+resulting code meets the criterion set by Beckett&mdash;and,
+therefore, it is a Beckett-Gray code.</p>
+<p>For <span class="math">\(n = 3\)</span> there is no Beckett-Gray code, because it is not possible
+to find a cyclical code that meets the Beckett requirement; there is,
+however, a single path:</p>
+<div class="math">$$
+\begin{matrix}
+0 &amp; \boxed{1} &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1\\
+0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; \boxed{1}\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1
+\end{matrix}
+$$</div>
+<p>You can verify that the bit that goes off in a column is the one that
+has stayed on for longest in its row.</p>
+<p>For <span class="math">\(n = 4\)</span>, again, there is no Beckett-Gray code, so it's no surprise
+that Beckett could not find one for his play. But there are four paths:</p>
+<div class="math">$$
+\begin{matrix}
+0 &amp; \boxed{1} &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 
+&amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; \boxed{1}\\
+0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 
+&amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; 1\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1
+&amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0\\ 
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 
+&amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1
+\end{matrix}
+$$</div>
+<hr/>
+
+<div class="math">$$
+\begin{matrix}
+0 &amp; \boxed{1} &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 
+&amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1\\
+0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1
+&amp; \boxed{0} &amp; 0 &amp; 0 &amp; \boxed{1}\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1
+&amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 
+&amp; \boxed{1} &amp; 1 &amp; 1
+\end{matrix}
+$$</div>
+<hr/>
+
+<div class="math">$$
+\begin{matrix}
+0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp;
+\boxed{0} &amp; 0 &amp; 0 &amp; 0 &amp; \boxed{1}\\
+0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 
+&amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1\\
+0 &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1
+&amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; 0 
+&amp; \boxed{1} &amp; 1
+\end{matrix}
+$$</div>
+<hr/>
+
+<div class="math">$$
+\begin{matrix}
+0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1\\
+0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp;
+\boxed{0} &amp; 0 &amp; 0 &amp; 0 &amp; \boxed{1}\\
+0 &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1
+&amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; \boxed{1} &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; \boxed{0} &amp; 0 &amp; 0 &amp; 0 
+&amp; \boxed{1} &amp; 1 &amp; 1\\
+\end{matrix}
+$$</div>
+<p>For <span class="math">\(n = 5\)</span> there are 16 Beckett-Gray codes. At this point, let's
+introduce a more practical way to represent Gray codes and paths. As
+only a single bit changes each time, to represent a Gray code or path
+we only need to give the sequence of bits that change, where each bit
+is represented by its position, counting from the right. That is
+called <em>delta sequence</em> or <em>transition sequence</em> and we denote it with
+<span class="math">\(\delta\)</span>. So, for the Gray cycle with <span class="math">\(1\)</span> bit we have <span class="math">\(\delta = 00\)</span>
+and for the Gray cycle with <span class="math">\(2\)</span> bits we have <span class="math">\(\delta = 0101\)</span>.</p>
+<p>Proceeding to <span class="math">\(n = 3\)</span>, for the Gray cycle that we obtain by closing 
+<span class="math">\(\Gamma_3\)</span> we have <span class="math">\(\delta = 01020102\)</span>, while there exists also
+amother Gray cycle (which is not reflected) with <span class="math">\(\delta = 01210121\)</span>.</p>
+<p>Using delta sequences, the 16 Beckett-Gray codes for <span class="math">\(n = 5\)</span> are:</p>
+<div class="math">$$
+\begin{matrix}
+01020132010432104342132340412304 &amp; 01020312403024041232414013234013\\
+01020314203024041234214103234103 &amp; 01020314203240421034214130324103\\
+01020341202343142320143201043104 &amp; 01023412032403041230341012340124\\
+01201321402314340232134021431041 &amp; 01203041230314043210403202413241\\
+01203104213043421310342104302402 &amp; 01230121430214340230341420314121\\
+01230124234140231410343201434204 &amp; 01230401231340413234202341024212\\
+01230401232430423134101432014121 &amp; 01230412320434120343014312041323\\
+01234010232430124313401432014121 &amp; 01234010232430201432014132413141\\
+\end{matrix}
+$$</div>
+<p>Gray codes have graph interpretation and a related geometrical
+interpretation. If we create a graph whose vertices are the elements
+of the code and the edges connect two elements that differ by a single
+bit, then the possible paths and cycles are the various ways to
+explore the graph starting from a different edge of the graph. A path
+that covers all the vertices exactly once is called a <em>Hamiltonian
+path</em> and a cycle that visits all the vertices exactly once is called
+a <em>Hamiltonian cycle</em>. Given that each vertex has exactly <span class="math">\(n\)</span>
+neighbors, such a graph, in geometrical terms, is a <em>hypercube</em>. Below
+you can see the hypercuble for <span class="math">\(n = 4\)</span> and a Hamiltonian cycle on it.
+The Hamiltonian cycle corresponds to the reflective Gray code for <span class="math">\(n =
+4\)</span>.</p>
+<p><img src="https://louridas.github.io/assignments/samuel-beckett-and-gray-codes/hypercube.png" width="500"/></p>
+<p>If we want to find all Gray codes, it suffices to find all paths and
+cycles on the corresponding graph (or hypercube). However, some of the
+resulting codes can be derived from other codes by just permutating
+the bit positions. To see that, we will need some definitions. Let us
+call <em>coordinates</em> the elements of a delta sequence: for <span class="math">\(n=3\)</span> the
+coordinates are <span class="math">\(0, 1, 2\)</span>. We will denote by <span class="math">\(d(n)\)</span> the number of
+different delta sequences for a given <span class="math">\(n\)</span>. We will denote by <span class="math">\(c(n)\)</span>
+the number of canonical delta sequences, in which each coordinate <span class="math">\(k\)</span>
+appears in the sequence before the first appearance of coordinate
+<span class="math">\(k+1\)</span>. As every permutation of the coordinates of a delta sequence
+produces another delta sequence, we have <span class="math">\(d(n) = n!c(n)\)</span>. Indeed, we
+saw that for <span class="math">\(\Gamma_3\)</span> we have <span class="math">\(\delta = 01020102\)</span>. If we apply the
+permutation:</p>
+<div class="math">$$
+\begin{pmatrix}
+0 &amp; 1 &amp; 2\\
+1 &amp; 0 &amp; 2
+\end{pmatrix}
+$$</div>
+<p>we obtain <span class="math">\(\delta = 10121012\)</span>, which you can verify that it is a Gray
+code, but the delta sequence is not canonical as <span class="math">\(1\)</span> appears in it
+before <span class="math">\(0\)</span>. If a Gray code can be obtained by another one through
+permutation, we say that the two codes are <em>isomorphic</em>. To find all
+the non-isomorphic Gray codes, we must ensure that when exploring the
+Hamiltonian paths and cycles our trail follows only canonical delta
+sequences. </p>
+<p>We know that in order to explore a graph, we can use depth-first
+search. Here we will use a variant of depth-first search that will
+have the following characteristics:</p>
+<ul>
+<li>
+<p>The exploration will proceed from node to node of the hypercube. </p>
+</li>
+<li>
+<p>At each node, we note the largest coordinate that we can change. </p>
+</li>
+<li>
+<p>The neighbors of the node are produced from the current node by
+  changing a bit at a time, starting from the least significant one
+  (the first from the right, at position zero), until the largest
+  coordinate.</p>
+</li>
+<li>
+<p>In traditional depth-first search, we note each node that we visit
+  so that we do not visit it again. In this way we explore the graph
+  only once. Here, though, we want to explore the graph exhaustively,
+  finding all possible paths that meet our requirements. That means
+  that we must take care so that once we have explored a path we can
+  revisit its nodes (in a different order).</p>
+</li>
+</ul>
+<p>We can achieve the above with the algorithm that follows. The
+algorithm builds Gray codes one at a time using the stack
+<span class="math">\(\mathit{gc}\)</span> and it collects them in the list <span class="math">\(\mathit{all\_codes}\)</span>,
+which is initially empty. To call the algorithm, we must initialize
+the array <span class="math">\(\mathit{visited}\)</span> with all its elements set to <span
+style="font-variant:small-caps;">false</span>, apart from from
+<span class="math">\(\mathit{visited}[0]\)</span> which will be set to <span
+style="font-variant:small-caps;">true</span>; the <span class="math">\(\mathit{gc}\)</span> stack
+will initially contain element <span class="math">\(0\)</span>. The algorithm's parameters include
+the recursion depth, <span class="math">\(d\)</span>, starting from <span class="math">\(d = 1\)</span>, so that we can define
+the condition to stop the recursion&mdash;when we have visited all
+<span class="math">\(2^n\)</span> nodes of the hypercube. The algorithm uses function
+<span class="math">\(\texttt{Flip(}x, i\texttt{)}\)</span>, which changes the value of bit <span class="math">\(i\)</span> in <span class="math">\(x\)</span>.
+When we start <span class="math">\(x\)</span> is zero, while <span class="math">\(\mathit{max\_coord}\)</span>, as we don't
+want to use a coordinate before we use the smaller coordinates, is
+also zero.</p>
+<p><img src="https://louridas.github.io/assignments/samuel-beckett-and-gray-codes/dfs_gray.png" width="700"/></p>
+<p>This algorithm will produce all Gray codes. That is not enough for us:
+we want to be able to produce the Beckett-Gray codes. To achieve that,
+we need to modify the algorithm a little. We will use a queue to know
+that when we set a bit to zero, that will be the bit whose value has
+stayed at one for the longest time.</p>
+<p>The algorithm ensures that we will find the codes that are not
+isomorphic due to permutations. We can extend the definition of
+isomorphism between codes to include codes that can be derived from
+one another via reversal, and not just permutation. For example, let's
+take the first Beckett-Gray code for <span class="math">\(n = 5\)</span> that we saw before:</p>
+<div class="math">$$ 
+01020132010432104342132340412304 
+$$</div>
+<p>This code is isomorphic with:</p>
+<div class="math">$$
+01234010232430201432014132413141
+$$</div>
+<p>Indeed, if we reverse it, we get:</p>
+<div class="math">$$
+14131423141023410203423201043210
+$$</div>
+<p>But from code:</p>
+<div class="math">$$
+01020132010432104342132340412304
+$$</div>
+<p>we can derive code:</p>
+<div class="math">$$
+14131423141023410203423201043210
+$$</div>
+<p>with the permutation:</p>
+<div class="math">$$
+\begin{pmatrix}
+0 &amp; 1 &amp; 2 &amp; 3 &amp; 4\\
+1 &amp; 4 &amp; 3 &amp; 2 &amp; 0
+\end{pmatrix}
+$$</div>
+<p>In this assignment you will write a program that will produce various
+kinds of Gray codes and will find any isomorphisms that can be
+obtained via reversals and permutations.</p>
+<h2>Requirements</h2>
+<p>You will write a program called <code>beckectt_gray.py</code>. You may use the
+following libraries:
+<a href="https://docs.python.org/3/library/itertools.html"><code>itertools</code></a>,
+<a href="https://docs.python.org/3/library/argparse.html"><code>argparse</code></a> or
+<a href="https://docs.python.org/3/library/sys.html"><code>sys</code></a> (in particular,
+the list <code>sys.argv</code>) to handle program arguments.</p>
+<p>Your program will be called as follows:</p>
+<div class="highlight"><pre><span></span><code>python beckett_gray.py <span class="o">[</span>-a <span class="p">|</span> -b <span class="p">|</span> -u <span class="p">|</span> -c <span class="p">|</span> -p<span class="o">]</span> <span class="o">[</span>-r<span class="o">]</span> <span class="o">[</span>-f<span class="o">]</span> <span class="o">[</span>-m<span class="o">]</span> number_of_bits
+</code></pre></div>
+
+<p>The program will take the following arguments:</p>
+<ul>
+<li>
+<p><code>-a</code>: find all codes (cycles and paths)</p>
+</li>
+<li>
+<p><code>-b</code>: find Beckett-Gray codes</p>
+</li>
+<li>
+<p><code>-u</code>: find Beckett-Gray paths (not cyles) </p>
+</li>
+<li>
+<p><code>-c</code>: find cyclical codes</p>
+</li>
+<li>
+<p><code>-p</code>: find Gray paths</p>
+</li>
+<li>
+<p><code>-r</code>: find reverse isomorphisms</p>
+</li>
+<li>
+<p><code>-f</code>: show the full binary representation of each code</p>
+</li>
+<li>
+<p><code>-m</code>: show each code with a tabular representation</p>
+</li>
+<li>
+<p><code>number_of_bits</code>: the number of bits of the code</p>
+</li>
+</ul>
+<p>The meaning of the arguments is illustrated in the examples that
+follow. </p>
+<h3>Examples</h3>
+<p><em>Example 1</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python beckett_gray.py -a <span class="m">3</span>
+</code></pre></div>
+
+<p>or simply:</p>
+<div class="highlight"><pre><span></span><code>python beckett_gray.py <span class="m">3</span>
+</code></pre></div>
+
+<p>the program will produce the following output:</p>
+<div class="highlight"><pre><span></span><code>C 01020102
+P 0102101
+C 01210121
+</code></pre></div>
+
+<p>It found three codes, presented with their delta sequences. Two of the
+codes are cyclical (prefixed with <code>C</code>) and one is a path (prefixed
+with <code>P</code>).</p>
+<p><em>Example 2</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python beckett_gray.py -b <span class="m">5</span>
+</code></pre></div>
+
+<p>the program will produce the following output:</p>
+<div class="highlight"><pre><span></span><code>B 01020132010432104342132340412304
+B 01020312403024041232414013234013
+B 01020314203024041234214103234103
+B 01020314203240421034214130324103
+B 01020341202343142320143201043104
+B 01023412032403041230341012340124
+B 01201321402314340232134021431041
+B 01203041230314043210403202413241
+B 01203104213043421310342104302402
+B 01230121430214340230341420314121
+B 01230124234140231410343201434204
+B 01230401231340413234202341024212
+B 01230401232430423134101432014121
+B 01230412320434120343014312041323
+B 01234010232430124313401432014121
+B 01234010232430201432014132413141
+</code></pre></div>
+
+<p>that is, it found 16 Beckett-Gray codes (prefixed with <code>B</code>).</p>
+<p><em>Example 3</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python beckett_gray.py -b <span class="m">5</span> -r
+</code></pre></div>
+
+<p>the program will output the contents of the file
+<a href="https://louridas.github.io/rwa/assignments/beckett-gray/bgc_5_isomorphic.txt"><code>bgc_5_isomorphic.txt</code></a>
+that is, as in the previous example, but adding in the end the
+reversed isomorphisms.</p>
+<p><em>Example 4</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python beckett_gray.py -c <span class="m">4</span>
+</code></pre></div>
+
+<p>the program will output the contents of the file 
+<a href="https://louridas.github.io/rwa/assignments/beckett-gray/gc_4_cycles.txt"><code>gc_4_cycles.txt</code></a>.</p>
+<p><em>Example 5</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python beckett_gray.py -u <span class="m">3</span>
+</code></pre></div>
+
+<p>the program will output:</p>
+<div class="highlight"><pre><span></span><code>U 0102101
+</code></pre></div>
+
+<p>that is, a path (the only one for <span class="math">\(n = 3\)</span>) that fulfils Beckett's
+requirement, hence the prefix <code>U</code> (unfinished, as it ends without
+closing the cycle).</p>
+<p><em>Example 6</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python beckett_gray.py -u <span class="m">4</span>
+</code></pre></div>
+
+<p>the program will produce the following output:</p>
+<div class="highlight"><pre><span></span><code>U 010213202313020
+U 010213212031321
+U 012301202301230
+U 012301213210321
+</code></pre></div>
+
+<p><em>Example 7</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python beckett_gray.py -b -f <span class="m">5</span>
+</code></pre></div>
+
+<p>the program will output the contents of the file
+<a href="https://louridas.github.io/rwa/assignments/beckett-gray/bgc_5_full.txt"><code>bgc_5_full.txt</code></a>;
+that is, except from the delta sequence, it will also output the full
+binary representation of each code.</p>
+<p><em>Example 8</em></p>
+<p>If you invoke the program with:</p>
+<div class="highlight"><pre><span></span><code>python beckett_gray.py -u -m <span class="m">4</span>
+</code></pre></div>
+
+<p>the program will output:</p>
+<div class="highlight"><pre><span></span><code>U 010213202313020
+0 1 1 0 0 0 0 0 1 1 1 1 1 0 0 1
+0 0 1 1 1 0 0 0 0 0 0 1 1 1 1 1
+0 0 0 0 1 1 1 0 0 1 1 1 1 1 0 0
+0 0 0 0 0 0 1 1 1 1 0 0 1 1 1 1
+U 010213212031321
+0 1 1 0 0 0 0 0 0 0 1 1 1 1 1 1
+0 0 1 1 1 0 0 0 1 1 1 1 0 0 0 1
+0 0 0 0 1 1 1 0 0 1 1 1 1 1 0 0
+0 0 0 0 0 0 1 1 1 1 1 0 0 1 1 1
+U 012301202301230
+0 1 1 1 1 0 0 0 1 1 1 0 0 0 0 1
+0 0 1 1 1 1 0 0 0 0 0 0 1 1 1 1
+0 0 0 1 1 1 1 0 0 1 1 1 1 0 0 0
+0 0 0 0 1 1 1 1 1 1 0 0 0 0 1 1
+U 012301213210321
+0 1 1 1 1 0 0 0 0 0 0 0 1 1 1 1
+0 0 1 1 1 1 0 0 1 1 1 0 0 0 0 1
+0 0 0 1 1 1 1 0 0 0 1 1 1 1 0 0
+0 0 0 0 1 1 1 1 1 0 0 0 0 1 1 1
+</code></pre></div>
+
+<p>that is, underneath each code it will include its representation in
+matrix format.</p>
+<p>In his penultimate novella, "Westward Ho", Samuel Beckett wrote what
+may be his most famous phrase:</p>
+<blockquote>
+<p>Ever tried. Ever failed. No matter. Try again. Fail again. Fail
+better.</p>
+</blockquote>
+<h2>Notes</h2>
+<p>Our description of Gray codes follows <a href='#knuth:2011' id='ref-knuth:2011-1'>[2]</a>, section 7.2.1.1.
+Gray codes were named after Frank Gray, a physist that invented
+<span class="math">\(\Gamma_n\)</span> for the analog transmission of digital signals; however
+Gray codes existed before that. Knuth traces them back to 1878, when
+<span class="math">\(\Gamma_5\)</span> were used by Émile Baudot in a telegraph machine. The
+term "baud", named after him, is a unit of transmission equalling the
+number of times a signal changes per second. Knuth also points out
+that Gray codes underlie the
+<a href="https://en.wikipedia.org/wiki/Baguenaudier">Baguenaudier</a> or Chinese
+ring puzzle. The algorithm we present here is adapted from
+<a href='#sawada:2007' id='ref-sawada:2007-1'>[3]</a>; see <a href='#cooke:2016' id='ref-cooke:2016-1'>[1]</a> for a more recent treatment.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script><hr>
+<h3>Bibliography</h3>
+<div class='bibliography'><ol><li id='cooke:2016'>Mark Cooke, Chris North, Megan Dewar, and Brett Stevens.
+A note on <span class="bibtex-protected">B</span>eckett-<span class="bibtex-protected">G</span>ray codes and the relationship of <span class="bibtex-protected">G</span>ray codes to data structures.
+2016.
+URL: <a href="https://arxiv.org/abs/1608.06001">https://arxiv.org/abs/1608.06001</a>, <a href="https://doi.org/10.48550/ARXIV.1608.06001">doi:10.48550/ARXIV.1608.06001</a>. <a class="cite-backref" href="#ref-cooke:2016-1" title="Jump back to reference 1">↩</a></li><li id='knuth:2011'>Donald&nbsp;E. Knuth.
+<em>The Art of Computer Programming, Volume <span class="bibtex-protected">4A</span>: Combinatorial Algorithms, Part 1</em>.
+Addison-Wesley, Upper Saddle River, NJ, 2011. <a class="cite-backref" href="#ref-knuth:2011-1" title="Jump back to reference 1">↩</a></li><li id='sawada:2007'>Joe Sawada and Dennis&nbsp;Chi-Him Wong.
+A fast algorithm to generate <span class="bibtex-protected">B</span>eckett-<span class="bibtex-protected">G</span>ray codes.
+<em>Electronic Notes in Discrete Mathematics</em>, 29:571–577, 2007.
+European Conference on Combinatorics, Graph Theory and Applications. <a class="cite-backref" href="#ref-sawada:2007-1" title="Jump back to reference 1">↩</a></li></ol></div>
+  </div><!-- /.entry-content -->
+</section>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 25%"> </div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-103703286-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

@@ -25,17 +25,31 @@
   numpages = {14}
 }
 
-@Article{,
+@Article{langerman:2005,
   author = 	 {Langerman, Stefan and Morin, Pat},
   title = 	 {Covering Things with Things},
-  journal = 	 {Discrete Computational Geo},
-  year = 	 {},
-  OPTkey = 	 {},
-  OPTvolume = 	 {},
-  OPTnumber = 	 {},
-  OPTpages = 	 {},
-  OPTmonth = 	 {},
-  OPTnote = 	 {},
-  OPTannote = 	 {}
-}
+  journal = 	 {Discrete Computational Geometry},
+  year = 	 2005,
+  volume = 	 33,
+  number = 	 4,
+  pages = 	 {717--729},
+  month = 	 {April}}
 
+@article{kratsch:2016,
+  author = {Kratsch, Stefan and Philip, Geevarghese and Ray, Saurabh},
+  title = {Point Line Cover: The Easy Kernel is Essentially Tight},
+  year = 2016,
+  issue_date = {June 2016},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  volume = 12,
+  number = 3,
+  issn = {1549-6325},
+  url = {https://doi.org/10.1145/2832912},
+  doi = {10.1145/2832912},
+  journal = {ACM Transactions on Algorithms},
+  month = {April},
+  articleno = 40,
+  numpages = 16,
+  keywords = {Kernelization lower bounds, parameterized complexity}
+}
