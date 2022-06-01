@@ -32,7 +32,7 @@ system](https://en.wikipedia.org/wiki/Chess_piece_relative_value),
 where a bishop assignment would be *on average* three times as
 difficult as a pawn, a rook five times, and a queen nine times.
 
-* [Beckett Gray]({filename}../assignments/beckett-gray/beckett_gray.md)
+* [Beckett-Gray]({filename}../assignments/beckett-gray/beckett_gray.md)
   &#9814;
 * [Covering Points]({filename}../assignments/covering-points/covering_points.md)
   &#9815;
