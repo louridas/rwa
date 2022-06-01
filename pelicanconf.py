@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*- #
-from __future__ import unicode_literals
-
 AUTHOR = 'Panos Louridas'
 SITENAME = 'Real World Algorithms Web Companion'
 SITEURL = ''
@@ -23,16 +19,16 @@ PLUGIN_PATHS = [ './pelican-plugins' ]
 PLUGINS = [ 'pelican-pcite', 'render_math' ]
 
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
+LINKS = (('Pelican', 'https://getpelican.com/'),
+         ('Python.org', 'https://www.python.org/'),
+         ('Jinja2', 'https://palletsprojects.com/p/jinja/'),
          ('You can modify those links in your config file', '#'),)
 
 # Social widget
 SOCIAL = (('You can add links in your config file', '#'),
           ('Another social link', '#'),)
 
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = False
 
 THEME = "themes/rwa"
 
@@ -53,3 +49,4 @@ MARKDOWN = {
     },
     'output_format': 'html5',
 }
+
