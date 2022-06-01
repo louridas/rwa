@@ -5,14 +5,14 @@ Date: 29 May 2022
 Template: assignment
 publications_src: content/assignments/beckett-gray/beckett_gray.bib
 
-The best known work of the Irish writer Samuel Beckett (1906&ndash;1989,
-Nobel prize in Literature 1969) is the play "Waiting for Godot".
-Beckett, who lived in Paris for the largest part of his life, wrote it
-first in French in 1952 (En attendant Godot) and then in English
-in 1954. In the play, the two main characters, Vladimir and Estragon,
-are, per the title, waiting for Godot. We don't know why. While
-waiting they talk and meet with others. The play ends but Godot has
-not come. They will continue to wait for him.
+The best known work of the Irish writer Samuel Beckett
+(1906&ndash;1989, Nobel prize in Literature 1969) is the play "Waiting
+for Godot". Beckett, who lived in Paris for the largest part of his
+life, wrote it first in French in 1952 ("En attendant Godot") and then
+in English in 1954. In the play, the two main characters, Vladimir and
+Estragon, are, per the title, waiting for Godot. We don't know why.
+While waiting they talk and meet with others. The play ends but Godot
+has not come. They will continue to wait for him.
 
 In this assignment we will deal with another one, lesser known play by
 Beckett, written for the television. In this play, called "Quad",
