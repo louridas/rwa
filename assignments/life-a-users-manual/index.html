@@ -62,12 +62,25 @@
 <section id="content" class="body">
   <header>
     <h2 class="entry-title">
-      <a href="https://louridas.github.io/rwa/assignments/samuel-beckett-and-gray-codes/" rel="bookmark"
-         title="Permalink to Samuel Beckett and Gray Codes">Samuel Beckett and Gray Codes</a></h2>
+      <a href="https://louridas.github.io/rwa/assignments/life-a-users-manual/" rel="bookmark"
+         title="Permalink to Life: A User's Manual">Life: A User's Manual</a></h2>
  
   </header>
   <div class="entry-content">
-    <p>The best known work of the Irish writer Samuel Beckett
+    <p>The book <a href="https://en.wikipedia.org/wiki/Life:_A_User%27s_Manual">Life: A User's
+Manual</a>, by the
+French author <a href="https://en.wikipedia.org/wiki/Georges_Perec">Georges
+Perec</a> (1936-1983)
+describes moments from the lives of the inhabitants of an apartment
+block in Paris. The block is a 10 x 10 canvas: 10 floors, each one
+with 10 rooms. The book has 99 chapters (plus a prologue and an
+epilogue), and each chapter corresponds to one room. The chapters go
+through the rooms in the same way that a knight moves over a
+chessboard (a knight moving over a chessboard is an interesting
+problem in itself, but not the subject of this assignment). An
+abstract vertical cross section of the apartment block would look like
+this:</p>
+<p>The best known work of the Irish writer Samuel Beckett
 (1906&ndash;1989, Nobel prize in Literature 1969) is the play "Waiting
 for Godot". Beckett, who lived in Paris for the largest part of his
 life, wrote it first in French in 1952 ("En attendant Godot") and then
@@ -242,7 +255,7 @@ neighbors, such a graph, in geometrical terms, is a <em>hypercube</em>. Below
 you can see the hypercuble for $n = 4$ and a Hamiltonian cycle on it.
 The Hamiltonian cycle corresponds to the reflective Gray code for $n =
 4$.</p>
-<p><img src="https://louridas.github.io/rwa/assignments/samuel-beckett-and-gray-codes/hypercube.png" width="500"/></p>
+<p><img src="https://louridas.github.io/rwa/assignments/life-a-users-manual/hypercube.png" width="500"/></p>
 <p>If we want to find all Gray codes, it suffices to find all paths and
 cycles on the corresponding graph (or hypercube). However, some of the
 resulting codes can be derived from other codes by just permutating
@@ -310,7 +323,7 @@ $\texttt{Flip(}x, i\texttt{)}$, which changes the value of bit $i$ in $x$.
 When we start $x$ is zero, while $\mathit{max_coord}$, as we don't
 want to use a coordinate before we use the smaller coordinates, is
 also zero.</p>
-<p><img src="https://louridas.github.io/rwa/assignments/samuel-beckett-and-gray-codes/dfs_gray.png" width="700"/></p>
+<p><img src="https://louridas.github.io/rwa/assignments/life-a-users-manual/dfs_gray.png" width="700"/></p>
 <p>This algorithm will produce all Gray codes. That is not enough for us:
 we want to be able to produce the Beckett-Gray codes. To achieve that,
 we need to modify the algorithm a little. We will use a queue to know

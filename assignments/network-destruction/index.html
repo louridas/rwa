@@ -123,36 +123,36 @@ the disease will spread to another 16 nodes.</p>
 efficient. Instead of taking as the node with the greatest influence
 the one that has the largest degree, we define the <em>collective
 influence</em> of a node as follows:</p>
-<div class="math">$$ \mathrm{CI}(i, r) = (k_i -1) \sum_{j \in \vartheta\mathrm{Ball}(i,
-r)} (k_j - 1) $$</div>
+<p>$$ \mathrm{CI}(i, r) = (k_i -1) \sum_{j \in \vartheta\mathrm{Ball}(i,
+r)} (k_j - 1) $$</p>
 <p>In this definition:</p>
 <ul>
 <li>
-<p><span class="math">\(i\)</span> is the node whose collective influence we are calculating and
-  <span class="math">\(k_i\)</span> is the degree of node <span class="math">\(i\)</span>.</p>
+<p>$i$ is the node whose collective influence we are calculating and
+  $k_i$ is the degree of node $i$.</p>
 </li>
 <li>
-<p><span class="math">\(\mathrm{Ball}(i, r)\)</span> is the set of nodes whose shortest path from
-  node <span class="math">\(i\)</span> does not exceed <span class="math">\(r\)</span>. If you could draw a circle with radius
-  <span class="math">\(r\)</span> links around node <span class="math">\(i\)</span>, nodes <span class="math">\(j\)</span> are the nodes that would fall
+<p>$\mathrm{Ball}(i, r)$ is the set of nodes whose shortest path from
+  node $i$ does not exceed $r$. If you could draw a circle with radius
+  $r$ links around node $i$, nodes $j$ are the nodes that would fall
   inside the circle. If you would prefer to talk in three dimensions,
   they would be the nodes that fall inside the sphere centered at node
-  <span class="math">\(i\)</span> and having radius <span class="math">\(r\)</span>.</p>
+  $i$ and having radius $r$.</p>
 </li>
 <li>
-<p><span class="math">\(\vartheta\mathrm{Ball}(i, r)\)</span> is the set of nodes whose shortest
-  path from node <span class="math">\(i\)</span> is exactly <span class="math">\(r\)</span>. If you could draw a circle with
-  radius <span class="math">\(r\)</span> links around node <span class="math">\(i\)</span>, nodes <span class="math">\(j\)</span> are the nodes that fall
+<p>$\vartheta\mathrm{Ball}(i, r)$ is the set of nodes whose shortest
+  path from node $i$ is exactly $r$. If you could draw a circle with
+  radius $r$ links around node $i$, nodes $j$ are the nodes that fall
   on the perimeter of the circle. If you would prefer to talk in three
   dimensions, they would be the nodes that fall on the surface of the
-  sphere centered at node <span class="math">\(i\)</span> and having radius <span class="math">\(r\)</span>.</p>
+  sphere centered at node $i$ and having radius $r$.</p>
 </li>
 </ul>
 <p>Following the above, to calculate the collective influence of a node
-<span class="math">\(i\)</span>, we find the nodes whose shortest path from <span class="math">\(i\)</span> is equal to <span class="math">\(r\)</span>
-and we take the sum of the links of each one of them, <span class="math">\(k_j\)</span> for node
-<span class="math">\(j\)</span>, minus one. Finally, we multiply the sum with the number of links
-of <span class="math">\(i\)</span>, <span class="math">\(k_i\)</span>, minus one.</p>
+$i$, we find the nodes whose shortest path from $i$ is equal to $r$
+and we take the sum of the links of each one of them, $k_j$ for node
+$j$, minus one. Finally, we multiply the sum with the number of links
+of $i$, $k_i$, minus one.</p>
 <p>Using the collective influence, we can now dismantle a network like
 this:</p>
 <ol>
@@ -171,9 +171,9 @@ this:</p>
 <li>
 <p>We update the collective influence of the nodes that are affected
    by the removal of the node in step 3. These are the nodes inside
-   <span class="math">\(\mathrm{Ball}(i, r+1)\)</span>, that is, the nodes that lie inside a
-   circle (or a sphere) of radius <span class="math">\(r+i\)</span> links away from node <span class="math">\(i\)</span>,
-   where <span class="math">\(i\)</span> is the node that we removed in step 3.</p>
+   $\mathrm{Ball}(i, r+1)$, that is, the nodes that lie inside a
+   circle (or a sphere) of radius $r+i$ links away from node $i$,
+   where $i$ is the node that we removed in step 3.</p>
 </li>
 <li>
 <p>We return to step 2.</p>
@@ -181,14 +181,14 @@ this:</p>
 </ol>
 <p>We repeat steps 2&ndash;5 for as many nodes as we want.</p>
 <p>To implement this algorithm we need a way to calculate 
-<span class="math">\(\vartheta\mathrm{Ball}(i, r)\)</span> and <span class="math">\(\mathrm{Ball}(i, r+1)\)</span>.
+$\vartheta\mathrm{Ball}(i, r)$ and $\mathrm{Ball}(i, r+1)$.
 In order to detect the nodes that lie inside a given distance from
 another note, it suffices to use a variant of breadth-first search
 (BFS), where, as we move further away from our starting node, we keep
 count of the links we travel along.</p>
 <p>In the following images you can see how we can protect a network
 against contagion by taking out four nodes with the largest, at each
-point, collective influence, using <span class="math">\(r = 2\)</span>. Again, we use white to
+point, collective influence, using $r = 2$. Again, we use white to
 paint the removed nodes, and other colors for the connected
 components.</p>
 <p><img src="https://louridas.github.io/rwa/assignments/network-destruction/network_destruction_degree_0.png" width="400"></p>
@@ -210,7 +210,7 @@ remove using both of the above ways.</p>
 <p>You will write a program called <code>network-destruction.py</code>. You may use
 the standard Python libraries <code>argparse</code> and <code>sys</code>, but not any
 others. Your program will be called as follows:</p>
-<div class="highlight"><pre><span></span><code>python network_destruction.py <span class="o">[</span>-d<span class="o">]</span> <span class="o">[</span>-r RADIUS<span class="o">]</span> num_nodes input_file
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>network_destruction.py<span class="w"> </span><span class="o">[</span>-d<span class="o">]</span><span class="w"> </span><span class="o">[</span>-r<span class="w"> </span>RADIUS<span class="o">]</span><span class="w"> </span>num_nodes<span class="w"> </span>input_file
 </code></pre></div>
 
 <p>The meaning of the program arguments is:</p>
@@ -223,7 +223,7 @@ others. Your program will be called as follows:</p>
 </li>
 <li>
 <p><code>-r RADIUS</code>: optional argument; the program will use the
-  value <code>RADIUS</code> for <span class="math">\(r\)</span>, or will default to <span class="math">\(r = 2\)</span> otherwise.</p>
+  value <code>RADIUS</code> for $r$, or will default to $r = 2$ otherwise.</p>
 </li>
 <li>
 <p><code>num_nodes</code>: the number of nodes to remove; mandatory argument.</p>
@@ -243,15 +243,15 @@ others. Your program will be called as follows:</p>
 the two numbers are <code>x</code> and <code>y</code>, the graph will have a link between
 <code>x</code> and <code>y</code>. The graph is undirected, so we can take it as granted
 that it will also have the opposite link, from <code>y</code> to <code>x</code>. The nodes
-will always be numbers, starting from <span class="math">\(1\)</span> and increasing by one: <span class="math">\(1\)</span>, <span class="math">\(2\)</span>,
-<span class="math">\(\ldots\)</span>.</p>
+will always be numbers, starting from $1$ and increasing by one: $1$, $2$,
+$\ldots$.</p>
 <p>The program will about a sequence of lines; each line will contain the
 node that is removed and its metric. </p>
 <h3>Examples</h3>
 <p><em>Example 1</em></p>
 <p>If we use the example file
 <a href="destruction_example_1.txt">destruction_example_1.txt</a>:</p>
-<div class="highlight"><pre><span></span><code>python network_destruction.py -r <span class="m">2</span> <span class="m">4</span> destruction_example_1.txt
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>network_destruction.py<span class="w"> </span>-r<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">4</span><span class="w"> </span>destruction_example_1.txt
 </code></pre></div>
 
 <p>we will get:</p>
@@ -265,7 +265,7 @@ node that is removed and its metric. </p>
 then node 16 with collective influence 51, and so on.</p>
 <p>If we use the example file
 <a href="destruction_example_1.txt">destruction_example_1.txt</a> as: </p>
-<div class="highlight"><pre><span></span><code>python network_destruction.py -d <span class="m">4</span> destruction_example_1.txt
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>network_destruction.py<span class="w"> </span>-d<span class="w"> </span><span class="m">4</span><span class="w"> </span>destruction_example_1.txt
 </code></pre></div>
 
 <p>we will get:</p>
@@ -293,7 +293,7 @@ degree 5, and so on.</p>
 </code></pre></div>
 
 <p>If we give:</p>
-<div class="highlight"><pre><span></span><code>python network_destruction.py -r <span class="m">2</span> <span class="m">6</span> destruction_example_2.txt
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>network_destruction.py<span class="w"> </span>-r<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">6</span><span class="w"> </span>destruction_example_2.txt
 </code></pre></div>
 
 <p>we will get:</p>
@@ -312,7 +312,7 @@ degree 5, and so on.</p>
 <p><em>Example 3</em></p>
 <p>If we use the example file
 <a href="destruction_example_3.txt">destruction_example_3.txt</a> with:</p>
-<div class="highlight"><pre><span></span><code>python network_destruction.py -c <span class="m">10</span> destruction_example_3.txt
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>network_destruction.py<span class="w"> </span>-c<span class="w"> </span><span class="m">10</span><span class="w"> </span>destruction_example_3.txt
 </code></pre></div>
 
 <p>we will get:</p>
@@ -329,7 +329,7 @@ degree 5, and so on.</p>
 </code></pre></div>
 
 <p>If we give:</p>
-<div class="highlight"><pre><span></span><code>python network_destruction.py -r <span class="m">3</span> <span class="m">10</span> destruction_example_3.txt
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>network_destruction.py<span class="w"> </span>-r<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">10</span><span class="w"> </span>destruction_example_3.txt
 </code></pre></div>
 
 <p>we will get:</p>
@@ -361,62 +361,7 @@ interface</a>.</p>
 <h3>Notes</h3>
 <p>For an overview of network destruction using collective influence, see
 <a href='#kovacs:2015' id='ref-kovacs:2015-1'>[1]</a>. The algorithm was presented in <a href='#morone:2015' id='ref-morone:2015-1'>[2]</a>. For
-details on its implementation, see <a href='#morone:2016' id='ref-morone:2016-1'>[3]</a>.</p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script><hr>
+details on its implementation, see <a href='#morone:2016' id='ref-morone:2016-1'>[3]</a>.</p><hr>
 <h3>Bibliography</h3>
 <div class='bibliography'><ol><li id='kovacs:2015'>Istv<span class="bibtex-protected">á</span>n&nbsp;A. Kov<span class="bibtex-protected">á</span>cs and Albert-L<span class="bibtex-protected">á</span>szl<span class="bibtex-protected">ó</span> Barab<span class="bibtex-protected">á</span>si.
 Destruction perfected.

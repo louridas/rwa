@@ -83,7 +83,7 @@
        class CodecInfo(tuple):
            """Codec details when looking up the codec registry"""
        
-           # Private API to allow Python 3.4 to blacklist the known non-Unicode
+           # Private API to allow Python 3.4 to denylist the known non-Unicode
            # codecs in the standard library. A more general mechanism to
            # reliably distinguish test encodings from other codecs will hopefully
            # be defined for Python 3.5
@@ -318,11 +318,11 @@
        
            def decode(self, input, final=False):
                # decode input (taking the buffer into account)
-   81:         data = self.buffer + input
-   81:         (result, consumed) = self._buffer_decode(data, self.errors, final)
+   82:         data = self.buffer + input
+   82:         (result, consumed) = self._buffer_decode(data, self.errors, final)
                # keep undecoded input until the next call
-   81:         self.buffer = data[consumed:]
-   81:         return result
+   82:         self.buffer = data[consumed:]
+   82:         return result
        
            def reset(self):
                IncrementalDecoder.reset(self)
@@ -878,7 +878,8 @@
                codecs. Output is also codec dependent and will usually be
                Unicode as well.
        
-               Underlying encoded files are always opened in binary mode.
+               If encoding is not None, then the
+               underlying encoded files are always opened in binary mode.
                The default file mode is 'r', meaning to open the file in read mode.
        
                encoding specifies the encoding which is to be used for the

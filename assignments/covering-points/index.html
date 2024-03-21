@@ -94,22 +94,22 @@ lines:</p>
 <p>Selecting the minimum number of lines passing through a set of points
 is a geometric version of the more general <em>set covering problem</em>.
 This is defined as follows: If we have a set of elements, which we
-call <em>universe</em>, <span class="math">\(U = \{1, 2, \ldots n\}\)</span>, and a set <span class="math">\(S\)</span> of <span class="math">\(m\)</span> sets
-whose union equals the universe, find the smallest subset of <span class="math">\(S\)</span> whose
+call <em>universe</em>, $U = {1, 2, \ldots n}$, and a set $S$ of $m$ sets
+whose union equals the universe, find the smallest subset of $S$ whose
 union equals the universe. The set covering problem is equivalent to
-the points covering problem if we take <span class="math">\(U\)</span> to be the set of points
-that we want to cover and <span class="math">\(S\)</span> the set of lines passing through the
+the points covering problem if we take $U$ to be the set of points
+that we want to cover and $S$ the set of lines passing through the
 points (each line defined by the points it goes through).</p>
-<p>For example, let's have as universe <span class="math">\(U = \{1, 2, 3, 4, 5\}\)</span> and the
-set of sets <span class="math">\(S = \{\{1\}, \{1, 2\}, \{1, 2, 3\}, \{2, 4\}, \{3, 4\},
-\{4, 5\}\}\)</span>. We can see that the union of all members of <span class="math">\(S\)</span> gives us
-<span class="math">\(U\)</span>, but we can also cover <span class="math">\(U\)</span> using the <span class="math">\(\{\{1, 2, 3\}, \{4, 5\}\}\)</span>
-subset of <span class="math">\(S\)</span>.</p>
+<p>For example, let's have as universe $U = {1, 2, 3, 4, 5}$ and the
+set of sets $S = {{1}, {1, 2}, {1, 2, 3}, {2, 4}, {3, 4},
+{4, 5}}$. We can see that the union of all members of $S$ gives us
+$U$, but we can also cover $U$ using the ${{1, 2, 3}, {4, 5}}$
+subset of $S$.</p>
 <p>Unfortunately, the set covering problem cannot be solved in polynomial
 time. Indeed, take this approach:</p>
 <ul>
-<li>For every possible subset of <span class="math">\(S\)</span>:<ul>
-<li>Check if it covers <span class="math">\(U\)</span>.</li>
+<li>For every possible subset of $S$:<ul>
+<li>Check if it covers $U$.</li>
 <li>If yes, and it is smaller than the best candidate solution that we
   have found so far, note it as the best candidate solution.</li>
 </ul>
@@ -117,18 +117,18 @@ time. Indeed, take this approach:</p>
 </ul>
 <p>When these steps finish, the final candidate solution will also be the
 best. The problem lies in the phrase "for every possible subset of
-<span class="math">\(S\)</span>". If a set contains <span class="math">\(m\)</span> elements, the number of possible subsets
-is <span class="math">\(2^m\)</span>; therefore, unless <span class="math">\(m\)</span> is small, there is no way we can find
+$S$". If a set contains $m$ elements, the number of possible subsets
+is $2^m$; therefore, unless $m$ is small, there is no way we can find
 the solution in a reasonable amount of time. </p>
 <p>Of course, if you think about it, you do not need to check every
-possible subset of <span class="math">\(S\)</span>. As we want the minimum number of elements, or
+possible subset of $S$. As we want the minimum number of elements, or
 to be more specific, lines, we can improve our approach:</p>
 <ul>
 <li>
-<p>Enumerate the subsets of <span class="math">\(S\)</span> in increasing size (number of lines):</p>
+<p>Enumerate the subsets of $S$ in increasing size (number of lines):</p>
 </li>
 <li>
-<p>Check if the current subset covers <span class="math">\(U\)</span>.</p>
+<p>Check if the current subset covers $U$.</p>
 </li>
 <li>
 <p>If yes, that is the solution we are looking for and we can stop.</p>
@@ -141,10 +141,10 @@ lines, which we don't want.</p>
 <p>The problem remains that even this improved approach will not
 necessarily run in a reasonable amount of time. The points that we
 want to cover may be placed in way that only pairs of them are
-colinear. Then, if we have <span class="math">\(n\)</span> points, we need <span class="math">\(n/2\)</span> lines to cover
+colinear. Then, if we have $n$ points, we need $n/2$ lines to cover
 them, but we don't know that beforehand. We will start checking with
 the smallest number of lines and then go on increasing the number of
-lines until we get to the required <span class="math">\(n/2\)</span> lines:</p>
+lines until we get to the required $n/2$ lines:</p>
 <ul>
 <li>
 <p>Subsets with zero lines (the empty subset).</p>
@@ -158,12 +158,12 @@ lines until we get to the required <span class="math">\(n/2\)</span> lines:</p>
   each).</p>
 </li>
 <li>
-<p>And so and so forth, until we arrive at a subset containing <span class="math">\(n/2\)</span>
+<p>And so and so forth, until we arrive at a subset containing $n/2$
   lines. </p>
 </li>
 </ul>
 <p>So, in the end, we will still need to check an exponential number of
-subsets, of the order of <span class="math">\(2^{n/2}\)</span>. Now, you may observe that we don't
+subsets, of the order of $2^{n/2}$. Now, you may observe that we don't
 need to check subsets with zero lines or one line, but that is just a
 drop in the ocean of possible solutions that we have to check. If you
 want to see an example of points that are only pairwise colinear,
@@ -175,9 +175,9 @@ fast, but it is not guaranteed to come up with the best solution:</p>
 <p>Start with a new, empty solution.</p>
 </li>
 <li>
-<p>While not all elements of <span class="math">\(U\)</span> have been covered:</p>
+<p>While not all elements of $U$ have been covered:</p>
 <ul>
-<li>Find the member of <span class="math">\(S\)</span> that covers the greatest number of
+<li>Find the member of $S$ that covers the greatest number of
   uncovered elements and add them to the solution.</li>
 </ul>
 </li>
@@ -206,7 +206,7 @@ following libraries:
 <a href="https://docs.python.org/3/library/sys.html"><code>sys</code></a> (in particular,
 the list <code>sys.argv</code>) to handle program arguments.</p>
 <p>Your program will be called as follows:</p>
-<div class="highlight"><pre><span></span><code>python points_cover.py <span class="o">[</span>-f<span class="o">]</span> <span class="o">[</span>-g<span class="o">]</span> points_file
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>points_cover.py<span class="w"> </span><span class="o">[</span>-f<span class="o">]</span><span class="w"> </span><span class="o">[</span>-g<span class="o">]</span><span class="w"> </span>points_file
 </code></pre></div>
 
 <p>The meaning of the program arguments is:</p>
@@ -231,7 +231,7 @@ the list <code>sys.argv</code>) to handle program arguments.</p>
    <code>text
     x y</code>
     <br/>
-  where <code>x</code> is the <span class="math">\(x\)</span>-axis coordinate and <code>y</code> is the <span class="math">\(y\)</span>-axis
+  where <code>x</code> is the $x$-axis coordinate and <code>y</code> is the $y$-axis
   coordinate of each point.</p>
 </li>
 </ul>
@@ -239,8 +239,8 @@ the list <code>sys.argv</code>) to handle program arguments.</p>
 lines passing through at least two of them, you may use horizontal
 lines that pass through the points that are not colinear with another
 point in the horizontal or vertical direction. So, if there is a point
-<span class="math">\((x, y)\)</span> and there is no point <span class="math">\((x', y)\)</span> or <span class="math">\((x, y')\)</span>, you can use the
-line passing through <span class="math">\(((x, y), (x + 1, y))\)</span>.</p>
+$(x, y)$ and there is no point $(x', y)$ or $(x, y')$, you can use the
+line passing through $((x, y), (x + 1, y))$.</p>
 <p>The lines that will make up your solutions must appear in descending
 order based on the number of points they cover. In other words, lines
 covering more points will precede lines covering fewer points. For
@@ -253,7 +253,7 @@ points you read from <code>points_file</code>.</p>
 <h3>Examples</h3>
 <p><em>Example 1</em></p>
 <p>If you invoke the program with:</p>
-<div class="highlight"><pre><span></span><code>python points_cover.py example_1.txt
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>points_cover.py<span class="w"> </span>example_1.txt
 </code></pre></div>
 
 <p>then the program will read the file 
@@ -270,7 +270,7 @@ and will display the following results:</p>
 the beginning of this assignment.</p>
 <p><em>Example 2</em></p>
 <p>If you invoke the program with:</p>
-<div class="highlight"><pre><span></span><code>python points_cover.py -f -g example_1.txt
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>points_cover.py<span class="w"> </span>-f<span class="w"> </span>-g<span class="w"> </span>example_1.txt
 </code></pre></div>
 
 <p>then the program will read the file 
@@ -288,7 +288,7 @@ and will display the following results:</p>
 the beginning of this assignment.</p>
 <p><em>Example 3</em></p>
 <p>If you invoke the program with:</p>
-<div class="highlight"><pre><span></span><code>python points_cover.py -g example_2.txt
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>points_cover.py<span class="w"> </span>-g<span class="w"> </span>example_2.txt
 </code></pre></div>
 
 <p>then the program will read the file 
@@ -311,7 +311,7 @@ and will display the following results:</p>
 <p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_5.png" width="700"/></p>
 <p><em>Example 4</em></p>
 <p>If you invoke the program with:</p>
-<div class="highlight"><pre><span></span><code>python points_cover.py -f -g example_2.txt
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>points_cover.py<span class="w"> </span>-f<span class="w"> </span>-g<span class="w"> </span>example_2.txt
 </code></pre></div>
 
 <p>then the program will read the file 
@@ -331,7 +331,7 @@ and will display the following results:</p>
 <p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_6.png" width="700"/></p>
 <p><em>Example 5</em></p>
 <p>If you invoke the program with:</p>
-<div class="highlight"><pre><span></span><code>python points_cover.py -g example_3.txt
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>points_cover.py<span class="w"> </span>-g<span class="w"> </span>example_3.txt
 </code></pre></div>
 
 <p>then the program will read the file
@@ -353,7 +353,7 @@ and will display the following results:</p>
 <p><img src="https://louridas.github.io/rwa/assignments/covering-points/hitting_objects_7.png" width="700"/></p>
 <p><em>Example 6</em></p>
 <p>If you invoke the program with:</p>
-<div class="highlight"><pre><span></span><code>python points_cover.py -f -g example_3.txt
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>points_cover.py<span class="w"> </span>-f<span class="w"> </span>-g<span class="w"> </span>example_3.txt
 </code></pre></div>
 
 <p>then the program will read the file
@@ -381,62 +381,7 @@ treated here; the line covering problem consists of starting with a
 set of straight lines and finind a minimum set of points such as each
 line contains at least one of them. The two problems are closely
 related and line covering can be reduced, i.e., recast, as point
-covering. For some more recent results, see <a href='#kratsch:2016' id='ref-kratsch:2016-1'>[2]</a>.</p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script><hr>
+covering. For some more recent results, see <a href='#kratsch:2016' id='ref-kratsch:2016-1'>[2]</a>.</p><hr>
 <h3>Bibliography</h3>
 <div class='bibliography'><ol><li id='hassin:1991'>Refael Hassin and Nimrod Megiddo.
 Approximation algorithms for hitting objects with straight lines.

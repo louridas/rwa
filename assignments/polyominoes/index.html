@@ -79,13 +79,13 @@ pentominoes if we do not take into account rotations and reflections:</p>
 <p>The two problems in the book were:</p>
 <ol>
 <li>
-<p>Can we fill a rectangle with dimensions <span class="math">\(6\times 10\)</span> using these 12
+<p>Can we fill a rectangle with dimensions $6\times 10$ using these 12
    pentominoes? It turns out that the answer is yes, and there are
    2339 different solutions. Here is one of them:</p>
 <p><img src="https://louridas.github.io/rwa/assignments/polyominoes/pentominoes_6_10.png" width="300"/></p>
 </li>
 <li>
-<p>Can we fill a rectangle with dimensions <span class="math">\(3\times 20\)</span> using these 12
+<p>Can we fill a rectangle with dimensions $3\times 20$ using these 12
   pentominoes? Again, it turns out that the answer is yes, but there
   are only two solutions. Here is one of them:</p>
 <p><img src="https://louridas.github.io/rwa/assignments/polyominoes/pentominoes_3_20.png" width="600"/></p>
@@ -110,17 +110,17 @@ instead of five. A
 shape consisting of a number of square tiles, with each two of them
 sharing a side. As in pentominoes, polyominoes can be fixed or free.
 We are interested in finding a way to count the number of fixed
-polyominos, for every possible number of tiles <span class="math">\(n\)</span>.</p>
+polyominos, for every possible number of tiles $n$.</p>
 <p>To find that count, we can work as follows. We will take pentominoes
 as our example. We create a square lattice, on which we will place the
 pentominoes. All pentominoes will be placed so that they cover tile
-<span class="math">\((0, 0)\)</span>. Given that, the pentominoes may extend to the grayed tiles
+$(0, 0)$. Given that, the pentominoes may extend to the grayed tiles
 of the following shape:</p>
 <p><img src="https://louridas.github.io/rwa/assignments/polyominoes/lattice_pentominoes.png" width="450"/></p>
 <p>The bold line indicates the tiles whose coordinates are:</p>
-<div class="math">$$ \{\, (x, y)\ |\ (y &gt;0)\ \mathrm{or}\ (y = 0)\ \mathrm{and}\ x \ge 0 \,\} $$</div>
+<p>$$ {\, (x, y)\ |\ (y &gt;0)\ \mathrm{or}\ (y = 0)\ \mathrm{and}\ x \ge 0 \,} $$</p>
 <p>Then, to find the different pentominoes, we take five tiles such that
-every two of them share an edge and one of them covers <span class="math">\((0, 0)\)</span>.</p>
+every two of them share an edge and one of them covers $(0, 0)$.</p>
 <p>Now, let's define a graph where each node is one of the grayed tiles
 and its neighbors are the adjacent squared tiles:</p>
 <p><img src="https://louridas.github.io/rwa/assignments/polyominoes/graph_pentominoes.png" width="550"/></p>
@@ -128,42 +128,42 @@ and its neighbors are the adjacent squared tiles:</p>
 contain five nodes.</p>
 <p>It follows that to find how many pentominoes there are, we have to
 find the number of connected subgraphs having five nodes. In general,
-if we have polyominoes of size <span class="math">\(n\)</span>, the logic remains the same. We
+if we have polyominoes of size $n$, the logic remains the same. We
 construct the corresponding graph and we count the number of connected
-subgraphs with <span class="math">\(n\)</span> nodes. To find these subgraphs, we can use the
+subgraphs with $n$ nodes. To find these subgraphs, we can use the
 following algorithm:</p>
 <p><img src="https://louridas.github.io/rwa/assignments/polyominoes/count_fixed_polyominoes_algorithm_nc.png" width="600"/></p>
 <p>The algorithm is recursive. It takes as arguments the graph that we
-have constructed (<span class="math">\(G\)</span>), a set of tiles that we need to try
-(<span class="math">\(\mathit{untried}\)</span>), the size of the polyomino (<span class="math">\(n\)</span>) and the current
-polyomino under construction (<span class="math">\(p\)</span>). We call the algorithm passing as
-<span class="math">\(\mathit{untried}\)</span> the set <span class="math">\(\{(0, 0)\}\)</span> and as the current polyomino
-<span class="math">\(p\)</span> an empty list.</p>
+have constructed ($G$), a set of tiles that we need to try
+($\mathit{untried}$), the size of the polyomino ($n$) and the current
+polyomino under construction ($p$). We call the algorithm passing as
+$\mathit{untried}$ the set ${(0, 0)}$ and as the current polyomino
+$p$ an empty list.</p>
 <p>When we start, we initialize the counter representing the number of
 polyominoes to zero (line 1). The algorithm executes as long as the
-set <span class="math">\(\mathit{untried}\)</span> is not empty. We take out one element from the
-set, that is, a node that we call <span class="math">\(u\)</span> (line 3), and we add it to the
+set $\mathit{untried}$ is not empty. We take out one element from the
+set, that is, a node that we call $u$ (line 3), and we add it to the
 current polyomino (line 5). If the current polyomino has size equal to
-<span class="math">\(n\)</span>, we increase the counter by one (lines 5&ndash;6). Otherwise, 
-in lines 8&ndash;13 we find the neighbors of <span class="math">\(u\)</span> for which the
+$n$, we increase the counter by one (lines 5&ndash;6). Otherwise, 
+in lines 8&ndash;13 we find the neighbors of $u$ for which the
 following hold:</p>
 <ol>
 <li>
-<p>The do not belong to set <span class="math">\(\mathit{untried}\)</span>.</p>
+<p>The do not belong to set $\mathit{untried}$.</p>
 </li>
 <li>
 <p>They do not belong in the current polyomino under construction.</p>
 </li>
 <li>
-<p>They are not neighbors of the other nodes, apart from <span class="math">\(u\)</span>, that
-   belong to <span class="math">\(p\)</span>: by <span class="math">\(p \setminus u\)</span> we done the nodes of <span class="math">\(p\)</span> apart
-   from <span class="math">\(u\)</span>. At this point you may wonder: &ldquo;Well,
-   <span class="math">\(\mathit{untried}\)</span> does contain the neighbors of the polyomino
+<p>They are not neighbors of the other nodes, apart from $u$, that
+   belong to $p$: by $p \setminus u$ we done the nodes of $p$ apart
+   from $u$. At this point you may wonder: &ldquo;Well,
+   $\mathit{untried}$ does contain the neighbors of the polyomino
    under construction, right? Why do we need this check since we
-   already check that <span class="math">\(v \notin \mathit{untried}\)</span>?&rdquo;. The answer
+   already check that $v \notin \mathit{untried}$?&rdquo;. The answer
    is no, it does not necessarily contain all the neighbors of the
    polyomino under construction, because each time we go through line
-   3 we remove an element from <span class="math">\(\mathit{untried}\)</span>, so a neighbor may
+   3 we remove an element from $\mathit{untried}$, so a neighbor may
    be one of the removed elements.</p>
 </li>
 </ol>
@@ -171,11 +171,11 @@ following hold:</p>
 try (line 12) and we call the graph recursively (line 13). When the
 recursive call returns, we add to the counter the value returned from
 the call. Before the next iteration of the loop of lines 2&ndash;14,
-we remove node <span class="math">\(u\)</span> from <span class="math">\(p\)</span>.</p>
+we remove node $u$ from $p$.</p>
 <h3>Requirements</h3>
 <p>You will write a program called <code>count_fixed_polyominoes.py</code>. Your
 program will be called as follows:</p>
-<div class="highlight"><pre><span></span><code>python count_fixed_polyominoes.py <span class="o">[</span>-p<span class="o">]</span> n 
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>count_fixed_polyominoes.py<span class="w"> </span><span class="o">[</span>-p<span class="o">]</span><span class="w"> </span>n<span class="w"> </span>
 </code></pre></div>
 
 <p>The program will construct and count all fixed polyominoes of size <code>n</code>
@@ -198,7 +198,7 @@ also output the graph that is constructed. In your program:</p>
 <h3>Examples</h3>
 <p><em>Example 1</em></p>
 <p>If the program is called with:</p>
-<div class="highlight"><pre><span></span><code>python count_fixed_polyominoes.py -p <span class="m">3</span>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>count_fixed_polyominoes.py<span class="w"> </span>-p<span class="w"> </span><span class="m">3</span>
 </code></pre></div>
 
 <p>the program will output:</p>
@@ -214,7 +214,7 @@ also output the graph that is constructed. In your program:</p>
 
 <p><em>Example 2</em></p>
 <p>If the program is called with:</p>
-<div class="highlight"><pre><span></span><code>python count_fixed_polyominoes.py -p <span class="m">4</span>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>count_fixed_polyominoes.py<span class="w"> </span>-p<span class="w"> </span><span class="m">4</span>
 </code></pre></div>
 
 <p>the output will be:</p>
@@ -236,7 +236,7 @@ also output the graph that is constructed. In your program:</p>
 
 <p><em>Example 3</em></p>
 <p>If the program is called with:</p>
-<div class="highlight"><pre><span></span><code>python count_fixed_polyominoes.py -p <span class="m">5</span>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>count_fixed_polyominoes.py<span class="w"> </span>-p<span class="w"> </span><span class="m">5</span>
 </code></pre></div>
 
 <p>the output will be:</p>
@@ -266,7 +266,7 @@ also output the graph that is constructed. In your program:</p>
 
 <p><em>Example 4</em></p>
 <p>If the program is called with:</p>
-<div class="highlight"><pre><span></span><code>python count_fixed_polyominoes.py <span class="m">10</span>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>count_fixed_polyominoes.py<span class="w"> </span><span class="m">10</span>
 </code></pre></div>
 
 <p>the output will be:</p>
@@ -275,7 +275,7 @@ also output the graph that is constructed. In your program:</p>
 
 <p><em>Example 5</em></p>
 <p>If the program is called with:</p>
-<div class="highlight"><pre><span></span><code>python count_fixed_polyominoes.py <span class="m">15</span>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>count_fixed_polyominoes.py<span class="w"> </span><span class="m">15</span>
 </code></pre></div>
 
 <p>the output will be:</p>
@@ -386,62 +386,7 @@ the following table:</p>
   1957 and 1960 in his Scientific American column 
   <a href='#gardner:1957' id='ref-gardner:1957-1'>[3]</a><a href='#gardner:1960' id='ref-gardner:1960-1'>[4]</a>.</p>
 </li>
-</ul>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%&#64;#$&#64;#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%&#64;#$&#64;#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script><hr>
+</ul><hr>
 <h3>Bibliography</h3>
 <div class='bibliography'><ol><li id='aleksandrowicz:2006'>Gadi Aleksandrowicz and Gill Barequet.
 Counting d-dimensional polycubes and nonrectangular planar polyominoes.
