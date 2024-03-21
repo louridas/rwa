@@ -1,5 +1,5 @@
 AUTHOR = 'Panos Louridas'
-SITENAME = 'Real World Algorithms Web Companion'
+SITENAME = 'Real-World Algorithms Web Companion'
 SITEURL = ''
 
 PATH = 'content'
@@ -33,6 +33,8 @@ DEFAULT_PAGINATION = False
 THEME = "themes/rwa"
 
 STATIC_PATHS = ['assignments', 'images', 'notebooks', 'pdfs']
+
+IGNORE_FILES = [".ipynb_checkpoints", "*slides.html"]
 
 ARTICLE_URL = '{category}/{slug}/'
 ARTICLE_SAVE_AS = '{category}/{slug}/index.html'
